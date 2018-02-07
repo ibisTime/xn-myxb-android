@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.cdkj.baselibrary.views.RowInfoLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:img_left="@drawable/photo_default"
+            app:img_right="@drawable/more_right"
+            app:txt_left="dfsdf" />
+
+        <com.cdkj.baselibrary.views.RowInfoLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:img_left="@drawable/photo_default"
+            app:img_right="@drawable/more_right"
+            app:txt_left="dfsdf" />
+
+        <com.cdkj.baselibrary.views.RowInfoLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:img_left="@drawable/photo_default"
+            app:img_right="@drawable/more_right"
+            app:txt_left="dfsdf" />
+
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <com.cdkj.baselibrary.views.EnabledViewpager
+            android:id="@+id/pager_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="55.2dp">
+
+        </com.cdkj.baselibrary.views.EnabledViewpager>
+
+        <View
+            style="@style/style_split_line"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="56dp" />
+
+        <include
+            android:id="@+id/layout_tab"
+            layout="@layout/layout_main_mottom_tab" />
+
+    </FrameLayout>
+</layout>

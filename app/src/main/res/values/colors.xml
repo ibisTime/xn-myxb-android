@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#f56066</color>
+    <color name="colorPrimaryDark">#f56066</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <color name="app_txt_red">#f56066</color>
+    <color name="app_txt_black">#3d3d3d</color>
+    <color name="app_title_bg">#f56066</color>
+
+
+</resources>

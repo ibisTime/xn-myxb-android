@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="title_height">44dp</dimen>
+
+
+    <!--dialog-->
+    <dimen name="dialog_tips_corner">16dp</dimen>
+
+
+    <dimen name="line_height">0.5dp</dimen>
+    <dimen name="top_center_title_size">16sp</dimen>
+
+
+    <!--裁剪View-->
+    <dimen name="border_thickness">3dp</dimen>
+    <dimen name="corner_thickness">5dp</dimen>
+    <dimen name="guideline_thickness">1px</dimen>
+
+    <dimen name="target_radius">24dp</dimen>
+    <dimen name="snap_radius">3dp</dimen>
+    <dimen name="corner_length">20dp</dimen>
+
+    <dimen name="btn_round">5dp</dimen>
+
+    <dimen name="layout_left_right_interval">15dp</dimen>
+    <dimen name="button_height">45dp</dimen>
+
+</resources>

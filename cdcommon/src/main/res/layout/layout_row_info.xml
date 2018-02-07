@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_gray"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp">
+
+        <ImageView
+            android:id="@+id/img_left"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            tools:src="@drawable/pyq" />
+
+        <TextView
+            android:id="@+id/tv_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:maxLength="5"
+            android:text="信息信息"
+            android:textColor="@color/text_black_cd"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:text="信息信息"
+            android:textColor="@color/text_black_cd"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/img_right"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            tools:src="@drawable/pyq" />
+
+    </LinearLayout>
+</layout>
