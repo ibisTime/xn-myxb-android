@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_gray">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/fram_title"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/title_height"
+                android:background="@color/app_title_bg">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@string/help_center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/top_center_title_size" />
+
+                <TextView
+                    android:id="@+id/tv_top_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center"
+                    android:text="@string/invitation_helper"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+            </FrameLayout>
+
+
+            <com.cdkj.myxb.views.HelpItemShowAndHideLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:img_left="@drawable/help_center_1"
+                app:txt_info="美业销帮是什么美业销帮是什么美业销帮是什么美业销帮是什么美业销帮是什么？"
+                app:txt_title="美业销帮是什么？" />
+
+            <View
+                style="@style/style_split_line"
+                android:layout_marginLeft="55dp" />
+
+
+            <com.cdkj.myxb.views.HelpItemShowAndHideLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:img_left="@drawable/help_center_2"
+                app:txt_info="美业销帮是什么美业销帮是什么美业销帮是什么美业销帮是什么美业销帮是什么？"
+                app:txt_title="在美业销帮能做什么？" />
+
+            <View
+                style="@style/style_split_line"
+                android:layout_marginLeft="55dp" />
+
+
+            <com.cdkj.myxb.views.HelpItemShowAndHideLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:img_left="@drawable/help_center_3"
+                app:txt_info="美业销帮是什么美业销帮是什么美业销帮是什么美业销帮是什么美业销帮是什么？"
+                app:txt_title="如何保障资金安全？" />
+
+            <View
+                style="@style/style_split_line"
+                android:layout_marginLeft="55dp" />
+
+            <com.cdkj.myxb.views.HelpItemShowAndHideLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:img_left="@drawable/help_center_4"
+                app:txt_info="美业销帮是什么美业销帮是什么美业销帮是什么美业销帮是什么美业销帮是什么？"
+                app:txt_title="我们有什么优势呢？" />
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>

@@ -64,7 +64,7 @@
         <RadioButton
             android:id="@+id/radio_main_tab_5"
             style="@style/main_tab_radio"
-            android:drawableTop="@drawable/main_buttom_tab_1"
-            android:text="@string/mind" />
+            android:drawableTop="@drawable/main_buttom_tab_4"
+            android:text="@string/mine" />
     </LinearLayout>
 </layout>
