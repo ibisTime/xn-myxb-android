@@ -24,6 +24,8 @@
     <dimen name="btn_round">5dp</dimen>
 
     <dimen name="layout_left_right_interval">15dp</dimen>
+    <dimen name="layout_left_interval">15dp</dimen>
+    <dimen name="layout_right_interval">15dp</dimen>
     <dimen name="button_height">45dp</dimen>
 
 </resources>

@@ -1,33 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:background="@color/bg_gray">
 
-        <com.cdkj.baselibrary.views.RowInfoLayout
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:img_left="@drawable/photo_default"
-            app:img_right="@drawable/more_right"
-            app:txt_left="dfsdf" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <com.cdkj.baselibrary.views.RowInfoLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:img_left="@drawable/photo_default"
-            app:img_right="@drawable/more_right"
-            app:txt_left="dfsdf" />
+            <include
+                android:id="@+id/headr_layout"
+                layout="@layout/layout_my_fragment_headr" />
 
-        <com.cdkj.baselibrary.views.RowInfoLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:img_left="@drawable/photo_default"
-            app:img_right="@drawable/more_right"
-            app:txt_left="dfsdf" />
+            <com.cdkj.baselibrary.views.RowInfoLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:img_left="@drawable/my_jf"
+                app:txt_left="积分余额" />
 
+            <View
+                style="@style/style_split_line"
+                android:layout_marginLeft="15dp" />
 
-    </LinearLayout>
+            <com.cdkj.baselibrary.views.RowInfoLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:img_left="@drawable/my_next_go"
+                app:txt_left="行程列表" />
+
+            <View
+                style="@style/style_split_line"
+                android:layout_marginLeft="15dp" />
+
+            <com.cdkj.baselibrary.views.RowInfoLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:img_left="@drawable/my_results"
+                app:txt_left="成果订单" />
+
+            <View
+                style="@style/style_split_line"
+                android:layout_marginLeft="15dp" />
+
+            <com.cdkj.baselibrary.views.RowInfoLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:img_left="@drawable/my_info"
+                app:txt_left="我的资料" />
+
+            <com.cdkj.baselibrary.views.RowInfoLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:img_left="@drawable/my_top_list"
+                app:txt_left="我的排名" />
+
+            <com.cdkj.baselibrary.views.RowInfoLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:img_left="@drawable/my_help_center"
+                app:txt_left="帮助中心" />
+
+        </LinearLayout>
+
+    </ScrollView>
 </layout>

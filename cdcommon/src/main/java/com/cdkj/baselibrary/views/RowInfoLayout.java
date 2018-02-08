@@ -49,7 +49,7 @@ public class RowInfoLayout extends LinearLayout {
         txtLeft = typedArray.getString(R.styleable.RowInfoLayout_txt_left);
         txtRight = typedArray.getString(R.styleable.RowInfoLayout_txt_right);
         imgLeftId = typedArray.getResourceId(R.styleable.RowInfoLayout_img_left, R.drawable.default_pic);
-        imgRightId = typedArray.getResourceId(R.styleable.RowInfoLayout_img_right, R.drawable.default_pic);
+        imgRightId = typedArray.getResourceId(R.styleable.RowInfoLayout_img_right, R.drawable.more_right);
         typedArray.recycle();
 
         init(context);
