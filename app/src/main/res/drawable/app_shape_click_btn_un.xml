@@ -3,5 +3,5 @@
 
     <solid android:color="@color/btn_select_un" />
 
-    <corners android:radius="@dimen/shape_btn_radius" />
+    <corners android:radius="@dimen/app_btn_radius" />
 </shape>

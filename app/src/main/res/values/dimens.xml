@@ -1,4 +1,5 @@
 <resources>
 
     <dimen name="banner_height">185dp</dimen>
+    <dimen name="app_btn_radius">20dp</dimen>
 </resources>

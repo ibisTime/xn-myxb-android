@@ -15,6 +15,7 @@ import com.cdkj.baselibrary.model.eventmodels.EventFinishAll;
 import com.cdkj.myxb.databinding.ActivityMainBinding;
 import com.cdkj.myxb.module.maintab.FirstPageFragment;
 import com.cdkj.myxb.module.maintab.HelpCenterFragment;
+import com.cdkj.myxb.module.maintab.InvitationFriendFragment;
 import com.cdkj.myxb.module.maintab.MyFragment;
 
 import org.greenrobot.eventbus.EventBus;
@@ -103,8 +104,8 @@ public class MainActivity extends AbsBaseLoadActivity {
         ArrayList fragments = new ArrayList<>();
 
         fragments.add(FirstPageFragment.getInstanse());//首页
-        fragments.add(HelpCenterFragment.getInstanse());//首页
-        fragments.add(FirstPageFragment.getInstanse());//首页
+        fragments.add(HelpCenterFragment.getInstanse());//帮助中心
+        fragments.add(InvitationFriendFragment.getInstanse());//邀请好友
         fragments.add(FirstPageFragment.getInstanse());//首页
         fragments.add(MyFragment.getInstanse());//我的
 
