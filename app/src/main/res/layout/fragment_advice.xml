@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:hedgehog="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/fram_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_height"
+            android:background="@color/app_title_bg">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="平台建议"
+                android:textColor="@color/white"
+                android:textSize="@dimen/top_center_title_size" />
+
+            <TextView
+                android:id="@+id/tv_top_right"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="15dp"
+                android:gravity="center"
+                android:text="撰写评论"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+        </FrameLayout>
+
+        <include
+            android:id="@+id/header_layout"
+            layout="@layout/layout_advice_header" />
+
+        <View
+            style="@style/style_split_line"
+            android:layout_height="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/layout_left_interval"
+            android:paddingRight="@dimen/layout_right_interval">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="15dp"
+                android:gravity="center"
+                android:text="轻点评分"
+                android:textColor="@color/app_txt_gray"
+                android:textSize="16sp" />
+
+            <com.cdkj.myxb.views.MyRatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                hedgehog:clickable="true"
+                hedgehog:halfstart="false"
+                hedgehog:starCount="5"
+                hedgehog:starEmpty="@drawable/star_empty"
+                hedgehog:starFill="@drawable/star_full"
+                hedgehog:starImageHeight="28dp"
+                hedgehog:starImagePadding="8dp"
+                hedgehog:starImageWidth="28dp" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

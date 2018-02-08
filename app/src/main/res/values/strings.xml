@@ -8,4 +8,9 @@
     <string name="advice">平台建议</string>
     <string name="invitation_friend">邀请好友</string>
     <string name="invitation_helper">联系客服</string>
+    <string name="invitation_succ">成功邀请（人）</string>
+    <string name="invitation_in_earnings">积分收益</string>
+    <string name="share_link">分享链接</string>
+    <string name="share_code_img">分享二维码</string>
+    <string name="invittation_rule">活动规则</string>
 </resources>

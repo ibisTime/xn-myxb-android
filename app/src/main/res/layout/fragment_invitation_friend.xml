@@ -47,7 +47,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="成功邀请（人）"
+                        android:text="@string/invitation_succ"
                         android:textColor="@color/app_invitation_txt"
                         android:textSize="16sp" />
 
@@ -73,7 +73,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="积分收益"
+                        android:text="@string/invitation_in_earnings"
                         android:textColor="@color/app_invitation_txt"
                         android:textSize="16sp" />
 
@@ -102,7 +102,7 @@
                     android:layout_width="110dp"
                     android:layout_height="40dp"
                     android:background="@drawable/btn_select_radius"
-                    android:text="分享链接"
+                    android:text="@string/share_link"
                     android:textColor="@color/white" />
 
 
@@ -111,7 +111,7 @@
                     android:layout_height="40dp"
                     android:layout_marginLeft="35dp"
                     android:background="@drawable/btn_select_radius"
-                    android:text="分享二维码"
+                    android:text="@string/share_code_img"
                     android:textColor="@color/white" />
 
 
@@ -128,7 +128,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="活动规则"
+                    android:text="@string/invittation_rule"
                     android:textColor="@color/app_txt_black" />
 
             </FrameLayout>

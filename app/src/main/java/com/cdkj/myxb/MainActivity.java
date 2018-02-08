@@ -13,6 +13,7 @@ import com.cdkj.baselibrary.adapters.ViewPagerAdapter;
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
 import com.cdkj.baselibrary.model.eventmodels.EventFinishAll;
 import com.cdkj.myxb.databinding.ActivityMainBinding;
+import com.cdkj.myxb.module.maintab.AdviceFragment;
 import com.cdkj.myxb.module.maintab.FirstPageFragment;
 import com.cdkj.myxb.module.maintab.HelpCenterFragment;
 import com.cdkj.myxb.module.maintab.InvitationFriendFragment;
@@ -106,7 +107,7 @@ public class MainActivity extends AbsBaseLoadActivity {
         fragments.add(FirstPageFragment.getInstanse());//首页
         fragments.add(HelpCenterFragment.getInstanse());//帮助中心
         fragments.add(InvitationFriendFragment.getInstanse());//邀请好友
-        fragments.add(FirstPageFragment.getInstanse());//首页
+        fragments.add(AdviceFragment.getInstanse());//建议评价
         fragments.add(MyFragment.getInstanse());//我的
 
         mBinding.pagerMain.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), fragments));

@@ -15,8 +15,8 @@
             android:orientation="vertical">
 
             <include
-                android:id="@+id/headr_layout"
-                layout="@layout/layout_my_fragment_headr" />
+                android:id="@+id/header_layout"
+                layout="@layout/layout_my_fragment_header" />
 
             <com.cdkj.baselibrary.views.RowInfoLayout
                 android:layout_width="match_parent"
