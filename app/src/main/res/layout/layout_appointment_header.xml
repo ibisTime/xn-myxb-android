@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_50"
+        android:orientation="horizontal"
+        android:paddingBottom="15dp"
+        android:paddingLeft="@dimen/layout_left_interval"
+        android:paddingTop="15dp"
+        tools:showIn="@layout/activity_shopper_appointment">
+
+        <ImageView
+            android:layout_width="@dimen/shopper_logo_width"
+            android:layout_height="@dimen/shopper_logo_height"
+            android:src="@drawable/my_logo" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:ellipsize="end"
+                    android:maxLength="6"
+                    android:singleLine="true"
+                    android:text="王二小"
+                    android:textColor="@color/app_txt_black"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="8dp"
+                    tools:src="@drawable/women_2" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:text="2018-02-07"
+                android:textColor="@color/app_txt_black"
+                android:textSize="14sp" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/flexbox_layout_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                app:flexWrap="wrap">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/bg_shopper_lable"
+                    android:gravity="center"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="2dp"
+                    android:text="幽默"
+                    android:textColor="@color/shopper_lable_1"
+                    android:textSize="@dimen/shopper_lable_txt_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/bg_shopper_lable"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="2dp"
+                    android:text="幽默幽默"
+                    android:textColor="@color/shopper_lable_1"
+                    android:textSize="@dimen/shopper_lable_txt_size" />
+
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+
+            <com.cdkj.myxb.views.MyRatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                app:clickable="false"
+                app:halfstart="false"
+                app:starCount="5"
+                app:starEmpty="@drawable/star_empty"
+                app:starFill="@drawable/star_full"
+                app:starImageHeight="16dp"
+                app:starImagePadding="6dp"
+                app:starImageWidth="16dp" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

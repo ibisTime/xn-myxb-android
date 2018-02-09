@@ -14,6 +14,7 @@
     <color name="shopper_lable_1">#f56066</color>
     <color name="shopper_lable_2">#54e662</color>
     <color name="shopper_lable_3">#ffbe00</color>
+    <color name="ratingbar_color">#ffbe00</color>
 
 
 </resources>

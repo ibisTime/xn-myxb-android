@@ -2,4 +2,11 @@
 
     <dimen name="banner_height">185dp</dimen>
     <dimen name="app_btn_radius">20dp</dimen>
+    <dimen name="shopper_logo_width">80dp</dimen>
+    <dimen name="shopper_logo_height">80dp</dimen>
+    <dimen name="shopper_lable_txt_size">12sp</dimen>
+    <dimen name="advice_ratingbar_width">12.5dp</dimen>
+    <dimen name="advice_ratingbar_height">12.5dp</dimen>
+    <dimen name="advice_ratingbar_padding">3dp</dimen>
+    <dimen name="advice_progressbar_hegiht">2dp</dimen>
 </resources>

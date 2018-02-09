@@ -78,7 +78,11 @@ public class ShopperAppointmentListActivity extends AbsBaseLoadActivity {
                 list.add("dd");
                 list.add("dd");
                 list.add("dd");
-                return new ShopperListAdapter(list);
+                ShopperListAdapter shopperListAdapter = new ShopperListAdapter(list);
+                shopperListAdapter.setOnItemClickListener((adapter, view, position) -> {
+                    ShopperAppointmentActivity.open(ShopperAppointmentListActivity.this);
+                });
+                return shopperListAdapter;
             }
 
             @Override

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:gravity="center">
+    <!--    android:background="@drawable/sign_in_date_bg"-->
+    <TextView
+        android:id="@+id/tv_data_sign"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:background="@drawable/trip_date_select"
+        android:gravity="center"
+        android:text="15"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+
+</LinearLayout>

@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical"
-
     android:paddingLeft="@dimen/layout_left_interval"
     android:paddingRight="@dimen/layout_right_interval"
     android:paddingTop="20dp">
@@ -17,8 +16,8 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="@dimen/shopper_logo_width"
+            android:layout_height="@dimen/shopper_logo_height"
             android:src="@drawable/my_logo" />
 
         <LinearLayout
@@ -70,7 +69,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="15dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:text="2018-02-07"
                         android:textColor="@color/app_txt_black"
                         android:textSize="14sp" />
@@ -104,6 +103,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
                     app:flexWrap="wrap">
 
                     <TextView
@@ -111,24 +111,30 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginRight="10dp"
-                        android:layout_marginTop="10dp"
                         android:background="@drawable/bg_shopper_lable"
-                        android:padding="5dp"
+                        android:gravity="center"
+                        android:paddingBottom="2dp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingTop="2dp"
                         android:text="幽默"
                         android:textColor="@color/shopper_lable_1"
-                        android:textSize="14sp" />
+                        android:textSize="@dimen/shopper_lable_txt_size" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
                         android:background="@drawable/bg_shopper_lable"
-                        android:padding="5dp"
-                        android:text="幽默幽默"
+                        android:gravity="center"
+                        android:paddingBottom="2dp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingTop="2dp"
+                        android:text="幽默"
                         android:textColor="@color/shopper_lable_1"
-                        android:textSize="14sp" />
-
+                        android:textSize="@dimen/shopper_lable_txt_size" />
 
                 </com.google.android.flexbox.FlexboxLayout>
 
@@ -143,9 +149,9 @@
                     app:starCount="5"
                     app:starEmpty="@drawable/star_empty"
                     app:starFill="@drawable/star_full"
-                    app:starImageHeight="18dp"
-                    app:starImagePadding="5dp"
-                    app:starImageWidth="18dp" />
+                    app:starImageHeight="16dp"
+                    app:starImagePadding="6dp"
+                    app:starImageWidth="16dp" />
 
             </LinearLayout>
 

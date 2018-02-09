@@ -28,6 +28,8 @@ public class DateUtil {
 
     public static final String DATE_ymd = "yyyyMMddHHmm";
 
+    public static final String DATE_YEAR = "yyyy年MM月";
+
     /**
      * 获得指定日期的后一天
      *
