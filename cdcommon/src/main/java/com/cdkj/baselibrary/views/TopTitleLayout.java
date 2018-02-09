@@ -30,6 +30,7 @@ public class TopTitleLayout extends FrameLayout {
     private TextView mLeftTv;
     private ImageView mRightImg;
     private TextView mRightTv;
+    private FrameLayout mTitleRoot;
 
     private Context mContext;
 
@@ -56,6 +57,7 @@ public class TopTitleLayout extends FrameLayout {
         mRightFra = (FrameLayout) findViewById(R.id.fllayout_right);
         mLeftImg = (ImageView) findViewById(R.id.img_back);
         mRightImg = (ImageView) findViewById(R.id.img_right);
+        mTitleRoot=findViewById(R.id.fram_title);
     }
 
     public void setLeftTitle(String text) {
@@ -109,6 +111,10 @@ public class TopTitleLayout extends FrameLayout {
 
     public void setRightFraClickListener(View.OnClickListener listener) {
         mRightFra.setOnClickListener(listener);
+    }
+
+    public void setTitleBgColor(int color){
+        mTitleRoot.setBackgroundColor(ContextCompat.getColor(mContext, color));
     }
 
 

@@ -5,6 +5,9 @@
     <color name="colorAccent">#0eb8ae</color>
 
     <color name="title_bg">#f56066</color>
+    <color name="title_left_tv">#ffffff</color>
+    <color name="title_right_tv">#ffffff</color>
+    <color name="title_mid_tv">#ffffff</color>
     <color name="white">#ffffff</color>
     <color name="white_50">#82ffffff</color>
     <!--透明度颜色-->

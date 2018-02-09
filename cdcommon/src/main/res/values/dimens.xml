@@ -28,5 +28,9 @@
     <dimen name="layout_right_interval">15dp</dimen>
     <dimen name="button_height">45dp</dimen>
     <dimen name="shape_btn_radius">5dp</dimen>
+    <dimen name="title_img_right_width">18dp</dimen>
+    <dimen name="title_img_right_height">18dp</dimen>
+    <dimen name="title_left_img_widht">13dp</dimen>
+    <dimen name="title_left_img_height">20dp</dimen>
 
 </resources>

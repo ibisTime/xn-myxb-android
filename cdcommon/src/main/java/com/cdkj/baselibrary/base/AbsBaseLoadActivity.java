@@ -23,28 +23,37 @@ public abstract class AbsBaseLoadActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mBaseBinding = DataBindingUtil.setContentView(this, R.layout.activity_abs_base_load);
 
-        mBaseBinding.titleView.setVisibility(canLoadTopTitleView() ? View.VISIBLE : View.GONE);
-        mBaseBinding.viewV.setVisibility(canLoadTopTitleView() ? View.VISIBLE : View.GONE);
-
         mBaseBinding.contentView.addComtentView(addMainView());
 
-        mBaseBinding.titleView.setLeftFraClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!canFinish()) {
-                    topTitleViewleftClick();
-                }
-                finish();
-            }
-        });
-        mBaseBinding.titleView.setRightFraClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                topTitleViewRightClick();
-            }
-        });
-        setTitleWhileBg();
+        initTitleView();
+
         afterCreate(savedInstanceState);
+    }
+
+    /**
+     * 初始化标题View
+     */
+    private void initTitleView() {
+        mBaseBinding.titleView.setVisibility(canLoadTopTitleView() ? View.VISIBLE : View.GONE);
+        mBaseBinding.viewV.setVisibility(canLoadTopTitleView() ? View.VISIBLE : View.GONE);
+        if (canLoadTopTitleView()) {
+            mBaseBinding.titleView.setLeftFraClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!canFinish()) {
+                        topTitleViewleftClick();
+                    }
+                    finish();
+                }
+            });
+            mBaseBinding.titleView.setRightFraClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    topTitleViewRightClick();
+                }
+            });
+            setTitleBg();
+        }
     }
 
     /**
@@ -96,12 +105,8 @@ public abstract class AbsBaseLoadActivity extends BaseActivity {
     /**
      * 设置title背景信息
      */
-    protected void setTitleWhileBg() {
-        mBaseBinding.titleView.setBackgroundColor(ContextCompat.getColor(this, R.color.white));
-        mBaseBinding.titleView.setLeftTitleColor(R.color.text_black_cd);
-        mBaseBinding.titleView.setRightTitleColor(R.color.text_black_cd);
-        mBaseBinding.titleView.setMidTitleColor(R.color.text_black_cd);
-        mBaseBinding.titleView.setLeftImg(R.drawable.back_black);
+    protected void setTitleBg() {
+        mBaseBinding.titleView.setLeftImg(R.drawable.back_img);
 //        if (canLoadTopTitleView()) {
 //            UIStatusBarHelper.setStatusBarLightMode(this); // 沉浸式状态栏
 //        }

@@ -63,12 +63,17 @@ public class MainActivity extends AbsBaseLoadActivity {
 
     @Override
     public void afterCreate(Bundle savedInstanceState) {
-        setShowTitle(false);
+
         mBinding.layoutTab.radioMainTab1.setOnClickListener(view -> {
             ImageSelectActivity.launch(this, 0, false);
         });
         initViewPager();
         initListener();
+    }
+
+    @Override
+    protected boolean canLoadTopTitleView() {
+        return false;
     }
 
     /**

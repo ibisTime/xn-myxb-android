@@ -9,9 +9,8 @@
         <com.cdkj.baselibrary.views.TopTitleLayout
             android:id="@+id/title_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"/>
 
-        </com.cdkj.baselibrary.views.TopTitleLayout>
 
         <View
             android:id="@+id/view_v"

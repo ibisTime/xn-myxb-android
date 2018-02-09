@@ -31,6 +31,11 @@
             android:name=".module.common.MsgListActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
+        <!--美导预约-->
+        <activity
+            android:name=".module.shopper.ShopperAppointmentListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
 
 
     </application>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingBottom="15dp"
+    android:paddingLeft="@dimen/layout_left_interval"
+    android:paddingRight="@dimen/layout_right_interval"
+    android:paddingTop="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/my_logo" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:textColor="@color/app_txt_black"
+                android:textSize="14sp"
+                tools:text="2018-02-07" />
+
+            <com.cdkj.myxb.views.MyRatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                app:clickable="true"
+                app:halfstart="false"
+                app:starCount="5"
+                app:starEmpty="@drawable/star_empty"
+                app:starFill="@drawable/star_full"
+                app:starImageHeight="18dp"
+                app:starImagePadding="5dp"
+                app:starImageWidth="18dp" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/app_txt_gray"
+            android:textSize="12sp"
+            tools:text="2018-02-07" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:lineSpacingExtra="4dp"
+        android:textColor="@color/app_txt_black"
+        android:textSize="14sp"
+        tools:text="效果很好效果很好效果很好效果很好效果很好效果很好效果很好效果很好效果很好" />
+</LinearLayout>

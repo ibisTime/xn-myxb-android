@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:hedgehog="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -66,14 +66,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                hedgehog:clickable="true"
-                hedgehog:halfstart="false"
-                hedgehog:starCount="5"
-                hedgehog:starEmpty="@drawable/star_empty"
-                hedgehog:starFill="@drawable/star_full"
-                hedgehog:starImageHeight="28dp"
-                hedgehog:starImagePadding="8dp"
-                hedgehog:starImageWidth="28dp" />
+                app:clickable="true"
+                app:halfstart="false"
+                app:starCount="5"
+                app:starEmpty="@drawable/star_empty"
+                app:starFill="@drawable/star_full"
+                app:starImageHeight="28dp"
+                app:starImagePadding="8dp"
+                app:starImageWidth="28dp" />
 
 
         </LinearLayout>

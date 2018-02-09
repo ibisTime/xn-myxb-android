@@ -13,4 +13,6 @@
     <string name="share_link">分享链接</string>
     <string name="share_code_img">分享二维码</string>
     <string name="invittation_rule">活动规则</string>
+    <string name="can_appointment">可预约</string>
+    <string name="shopper_appoint">美导预约</string>
 </resources>

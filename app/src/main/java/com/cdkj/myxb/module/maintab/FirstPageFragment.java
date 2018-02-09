@@ -16,6 +16,7 @@ import com.cdkj.myxb.R;
 import com.cdkj.myxb.adapters.FirstPageBrandAdapter;
 import com.cdkj.myxb.databinding.FragmentFirstPageBinding;
 import com.cdkj.myxb.module.common.MsgListActivity;
+import com.cdkj.myxb.module.shopper.ShopperAppointmentListActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +58,10 @@ public class FirstPageFragment extends BaseLazyFragment {
 
         mBinding.headrLayout.linMsg.setOnClickListener(view -> {
             MsgListActivity.open(mActivity);
+        });
+
+        mBinding.headrLayout.llinayoutShopper.setOnClickListener(view -> {
+            ShopperAppointmentListActivity.open(mActivity);
         });
 
     }

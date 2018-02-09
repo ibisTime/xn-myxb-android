@@ -32,14 +32,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/main_tab_4" />
+                android:src="@drawable/msg_logo" />
 
             <TextView
                 android:id="@+id/tv_msg"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:singleLine="true"
@@ -52,7 +52,6 @@
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="5dp"
                 android:layout_marginRight="15dp"
                 android:src="@drawable/more_right" />
 
@@ -90,6 +89,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/llinayout_shopper"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
