@@ -18,4 +18,7 @@
     <string name="agent">经纪人</string>
     <string name="appointment">预约</string>
     <string name="i_know">我知道了</string>
+    <string name="goods_details">商品详情</string>
+    <string name="product_details">商品详情</string>
+    <string name="consultant">顾问</string>
 </resources>
