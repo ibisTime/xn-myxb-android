@@ -7,10 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
-import com.cdkj.baselibrary.utils.DeviceHelper;
-import com.cdkj.baselibrary.utils.DisplayHelper;
-import com.cdkj.baselibrary.utils.LogUtil;
-import com.cdkj.baselibrary.utils.ToastUtil;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.ActivityProductDetailsBinding;
 import com.cdkj.myxb.weight.views.MyScrollView;

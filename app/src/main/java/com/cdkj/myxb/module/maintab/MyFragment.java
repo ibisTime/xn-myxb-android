@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.cdkj.baselibrary.base.BaseLazyFragment;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.FragmentMyBinding;
+import com.cdkj.myxb.module.order.MyOrderActivity;
 
 /**
  * Created by cdkj on 2018/2/7.
@@ -29,7 +30,20 @@ public class MyFragment extends BaseLazyFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_my, null, false);
+
+
+
+        initListener();
+
         return mBinding.getRoot();
+    }
+
+    private void initListener() {
+
+        mBinding.rowMyOrder.setOnClickListener(view -> {
+            MyOrderActivity.open(mActivity);
+        });
+
     }
 
     @Override
