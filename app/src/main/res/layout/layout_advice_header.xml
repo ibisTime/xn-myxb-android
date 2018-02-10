@@ -76,7 +76,7 @@
                     android:orientation="vertical">
 
 
-                    <com.cdkj.myxb.views.MyRatingBar
+                    <com.cdkj.myxb.weight.views.MyRatingBar
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
@@ -90,7 +90,7 @@
                         app:starImageWidth="@dimen/advice_ratingbar_height"
                         app:starNum="5" />
 
-                    <com.cdkj.myxb.views.MyRatingBar
+                    <com.cdkj.myxb.weight.views.MyRatingBar
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
@@ -105,7 +105,7 @@
                         app:starNum="4" />
 
 
-                    <com.cdkj.myxb.views.MyRatingBar
+                    <com.cdkj.myxb.weight.views.MyRatingBar
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
@@ -119,7 +119,7 @@
                         app:starImageWidth="@dimen/advice_ratingbar_height"
                         app:starNum="3" />
 
-                    <com.cdkj.myxb.views.MyRatingBar
+                    <com.cdkj.myxb.weight.views.MyRatingBar
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
@@ -134,7 +134,7 @@
                         app:starNum="2" />
 
 
-                    <com.cdkj.myxb.views.MyRatingBar
+                    <com.cdkj.myxb.weight.views.MyRatingBar
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"

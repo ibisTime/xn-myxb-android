@@ -1,4 +1,4 @@
-package com.cdkj.myxb.views;
+package com.cdkj.myxb.weight.views;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -12,6 +12,7 @@ import com.cdkj.baselibrary.views.ScrollGridLayoutManager;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.adapters.TripDateAdapter;
 import com.cdkj.myxb.databinding.LayoutShopperTripDateBinding;
+import com.cdkj.myxb.weight.dialog.TripTimeDialog;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -55,6 +56,10 @@ public class TripDateView extends LinearLayout {
         mBinding.recyclerDate.setLayoutManager(new ScrollGridLayoutManager(context, 7));
         tripDateAdapter = new TripDateAdapter(new ArrayList<>());
         mBinding.recyclerDate.setAdapter(tripDateAdapter);
+
+        tripDateAdapter.setOnItemClickListener((adapter, view, position) -> {
+            new TripTimeDialog(context).show();
+        });
 
     }
 

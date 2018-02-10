@@ -1,4 +1,4 @@
-package com.cdkj.myxb.views;
+package com.cdkj.myxb.weight.views;
 
 import android.content.Context;
 import android.content.res.TypedArray;

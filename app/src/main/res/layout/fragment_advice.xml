@@ -62,7 +62,7 @@
                 android:textColor="@color/app_txt_gray"
                 android:textSize="16sp" />
 
-            <com.cdkj.myxb.views.MyRatingBar
+            <com.cdkj.myxb.weight.views.MyRatingBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
