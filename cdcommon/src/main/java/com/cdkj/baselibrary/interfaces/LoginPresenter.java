@@ -31,7 +31,7 @@ public class LoginPresenter {
     }
 
     //处理登录逻辑
-    public void login(String username, String password, Context context) {
+    public void login(String username, String password, String kind, Context context) {
         this.mContext = context;
         if (TextUtils.isEmpty(username)) {
             UITipDialog.showFall(context, "请输入手机号");
@@ -41,11 +41,15 @@ public class LoginPresenter {
             UITipDialog.showFall(context, "请输入密码");
             return;
         }
+        if (TextUtils.isEmpty(kind)) {
+            UITipDialog.showFall(context, "请选择登录类型");
+            return;
+        }
         HashMap<String, String> hashMap = new HashMap<>();
 
         hashMap.put("loginName", username);
         hashMap.put("loginPwd", password);
-        hashMap.put("kind", MyCdConfig.USERTYPE);
+        hashMap.put("kind", kind);
         hashMap.put("systemCode", MyCdConfig.SYSTEMCODE);
 
 

@@ -107,7 +107,7 @@
                 <TextView
                     style="@style/text_black"
                     android:layout_marginTop="12dp"
-                    android:text="美导"
+                    android:text="@string/shopper"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -129,7 +129,7 @@
                 <TextView
                     style="@style/text_black"
                     android:layout_marginTop="12dp"
-                    android:text="讲师"
+                    android:text="@string/teacher"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -151,7 +151,7 @@
                 <TextView
                     style="@style/text_black"
                     android:layout_marginTop="12dp"
-                    android:text="专家"
+                    android:text="@string/experts"
                     android:textSize="14sp" />
 
             </LinearLayout>

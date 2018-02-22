@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.bigkoo.pickerview.OptionsPickerView;
 import com.cdkj.baselibrary.activitys.FindPwdActivity;
 import com.cdkj.baselibrary.appmanager.RouteHelper;
 import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
@@ -18,6 +19,10 @@ import com.cdkj.baselibrary.model.UserLoginModel;
 import com.cdkj.myxb.MainActivity;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.ActivityLoginBinding;
+import com.cdkj.myxb.models.LoginTypeModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 登录
@@ -29,6 +34,13 @@ public class LoginActivity extends AbsBaseLoadActivity implements LoginInterface
     private LoginPresenter mPresenter;
     private ActivityLoginBinding mBinding;
     private boolean canOpenMain;
+
+    private String mLoginKind;//用户的登录类型
+
+    private OptionsPickerView mLoginTypePicker;//登录类型选择
+
+    private List<LoginTypeModel> mLoginTypes;
+
 
     /**
      * 打开当前页面
@@ -65,14 +77,19 @@ public class LoginActivity extends AbsBaseLoadActivity implements LoginInterface
         if (getIntent() != null) {
             canOpenMain = getIntent().getBooleanExtra("canOpenMain", false);
         }
+        initPickerView();
+        initListener();
+    }
 
+    private void initListener() {
         //登录
         mBinding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mPresenter.login(mBinding.editUsername.getText().toString(), mBinding.editUserpass.getText().toString(), LoginActivity.this);
+                mPresenter.login(mBinding.editUsername.getText().toString(), mBinding.editUserpass.getText().toString(), mLoginKind, LoginActivity.this);
             }
         });
+        //注册
         mBinding.tvStartRegistr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,6 +97,7 @@ public class LoginActivity extends AbsBaseLoadActivity implements LoginInterface
             }
         });
 
+        //找回密码
         mBinding.tvFindPwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,6 +105,62 @@ public class LoginActivity extends AbsBaseLoadActivity implements LoginInterface
             }
         });
 
+        //登录类型
+        mBinding.linLoginType.setOnClickListener(view -> {
+            if (mLoginTypePicker == null) {
+                initPickerView();
+            }
+            mLoginTypePicker.setPicker(mLoginTypes);
+            mLoginTypePicker.show();
+        });
+
+    }
+
+
+    public void initPickerView() {
+
+        initPickerData();
+
+        mLoginTypePicker = new OptionsPickerView.Builder(this, (options1, options2, options3, v) -> {
+
+            LoginTypeModel loginTypeModel = mLoginTypes.get(options1);
+
+            mLoginKind = loginTypeModel.getType();
+
+            mBinding.tvLogintype.setText(loginTypeModel.getTypeString());
+
+        }).setContentTextSize(16).setLineSpacingMultiplier(4).build();
+
+
+    }
+
+    private void initPickerData() {
+
+        mLoginTypes = new ArrayList<>();
+
+        LoginTypeModel loginTypeModel = new LoginTypeModel();
+        loginTypeModel.setType(UserHelper.C);
+        loginTypeModel.setTypeString(getString(R.string.mry));
+
+        mLoginTypes.add(loginTypeModel);
+
+        LoginTypeModel loginTypeModel2 = new LoginTypeModel();
+        loginTypeModel2.setType(UserHelper.L);
+        loginTypeModel2.setTypeString(getString(R.string.teacher));
+
+        mLoginTypes.add(loginTypeModel2);
+
+        LoginTypeModel loginTypeModel3 = new LoginTypeModel();
+        loginTypeModel3.setType(UserHelper.S);
+        loginTypeModel3.setTypeString(getString(R.string.experts));
+
+        mLoginTypes.add(loginTypeModel3);
+
+        LoginTypeModel loginTypeMode4 = new LoginTypeModel();
+        loginTypeMode4.setType(UserHelper.T);
+        loginTypeMode4.setTypeString(getString(R.string.shopper));
+
+        mLoginTypes.add(loginTypeMode4);
     }
 
     @Override
@@ -143,7 +217,6 @@ public class LoginActivity extends AbsBaseLoadActivity implements LoginInterface
 
 
     /**
-     * 启动聊天
      */
     private void startNext() {
         if (canOpenMain) {
