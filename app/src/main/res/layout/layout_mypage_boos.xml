@@ -5,6 +5,7 @@
     tools:showIn="@layout/fragment_my">
 
     <LinearLayout
+        android:id="@+id/lin_boos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">

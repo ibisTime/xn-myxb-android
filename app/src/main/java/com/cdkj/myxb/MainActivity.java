@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.cdkj.baselibrary.activitys.ImageSelectActivity;
 import com.cdkj.baselibrary.adapters.ViewPagerAdapter;
+import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
 import com.cdkj.baselibrary.model.eventmodels.EventFinishAll;
 import com.cdkj.myxb.databinding.ActivityMainBinding;
@@ -18,6 +19,7 @@ import com.cdkj.myxb.module.maintab.FirstPageFragment;
 import com.cdkj.myxb.module.maintab.HelpCenterFragment;
 import com.cdkj.myxb.module.maintab.InvitationFriendFragment;
 import com.cdkj.myxb.module.maintab.MyFragment;
+import com.cdkj.myxb.module.user.LoginActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -95,6 +97,12 @@ public class MainActivity extends AbsBaseLoadActivity {
             setShowIndex(SHOWADVICE);
         });
         mBinding.layoutTab.radioMainTab5.setOnClickListener(view -> {
+
+            if (!SPUtilHelpr.isLoginNoStart()) {
+                setShowButIndex();
+                LoginActivity.open(this, false);
+                return;
+            }
             setShowIndex(SHOWMY);
         });
 

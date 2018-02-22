@@ -61,6 +61,16 @@
             android:name=".module.user.UserSettingActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
+        <!--地址列表-->
+        <activity
+            android:name=".module.common.address.AddressListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--添加地址-->
+        <activity
+            android:name=".module.common.address.AddAddressActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
 
 
     </application>

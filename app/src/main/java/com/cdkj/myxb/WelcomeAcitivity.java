@@ -45,9 +45,9 @@ public class WelcomeAcitivity extends BaseActivity {
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
-
-//                    MainActivity.open(this);
-                    LoginActivity.open(this, false);
+                    MainActivity.open(this);
+//                    LoginActivity.open(this, true);
+                    finish();
                 }, Throwable::printStackTrace));
     }
 

@@ -22,6 +22,7 @@
         <View style="@style/style_split_line" />
 
         <com.cdkj.baselibrary.views.RowMoreInfoLayout
+            android:id="@+id/row_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:txt_title="地址管理" />

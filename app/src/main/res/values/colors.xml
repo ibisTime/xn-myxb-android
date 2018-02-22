@@ -17,5 +17,7 @@
     <color name="shopper_lable_3">#ffbe00</color>
     <color name="ratingbar_color">#ffbe00</color>
 
+    <color name="address_select">#48b0fb</color>
+
 
 </resources>

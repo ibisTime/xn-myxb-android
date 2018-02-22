@@ -28,4 +28,18 @@
     <string name="teacher">讲师</string>
     <string name="experts">专家</string>
     <string name="mry">美容院</string>
+    <string name="integral_mall">积分商城</string>
+    <string name="address_manager">地址管理</string>
+    <string name="no_address">您还没有添加收货地址</string>
+
+    <string name="sure_delete_address">确认删除该收货地址?</string>
+    <string name="delete_fall">删除失败</string>
+    <string name="sure_setdefault_address">确认设置该收货地址为默认地址?</string>
+    <string name="add_address">添加地址</string>
+    <string name="add_address_fall">添加地址失败</string>
+    <string name="please_input_name">请输入姓名</string>
+    <string name="please_input_phone">请输入手机号</string>
+    <string name="please_input_address">请输入详细地址</string>
+    <string name="please_select_city">请选择省市区</string>
+    <string name="please_input_phone_2">请输入正确的手机号</string>
 </resources>
