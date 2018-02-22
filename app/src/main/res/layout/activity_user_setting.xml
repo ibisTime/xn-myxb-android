@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.cdkj.baselibrary.views.RowMoreInfoLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:txt_title="修改手机号" />
+
+        <View style="@style/style_split_line" />
+
+        <com.cdkj.baselibrary.views.RowMoreInfoLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:txt_title="修改登录密码" />
+
+        <View style="@style/style_split_line" />
+
+        <com.cdkj.baselibrary.views.RowMoreInfoLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:txt_title="地址管理" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/btn_select_common"
+            android:text="退出登录"
+            android:textColor="@color/white" />
+
+
+    </LinearLayout>
+</layout>

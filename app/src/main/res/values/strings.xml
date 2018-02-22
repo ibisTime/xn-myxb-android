@@ -22,4 +22,6 @@
     <string name="product_details">商品详情</string>
     <string name="consultant">顾问</string>
     <string name="my_order_all">我的产品订单</string>
+    <string name="my_integral">我的积分</string>
+    <string name="i_want_change">我要兑换</string>
 </resources>

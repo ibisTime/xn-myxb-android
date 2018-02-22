@@ -3,10 +3,14 @@ package com.cdkj.myxb;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.cdkj.baselibrary.appmanager.MyCdConfig;
 import com.cdkj.baselibrary.base.BaseActivity;
 import com.cdkj.baselibrary.utils.LogUtil;
+import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.module.user.LoginActivity;
+import com.cdkj.myxb.weight.dialog.IntegralChangeDialog;
 
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -41,8 +45,30 @@ public class WelcomeAcitivity extends BaseActivity {
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
-                    MainActivity.open(this);
-//                    LoginActivity.open(this,false);
+
+         /*           HashMap<String, String> hashMap = new HashMap<>();
+                    hashMap.put("systemCode", MyCdConfig.SYSTEMCODE);
+                    hashMap.put("companyCode", MyCdConfig.COMPANYCODE);
+                    hashMap.put("mobile", "13765051712");
+                    hashMap.put("bizType", "805041");
+
+                    HashMap<String, String> hashMap2= new HashMap<>();
+                    hashMap2.put("systemCode", MyCdConfig.SYSTEMCODE);
+                    hashMap2.put("companyCode", MyCdConfig.COMPANYCODE);
+                    hashMap2.put("kind", "C");
+                    hashMap2.put("loginPwd", "123456");
+                    hashMap2.put("mobile", "13765051712");
+                    hashMap2.put("smsCaptcha", "xxxx");
+
+
+                    LogUtil.E("发送验证码"+ StringUtils.getJsonToString(hashMap));
+                    LogUtil.E("注册"+ StringUtils.getJsonToString(hashMap2));*/
+
+
+                    new IntegralChangeDialog(this).show();
+
+//                    MainActivity.open(this);
+//                    LoginActivity.open(this, false);
                 }, Throwable::printStackTrace));
     }
 

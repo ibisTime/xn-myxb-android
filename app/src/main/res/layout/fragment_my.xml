@@ -18,56 +18,15 @@
                 android:id="@+id/header_layout"
                 layout="@layout/layout_my_fragment_header" />
 
-            <com.cdkj.baselibrary.views.RowInfoLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:img_left="@drawable/my_jf"
-                app:txt_left="积分余额" />
+            <include
+                android:id="@+id/layout_my"
+                layout="@layout/layout_my"
+               />
 
-            <View
-                style="@style/style_split_line"
-                android:layout_marginLeft="15dp" />
-
-            <com.cdkj.baselibrary.views.RowInfoLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:img_left="@drawable/my_next_go"
-                app:txt_left="行程列表" />
-
-            <View
-                style="@style/style_split_line"
-                android:layout_marginLeft="15dp" />
-
-            <com.cdkj.baselibrary.views.RowInfoLayout
-                android:id="@+id/row_my_order"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:img_left="@drawable/my_results"
-                app:txt_left="成果订单" />
-
-            <View
-                style="@style/style_split_line"
-                android:layout_marginLeft="15dp" />
-
-            <com.cdkj.baselibrary.views.RowInfoLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:img_left="@drawable/my_info"
-                app:txt_left="我的资料" />
-
-            <com.cdkj.baselibrary.views.RowInfoLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                app:img_left="@drawable/my_top_list"
-                app:txt_left="我的排名" />
-
-            <com.cdkj.baselibrary.views.RowInfoLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                app:img_left="@drawable/my_help_center"
-                app:txt_left="帮助中心" />
+            <include
+                android:id="@+id/layout_my_boos"
+                layout="@layout/layout_mypage_boos"
+                android:visibility="gone" />
 
         </LinearLayout>
 

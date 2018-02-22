@@ -40,7 +40,7 @@ public class MyFragment extends BaseLazyFragment {
 
     private void initListener() {
 
-        mBinding.rowMyOrder.setOnClickListener(view -> {
+        mBinding.layoutMy.rowMyOrder.setOnClickListener(view -> {
             MyOrderActivity.open(mActivity);
         });
 
