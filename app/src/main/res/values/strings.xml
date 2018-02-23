@@ -43,4 +43,5 @@
     <string name="please_select_city">请选择省市区</string>
     <string name="please_input_phone_2">请输入正确的手机号</string>
     <string name="my_integral_order">我的积分订单</string>
+    <string name="no_integral_list">您还没有积分流水</string>
 </resources>

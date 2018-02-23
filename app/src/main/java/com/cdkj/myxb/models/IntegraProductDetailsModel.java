@@ -1,4 +1,4 @@
-package com.cdkj.myxb.adapters;
+package com.cdkj.myxb.models;
 
 import java.math.BigDecimal;
 

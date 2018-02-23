@@ -17,7 +17,7 @@ import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.MoneyUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
-import com.cdkj.myxb.adapters.IntegraProductDetailsModel;
+import com.cdkj.myxb.models.IntegraProductDetailsModel;
 import com.cdkj.myxb.databinding.ActivityIntegralProductDetailsBinding;
 import com.cdkj.myxb.module.api.MyApiServer;
 import com.cdkj.myxb.weight.GlideImageLoader;
@@ -107,7 +107,7 @@ public class IntegralProductDetailsActivity extends AbsBaseLoadActivity {
             webSettings.setLoadsImagesAutomatically(true);//支持自动加载图片
 //            webSettings.setSupportZoom(true);   //// 支持缩放
 //            webSettings.setBuiltInZoomControls(true);//// 支持缩放
-            webSettings.setDomStorageEnabled(true);//开启DOM
+//            webSettings.setDomStorageEnabled(true);//开启DOM
         }
 
         mBinding.linWebView.addView(webView);

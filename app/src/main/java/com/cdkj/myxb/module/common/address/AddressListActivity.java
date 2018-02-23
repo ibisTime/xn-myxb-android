@@ -228,8 +228,7 @@ public class AddressListActivity extends AbsBaseLoadActivity {
             protected void onSuccess(IsSuccessModes data, String SucMessage) {
                 if (data != null && data.isSuccess()) {
                     if (mRefreshHelper.getmAdapter() != null)
-                        mRefreshHelper.getmAdapter().remove(position);
-                    mRefreshHelper.getmAdapter().notifyDataSetChanged();
+                        mRefreshHelper.onDefaluteMRefresh(true);
                 } else {
                     UITipDialog.showFall(AddressListActivity.this, getString(R.string.delete_fall));
                 }

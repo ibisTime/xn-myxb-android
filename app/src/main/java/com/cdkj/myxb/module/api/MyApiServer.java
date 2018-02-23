@@ -4,9 +4,11 @@ import com.cdkj.baselibrary.api.BaseResponseListModel;
 import com.cdkj.baselibrary.api.BaseResponseModel;
 import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.model.CodeModel;
-import com.cdkj.myxb.adapters.IntegraProductDetailsModel;
-import com.cdkj.myxb.models.AccountModel;
+import com.cdkj.myxb.models.IntegraProductDetailsModel;
+import com.cdkj.myxb.models.AccountDetailsModel;
+import com.cdkj.myxb.models.AccountListModel;
 import com.cdkj.myxb.models.AddressModel;
+import com.cdkj.myxb.models.IntegralListModel;
 import com.cdkj.myxb.models.IntegralModel;
 import com.cdkj.myxb.models.UserModel;
 
@@ -22,6 +24,30 @@ import retrofit2.http.POST;
 public interface MyApiServer {
 
     /**
+     * 获取积分流水
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<ResponseInListModel<IntegralListModel>>> getIntegralList(@Field("code") String code, @Field("json") String json);
+
+
+    /**
+     * 获取积分
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<AccountDetailsModel>> getAccountDetails(@Field("code") String code, @Field("json") String json);
+
+
+    /**
      * 获取账户列表
      *
      * @param code
@@ -30,7 +56,7 @@ public interface MyApiServer {
      */
     @FormUrlEncoded
     @POST("api")
-    Call<BaseResponseListModel<AccountModel>> getAccountList(@Field("code") String code, @Field("json") String json);
+    Call<BaseResponseListModel<AccountListModel>> getAccountList(@Field("code") String code, @Field("json") String json);
 
     /**
      * 获取积分商品列表
@@ -41,7 +67,7 @@ public interface MyApiServer {
      */
     @FormUrlEncoded
     @POST("api")
-    Call<BaseResponseModel<ResponseInListModel<IntegralModel>>> getIntegralList(@Field("code") String code, @Field("json") String json);
+    Call<BaseResponseModel<ResponseInListModel<IntegralModel>>> getIntegralProductList(@Field("code") String code, @Field("json") String json);
 
     /**
      * 获取积分商品详情

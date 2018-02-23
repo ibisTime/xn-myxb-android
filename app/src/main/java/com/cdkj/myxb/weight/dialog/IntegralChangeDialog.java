@@ -21,6 +21,8 @@ import com.cdkj.myxb.databinding.DialogIntegralChangeBinding;
 import com.cdkj.myxb.databinding.DialogTripTimeBinding;
 import com.cdkj.myxb.models.AddressModel;
 import com.cdkj.myxb.module.common.address.AddressListActivity;
+import com.cdkj.myxb.module.order.MyOrderActivity;
+import com.cdkj.myxb.module.order.integral.MyIntegralOrderActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -90,7 +92,7 @@ public class IntegralChangeDialog extends Dialog {
     @Override
     protected void onStop() {
         super.onStop();
-        if(loadingDialog!=null){
+        if (loadingDialog != null) {
             loadingDialog.dismiss();
             loadingDialog = null;
         }
@@ -122,14 +124,17 @@ public class IntegralChangeDialog extends Dialog {
         map.put("reMobile", mBinding.editPhone.getText().toString());
         map.put("receiver", mBinding.editName.getText().toString());
 
-        Call call = RetrofitUtils.getBaseAPiService().codeRequest("805290", StringUtils.getJsonToString(map));
+        Call call = RetrofitUtils.getBaseAPiService().stringRequest("805290", StringUtils.getJsonToString(map));
 
         loadingDialog = new LoadingDialog(getContext());
         loadingDialog.showDialog();
         call.enqueue(new BaseResponseModelCallBack(getContext()) {
             @Override
             protected void onSuccess(Object data, String SucMessage) {
-
+                if (data != null) {
+                    MyIntegralOrderActivity.open(getContext());
+                    dismiss();
+                }
             }
 
             @Override

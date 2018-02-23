@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
+    android:layout_marginBottom="1dp"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <FrameLayout
@@ -38,10 +39,12 @@
         android:id="@+id/tv_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:textColor="@color/app_txt_gray"
         android:textSize="16sp"
         tools:text="登录见到" />
+
 
 </LinearLayout>

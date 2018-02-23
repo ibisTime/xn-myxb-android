@@ -6,15 +6,18 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.cdkj.baselibrary.activitys.WebViewActivity;
 import com.cdkj.baselibrary.api.BaseApiServer;
 import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.appmanager.MyCdConfig;
+import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
 import com.cdkj.baselibrary.interfaces.BaseRefreshCallBack;
 import com.cdkj.baselibrary.interfaces.RefreshHelper;
+import com.cdkj.baselibrary.nets.BaseResponseListCallBack;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.BigDecimalUtils;
@@ -24,6 +27,8 @@ import com.cdkj.baselibrary.views.ScrollGridLayoutManager;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.adapters.IntegraMallListAdapter;
 import com.cdkj.myxb.databinding.ActivityIntegralMallBinding;
+import com.cdkj.myxb.models.AccountDetailsModel;
+import com.cdkj.myxb.models.AccountListModel;
 import com.cdkj.myxb.models.IntegralModel;
 import com.cdkj.myxb.models.UserModel;
 import com.cdkj.myxb.module.api.MyApiServer;
@@ -51,6 +56,7 @@ public class IntegralMallActivity extends AbsBaseLoadActivity {
     private static final String USERDATA = "user";
 
     private UserModel mUserModel;
+    private String mAccountNum;
 
     /**
      * @param context
@@ -84,9 +90,15 @@ public class IntegralMallActivity extends AbsBaseLoadActivity {
 
         initRefreHelper();
 
-        mRefreshHelper.onDefaluteMRefresh(false);
+        mRefreshHelper.onDefaluteMRefresh(true);
 
         initListener();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getAccountNumber();
     }
 
     private void initListener() {
@@ -94,11 +106,9 @@ public class IntegralMallActivity extends AbsBaseLoadActivity {
         mBinding.layoutMallHeader.tvIntegralRules.setOnClickListener(view -> WebViewActivity.openkey(this, "积分规则", "dd"));
 
         //积分列表
-        mBinding.orderLayout.fraIntegralList.setOnClickListener(view -> IntegraListActivity.open(this, mBinding.layoutMallHeader.tvMyintegral.getText().toString()));
+        mBinding.orderLayout.fraIntegralList.setOnClickListener(view -> IntegraListActivity.open(this, mAccountNum, mBinding.layoutMallHeader.tvMyintegral.getText().toString()));
 
         //积分订单
-
-
         mBinding.orderLayout.fraIntegralOrder.setOnClickListener(view -> {
             MyIntegralOrderActivity.open(this);
         });
@@ -113,7 +123,6 @@ public class IntegralMallActivity extends AbsBaseLoadActivity {
         if (mUserModel == null) return;
 
         mBinding.layoutMallHeader.tvUserName.setText(mUserModel.getRealName());
-        mBinding.layoutMallHeader.tvMyintegral.setText(BigDecimalUtils.intValue(mUserModel.getScore()) + "");
         ImgUtils.loadLogo(this, MyCdConfig.QINIUURL + mUserModel.getPhoto(), mBinding.layoutMallHeader.imgUserLogo);
 
     }
@@ -148,6 +157,74 @@ public class IntegralMallActivity extends AbsBaseLoadActivity {
         mRefreshHelper.setLayoutManager(new ScrollGridLayoutManager(this, 2));
     }
 
+
+    /**
+     * 获取账户列表
+     */
+    public void getAccountNumber() {
+
+        if (!TextUtils.isEmpty(mAccountNum)) {
+            getIntegral();
+            return;
+        }
+
+        Map<String, String> map = new HashMap<>();
+        map.put("currency", "JF");
+        map.put("userId", SPUtilHelpr.getUserId());
+
+        Call call = RetrofitUtils.createApi(MyApiServer.class).getAccountList("805353", StringUtils.getJsonToString(map));
+
+        showLoadingDialog();
+
+        call.enqueue(new BaseResponseListCallBack<AccountListModel>(this) {
+
+            @Override
+            protected void onSuccess(List<AccountListModel> data, String SucMessage) {
+                if (data.size() > 0) {
+                    mAccountNum = data.get(0).getAccountNumber();
+                    getIntegral();
+                }
+            }
+
+            @Override
+            protected void onFinish() {
+                disMissLoading();
+            }
+        });
+
+    }
+
+
+    /**
+     * 获取积分
+     */
+    public void getIntegral() {
+        if (TextUtils.isEmpty(mAccountNum)) {
+            return;
+        }
+        Map<String, String> map = new HashMap<>();
+        map.put("accountNumber", mAccountNum);
+
+        Call call = RetrofitUtils.createApi(MyApiServer.class).getAccountDetails("805352", StringUtils.getJsonToString(map));
+
+        showLoadingDialog();
+
+        call.enqueue(new BaseResponseModelCallBack<AccountDetailsModel>(this) {
+
+            @Override
+            protected void onSuccess(AccountDetailsModel data, String SucMessage) {
+                mBinding.layoutMallHeader.tvMyintegral.setText(BigDecimalUtils.intValue(data.getAmount()) + "");
+            }
+
+            @Override
+            protected void onFinish() {
+                disMissLoading();
+            }
+        });
+
+    }
+
+
     /**
      * 获取数据适配器
      *
@@ -181,7 +258,7 @@ public class IntegralMallActivity extends AbsBaseLoadActivity {
         map.put("start", start + "");
         map.put("status", "1"); //0未上架，1已上架
 
-        Call call = RetrofitUtils.createApi(MyApiServer.class).getIntegralList("805285", StringUtils.getJsonToString(map));
+        Call call = RetrofitUtils.createApi(MyApiServer.class).getIntegralProductList("805285", StringUtils.getJsonToString(map));
 
         addCall(call);
 
