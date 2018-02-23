@@ -10,6 +10,7 @@ import com.cdkj.myxb.models.AccountListModel;
 import com.cdkj.myxb.models.AddressModel;
 import com.cdkj.myxb.models.IntegralListModel;
 import com.cdkj.myxb.models.IntegralModel;
+import com.cdkj.myxb.models.IntegralOrderListModel;
 import com.cdkj.myxb.models.UserModel;
 
 import retrofit2.Call;
@@ -22,6 +23,30 @@ import retrofit2.http.POST;
  */
 
 public interface MyApiServer {
+
+    /**
+     * 获取积分订单
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<IntegralOrderListModel>> getIntegralOrderDetails(@Field("code") String code, @Field("json") String json);
+
+
+    /**
+     * 获取积分订单
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseListModel<IntegralOrderListModel>> getIntegralOrderList(@Field("code") String code, @Field("json") String json);
+
 
     /**
      * 获取积分流水

@@ -91,6 +91,7 @@ public class IntegralProductDetailsActivity extends AbsBaseLoadActivity {
         mBinding.btnWantChange.setOnClickListener(view -> {
             new IntegralChangeDialog(this,mProductCode).show();
         });
+
     }
 
     private void initWebView() {

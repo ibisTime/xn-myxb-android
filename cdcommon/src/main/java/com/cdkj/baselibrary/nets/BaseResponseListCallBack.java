@@ -75,7 +75,6 @@ public abstract class BaseResponseListCallBack<T> implements Callback<BaseRespon
         onFinish();
         if (!NetUtils.isNetworkConnected(CdApplication.getContext())) {
             onNoNet("暂无网络");
-            return;
         }
 
         onReqFailure(getThrowableStateCode(t), getThrowableStateString(t));

@@ -59,7 +59,7 @@ public class IntegraListActivity extends AbsBaseLoadActivity {
 
     @Override
     public void afterCreate(Bundle savedInstanceState) {
-        mBaseBinding.titleView.setMidTitle("积分列表");
+        mBaseBinding.titleView.setMidTitle("积分记录");
 
         if (getIntent() != null) {
             mBinding.tvNum.setText(getIntent().getStringExtra("integral"));

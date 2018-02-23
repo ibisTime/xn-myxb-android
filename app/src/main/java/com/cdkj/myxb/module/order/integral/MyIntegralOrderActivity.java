@@ -12,6 +12,7 @@ import com.cdkj.myxb.module.maintab.AdviceFragment;
 import com.cdkj.myxb.module.maintab.FirstPageFragment;
 import com.cdkj.myxb.module.maintab.HelpCenterFragment;
 import com.cdkj.myxb.module.maintab.InvitationFriendFragment;
+import com.cdkj.myxb.module.order.OrderHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,19 +37,17 @@ public class MyIntegralOrderActivity extends CommonTablayoutActivity {
     public void afterCreate(Bundle savedInstanceState) {
         super.afterCreate(savedInstanceState);
         mBaseBinding.titleView.setMidTitle(getString(R.string.my_integral_order));
-        mTabLayoutBinding.tablayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        mTabLayoutBinding.tablayout.setTabMode(TabLayout.MODE_FIXED);
     }
 
     @Override
     public List<Fragment> getFragments() {
         List<Fragment> fragments = new ArrayList<>();
-
-        fragments.add(FirstPageFragment.getInstanse());//首页
-        fragments.add(HelpCenterFragment.getInstanse());//帮助中心
-        fragments.add(InvitationFriendFragment.getInstanse());//邀请好友
-        fragments.add(AdviceFragment.getInstanse());//建议评价
-        fragments.add(AdviceFragment.getInstanse());//建议评价
-        fragments.add(AdviceFragment.getInstanse());//建议评价
+        fragments.add(IntegralOrderListFragment.getInstanse(OrderHelper.INTEGRALORDERWAITESEND));
+        fragments.add(IntegralOrderListFragment.getInstanse(OrderHelper.INTEGRALORDERWAITEGET));
+        fragments.add(IntegralOrderListFragment.getInstanse(OrderHelper.INTEGRALORDERWAITEEVALUATION));
+        fragments.add(IntegralOrderListFragment.getInstanse(OrderHelper.INTEGRALORDERDONE));
+        fragments.add(IntegralOrderListFragment.getInstanse(OrderHelper.INTEGRALORDERCANCEL));
 
         return fragments;
     }
@@ -59,12 +58,11 @@ public class MyIntegralOrderActivity extends CommonTablayoutActivity {
     public List<String> getFragmentTitles() {
         List<String> titleList = new ArrayList<>();
 
-        titleList.add("全部");
         titleList.add("待发货");
         titleList.add("待收货");
         titleList.add("待评价");
         titleList.add("已完成");
-        titleList.add("无货取消");
+        titleList.add("已取消");
 
         return titleList;
     }

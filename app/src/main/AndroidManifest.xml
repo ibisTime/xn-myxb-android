@@ -95,6 +95,17 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
 
+        <!--积分订单详情-->
+        <activity
+            android:name=".module.order.integral.IntegralOrderDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--积分订单评价-->
+        <activity
+            android:name=".module.integral.IntegralOrderCommentActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
 
     </application>
 
