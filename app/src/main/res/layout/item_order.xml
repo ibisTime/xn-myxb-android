@@ -193,7 +193,7 @@
                 android:layout_weight="1" />
 
 
-            <TextView
+            <Button
                 android:id="@+id/tv_state_do"
                 android:layout_width="95dp"
                 android:layout_height="35dp"

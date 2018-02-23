@@ -46,15 +46,19 @@ public class OrderHelper {
      * @return
      */
     public static boolean canShowButton(String state) {
-        return TextUtils.equals(state, OrderHelper.INTEGRALORDERWAITEEVALUATION);
+        return TextUtils.equals(state, OrderHelper.INTEGRALORDERWAITEGET) || TextUtils.equals(state, OrderHelper.INTEGRALORDERWAITEEVALUATION);
     }
 
     /**
+     * 积分订单底部按钮文字显示
      *
-     *积分订单底部按钮文字显示
      * @return
      */
-    public static String getButString(String state) {
+    public static String getBtnStateString(String state) {
+        if (TextUtils.equals(state, OrderHelper.INTEGRALORDERWAITEGET)) {
+            return "确认收货";
+        }
+
         if (TextUtils.equals(state, OrderHelper.INTEGRALORDERWAITEEVALUATION)) {
             return "前往评价";
         }
@@ -62,5 +66,7 @@ public class OrderHelper {
         return "";
 
     }
+
+
 
 }

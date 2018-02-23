@@ -104,7 +104,7 @@ public class IntegralProductDetailsActivity extends AbsBaseLoadActivity {
         if (webSettings != null) {
             webSettings.setJavaScriptEnabled(true);//js
             webSettings.setDefaultTextEncodingName("UTF-8");
-            webSettings.setUseWideViewPort(true);//将图片调整到适合webview的大小
+//            webSettings.setUseWideViewPort(true);//将图片调整到适合webview的大小
             webSettings.setLoadsImagesAutomatically(true);//支持自动加载图片
 //            webSettings.setSupportZoom(true);   //// 支持缩放
 //            webSettings.setBuiltInZoomControls(true);//// 支持缩放

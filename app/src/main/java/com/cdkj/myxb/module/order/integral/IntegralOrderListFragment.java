@@ -101,9 +101,21 @@ public class IntegralOrderListFragment extends BaseLazyFragment {
                 });
 
                 integralOrderListAdapter.setOnItemChildClickListener((adapter, view, position) -> {
+
+                    IntegralOrderSureGetActivitty.open(mActivity, "");
                     if (view.getId() == R.id.tv_state_do) {
-                        IntegralOrderCommentActivity.open(mActivity, integralOrderListAdapter.getItem(position).getCode());
+
+                        IntegralOrderListModel mo = integralOrderListAdapter.getItem(position);
+
+                        if (mo == null) return;
+
+                        if (TextUtils.equals(mOrderState, OrderHelper.INTEGRALORDERWAITEGET)) { //待收货
+                            IntegralOrderSureGetActivitty.open(mActivity, mo.getCode());
+                        } else if (TextUtils.equals(mOrderState, OrderHelper.INTEGRALORDERWAITEEVALUATION)) {//待评价
+                            IntegralOrderCommentActivity.open(mActivity, mo.getCode());
+                        }
                     }
+
                 });
 
                 return integralOrderListAdapter;
@@ -158,7 +170,7 @@ public class IntegralOrderListFragment extends BaseLazyFragment {
     @Subscribe
     public void commentSucc(IntegralOrderCommentsSucc da) {
         if (TextUtils.equals(mOrderState, OrderHelper.INTEGRALORDERWAITEEVALUATION)) { //评价成功 如果是待评价页面则刷新
-            if(mRefreshHelper!=null){
+            if (mRefreshHelper != null) {
                 mRefreshHelper.onDefaluteMRefresh(false);
             }
         }

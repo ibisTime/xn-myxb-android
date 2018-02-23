@@ -256,7 +256,7 @@ public class IntegralMallActivity extends AbsBaseLoadActivity {
 
         map.put("limit", limit + "");
         map.put("start", start + "");
-        map.put("status", "1"); //0未上架，1已上架
+        map.put("status", "2"); //2已上架
 
         Call call = RetrofitUtils.createApi(MyApiServer.class).getIntegralProductList("805285", StringUtils.getJsonToString(map));
 

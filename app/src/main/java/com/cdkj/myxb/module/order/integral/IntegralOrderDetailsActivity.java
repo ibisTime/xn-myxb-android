@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.cdkj.baselibrary.appmanager.MyCdConfig;
-import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
@@ -41,6 +40,8 @@ public class IntegralOrderDetailsActivity extends AbsBaseLoadActivity {
 
     private static final String ORDERCODE = "code";
 
+    private String mOrderState; //订单状态
+
     /**
      * @param context
      * @param orderCode 订单编号
@@ -70,7 +71,13 @@ public class IntegralOrderDetailsActivity extends AbsBaseLoadActivity {
         }
 
         mBinding.btnStateDo.setOnClickListener(view -> {
-            IntegralOrderCommentActivity.open(this, mOrderCode);
+
+            if (TextUtils.equals(mOrderState, OrderHelper.INTEGRALORDERWAITEGET)) { //待收货
+                IntegralOrderSureGetActivitty.open(this,mOrderCode);
+            } else if (TextUtils.equals(mOrderState, OrderHelper.INTEGRALORDERWAITEEVALUATION)) {//待评价
+                IntegralOrderCommentActivity.open(this, mOrderCode);
+            }
+
         });
 
     }
@@ -120,6 +127,8 @@ public class IntegralOrderDetailsActivity extends AbsBaseLoadActivity {
 
         if (data == null) return;
 
+        mOrderState = data.getStatus();
+
         ImgUtils.loadImg(this, MyCdConfig.QINIUURL + data.getProductPic(), mBinding.headerLayout.imgGood);
 
         mBinding.headerLayout.tvOrderName.setText(data.getProductSlogan());
@@ -138,7 +147,7 @@ public class IntegralOrderDetailsActivity extends AbsBaseLoadActivity {
             mBinding.btnStateDo.setVisibility(View.GONE);
         }
 
-        mBinding.btnStateDo.setText(OrderHelper.getButString(data.getStatus()));
+        mBinding.btnStateDo.setText(OrderHelper.getBtnStateString(data.getStatus()));
 
         //物流信息
         mBinding.tvLogisticscompany.setText(data.getLogisticsCompany());

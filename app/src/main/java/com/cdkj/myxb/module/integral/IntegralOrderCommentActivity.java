@@ -57,7 +57,7 @@ public class IntegralOrderCommentActivity extends AbsBaseLoadActivity {
 
     @Override
     public void topTitleViewRightClick() {
-
+        releaseRequest();
     }
 
     @Override

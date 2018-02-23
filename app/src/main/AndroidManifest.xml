@@ -105,6 +105,12 @@
             android:name=".module.integral.IntegralOrderCommentActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
+        <!--积分订单确认收获-->
+        <activity
+            android:theme="@style/ActivityDialogStyleBottom"
+            android:name=".module.order.integral.IntegralOrderSureGetActivitty"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
 
 
     </application>

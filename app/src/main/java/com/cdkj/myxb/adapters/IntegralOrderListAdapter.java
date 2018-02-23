@@ -1,14 +1,12 @@
 package com.cdkj.myxb.adapters;
 
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 
 import com.cdkj.baselibrary.appmanager.MyCdConfig;
 import com.cdkj.baselibrary.utils.DateUtil;
 import com.cdkj.baselibrary.utils.ImgUtils;
 import com.cdkj.baselibrary.utils.MoneyUtils;
 import com.cdkj.myxb.R;
-import com.cdkj.myxb.models.IntegralListModel;
 import com.cdkj.myxb.models.IntegralOrderListModel;
 import com.cdkj.myxb.module.order.OrderHelper;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -44,7 +42,9 @@ public class IntegralOrderListAdapter extends BaseQuickAdapter<IntegralOrderList
 
         helper.setGone(R.id.lin_buttom, OrderHelper.canShowButton(item.getStatus()));
 
-        helper.setText(R.id.tv_state_do, OrderHelper.getButString(item.getStatus()));
+        helper.setText(R.id.tv_state_do, OrderHelper.getBtnStateString(item.getStatus()));
+
+        helper.addOnClickListener(R.id.tv_state_do);
     }
 
 
