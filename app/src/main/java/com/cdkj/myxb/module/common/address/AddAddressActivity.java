@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.cdkj.baselibrary.R;
-import com.cdkj.baselibrary.api.BaseApiServer;
 import com.cdkj.baselibrary.appmanager.MyCdConfig;
 import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
@@ -19,6 +17,7 @@ import com.cdkj.baselibrary.model.IsSuccessModes;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
+import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.ActivityAddAddressBinding;
 import com.cdkj.myxb.models.AddressModel;
 import com.cdkj.myxb.module.api.MyApiServer;

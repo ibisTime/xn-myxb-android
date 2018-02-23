@@ -100,6 +100,15 @@ public class RefreshHelper<T> {
 
 
     /**
+     * 设置布局样式
+     * @param layoutManager
+     */
+    public void setLayoutManager(RecyclerView.LayoutManager layoutManager){
+        mRecyclerView.setLayoutManager(layoutManager);
+    }
+
+
+    /**
      * 初始化刷新加载
      */
     private void initRefreshLayout() {

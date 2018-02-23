@@ -11,6 +11,7 @@
         android:orientation="vertical">
 
         <com.cdkj.baselibrary.views.RowInfoLayout
+            android:id="@+id/row_integral"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:img_left="@drawable/my_jf"

@@ -229,7 +229,7 @@ public class AddressListActivity extends AbsBaseLoadActivity {
                 if (data != null && data.isSuccess()) {
                     if (mRefreshHelper.getmAdapter() != null)
                         mRefreshHelper.getmAdapter().remove(position);
-                        mRefreshHelper.getmAdapter().notifyDataSetChanged();
+                    mRefreshHelper.getmAdapter().notifyDataSetChanged();
                 } else {
                     UITipDialog.showFall(AddressListActivity.this, getString(R.string.delete_fall));
                 }
@@ -308,6 +308,8 @@ public class AddressListActivity extends AbsBaseLoadActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mRefreshHelper.onDestroy();
+        if (mRefreshHelper != null) {
+            mRefreshHelper.onDestroy();
+        }
     }
 }

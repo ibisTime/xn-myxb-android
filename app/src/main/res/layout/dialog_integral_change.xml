@@ -39,6 +39,7 @@
 
 
             <RelativeLayout
+                android:id="@+id/relaLayout_select_address"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginLeft="15dp"
@@ -81,6 +82,7 @@
                 android:background="@drawable/integral_dialog_input_gray_line">
 
                 <EditText
+                    android:id="@+id/edit_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
@@ -103,6 +105,7 @@
                 android:background="@drawable/integral_dialog_input_gray_line">
 
                 <EditText
+                    android:id="@+id/edit_phone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
@@ -137,6 +140,7 @@
                     android:textSize="14sp" />
 
                 <Button
+                    android:id="@+id/btn_change"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/button_height"
                     android:layout_marginBottom="25dp"

@@ -11,7 +11,7 @@ public class MyCdConfig {
 
     public final static String USERTYPE = "C";//用户类型
 
-    public final static String QINIUURL = "http://xxxx/";
+    public final static String QINIUURL = "http://otoieuivb.bkt.clouddn.com/";
 
     public final static String PROJECTNAME = "myxb";
 

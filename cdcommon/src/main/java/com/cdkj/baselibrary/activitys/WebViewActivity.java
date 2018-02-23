@@ -192,7 +192,7 @@ public class WebViewActivity extends AbsBaseLoadActivity {
                 if (TextUtils.isEmpty(data.getCvalue())) {
                     return;
                 }
-                webView.loadData(data.getCvalue(), "text/html;charset=UTF-8", "UTF-8");
+                webView.loadData(data.getCvalue(), "text/html;charset=utf-8", "utf-8");
             }
 
             @Override

@@ -72,6 +72,29 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
 
+        <!--积分商场-->
+        <activity
+            android:name=".module.integral.IntegralMallActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--积分产品详情-->
+        <activity
+            android:name=".module.integral.IntegralProductDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--积分流水界面-->
+        <activity
+            android:name=".module.integral.IntegraListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--我的积分订单-->
+        <activity
+            android:name=".module.order.integral.MyIntegralOrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
 
     </application>
 

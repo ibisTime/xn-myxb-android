@@ -2,8 +2,12 @@ package com.cdkj.myxb.module.api;
 
 import com.cdkj.baselibrary.api.BaseResponseListModel;
 import com.cdkj.baselibrary.api.BaseResponseModel;
+import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.model.CodeModel;
+import com.cdkj.myxb.adapters.IntegraProductDetailsModel;
+import com.cdkj.myxb.models.AccountModel;
 import com.cdkj.myxb.models.AddressModel;
+import com.cdkj.myxb.models.IntegralModel;
 import com.cdkj.myxb.models.UserModel;
 
 import retrofit2.Call;
@@ -16,6 +20,40 @@ import retrofit2.http.POST;
  */
 
 public interface MyApiServer {
+
+    /**
+     * 获取账户列表
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseListModel<AccountModel>> getAccountList(@Field("code") String code, @Field("json") String json);
+
+    /**
+     * 获取积分商品列表
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<ResponseInListModel<IntegralModel>>> getIntegralList(@Field("code") String code, @Field("json") String json);
+
+    /**
+     * 获取积分商品详情
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<IntegraProductDetailsModel>> getIntegralProduct(@Field("code") String code, @Field("json") String json);
+
 
     /**
      * 获取用户信息详情
@@ -31,7 +69,8 @@ public interface MyApiServer {
 
     /**
      * 添加收货地址
-     *AddAddress
+     * AddAddress
+     *
      * @param code
      * @param json
      * @return

@@ -1,10 +1,15 @@
 package com.cdkj.myxb.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.math.BigDecimal;
+
 /**
  * Created by 李先俊 on 2018/2/22.
  */
 
-public class UserModel {
+public class UserModel implements Parcelable {
     /**
      * userId : U201802221556357869675
      * loginName : 13765051712
@@ -40,7 +45,7 @@ public class UserModel {
     private String style;
     private String realName;
     private String status;
-    private double score;
+    private BigDecimal score;
     private String createDatetime;
     private String updater;
     private String updateDatetime;
@@ -145,11 +150,11 @@ public class UserModel {
         this.status = status;
     }
 
-    public double getScore() {
+    public BigDecimal getScore() {
         return score;
     }
 
-    public void setScore(double score) {
+    public void setScore(BigDecimal score) {
         this.score = score;
     }
 
@@ -208,4 +213,71 @@ public class UserModel {
     public void setTradepwdFlag(boolean tradepwdFlag) {
         this.tradepwdFlag = tradepwdFlag;
     }
+
+    public UserModel() {
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.userId);
+        dest.writeString(this.loginName);
+        dest.writeString(this.mobile);
+        dest.writeString(this.photo);
+        dest.writeString(this.nickname);
+        dest.writeString(this.loginPwdStrength);
+        dest.writeString(this.kind);
+        dest.writeString(this.level);
+        dest.writeString(this.speciality);
+        dest.writeString(this.style);
+        dest.writeString(this.realName);
+        dest.writeString(this.status);
+        dest.writeSerializable(this.score);
+        dest.writeString(this.createDatetime);
+        dest.writeString(this.updater);
+        dest.writeString(this.updateDatetime);
+        dest.writeString(this.remark);
+        dest.writeString(this.companyCode);
+        dest.writeString(this.systemCode);
+        dest.writeByte(this.tradepwdFlag ? (byte) 1 : (byte) 0);
+    }
+
+    protected UserModel(Parcel in) {
+        this.userId = in.readString();
+        this.loginName = in.readString();
+        this.mobile = in.readString();
+        this.photo = in.readString();
+        this.nickname = in.readString();
+        this.loginPwdStrength = in.readString();
+        this.kind = in.readString();
+        this.level = in.readString();
+        this.speciality = in.readString();
+        this.style = in.readString();
+        this.realName = in.readString();
+        this.status = in.readString();
+        this.score = (BigDecimal) in.readSerializable();
+        this.createDatetime = in.readString();
+        this.updater = in.readString();
+        this.updateDatetime = in.readString();
+        this.remark = in.readString();
+        this.companyCode = in.readString();
+        this.systemCode = in.readString();
+        this.tradepwdFlag = in.readByte() != 0;
+    }
+
+    public static final Creator<UserModel> CREATOR = new Creator<UserModel>() {
+        @Override
+        public UserModel createFromParcel(Parcel source) {
+            return new UserModel(source);
+        }
+
+        @Override
+        public UserModel[] newArray(int size) {
+            return new UserModel[size];
+        }
+    };
 }
