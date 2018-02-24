@@ -51,17 +51,20 @@ public class IntegralOrderListFragment extends BaseLazyFragment {
     private RefreshHelper mRefreshHelper;
 
     private static final String ORDERSTATE = "state";
+    private static final String ISFIRSTREQUEST = "isFirstRequest";
 
     private String mOrderState; //要查看的订单状态
 
     /**
-     * @param state 订单状态
+     * @param state          订单状态
+     * @param isFirstRequest 创建时是否进行请求
      * @return
      */
-    public static IntegralOrderListFragment getInstanse(String state) {
+    public static IntegralOrderListFragment getInstanse(String state, boolean isFirstRequest) {
         IntegralOrderListFragment fragment = new IntegralOrderListFragment();
         Bundle bundle = new Bundle();
         bundle.putString(ORDERSTATE, state);
+        bundle.putBoolean(ISFIRSTREQUEST, isFirstRequest);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -75,8 +78,17 @@ public class IntegralOrderListFragment extends BaseLazyFragment {
 
         if (getArguments() != null) {
             mOrderState = getArguments().getString(ORDERSTATE);
+
         }
 
+        initRefreshHelper();
+        if (getArguments() != null && getArguments().getBoolean(ISFIRSTREQUEST)) {
+            mRefreshHelper.onDefaluteMRefresh(true);
+        }
+        return mBinding.getRoot();
+    }
+
+    private void initRefreshHelper() {
         mRefreshHelper = new RefreshHelper(mActivity, new BaseRefreshCallBack(mActivity) {
             @Override
             public View getRefreshLayout() {
@@ -128,11 +140,6 @@ public class IntegralOrderListFragment extends BaseLazyFragment {
         });
 
         mRefreshHelper.init(10);
-
-        mRefreshHelper.onDefaluteMRefresh(true);
-
-//        getOrderListRequest(1, 10, true);
-        return mBinding.getRoot();
     }
 
     /**

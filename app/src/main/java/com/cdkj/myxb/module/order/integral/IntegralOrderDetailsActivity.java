@@ -73,7 +73,7 @@ public class IntegralOrderDetailsActivity extends AbsBaseLoadActivity {
         mBinding.btnStateDo.setOnClickListener(view -> {
 
             if (TextUtils.equals(mOrderState, OrderHelper.INTEGRALORDERWAITEGET)) { //待收货
-                IntegralOrderSureGetActivitty.open(this,mOrderCode);
+                IntegralOrderSureGetActivitty.open(this, mOrderCode);
             } else if (TextUtils.equals(mOrderState, OrderHelper.INTEGRALORDERWAITEEVALUATION)) {//待评价
                 IntegralOrderCommentActivity.open(this, mOrderCode);
             }
@@ -131,10 +131,11 @@ public class IntegralOrderDetailsActivity extends AbsBaseLoadActivity {
 
         ImgUtils.loadImg(this, MyCdConfig.QINIUURL + data.getProductPic(), mBinding.headerLayout.imgGood);
 
+        //订单信息
         mBinding.headerLayout.tvOrderName.setText(data.getProductSlogan());
         mBinding.tvName.setText(data.getProductName());
         mBinding.headerLayout.tvPrice.setText(MoneyUtils.getShowPriceSign(data.getAmount()));
-        mBinding.tvPrice.setText(MoneyUtils.showPrice(data.getPrice()));
+        mBinding.tvPrice.setText(MoneyUtils.showPrice(data.getAmount()));
         mBinding.headerLayout.tvNum.setText("X" + data.getQuantity());
         mBinding.tvNum.setText("" + data.getQuantity());
         mBinding.tvOrderCode.setText(data.getCode());
@@ -148,6 +149,23 @@ public class IntegralOrderDetailsActivity extends AbsBaseLoadActivity {
         }
 
         mBinding.btnStateDo.setText(OrderHelper.getBtnStateString(data.getStatus()));
+
+
+        //收货人信息
+
+//        mBinding.t
+        if (!TextUtils.isEmpty(data.getReceiver())) {
+            mBinding.linUserInfo.setVisibility(View.VISIBLE);
+            mBinding.tvUserName.setText("收货人:" + data.getReceiver());
+        }
+        if (!TextUtils.isEmpty(data.getReMobile())) {
+            mBinding.linUserInfo.setVisibility(View.VISIBLE);
+            mBinding.tvPhone.setText(data.getReMobile());
+        }
+        if (!TextUtils.isEmpty(data.getReAddress())) {
+            mBinding.tvAddress.setVisibility(View.VISIBLE);
+            mBinding.tvAddress.setText(data.getReAddress());
+        }
 
         //物流信息
         mBinding.tvLogisticscompany.setText(data.getLogisticsCompany());

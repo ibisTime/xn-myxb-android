@@ -16,6 +16,7 @@ import com.cdkj.myxb.R;
 import com.cdkj.myxb.adapters.FirstPageBrandAdapter;
 import com.cdkj.myxb.databinding.FragmentFirstPageBinding;
 import com.cdkj.myxb.module.common.MsgListActivity;
+import com.cdkj.myxb.module.product.BrandListActivity;
 import com.cdkj.myxb.module.product.ProductDetailsActivity;
 import com.cdkj.myxb.module.shopper.ShopperAppointmentListActivity;
 
@@ -67,7 +68,7 @@ public class FirstPageFragment extends BaseLazyFragment {
         });
         /*品牌*/
         mBinding.headrLayout.llayoutBrand.setOnClickListener(view -> {
-            ProductDetailsActivity.open(mActivity);
+            BrandListActivity.open(mActivity);
         });
 
     }

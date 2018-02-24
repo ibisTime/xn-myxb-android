@@ -2,10 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    android:paddingBottom="10dp">
+
 
     <ImageView
+        android:id="@+id/img_brand_product"
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:layout_marginLeft="15dp"
@@ -20,6 +24,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tv_brand_product_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -27,20 +32,21 @@
             android:layout_marginTop="22dp"
             android:ellipsize="end"
             android:maxLines="3"
-            android:text="商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品"
             android:textColor="@color/app_txt_black"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            tools:text="商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品" />
 
         <TextView
+            android:id="@+id/tv_brand_slogan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="15dp"
             android:ellipsize="end"
             android:singleLine="true"
-            android:text="商品商品商品"
             android:textColor="@color/app_txt_gray"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            tools:text="商品商品商品" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,26 +54,28 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv_brand_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="商品商品商品"
                 android:textColor="@color/app_txt_red"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                tools:text="商品商品商品" />
 
             <TextView
+                android:id="@+id/tv_brand_onsale_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="商品商品商品"
                 android:textColor="@color/app_txt_gray"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                tools:text="商品商品商品" />
         </LinearLayout>
 
 

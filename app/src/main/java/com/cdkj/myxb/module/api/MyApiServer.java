@@ -4,6 +4,8 @@ import com.cdkj.baselibrary.api.BaseResponseListModel;
 import com.cdkj.baselibrary.api.BaseResponseModel;
 import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.model.CodeModel;
+import com.cdkj.myxb.models.BrandListModel;
+import com.cdkj.myxb.models.BrandProductModel;
 import com.cdkj.myxb.models.IntegraProductDetailsModel;
 import com.cdkj.myxb.models.AccountDetailsModel;
 import com.cdkj.myxb.models.AccountListModel;
@@ -19,10 +21,35 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 /**
- * Created by 李先俊 on 2018/2/22.
+ * Created by cdkj on 2018/2/22.
  */
 
 public interface MyApiServer {
+
+
+    /**
+     * 获取品牌产品列表
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<ResponseInListModel<BrandProductModel>>> getBrandProductList(@Field("code") String code, @Field("json") String json);
+
+
+    /**
+     * 获取品牌
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseListModel<BrandListModel>> getBrandList(@Field("code") String code, @Field("json") String json);
+
 
     /**
      * 获取积分订单

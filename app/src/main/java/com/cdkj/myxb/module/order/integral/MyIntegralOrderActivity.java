@@ -43,12 +43,12 @@ public class MyIntegralOrderActivity extends CommonTablayoutActivity {
     @Override
     public List<Fragment> getFragments() {
         List<Fragment> fragments = new ArrayList<>();
-        fragments.add(IntegralOrderListFragment.getInstanse(""));
-        fragments.add(IntegralOrderListFragment.getInstanse(OrderHelper.INTEGRALORDERWAITESEND));
-        fragments.add(IntegralOrderListFragment.getInstanse(OrderHelper.INTEGRALORDERWAITEGET));
-        fragments.add(IntegralOrderListFragment.getInstanse(OrderHelper.INTEGRALORDERWAITEEVALUATION));
-        fragments.add(IntegralOrderListFragment.getInstanse(OrderHelper.INTEGRALORDERDONE));
-        fragments.add(IntegralOrderListFragment.getInstanse(OrderHelper.INTEGRALORDERCANCEL));
+        fragments.add(IntegralOrderListFragment.getInstanse("", true));
+        fragments.add(IntegralOrderListFragment.getInstanse(OrderHelper.INTEGRALORDERWAITESEND, false));
+        fragments.add(IntegralOrderListFragment.getInstanse(OrderHelper.INTEGRALORDERWAITEGET, false));
+        fragments.add(IntegralOrderListFragment.getInstanse(OrderHelper.INTEGRALORDERWAITEEVALUATION, false));
+        fragments.add(IntegralOrderListFragment.getInstanse(OrderHelper.INTEGRALORDERDONE, false));
+        fragments.add(IntegralOrderListFragment.getInstanse(OrderHelper.INTEGRALORDERCANCEL, false));
 
         return fragments;
     }

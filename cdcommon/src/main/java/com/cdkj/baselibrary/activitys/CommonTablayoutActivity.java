@@ -35,7 +35,7 @@ public abstract class CommonTablayoutActivity extends AbsBaseLoadActivity {
         initViewPager();
     }
 
-    private void initViewPager() {
+    protected void initViewPager() {
 
         tablayoutAdapter = new TablayoutAdapter(getSupportFragmentManager());
 
