@@ -74,7 +74,7 @@ public class IntegralOrderDetailsActivity extends AbsBaseLoadActivity {
 
             if (TextUtils.equals(mOrderState, OrderHelper.INTEGRALORDERWAITEGET)) { //待收货
                 IntegralOrderSureGetActivitty.open(this, mOrderCode);
-            } else if (TextUtils.equals(mOrderState, OrderHelper.INTEGRALORDERWAITEEVALUATION)) {//待评价
+            } else if (TextUtils.equals(mOrderState, OrderHelper.INTEGRALORDERWAITEECOMMENT)) {//待评价
                 IntegralOrderCommentActivity.open(this, mOrderCode);
             }
 

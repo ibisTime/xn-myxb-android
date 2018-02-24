@@ -67,7 +67,7 @@ public class IntegralOrderCommentActivity extends AbsBaseLoadActivity {
 
     @Override
     public void afterCreate(Bundle savedInstanceState) {
-        mBaseBinding.titleView.setMidTitle("提交评论");
+        mBaseBinding.titleView.setMidTitle("提交评价");
         mBaseBinding.titleView.setRightTitle("发布");
 
         if (getIntent() != null) {
@@ -77,7 +77,7 @@ public class IntegralOrderCommentActivity extends AbsBaseLoadActivity {
     }
 
     /**
-     * 发布评论
+     * 发布评价
      */
     public void releaseRequest() {
 
@@ -109,7 +109,7 @@ public class IntegralOrderCommentActivity extends AbsBaseLoadActivity {
             @Override
             protected void onSuccess(CodeModel data, String SucMessage) {
 
-                releaseState(data);
+                checkReleaseState(data);
 
             }
 
@@ -126,11 +126,11 @@ public class IntegralOrderCommentActivity extends AbsBaseLoadActivity {
      *
      * @param data
      */
-    private void releaseState(CodeModel data) {
+    private void checkReleaseState(CodeModel data) {
         String s = "filter";//是否包含敏感词汇
         if (!TextUtils.isEmpty(data.getCode()) && !StringUtils.contains(data.getCode(), s)) {
-
-            UITipDialog.showSuccess(IntegralOrderCommentActivity.this, "发布评论成功", new DialogInterface.OnDismissListener() {
+            EventBus.getDefault().post(new IntegralOrderCommentsSucc());
+            UITipDialog.showSuccess(IntegralOrderCommentActivity.this, "发布评价成功", new DialogInterface.OnDismissListener() {
                 @Override
                 public void onDismiss(DialogInterface dialogInterface) {
                     finish();
@@ -138,7 +138,7 @@ public class IntegralOrderCommentActivity extends AbsBaseLoadActivity {
             });
         } else if (StringUtils.contains(data.getCode(), s)) {
             EventBus.getDefault().post(new IntegralOrderCommentsSucc());
-            UITipDialog.showSuccess(IntegralOrderCommentActivity.this, "评论成功, 您的评论包含敏感字符,我们将进行审核", new DialogInterface.OnDismissListener() {
+            UITipDialog.showSuccess(IntegralOrderCommentActivity.this, "评价成功, 您的评价包含敏感字符,我们将进行审核", new DialogInterface.OnDismissListener() {
                 @Override
                 public void onDismiss(DialogInterface dialogInterface) {
                     finish();

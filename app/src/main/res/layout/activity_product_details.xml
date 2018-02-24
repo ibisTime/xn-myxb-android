@@ -137,8 +137,17 @@
                 <View style="@style/style_split_line" />
 
                 <include
-                    android:id="@+id/score_layout"
+                    android:id="@+id/scorfe_layout"
                     layout="@layout/layout_score" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView_comments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                </android.support.v7.widget.RecyclerView>
+
             </LinearLayout>
 
         </com.cdkj.myxb.weight.views.MyScrollView>

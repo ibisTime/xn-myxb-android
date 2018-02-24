@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:background="@color/white"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp">
+
+
+    <TextView
+        android:id="@+id/tv_commetns"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/app_txt_black"
+        android:textSize="14sp"
+        tools:text="42条评论" />
+
+
+    <com.cdkj.myxb.weight.views.MyRatingBar
+        android:id="@+id/ratingbar_comments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="20dp"
+        app:clickable="true"
+        app:halfstart="false"
+        app:starCount="5"
+        app:starEmpty="@drawable/star_empty"
+        app:starFill="@drawable/star_full"
+        app:starImageHeight="25dp"
+        app:starImagePadding="8dp"
+        app:starImageWidth="25dp"
+        app:starNum="0" />
+
+</LinearLayout>

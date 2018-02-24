@@ -42,7 +42,7 @@ public class MyIntegralOrderActivity extends CommonTablayoutActivity {
         fragments.add(IntegralOrderListFragment.getInstanse("", true));
         fragments.add(IntegralOrderListFragment.getInstanse(OrderHelper.INTEGRALORDERWAITESEND, false));
         fragments.add(IntegralOrderListFragment.getInstanse(OrderHelper.INTEGRALORDERWAITEGET, false));
-        fragments.add(IntegralOrderListFragment.getInstanse(OrderHelper.INTEGRALORDERWAITEEVALUATION, false));
+        fragments.add(IntegralOrderListFragment.getInstanse(OrderHelper.INTEGRALORDERWAITEECOMMENT, false));
         fragments.add(IntegralOrderListFragment.getInstanse(OrderHelper.INTEGRALORDERDONE, false));
         fragments.add(IntegralOrderListFragment.getInstanse(OrderHelper.INTEGRALORDERCANCEL, false));
 

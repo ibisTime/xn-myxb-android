@@ -19,8 +19,10 @@ import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.ActivityProductDetailsBinding;
 import com.cdkj.myxb.models.BrandProductModel;
+import com.cdkj.myxb.models.CommentCountAndAverage;
 import com.cdkj.myxb.models.IntegraProductDetailsModel;
 import com.cdkj.myxb.module.api.MyApiServer;
+import com.cdkj.myxb.module.common.CallPhoneActivity;
 import com.cdkj.myxb.weight.GlideImageLoader;
 import com.cdkj.myxb.weight.views.MyScrollView;
 import com.youth.banner.BannerConfig;
@@ -81,7 +83,7 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
         initListener();
         initBanner();
         getProductDetailsRequest();
-
+        getCommentsCountAndAverage();
     }
 
 
@@ -118,6 +120,8 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
             }
             ProductOrderActivity.open(this, mProductCode);
         });
+
+
     }
 
     /**
@@ -186,6 +190,37 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
 
     }
 
+
+    /**
+     * 获取评论总数和平均分
+     */
+    public void getCommentsCountAndAverage() {
+        if(TextUtils.isEmpty(mProductCode)) return;
+
+        Map<String, String> map = new HashMap<>();
+
+        map.put("entityCode", mProductCode);
+
+        showLoadingDialog();
+
+        Call call = RetrofitUtils.createApi(MyApiServer.class).getCommentCountAndAverage("805423", StringUtils.getJsonToString(map));
+
+        call.enqueue(new BaseResponseModelCallBack<CommentCountAndAverage>(this) {
+            @Override
+            protected void onSuccess(CommentCountAndAverage data, String SucMessage) {
+
+            }
+
+
+            @Override
+            protected void onFinish() {
+                disMissLoading();
+            }
+        });
+
+
+    }
+
     /**
      * 设置显示数据
      *
@@ -201,9 +236,12 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
 
         mBinding.webView.loadData(data.getDescription(), "text/html;charset=utf-8", "utf-8");
 
-        if (TextUtils.isEmpty(data.getMobile())) {
+        if (TextUtils.isEmpty(data.getMobile())) {                    //有电话则可以进行电话拨打
+            mBinding.callPhone.setVisibility(View.GONE);
+        } else {
+            mBinding.callPhone.setVisibility(View.VISIBLE);
             mBinding.callPhone.setOnClickListener(view -> {
-//                AppUtils.callPhonePage(this, data.getMobile());
+                CallPhoneActivity.open(this, data.getMobile());
             });
         }
 

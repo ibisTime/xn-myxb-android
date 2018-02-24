@@ -17,9 +17,9 @@ import com.cdkj.baselibrary.utils.MoneyUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.ActivityIntegralOrderDetailsBinding;
+import com.cdkj.myxb.models.CommentCountAndAverage;
 import com.cdkj.myxb.models.OrderListModel;
 import com.cdkj.myxb.module.api.MyApiServer;
-import com.cdkj.myxb.module.integral.IntegralOrderCommentActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -70,7 +70,7 @@ public class OrderDetailsActivity extends AbsBaseLoadActivity {
         }
 
         mBinding.btnStateDo.setOnClickListener(view -> {
-            IntegralOrderCommentActivity.open(this, mOrderCode);
+            OrderCommentActivity.open(this, mOrderCode);
         });
 
     }
@@ -85,6 +85,8 @@ public class OrderDetailsActivity extends AbsBaseLoadActivity {
      * 获取订单详情
      */
     public void getOrderDetailsRequest() {
+
+        if(TextUtils.isEmpty(mOrderCode)) return;
 
         Map<String, String> map = new HashMap<>();
 
@@ -116,6 +118,13 @@ public class OrderDetailsActivity extends AbsBaseLoadActivity {
 
     }
 
+
+
+    /**
+     * 设置数据
+     *
+     * @param data
+     */
     private void setShowData(OrderListModel data) {
 
         if (data == null) return;
@@ -132,7 +141,7 @@ public class OrderDetailsActivity extends AbsBaseLoadActivity {
         mBinding.headerLayout.tvNum.setText("X" + data.getQuantity());
         mBinding.tvNum.setText("" + data.getQuantity());
         mBinding.tvOrderCode.setText(data.getCode());
-        mBinding.tvState.setText(OrderHelper.getIntegralOrderState(data.getStatus()));
+        mBinding.tvState.setText(OrderHelper.getOrderState(data.getStatus()));
         mBinding.tvOrderTime.setText(DateUtil.formatStringData(data.getApplyDatetime(), DateUtil.DEFAULT_DATE_FMT));
 
         if (OrderHelper.canShowOrderButton(data.getStatus())) {
@@ -174,7 +183,6 @@ public class OrderDetailsActivity extends AbsBaseLoadActivity {
         } else {
             mBinding.linLogisticscode.setVisibility(View.VISIBLE);
         }
-
 
     }
 

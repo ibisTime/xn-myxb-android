@@ -6,6 +6,8 @@ import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.model.CodeModel;
 import com.cdkj.myxb.models.BrandListModel;
 import com.cdkj.myxb.models.BrandProductModel;
+import com.cdkj.myxb.models.CommentCountAndAverage;
+import com.cdkj.myxb.models.CommentItemModel;
 import com.cdkj.myxb.models.IntegraProductDetailsModel;
 import com.cdkj.myxb.models.AccountDetailsModel;
 import com.cdkj.myxb.models.AccountListModel;
@@ -26,6 +28,32 @@ import retrofit2.http.POST;
  */
 
 public interface MyApiServer {
+
+
+
+    /**
+     * 获取评论总数和平均分
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<CommentCountAndAverage>> getCommentCountAndAverage(@Field("code") String code, @Field("json") String json);
+
+
+    /**
+     * 获取要评论的项
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseListModel<CommentItemModel>> getCommentItem(@Field("code") String code, @Field("json") String json);
+
 
     /**
      * 获取订单

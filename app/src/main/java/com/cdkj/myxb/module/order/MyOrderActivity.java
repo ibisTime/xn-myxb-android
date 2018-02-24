@@ -7,10 +7,6 @@ import android.support.v4.app.Fragment;
 
 import com.cdkj.baselibrary.activitys.CommonTablayoutActivity;
 import com.cdkj.myxb.R;
-import com.cdkj.myxb.module.maintab.AdviceFragment;
-import com.cdkj.myxb.module.maintab.FirstPageFragment;
-import com.cdkj.myxb.module.maintab.HelpCenterFragment;
-import com.cdkj.myxb.module.maintab.InvitationFriendFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +39,7 @@ public class MyOrderActivity extends CommonTablayoutActivity {
         fragments.add(OrderListFragment.getInstanse("", true));
         fragments.add(OrderListFragment.getInstanse(OrderHelper.ORDERWAITEAUDIT, false));
         fragments.add(OrderListFragment.getInstanse(OrderHelper.ORDERWAITESEND, false));
-        fragments.add(OrderListFragment.getInstanse(OrderHelper.ORDERWAITEEVALUATION, false));
+        fragments.add(OrderListFragment.getInstanse(OrderHelper.ORDERWAITEECOMMENT, false));
         fragments.add(OrderListFragment.getInstanse(OrderHelper.ORDERDONE, false));
         return fragments;
     }

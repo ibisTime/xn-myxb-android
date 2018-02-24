@@ -131,8 +131,18 @@
             android:name=".module.order.OrderDetailsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
+        <!--订单评论-->
+        <activity
+            android:name=".module.order.OrderCommentActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
 
-
+        <!--拨打电话-->
+        <activity
+            android:name=".module.common.CallPhoneActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityDialogStyleBottom"
+            android:windowSoftInputMode="adjustPan" />
 
 
     </application>

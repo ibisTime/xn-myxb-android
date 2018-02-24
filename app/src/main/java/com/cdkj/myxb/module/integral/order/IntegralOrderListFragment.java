@@ -142,7 +142,7 @@ public class IntegralOrderListFragment extends BaseLazyFragment {
 
                 if (TextUtils.equals(mo.getStatus(), OrderHelper.INTEGRALORDERWAITEGET)) { //待收货
                     IntegralOrderSureGetActivitty.open(mActivity, mo.getCode());
-                } else if (TextUtils.equals(mo.getStatus(), OrderHelper.INTEGRALORDERWAITEEVALUATION)) {//待评价
+                } else if (TextUtils.equals(mo.getStatus(), OrderHelper.INTEGRALORDERWAITEECOMMENT)) {//待评价
                     IntegralOrderCommentActivity.open(mActivity, mo.getCode());
                 }
             }
@@ -185,7 +185,7 @@ public class IntegralOrderListFragment extends BaseLazyFragment {
 
     @Subscribe
     public void commentSucc(IntegralOrderCommentsSucc da) {
-        if (TextUtils.equals(mOrderState, OrderHelper.INTEGRALORDERWAITEEVALUATION) || TextUtils.isEmpty(mOrderState)) { //评价成功 如果是待评价页面则刷新
+        if (TextUtils.equals(mOrderState, OrderHelper.INTEGRALORDERWAITEECOMMENT) || TextUtils.isEmpty(mOrderState)) { //评价成功 如果是待评价页面则刷新
             if (mRefreshHelper != null) {
                 mRefreshHelper.onDefaluteMRefresh(false);
             }

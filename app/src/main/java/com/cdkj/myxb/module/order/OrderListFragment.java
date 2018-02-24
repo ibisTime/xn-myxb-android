@@ -25,7 +25,6 @@ import com.cdkj.myxb.models.IntegralOrderCommentsSucc;
 import com.cdkj.myxb.models.IntegralOrderSureGetSucc;
 import com.cdkj.myxb.models.OrderListModel;
 import com.cdkj.myxb.module.api.MyApiServer;
-import com.cdkj.myxb.module.integral.IntegralOrderCommentActivity;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -140,7 +139,7 @@ public class OrderListFragment extends BaseLazyFragment {
 
                 if (mo == null) return;
 
-                IntegralOrderCommentActivity.open(mActivity, mo.getCode());
+                OrderCommentActivity.open(mActivity, mo.getCode());
             }
 
         });
@@ -182,7 +181,7 @@ public class OrderListFragment extends BaseLazyFragment {
 
     @Subscribe
     public void commentSucc(IntegralOrderCommentsSucc da) {
-        if (TextUtils.equals(mOrderState, OrderHelper.INTEGRALORDERWAITEEVALUATION) || TextUtils.isEmpty(mOrderState)) { //评价成功 如果是待评价页面则刷新
+        if (TextUtils.equals(mOrderState, OrderHelper.ORDERWAITEECOMMENT) || TextUtils.isEmpty(mOrderState)) { //评价成功 如果是待评价页面则刷新
             if (mRefreshHelper != null) {
                 mRefreshHelper.onDefaluteMRefresh(false);
             }
@@ -190,13 +189,11 @@ public class OrderListFragment extends BaseLazyFragment {
     }
 
     /**
-     *
-     *
      * @param da
      */
     @Subscribe
     public void sureGetSucc(IntegralOrderSureGetSucc da) {
-        if (TextUtils.equals(mOrderState, OrderHelper.ORDERWAITEEVALUATION) || TextUtils.isEmpty(mOrderState)) { //收货成功
+        if (TextUtils.equals(mOrderState, OrderHelper.ORDERWAITEECOMMENT) || TextUtils.isEmpty(mOrderState)) { //收货成功
             if (mRefreshHelper != null) {
                 mRefreshHelper.onDefaluteMRefresh(false);
             }

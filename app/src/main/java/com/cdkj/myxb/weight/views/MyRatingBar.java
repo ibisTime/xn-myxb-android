@@ -99,6 +99,38 @@ public class MyRatingBar extends LinearLayout {
 
         for (int i = 0; i < starNum; ++i) {
             ImageView imageView = getStarImageView(context, false);
+            imageView.setOnClickListener(
+                    new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (mClickable) {
+                                if (halfstart) {
+                                    if (y % 2 == 0) {
+                                        setStar2(indexOfChild(v) + 1f);
+                                    } else {
+                                        setStar2(indexOfChild(v) + 0.5f);
+                                    }
+                                    if (onRatingChangeListener != null) {
+                                        if (y % 2 == 0) {
+                                            onRatingChangeListener.onRatingChange(indexOfChild(v) + 1f);
+                                            y++;
+                                        } else {
+                                            onRatingChangeListener.onRatingChange(indexOfChild(v) + 0.5f);
+                                            y++;
+                                        }
+                                    }
+                                } else {
+                                    setStar2(indexOfChild(v) + 1f);
+                                    if (onRatingChangeListener != null) {
+                                        onRatingChangeListener.onRatingChange(indexOfChild(v) + 1f);
+                                    }
+                                }
+
+                            }
+
+                        }
+                    }
+            );
             addView(imageView);
         }
 
@@ -156,7 +188,40 @@ public class MyRatingBar extends LinearLayout {
         }
         return imageView;
     }
+    public void setStar2(float starCount) {
 
+        int fint = (int) starCount;
+        BigDecimal b1 = new BigDecimal(Float.toString(starCount));
+        BigDecimal b2 = new BigDecimal(Integer.toString(fint));
+        float fPoint = b1.subtract(b2).floatValue();
+
+
+        starCount = fint > this.starNum ? this.starNum : fint;
+        starCount = starCount < 0 ? 0 : starCount;
+
+        //drawfullstar
+        for (int i = 0; i < starCount; ++i) {
+            ((ImageView) getChildAt(i)).setImageDrawable(starFillDrawable);
+        }
+
+        //drawhalfstar
+        if (fPoint > 0) {
+            ((ImageView) getChildAt(fint)).setImageDrawable(starHalfDrawable);
+
+            //drawemptystar
+            for (int i = this.starNum - 1; i >= starCount + 1; --i) {
+                ((ImageView) getChildAt(i)).setImageDrawable(starEmptyDrawable);
+            }
+
+        } else {
+            //drawemptystar
+            for (int i = this.starNum - 1; i >= starCount; --i) {
+                ((ImageView) getChildAt(i)).setImageDrawable(starEmptyDrawable);
+            }
+
+        }
+
+    }
     public void setStar(float starCount) {
 
         int fint = (int) starCount;
