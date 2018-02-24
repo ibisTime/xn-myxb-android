@@ -109,16 +109,8 @@ public class IntegralOrderCommentActivity extends AbsBaseLoadActivity {
             @Override
             protected void onSuccess(CodeModel data, String SucMessage) {
 
-                if (TextUtils.isEmpty(data.getCode())) return;
+                releaseState(data);
 
-                EventBus.getDefault().post(new IntegralOrderCommentsSucc());
-
-                UITipDialog.showSuccess(IntegralOrderCommentActivity.this, "发布评论成功", new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialogInterface) {
-                        finish();
-                    }
-                });
             }
 
             @Override
@@ -127,6 +119,35 @@ public class IntegralOrderCommentActivity extends AbsBaseLoadActivity {
             }
         });
 
+    }
+
+    /**
+     * 监测发布状态
+     *
+     * @param data
+     */
+    private void releaseState(CodeModel data) {
+        String s = "filter";//是否包含敏感词汇
+        if (!TextUtils.isEmpty(data.getCode()) && !StringUtils.contains(data.getCode(), s)) {
+
+            UITipDialog.showSuccess(IntegralOrderCommentActivity.this, "发布评论成功", new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialogInterface) {
+                    finish();
+                }
+            });
+        } else if (StringUtils.contains(data.getCode(), s)) {
+            EventBus.getDefault().post(new IntegralOrderCommentsSucc());
+            UITipDialog.showSuccess(IntegralOrderCommentActivity.this, "评论成功, 您的评论包含敏感字符,我们将进行审核", new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialogInterface) {
+                    finish();
+                }
+            });
+        } else {
+            showToast("发布失败");
+            finish();
+        }
     }
 
 }

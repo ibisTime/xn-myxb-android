@@ -13,6 +13,7 @@ import com.cdkj.myxb.models.AddressModel;
 import com.cdkj.myxb.models.IntegralListModel;
 import com.cdkj.myxb.models.IntegralModel;
 import com.cdkj.myxb.models.IntegralOrderListModel;
+import com.cdkj.myxb.models.OrderListModel;
 import com.cdkj.myxb.models.UserModel;
 
 import retrofit2.Call;
@@ -25,6 +26,18 @@ import retrofit2.http.POST;
  */
 
 public interface MyApiServer {
+
+
+    /**
+     * 获取订单
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<ResponseInListModel<OrderListModel>>> getOrderList(@Field("code") String code, @Field("json") String json);
 
 
     /**

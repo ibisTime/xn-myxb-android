@@ -142,13 +142,13 @@ public class IntegralOrderDetailsActivity extends AbsBaseLoadActivity {
         mBinding.tvState.setText(OrderHelper.getIntegralOrderState(data.getStatus()));
         mBinding.tvOrderTime.setText(DateUtil.formatStringData(data.getApplyDatetime(), DateUtil.DEFAULT_DATE_FMT));
 
-        if (OrderHelper.canShowButton(data.getStatus())) {
+        if (OrderHelper.canShowIntegralOrderButton(data.getStatus())) {
             mBinding.btnStateDo.setVisibility(View.VISIBLE);
         } else {
             mBinding.btnStateDo.setVisibility(View.GONE);
         }
 
-        mBinding.btnStateDo.setText(OrderHelper.getBtnStateString(data.getStatus()));
+        mBinding.btnStateDo.setText(OrderHelper.getIntegralBtnStateString(data.getStatus()));
 
 
         //收货人信息

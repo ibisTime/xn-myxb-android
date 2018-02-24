@@ -15,25 +15,30 @@ public class OrderHelper {
     public static final String INTEGRALORDERDONE = "3";//已完成；
     public static final String INTEGRALORDERCANCEL = "4";//已取消；
 
-    /*0待发货，1待收货，2待评价，3已完成，4无货取消*/
+
+    /*0待审核，1审核未通过，2待发货，3待评价，4已完成*/
+    public static final String ORDERWAITEAUDIT = "0";//0待审核；
+    public static final String ORDERWAITEAUDIT_NO = "1";//1审核未通过；
+    public static final String ORDERWAITESEND = "2";//2待发货；
+    public static final String ORDERWAITEEVALUATION = "3";//3待评价；
+    public static final String ORDERDONE = "4";//4已完成；
 
     /**
-     * 获取积分订单状态
-     *
+     * @param state
      * @return
      */
     public static String getIntegralOrderState(String state) {
 
         switch (state) {
-            case "0":
+            case INTEGRALORDERWAITESEND:
                 return "待发货";
-            case "1":
+            case INTEGRALORDERWAITEGET:
                 return "待收货";
-            case "2":
+            case INTEGRALORDERWAITEEVALUATION:
                 return "待评价";
-            case "3":
+            case INTEGRALORDERDONE:
                 return "已完成";
-            case "4":
+            case INTEGRALORDERCANCEL:
                 return "已取消";
         }
         return "";
@@ -41,12 +46,43 @@ public class OrderHelper {
     }
 
     /**
+     * @param state
+     * @return
+     */
+    public static String getOrderState(String state) {
+
+        switch (state) {
+            case ORDERWAITEAUDIT:
+                return "待审核";
+            case ORDERWAITEAUDIT_NO:
+                return "审核未通过";
+            case ORDERWAITESEND:
+                return "待发货";
+            case ORDERWAITEEVALUATION:
+                return "待评价";
+            case ORDERDONE:
+                return "已完成";
+        }
+        return "";
+
+    }
+
+    /**
+     * 是否可以显示底部按钮 （待收货 待评价可以显示）
+     *
+     * @return
+     */
+    public static boolean canShowIntegralOrderButton(String state) {
+        return TextUtils.equals(state, OrderHelper.INTEGRALORDERWAITEGET) || TextUtils.equals(state, OrderHelper.INTEGRALORDERWAITEEVALUATION);
+    }
+
+    /**
      * 是否可以显示底部按钮 （待评价可以显示）
      *
      * @return
      */
-    public static boolean canShowButton(String state) {
-        return TextUtils.equals(state, OrderHelper.INTEGRALORDERWAITEGET) || TextUtils.equals(state, OrderHelper.INTEGRALORDERWAITEEVALUATION);
+    public static boolean canShowOrderButton(String state) {
+        return TextUtils.equals(state, OrderHelper.ORDERWAITEEVALUATION);
     }
 
     /**
@@ -54,7 +90,7 @@ public class OrderHelper {
      *
      * @return
      */
-    public static String getBtnStateString(String state) {
+    public static String getIntegralBtnStateString(String state) {
         if (TextUtils.equals(state, OrderHelper.INTEGRALORDERWAITEGET)) {
             return "确认收货";
         }
@@ -67,6 +103,20 @@ public class OrderHelper {
 
     }
 
+    /**
+     * 积分订单底部按钮文字显示
+     *
+     * @return
+     */
+    public static String getOrderBtnStateString(String state) {
+
+        if (TextUtils.equals(state, OrderHelper.ORDERWAITEEVALUATION)) {
+            return "前往评价";
+        }
+
+        return "";
+
+    }
 
 
 }

@@ -40,12 +40,11 @@ public class MyOrderActivity extends CommonTablayoutActivity {
     @Override
     public List<Fragment> getFragments() {
         List<Fragment> fragments = new ArrayList<>();
-
-        fragments.add(FirstPageFragment.getInstanse());//首页
-        fragments.add(HelpCenterFragment.getInstanse());//帮助中心
-        fragments.add(InvitationFriendFragment.getInstanse());//邀请好友
-        fragments.add(AdviceFragment.getInstanse());//建议评价
-
+        fragments.add(OrderListFragment.getInstanse("", true));
+        fragments.add(OrderListFragment.getInstanse(OrderHelper.ORDERWAITEAUDIT, false));
+        fragments.add(OrderListFragment.getInstanse(OrderHelper.ORDERWAITESEND, false));
+        fragments.add(OrderListFragment.getInstanse(OrderHelper.ORDERWAITEEVALUATION, false));
+        fragments.add(OrderListFragment.getInstanse(OrderHelper.ORDERDONE, false));
         return fragments;
     }
 
@@ -55,6 +54,7 @@ public class MyOrderActivity extends CommonTablayoutActivity {
 
         titleList.add("全部");
         titleList.add("待审核");
+        titleList.add("待发货");
         titleList.add("待评价");
         titleList.add("已完成");
 

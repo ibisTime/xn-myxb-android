@@ -1,4 +1,4 @@
-package com.cdkj.myxb.module.order.integral;
+package com.cdkj.myxb.module.order;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.cdkj.baselibrary.api.BaseResponseListModel;
 import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
 import com.cdkj.baselibrary.base.BaseLazyFragment;
@@ -22,13 +21,16 @@ import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.adapters.IntegralOrderListAdapter;
+import com.cdkj.myxb.adapters.OrderListAdapter;
 import com.cdkj.myxb.databinding.LayoutRecyclerRefreshBinding;
 import com.cdkj.myxb.models.IntegralOrderCommentsSucc;
 import com.cdkj.myxb.models.IntegralOrderListModel;
 import com.cdkj.myxb.models.IntegralOrderSureGetSucc;
+import com.cdkj.myxb.models.OrderListModel;
 import com.cdkj.myxb.module.api.MyApiServer;
 import com.cdkj.myxb.module.integral.IntegralOrderCommentActivity;
-import com.cdkj.myxb.module.order.OrderHelper;
+import com.cdkj.myxb.module.order.integral.IntegralOrderDetailsActivity;
+import com.cdkj.myxb.module.order.integral.IntegralOrderSureGetActivitty;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -39,11 +41,11 @@ import java.util.Map;
 import retrofit2.Call;
 
 /**
- * 积分订单列表
+ * 订单列表
  * Created by cdkj on 2018/2/23.
  */
 
-public class IntegralOrderListFragment extends BaseLazyFragment {
+public class OrderListFragment extends BaseLazyFragment {
 
 
     private LayoutRecyclerRefreshBinding mBinding;
@@ -60,8 +62,8 @@ public class IntegralOrderListFragment extends BaseLazyFragment {
      * @param isFirstRequest 创建时是否进行请求
      * @return
      */
-    public static IntegralOrderListFragment getInstanse(String state, boolean isFirstRequest) {
-        IntegralOrderListFragment fragment = new IntegralOrderListFragment();
+    public static OrderListFragment getInstanse(String state, boolean isFirstRequest) {
+        OrderListFragment fragment = new OrderListFragment();
         Bundle bundle = new Bundle();
         bundle.putString(ORDERSTATE, state);
         bundle.putBoolean(ISFIRSTREQUEST, isFirstRequest);
@@ -102,7 +104,7 @@ public class IntegralOrderListFragment extends BaseLazyFragment {
 
             @Override
             public RecyclerView.Adapter getAdapter(List listData) {
-                return getIntegralOrderListAdapter(listData);
+                return getOrderListAdapter(listData);
             }
 
             @Override
@@ -121,13 +123,13 @@ public class IntegralOrderListFragment extends BaseLazyFragment {
      * @return
      */
     @NonNull
-    private IntegralOrderListAdapter getIntegralOrderListAdapter(List listData) {
+    private OrderListAdapter getOrderListAdapter(List listData) {
 
-        IntegralOrderListAdapter integralOrderListAdapter = new IntegralOrderListAdapter(listData);
+        OrderListAdapter integralOrderListAdapter = new OrderListAdapter(listData);
 
         integralOrderListAdapter.setOnItemClickListener((adapter, view, position) -> {
 
-            IntegralOrderListModel listModel = integralOrderListAdapter.getItem(position);
+            OrderListModel listModel = integralOrderListAdapter.getItem(position);
 
             if (listModel == null) return;
 
@@ -139,15 +141,11 @@ public class IntegralOrderListFragment extends BaseLazyFragment {
 
             if (view.getId() == R.id.tv_state_do) {
 
-                IntegralOrderListModel mo = integralOrderListAdapter.getItem(position);
+                OrderListModel mo = integralOrderListAdapter.getItem(position);
 
                 if (mo == null) return;
 
-                if (TextUtils.equals(mo.getStatus(), OrderHelper.INTEGRALORDERWAITEGET)) { //待收货
-                    IntegralOrderSureGetActivitty.open(mActivity, mo.getCode());
-                } else if (TextUtils.equals(mo.getStatus(), OrderHelper.INTEGRALORDERWAITEEVALUATION)) {//待评价
-                    IntegralOrderCommentActivity.open(mActivity, mo.getCode());
-                }
+                IntegralOrderCommentActivity.open(mActivity, mo.getCode());
             }
 
         });
@@ -166,16 +164,17 @@ public class IntegralOrderListFragment extends BaseLazyFragment {
         map.put("start", pageindex + "");
         map.put("status", mOrderState);
 
-        Call call = RetrofitUtils.createApi(MyApiServer.class).getIntegralOrderList("805294", StringUtils.getJsonToString(map));
+        Call call = RetrofitUtils.createApi(MyApiServer.class).getOrderList("805273", StringUtils.getJsonToString(map));
 
         addCall(call);
 
         if (isShowDialog) showLoadingDialog();
 
-        call.enqueue(new BaseResponseListCallBack<IntegralOrderListModel>(mActivity) {
+        call.enqueue(new BaseResponseModelCallBack<ResponseInListModel<OrderListModel>>(mActivity) {
+
             @Override
-            protected void onSuccess(List<IntegralOrderListModel> data, String SucMessage) {
-                mRefreshHelper.setData(data, "暂无订单", 0);
+            protected void onSuccess(ResponseInListModel<OrderListModel> data, String SucMessage) {
+                mRefreshHelper.setData(data.getList(), "暂无订单", 0);
             }
 
             @Override

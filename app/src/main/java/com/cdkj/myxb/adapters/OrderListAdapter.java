@@ -7,7 +7,7 @@ import com.cdkj.baselibrary.utils.DateUtil;
 import com.cdkj.baselibrary.utils.ImgUtils;
 import com.cdkj.baselibrary.utils.MoneyUtils;
 import com.cdkj.myxb.R;
-import com.cdkj.myxb.models.IntegralOrderListModel;
+import com.cdkj.myxb.models.OrderListModel;
 import com.cdkj.myxb.module.order.OrderHelper;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -19,15 +19,15 @@ import java.util.List;
  * Created by cdkj on 2017/10/12.
  */
 
-public class IntegralOrderListAdapter extends BaseQuickAdapter<IntegralOrderListModel, BaseViewHolder> {
+public class OrderListAdapter extends BaseQuickAdapter<OrderListModel, BaseViewHolder> {
 
 
-    public IntegralOrderListAdapter(@Nullable List<IntegralOrderListModel> data) {
+    public OrderListAdapter(@Nullable List<OrderListModel> data) {
         super(R.layout.item_order, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, IntegralOrderListModel item) {
+    protected void convert(BaseViewHolder helper, OrderListModel item) {
 
         if (item == null) return;
 
@@ -36,13 +36,13 @@ public class IntegralOrderListAdapter extends BaseQuickAdapter<IntegralOrderList
         helper.setText(R.id.tv_orderId, "订单编号：" + item.getCode());
         helper.setText(R.id.tv_time, DateUtil.formatStringData(item.getApplyDatetime(), DateUtil.DATE_YMD));
         helper.setText(R.id.tv_name, item.getProductName());
-        helper.setText(R.id.tv_price, MoneyUtils.showPrice(item.getPrice()));
-        helper.setText(R.id.tv_price_all, MoneyUtils.showPrice(item.getAmount()));
-        helper.setText(R.id.tv_state, OrderHelper.getIntegralOrderState(item.getStatus()));
+        helper.setText(R.id.tv_price, MoneyUtils.getShowPriceSign(item.getUnitPrice()));
+        helper.setText(R.id.tv_price_all, MoneyUtils.getShowPriceSign(item.getAmount()));
+        helper.setText(R.id.tv_state, OrderHelper.getOrderState(item.getStatus()));
 
-        helper.setGone(R.id.lin_buttom, OrderHelper.canShowIntegralOrderButton(item.getStatus()));
+        helper.setGone(R.id.lin_buttom, OrderHelper.canShowOrderButton(item.getStatus()));
 
-        helper.setText(R.id.tv_state_do, OrderHelper.getIntegralBtnStateString(item.getStatus()));
+        helper.setText(R.id.tv_state_do, OrderHelper.getOrderBtnStateString(item.getStatus()));
 
         helper.addOnClickListener(R.id.tv_state_do);
     }
