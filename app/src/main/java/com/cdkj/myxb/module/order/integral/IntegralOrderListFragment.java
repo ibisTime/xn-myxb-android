@@ -25,6 +25,7 @@ import com.cdkj.myxb.adapters.IntegralOrderListAdapter;
 import com.cdkj.myxb.databinding.LayoutRecyclerRefreshBinding;
 import com.cdkj.myxb.models.IntegralOrderCommentsSucc;
 import com.cdkj.myxb.models.IntegralOrderListModel;
+import com.cdkj.myxb.models.IntegralOrderSureGetSucc;
 import com.cdkj.myxb.module.api.MyApiServer;
 import com.cdkj.myxb.module.integral.IntegralOrderCommentActivity;
 import com.cdkj.myxb.module.order.OrderHelper;
@@ -102,16 +103,15 @@ public class IntegralOrderListFragment extends BaseLazyFragment {
 
                 integralOrderListAdapter.setOnItemChildClickListener((adapter, view, position) -> {
 
-                    IntegralOrderSureGetActivitty.open(mActivity, "");
                     if (view.getId() == R.id.tv_state_do) {
 
                         IntegralOrderListModel mo = integralOrderListAdapter.getItem(position);
 
                         if (mo == null) return;
 
-                        if (TextUtils.equals(mOrderState, OrderHelper.INTEGRALORDERWAITEGET)) { //待收货
+                        if (TextUtils.equals(mo.getStatus(), OrderHelper.INTEGRALORDERWAITEGET)) { //待收货
                             IntegralOrderSureGetActivitty.open(mActivity, mo.getCode());
-                        } else if (TextUtils.equals(mOrderState, OrderHelper.INTEGRALORDERWAITEEVALUATION)) {//待评价
+                        } else if (TextUtils.equals(mo.getStatus(), OrderHelper.INTEGRALORDERWAITEEVALUATION)) {//待评价
                             IntegralOrderCommentActivity.open(mActivity, mo.getCode());
                         }
                     }
@@ -169,7 +169,21 @@ public class IntegralOrderListFragment extends BaseLazyFragment {
 
     @Subscribe
     public void commentSucc(IntegralOrderCommentsSucc da) {
-        if (TextUtils.equals(mOrderState, OrderHelper.INTEGRALORDERWAITEEVALUATION)) { //评价成功 如果是待评价页面则刷新
+        if (TextUtils.equals(mOrderState, OrderHelper.INTEGRALORDERWAITEEVALUATION) || TextUtils.isEmpty(mOrderState)) { //评价成功 如果是待评价页面则刷新
+            if (mRefreshHelper != null) {
+                mRefreshHelper.onDefaluteMRefresh(false);
+            }
+        }
+    }
+
+    /**
+     * 确认收货成功
+     *
+     * @param da
+     */
+    @Subscribe
+    public void sureGetSucc(IntegralOrderSureGetSucc da) {
+        if (TextUtils.equals(mOrderState, OrderHelper.INTEGRALORDERWAITEGET) || TextUtils.isEmpty(mOrderState)) { //收货成功
             if (mRefreshHelper != null) {
                 mRefreshHelper.onDefaluteMRefresh(false);
             }

@@ -37,12 +37,13 @@ public class MyIntegralOrderActivity extends CommonTablayoutActivity {
     public void afterCreate(Bundle savedInstanceState) {
         super.afterCreate(savedInstanceState);
         mBaseBinding.titleView.setMidTitle(getString(R.string.my_integral_order));
-        mTabLayoutBinding.tablayout.setTabMode(TabLayout.MODE_FIXED);
+        mTabLayoutBinding.tablayout.setTabMode(TabLayout.MODE_SCROLLABLE);
     }
 
     @Override
     public List<Fragment> getFragments() {
         List<Fragment> fragments = new ArrayList<>();
+        fragments.add(IntegralOrderListFragment.getInstanse(""));
         fragments.add(IntegralOrderListFragment.getInstanse(OrderHelper.INTEGRALORDERWAITESEND));
         fragments.add(IntegralOrderListFragment.getInstanse(OrderHelper.INTEGRALORDERWAITEGET));
         fragments.add(IntegralOrderListFragment.getInstanse(OrderHelper.INTEGRALORDERWAITEEVALUATION));
@@ -56,8 +57,10 @@ public class MyIntegralOrderActivity extends CommonTablayoutActivity {
 
     @Override
     public List<String> getFragmentTitles() {
+
         List<String> titleList = new ArrayList<>();
 
+        titleList.add("全部");
         titleList.add("待发货");
         titleList.add("待收货");
         titleList.add("待评价");
