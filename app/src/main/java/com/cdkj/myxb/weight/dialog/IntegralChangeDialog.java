@@ -19,7 +19,7 @@ import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.DialogIntegralChangeBinding;
 import com.cdkj.myxb.models.AddressModel;
 import com.cdkj.myxb.module.common.address.AddressListActivity;
-import com.cdkj.myxb.module.order.integral.MyIntegralOrderActivity;
+import com.cdkj.myxb.module.integral.order.MyIntegralOrderActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

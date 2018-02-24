@@ -27,6 +27,16 @@ import retrofit2.http.POST;
 
 public interface MyApiServer {
 
+    /**
+     * 获取订单
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<OrderListModel>> getOrderDetails(@Field("code") String code, @Field("json") String json);
 
     /**
      * 获取订单

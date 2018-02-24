@@ -1,4 +1,4 @@
-package com.cdkj.myxb.module.order.integral;
+package com.cdkj.myxb.module.integral.order;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,10 +8,6 @@ import android.support.v4.app.Fragment;
 
 import com.cdkj.baselibrary.activitys.CommonTablayoutActivity;
 import com.cdkj.myxb.R;
-import com.cdkj.myxb.module.maintab.AdviceFragment;
-import com.cdkj.myxb.module.maintab.FirstPageFragment;
-import com.cdkj.myxb.module.maintab.HelpCenterFragment;
-import com.cdkj.myxb.module.maintab.InvitationFriendFragment;
 import com.cdkj.myxb.module.order.OrderHelper;
 
 import java.util.ArrayList;

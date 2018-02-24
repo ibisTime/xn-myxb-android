@@ -15,22 +15,17 @@ import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
 import com.cdkj.baselibrary.base.BaseLazyFragment;
 import com.cdkj.baselibrary.interfaces.BaseRefreshCallBack;
 import com.cdkj.baselibrary.interfaces.RefreshHelper;
-import com.cdkj.baselibrary.nets.BaseResponseListCallBack;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
-import com.cdkj.myxb.adapters.IntegralOrderListAdapter;
 import com.cdkj.myxb.adapters.OrderListAdapter;
 import com.cdkj.myxb.databinding.LayoutRecyclerRefreshBinding;
 import com.cdkj.myxb.models.IntegralOrderCommentsSucc;
-import com.cdkj.myxb.models.IntegralOrderListModel;
 import com.cdkj.myxb.models.IntegralOrderSureGetSucc;
 import com.cdkj.myxb.models.OrderListModel;
 import com.cdkj.myxb.module.api.MyApiServer;
 import com.cdkj.myxb.module.integral.IntegralOrderCommentActivity;
-import com.cdkj.myxb.module.order.integral.IntegralOrderDetailsActivity;
-import com.cdkj.myxb.module.order.integral.IntegralOrderSureGetActivitty;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -133,7 +128,7 @@ public class OrderListFragment extends BaseLazyFragment {
 
             if (listModel == null) return;
 
-            IntegralOrderDetailsActivity.open(mActivity, listModel.getCode());
+            OrderDetailsActivity.open(mActivity, listModel.getCode());
         });
 
         //按钮点击
@@ -195,13 +190,13 @@ public class OrderListFragment extends BaseLazyFragment {
     }
 
     /**
-     * 确认收货成功
+     *
      *
      * @param da
      */
     @Subscribe
     public void sureGetSucc(IntegralOrderSureGetSucc da) {
-        if (TextUtils.equals(mOrderState, OrderHelper.INTEGRALORDERWAITEGET) || TextUtils.isEmpty(mOrderState)) { //收货成功
+        if (TextUtils.equals(mOrderState, OrderHelper.ORDERWAITEEVALUATION) || TextUtils.isEmpty(mOrderState)) { //收货成功
             if (mRefreshHelper != null) {
                 mRefreshHelper.onDefaluteMRefresh(false);
             }

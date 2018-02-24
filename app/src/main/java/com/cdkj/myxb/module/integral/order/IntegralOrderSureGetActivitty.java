@@ -1,4 +1,4 @@
-package com.cdkj.myxb.module.order.integral;
+package com.cdkj.myxb.module.integral.order;
 
 import android.content.Context;
 import android.content.Intent;

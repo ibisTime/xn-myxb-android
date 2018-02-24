@@ -11,7 +11,7 @@ public class OrderListModel {
 
     /**
      * code : PO201802241635214937378
-     * brandCode : B201802101711195833866
+     * brandCode : B201802081729499985153
      * productCode : P201802241115097415566
      * productName : 354732
      * productPic : aa_1519442110827.jpg
@@ -19,13 +19,21 @@ public class OrderListModel {
      * unitPrice : 534453
      * quantity : 1
      * amount : 534453
-     * status : 0
+     * status : 3
      * applyUser : U201802221556357869675
      * applyDatetime : Feb 24, 2018 4:35:21 PM
      * applyNote : 4545
      * receiver : 4545
      * reMobile : 13765051712
      * reAddress : 北京市 北京市 昌平区121212
+     * approver : admin
+     * approveDatetime : Feb 24, 2018 5:35:39 PM
+     * approveNote : 111
+     * deliverer : 111
+     * deliveryDatetime : Feb 24, 2018 5:42:43 PM
+     * logisiticsCode : 111
+     * logisiticsCompany : 111
+     * pdf :
      * realName : 13765051712
      */
 
@@ -45,6 +53,14 @@ public class OrderListModel {
     private String receiver;
     private String reMobile;
     private String reAddress;
+    private String approver;
+    private String approveDatetime;
+    private String approveNote;
+    private String deliverer;
+    private String deliveryDatetime;
+    private String logisiticsCode;
+    private String logisiticsCompany;
+    private String pdf;
     private String realName;
 
     public String getCode() {
@@ -95,7 +111,22 @@ public class OrderListModel {
         this.productSlogan = productSlogan;
     }
 
+    public BigDecimal getAmount() {
+        return amount;
+    }
 
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public BigDecimal getUnitPrice() {
+
+        return unitPrice;
+    }
+
+    public void setUnitPrice(BigDecimal unitPrice) {
+        this.unitPrice = unitPrice;
+    }
 
     public int getQuantity() {
         return quantity;
@@ -105,21 +136,7 @@ public class OrderListModel {
         this.quantity = quantity;
     }
 
-    public BigDecimal getUnitPrice() {
-        return unitPrice;
-    }
 
-    public void setUnitPrice(BigDecimal unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
 
     public String getStatus() {
         return status;
@@ -175,6 +192,70 @@ public class OrderListModel {
 
     public void setReAddress(String reAddress) {
         this.reAddress = reAddress;
+    }
+
+    public String getApprover() {
+        return approver;
+    }
+
+    public void setApprover(String approver) {
+        this.approver = approver;
+    }
+
+    public String getApproveDatetime() {
+        return approveDatetime;
+    }
+
+    public void setApproveDatetime(String approveDatetime) {
+        this.approveDatetime = approveDatetime;
+    }
+
+    public String getApproveNote() {
+        return approveNote;
+    }
+
+    public void setApproveNote(String approveNote) {
+        this.approveNote = approveNote;
+    }
+
+    public String getDeliverer() {
+        return deliverer;
+    }
+
+    public void setDeliverer(String deliverer) {
+        this.deliverer = deliverer;
+    }
+
+    public String getDeliveryDatetime() {
+        return deliveryDatetime;
+    }
+
+    public void setDeliveryDatetime(String deliveryDatetime) {
+        this.deliveryDatetime = deliveryDatetime;
+    }
+
+    public String getLogisiticsCode() {
+        return logisiticsCode;
+    }
+
+    public void setLogisiticsCode(String logisiticsCode) {
+        this.logisiticsCode = logisiticsCode;
+    }
+
+    public String getLogisiticsCompany() {
+        return logisiticsCompany;
+    }
+
+    public void setLogisiticsCompany(String logisiticsCompany) {
+        this.logisiticsCompany = logisiticsCompany;
+    }
+
+    public String getPdf() {
+        return pdf;
+    }
+
+    public void setPdf(String pdf) {
+        this.pdf = pdf;
     }
 
     public String getRealName() {

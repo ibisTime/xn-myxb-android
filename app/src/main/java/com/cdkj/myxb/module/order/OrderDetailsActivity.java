@@ -1,4 +1,4 @@
-package com.cdkj.myxb.module.order.integral;
+package com.cdkj.myxb.module.order;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,10 +17,9 @@ import com.cdkj.baselibrary.utils.MoneyUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.ActivityIntegralOrderDetailsBinding;
-import com.cdkj.myxb.models.IntegralOrderListModel;
+import com.cdkj.myxb.models.OrderListModel;
 import com.cdkj.myxb.module.api.MyApiServer;
 import com.cdkj.myxb.module.integral.IntegralOrderCommentActivity;
-import com.cdkj.myxb.module.order.OrderHelper;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,11 +27,11 @@ import java.util.Map;
 import retrofit2.Call;
 
 /**
- * 积分订单详情
+ * 订单详情
  * Created by 李先俊 on 2018/2/23.
  */
 
-public class IntegralOrderDetailsActivity extends AbsBaseLoadActivity {
+public class OrderDetailsActivity extends AbsBaseLoadActivity {
 
     private ActivityIntegralOrderDetailsBinding mBinding;
 
@@ -50,7 +49,7 @@ public class IntegralOrderDetailsActivity extends AbsBaseLoadActivity {
         if (context == null) {
             return;
         }
-        Intent intent = new Intent(context, IntegralOrderDetailsActivity.class);
+        Intent intent = new Intent(context, OrderDetailsActivity.class);
         intent.putExtra(ORDERCODE, orderCode);
         context.startActivity(intent);
     }
@@ -71,13 +70,7 @@ public class IntegralOrderDetailsActivity extends AbsBaseLoadActivity {
         }
 
         mBinding.btnStateDo.setOnClickListener(view -> {
-
-            if (TextUtils.equals(mOrderState, OrderHelper.INTEGRALORDERWAITEGET)) { //待收货
-                IntegralOrderSureGetActivitty.open(this, mOrderCode);
-            } else if (TextUtils.equals(mOrderState, OrderHelper.INTEGRALORDERWAITEEVALUATION)) {//待评价
-                IntegralOrderCommentActivity.open(this, mOrderCode);
-            }
-
+            IntegralOrderCommentActivity.open(this, mOrderCode);
         });
 
     }
@@ -99,11 +92,11 @@ public class IntegralOrderDetailsActivity extends AbsBaseLoadActivity {
 
         showLoadingDialog();
 
-        Call call = RetrofitUtils.createApi(MyApiServer.class).getIntegralOrderDetails("805295", StringUtils.getJsonToString(map));
+        Call call = RetrofitUtils.createApi(MyApiServer.class).getOrderDetails("805275", StringUtils.getJsonToString(map));
 
-        call.enqueue(new BaseResponseModelCallBack<IntegralOrderListModel>(this) {
+        call.enqueue(new BaseResponseModelCallBack<OrderListModel>(this) {
             @Override
-            protected void onSuccess(IntegralOrderListModel data, String SucMessage) {
+            protected void onSuccess(OrderListModel data, String SucMessage) {
                 mBaseBinding.contentView.setShowText(null);
                 setShowData(data);
             }
@@ -123,7 +116,7 @@ public class IntegralOrderDetailsActivity extends AbsBaseLoadActivity {
 
     }
 
-    private void setShowData(IntegralOrderListModel data) {
+    private void setShowData(OrderListModel data) {
 
         if (data == null) return;
 
@@ -134,21 +127,21 @@ public class IntegralOrderDetailsActivity extends AbsBaseLoadActivity {
         //订单信息
         mBinding.headerLayout.tvOrderName.setText(data.getProductSlogan());
         mBinding.tvName.setText(data.getProductName());
-        mBinding.headerLayout.tvPrice.setText(MoneyUtils.showPrice(data.getAmount()));
-        mBinding.tvPrice.setText(MoneyUtils.showPrice(data.getAmount()));
+        mBinding.headerLayout.tvPrice.setText(MoneyUtils.getShowPriceSign(data.getAmount()));
+        mBinding.tvPrice.setText(MoneyUtils.getShowPriceSign(data.getAmount()));
         mBinding.headerLayout.tvNum.setText("X" + data.getQuantity());
         mBinding.tvNum.setText("" + data.getQuantity());
         mBinding.tvOrderCode.setText(data.getCode());
         mBinding.tvState.setText(OrderHelper.getIntegralOrderState(data.getStatus()));
         mBinding.tvOrderTime.setText(DateUtil.formatStringData(data.getApplyDatetime(), DateUtil.DEFAULT_DATE_FMT));
 
-        if (OrderHelper.canShowIntegralOrderButton(data.getStatus())) {
+        if (OrderHelper.canShowOrderButton(data.getStatus())) {
             mBinding.btnStateDo.setVisibility(View.VISIBLE);
         } else {
             mBinding.btnStateDo.setVisibility(View.GONE);
         }
 
-        mBinding.btnStateDo.setText(OrderHelper.getIntegralBtnStateString(data.getStatus()));
+        mBinding.btnStateDo.setText(OrderHelper.getOrderBtnStateString(data.getStatus()));
 
 
         //收货人信息
@@ -168,15 +161,15 @@ public class IntegralOrderDetailsActivity extends AbsBaseLoadActivity {
         }
 
         //物流信息
-        mBinding.tvLogisticscompany.setText(data.getLogisticsCompany());
-        mBinding.tvLogisticscode.setText(data.getLogisticsCode());
+        mBinding.tvLogisticscompany.setText(data.getLogisiticsCompany());
+        mBinding.tvLogisticscode.setText(data.getLogisiticsCode());
 
-        if (TextUtils.isEmpty(data.getLogisticsCompany())) {
+        if (TextUtils.isEmpty(data.getLogisiticsCompany())) {
             mBinding.linLogisticscompany.setVisibility(View.GONE);
         } else {
             mBinding.linLogisticscompany.setVisibility(View.VISIBLE);
         }
-        if (TextUtils.isEmpty(data.getLogisticsCode())) {
+        if (TextUtils.isEmpty(data.getLogisiticsCode())) {
             mBinding.linLogisticscode.setVisibility(View.GONE);
         } else {
             mBinding.linLogisticscode.setVisibility(View.VISIBLE);

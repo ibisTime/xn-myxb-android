@@ -257,6 +257,7 @@
 
 
                     <LinearLayout
+                        android:layout_marginTop="1dp"
                         android:id="@+id/lin_logisticscompany"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -332,7 +333,7 @@
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="@dimen/layout_left_interval"
             android:layout_marginRight="@dimen/layout_right_interval"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/btn_select_common"
             android:textColor="@color/white"
             android:textSize="18sp"

@@ -183,20 +183,18 @@
             android:id="@+id/lin_buttom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:paddingBottom="10dp"
             android:visibility="gone">
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+            <View style="@style/style_split_line" />
 
 
             <Button
                 android:id="@+id/tv_state_do"
                 android:layout_width="95dp"
                 android:layout_height="35dp"
+                android:layout_gravity="right"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/btn_select_common"

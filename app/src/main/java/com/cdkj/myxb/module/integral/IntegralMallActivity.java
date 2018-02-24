@@ -10,7 +10,6 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.cdkj.baselibrary.activitys.WebViewActivity;
-import com.cdkj.baselibrary.api.BaseApiServer;
 import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.appmanager.MyCdConfig;
 import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
@@ -32,10 +31,9 @@ import com.cdkj.myxb.models.AccountListModel;
 import com.cdkj.myxb.models.IntegralModel;
 import com.cdkj.myxb.models.UserModel;
 import com.cdkj.myxb.module.api.MyApiServer;
-import com.cdkj.myxb.module.order.integral.MyIntegralOrderActivity;
+import com.cdkj.myxb.module.integral.order.MyIntegralOrderActivity;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
