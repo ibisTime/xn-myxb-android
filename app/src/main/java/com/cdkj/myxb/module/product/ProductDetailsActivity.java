@@ -9,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cdkj.baselibrary.api.BaseApiServer;
+import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
+import com.cdkj.baselibrary.utils.AppUtils;
 import com.cdkj.baselibrary.utils.MoneyUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
@@ -110,6 +112,12 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
     private void initListener() {
         mBinding.fraLayoutTitleLeft.setOnClickListener(view -> finish());
         mBinding.fraLayoutTitleLeftImg.setOnClickListener(view -> finish());
+        mBinding.btnToOrder.setOnClickListener(view -> {
+            if (!SPUtilHelpr.isLogin(this, false)) {
+                return;
+            }
+            ProductOrderActivity.open(this, mProductCode);
+        });
     }
 
     /**
@@ -189,9 +197,15 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
         mBinding.tvProductName.setText(data.getName());
         mBinding.tvSlogan.setText(data.getSlogan());
         mBinding.tvPrice.setText(MoneyUtils.showPrice(data.getPrice()));
-        mBinding.tvSellNum.setText("已出售："+data.getSoldOutCount());
+        mBinding.tvSellNum.setText("已出售：" + data.getSoldOutCount());
 
         mBinding.webView.loadData(data.getDescription(), "text/html;charset=utf-8", "utf-8");
+
+        if (TextUtils.isEmpty(data.getMobile())) {
+            mBinding.callPhone.setOnClickListener(view -> {
+//                AppUtils.callPhonePage(this, data.getMobile());
+            });
+        }
 
     }
 

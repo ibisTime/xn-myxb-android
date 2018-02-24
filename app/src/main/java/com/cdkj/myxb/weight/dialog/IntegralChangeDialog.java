@@ -14,14 +14,11 @@ import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
 import com.cdkj.baselibrary.dialog.LoadingDialog;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
-import com.cdkj.baselibrary.utils.LogUtil;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.DialogIntegralChangeBinding;
-import com.cdkj.myxb.databinding.DialogTripTimeBinding;
 import com.cdkj.myxb.models.AddressModel;
 import com.cdkj.myxb.module.common.address.AddressListActivity;
-import com.cdkj.myxb.module.order.MyOrderActivity;
 import com.cdkj.myxb.module.order.integral.MyIntegralOrderActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -128,10 +125,10 @@ public class IntegralChangeDialog extends Dialog {
 
         loadingDialog = new LoadingDialog(getContext());
         loadingDialog.showDialog();
-        call.enqueue(new BaseResponseModelCallBack(getContext()) {
+        call.enqueue(new BaseResponseModelCallBack<String>(getContext()) {
             @Override
-            protected void onSuccess(Object data, String SucMessage) {
-                if (data != null) {
+            protected void onSuccess(String data, String SucMessage) {
+                if (!TextUtils.isEmpty(data)) {
                     MyIntegralOrderActivity.open(getContext());
                     dismiss();
                 }

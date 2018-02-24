@@ -15,8 +15,8 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="@dimen/product_bottom_height"
             android:layout_marginTop="-45dp"
-            android:overScrollMode="never"
-            android:fadingEdge="none">
+            android:fadingEdge="none"
+            android:overScrollMode="never">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -40,10 +40,10 @@
                     android:layout_marginTop="15dp"
                     android:paddingLeft="@dimen/layout_left_interval"
                     android:progress="@dimen/layout_right_interval"
-                    tools:text="商品"
                     android:textColor="@color/app_txt_black"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:text="商品" />
 
                 <TextView
                     android:id="@+id/tv_slogan"
@@ -54,9 +54,9 @@
                     android:maxLines="2"
                     android:paddingLeft="@dimen/layout_left_interval"
                     android:paddingRight="@dimen/layout_right_interval"
-                    tools:text="你的好选择你的好选择"
                     android:textColor="@color/app_txt_gray"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    tools:text="你的好选择你的好选择" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -76,9 +76,9 @@
                         android:id="@+id/tv_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="49.00"
                         android:textColor="@color/app_txt_red"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        tools:text="49.00" />
 
                     <TextView
                         android:id="@+id/tv_sell_num"
@@ -91,6 +91,10 @@
                         android:textSize="14sp" />
 
                 </LinearLayout>
+
+                <View
+                    style="@style/style_split_line"
+                    android:layout_height="10dp" />
 
 
                 <LinearLayout
@@ -126,8 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="30dp"
                     android:layout_marginLeft="@dimen/layout_left_interval"
-                    android:layout_marginRight="@dimen/layout_right_interval"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginRight="@dimen/layout_right_interval">
 
                 </WebView>
 
@@ -196,6 +199,8 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/call_phone"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -218,7 +223,8 @@
 
             </LinearLayout>
 
-            <TextView
+            <Button
+                android:id="@+id/btn_to_order"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"

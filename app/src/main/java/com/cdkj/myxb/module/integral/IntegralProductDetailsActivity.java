@@ -150,7 +150,7 @@ public class IntegralProductDetailsActivity extends AbsBaseLoadActivity {
             @Override
             protected void onSuccess(IntegraProductDetailsModel data, String SucMessage) {
                 setBannerData(data.getPic());
-                setPageDaat(data);
+                setPageData(data);
             }
 
             @Override
@@ -167,7 +167,7 @@ public class IntegralProductDetailsActivity extends AbsBaseLoadActivity {
      *
      * @param data
      */
-    private void setPageDaat(IntegraProductDetailsModel data) {
+    private void setPageData(IntegraProductDetailsModel data) {
 
         webView.loadData(data.getDescription(), "text/html;charset=utf-8", "utf-8");
 

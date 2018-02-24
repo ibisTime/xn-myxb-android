@@ -42,6 +42,15 @@ public class BrandProductModel implements Parcelable {
     private String updateDatetime;
     private String remark;
     private String soldOutCount;
+    private String mobile;
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
 
     public String getSoldOutCount() {
         return soldOutCount;
@@ -155,6 +164,9 @@ public class BrandProductModel implements Parcelable {
         this.remark = remark;
     }
 
+    public BrandProductModel() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -175,9 +187,8 @@ public class BrandProductModel implements Parcelable {
         dest.writeString(this.updater);
         dest.writeString(this.updateDatetime);
         dest.writeString(this.remark);
-    }
-
-    public BrandProductModel() {
+        dest.writeString(this.soldOutCount);
+        dest.writeString(this.mobile);
     }
 
     protected BrandProductModel(Parcel in) {
@@ -194,9 +205,11 @@ public class BrandProductModel implements Parcelable {
         this.updater = in.readString();
         this.updateDatetime = in.readString();
         this.remark = in.readString();
+        this.soldOutCount = in.readString();
+        this.mobile = in.readString();
     }
 
-    public static final Parcelable.Creator<BrandProductModel> CREATOR = new Parcelable.Creator<BrandProductModel>() {
+    public static final Creator<BrandProductModel> CREATOR = new Creator<BrandProductModel>() {
         @Override
         public BrandProductModel createFromParcel(Parcel source) {
             return new BrandProductModel(source);
