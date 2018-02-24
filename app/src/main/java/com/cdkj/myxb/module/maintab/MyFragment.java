@@ -67,8 +67,8 @@ public class MyFragment extends BaseLazyFragment {
         });
 
         /*积分商场*/
-        mBinding.layoutMy.rowIntegral.setOnClickListener(view -> IntegralMallActivity.open(mActivity,mUserInfoMode));
-        mBinding.layoutMyBoos.rowIntegral.setOnClickListener(view -> IntegralMallActivity.open(mActivity,mUserInfoMode));
+        mBinding.layoutMy.rowIntegral.setOnClickListener(view -> IntegralMallActivity.open(mActivity, mUserInfoMode));
+        mBinding.layoutMyBoos.rowIntegral.setOnClickListener(view -> IntegralMallActivity.open(mActivity, mUserInfoMode));
 
     }
 
@@ -125,11 +125,16 @@ public class MyFragment extends BaseLazyFragment {
             return;
         }
 
+
         mBinding.headerLayout.tvUserName.setText(mUserInfoMode.getRealName());
 
         mBinding.headerLayout.tvUserType.setText(getUserTypeByKind(mUserInfoMode.getKind()));
 
-        mBinding.headerLayout.imgGender.setImageResource(R.drawable.women);
+        if (mUserInfoMode.isMan()) {
+            mBinding.headerLayout.imgGender.setImageResource(R.drawable.man_2);
+        } else {
+            mBinding.headerLayout.imgGender.setImageResource(R.drawable.women_2);
+        }
 
         //根据用户类型显示相应布局
         if (TextUtils.equals(mUserInfoMode.getKind(), UserHelper.C)) {

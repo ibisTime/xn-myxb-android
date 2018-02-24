@@ -98,7 +98,7 @@ public class BrandProductListFragment extends BaseLazyFragment {
 
             @Override
             public RecyclerView.Adapter getAdapter(List listData) {
-                return new BrandListAdapter(listData);
+                return getBrandListAdapter(listData);
             }
 
             @Override
@@ -108,6 +108,30 @@ public class BrandProductListFragment extends BaseLazyFragment {
         });
 
         mRefreshHelper.init(10);
+    }
+
+    /**
+     * 获取数据适配器
+     *
+     * @param listData
+     * @return
+     */
+    @NonNull
+    private BrandListAdapter getBrandListAdapter(List listData) {
+
+        BrandListAdapter brandListAdapter = new BrandListAdapter(listData);
+
+        brandListAdapter.setOnItemClickListener((adapter, view, position) -> {
+
+            BrandProductModel brandProductModel = brandListAdapter.getItem(position);
+
+            if (brandListAdapter == null) return;
+
+            ProductDetailsActivity.open(mActivity, brandProductModel.getCode());
+
+        });
+
+        return brandListAdapter;
     }
 
 

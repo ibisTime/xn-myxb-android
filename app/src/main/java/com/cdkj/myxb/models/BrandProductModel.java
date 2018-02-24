@@ -1,12 +1,15 @@
 package com.cdkj.myxb.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.math.BigDecimal;
 
 /**
  * Created by 李先俊 on 2018/2/24.
  */
 
-public class BrandProductModel {
+public class BrandProductModel implements Parcelable {
 
 
     /**
@@ -38,6 +41,15 @@ public class BrandProductModel {
     private String updater;
     private String updateDatetime;
     private String remark;
+    private String soldOutCount;
+
+    public String getSoldOutCount() {
+        return soldOutCount;
+    }
+
+    public void setSoldOutCount(String soldOutCount) {
+        this.soldOutCount = soldOutCount;
+    }
 
     public String getCode() {
         return code;
@@ -142,4 +154,57 @@ public class BrandProductModel {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.code);
+        dest.writeString(this.brandCode);
+        dest.writeString(this.name);
+        dest.writeString(this.slogan);
+        dest.writeString(this.advPic);
+        dest.writeString(this.pic);
+        dest.writeString(this.description);
+        dest.writeSerializable(this.price);
+        dest.writeString(this.location);
+        dest.writeString(this.status);
+        dest.writeString(this.updater);
+        dest.writeString(this.updateDatetime);
+        dest.writeString(this.remark);
+    }
+
+    public BrandProductModel() {
+    }
+
+    protected BrandProductModel(Parcel in) {
+        this.code = in.readString();
+        this.brandCode = in.readString();
+        this.name = in.readString();
+        this.slogan = in.readString();
+        this.advPic = in.readString();
+        this.pic = in.readString();
+        this.description = in.readString();
+        this.price = (BigDecimal) in.readSerializable();
+        this.location = in.readString();
+        this.status = in.readString();
+        this.updater = in.readString();
+        this.updateDatetime = in.readString();
+        this.remark = in.readString();
+    }
+
+    public static final Parcelable.Creator<BrandProductModel> CREATOR = new Parcelable.Creator<BrandProductModel>() {
+        @Override
+        public BrandProductModel createFromParcel(Parcel source) {
+            return new BrandProductModel(source);
+        }
+
+        @Override
+        public BrandProductModel[] newArray(int size) {
+            return new BrandProductModel[size];
+        }
+    };
 }

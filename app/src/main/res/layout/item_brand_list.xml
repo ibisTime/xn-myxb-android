@@ -66,7 +66,7 @@
                 tools:text="商品商品商品" />
 
             <TextView
-                android:id="@+id/tv_brand_onsale_num"
+                android:id="@+id/tv_brand_sell_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"

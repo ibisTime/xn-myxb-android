@@ -24,6 +24,7 @@
                 android:src="@drawable/my_logo" />
 
             <ImageView
+                android:id="@+id/img_gender"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_gravity="right|bottom"

@@ -2,6 +2,7 @@ package com.cdkj.myxb.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 
 import java.math.BigDecimal;
 
@@ -52,7 +53,24 @@ public class UserModel implements Parcelable {
     private String remark;
     private String companyCode;
     private String systemCode;
+    private String gender;
     private boolean tradepwdFlag;
+
+    public String getGender() {
+        return gender;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean isMan() {
+        return TextUtils.equals(getGender(), "1");
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
     public String getUserId() {
         return userId;

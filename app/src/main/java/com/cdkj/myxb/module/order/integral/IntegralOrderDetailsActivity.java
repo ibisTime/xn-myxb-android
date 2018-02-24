@@ -134,7 +134,7 @@ public class IntegralOrderDetailsActivity extends AbsBaseLoadActivity {
         //订单信息
         mBinding.headerLayout.tvOrderName.setText(data.getProductSlogan());
         mBinding.tvName.setText(data.getProductName());
-        mBinding.headerLayout.tvPrice.setText(MoneyUtils.getShowPriceSign(data.getAmount()));
+        mBinding.headerLayout.tvPrice.setText(MoneyUtils.showPrice(data.getAmount()));
         mBinding.tvPrice.setText(MoneyUtils.showPrice(data.getAmount()));
         mBinding.headerLayout.tvNum.setText("X" + data.getQuantity());
         mBinding.tvNum.setText("" + data.getQuantity());

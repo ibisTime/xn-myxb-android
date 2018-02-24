@@ -28,6 +28,18 @@ public interface MyApiServer {
 
 
     /**
+     * 获取品牌产品详情
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<BrandProductModel>> getBrandProductDetails(@Field("code") String code, @Field("json") String json);
+
+
+    /**
      * 获取品牌产品列表
      *
      * @param code

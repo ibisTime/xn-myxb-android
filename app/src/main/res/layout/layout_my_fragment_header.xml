@@ -31,7 +31,9 @@
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_gravity="right|bottom"
-                tools:src="@drawable/women" />
+                android:layout_marginBottom="3dp"
+                android:layout_marginRight="3dp"
+                tools:src="@drawable/women_2" />
 
         </FrameLayout>
 

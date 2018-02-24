@@ -4,12 +4,31 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 
+import com.cdkj.baselibrary.api.BaseApiServer;
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
+import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
+import com.cdkj.baselibrary.nets.RetrofitUtils;
+import com.cdkj.baselibrary.utils.MoneyUtils;
+import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.ActivityProductDetailsBinding;
+import com.cdkj.myxb.models.BrandProductModel;
+import com.cdkj.myxb.models.IntegraProductDetailsModel;
+import com.cdkj.myxb.module.api.MyApiServer;
+import com.cdkj.myxb.weight.GlideImageLoader;
 import com.cdkj.myxb.weight.views.MyScrollView;
+import com.youth.banner.BannerConfig;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import retrofit2.Call;
 
 /**
  * 产品详情
@@ -18,13 +37,21 @@ import com.cdkj.myxb.weight.views.MyScrollView;
 
 public class ProductDetailsActivity extends AbsBaseLoadActivity {
 
+    private static final String PRODUCTCODE = "productcode";
     private ActivityProductDetailsBinding mBinding;
+    private String mProductCode;//产品编号
+    private List<String> mbannerUrlList;
 
-    public static void open(Context context) {
+    /**
+     * @param context
+     * @param productCode 产品编号
+     */
+    public static void open(Context context, String productCode) {
         if (context == null) {
             return;
         }
         Intent intent = new Intent(context, ProductDetailsActivity.class);
+        intent.putExtra(PRODUCTCODE, productCode);
         context.startActivity(intent);
     }
 
@@ -43,19 +70,46 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
     @Override
     public void afterCreate(Bundle savedInstanceState) {
 
+        if (getIntent() != null) {
+            mProductCode = getIntent().getStringExtra(PRODUCTCODE);
+        }
+
         initTopTitleAlphaChange();
 
         initListener();
+        initBanner();
+        getProductDetailsRequest();
 
     }
 
-    private void initListener() {
 
+    private void initBanner() {
+
+        mbannerUrlList = new ArrayList<>();
+
+        mBinding.bannerProduct.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
+        mBinding.bannerProduct.setIndicatorGravity(BannerConfig.CENTER);
+
+        mBinding.bannerProduct.setImageLoader(new GlideImageLoader());
+
+
+    }
+
+    /**
+     * 设置轮播图数据
+     *
+     * @param urls
+     */
+    private void setBannerData(String urls) {
+        mbannerUrlList = StringUtils.splitAsPicList(urls);
+        mBinding.bannerProduct.setImages(mbannerUrlList);
+        mBinding.bannerProduct.start();
+    }
+
+
+    private void initListener() {
         mBinding.fraLayoutTitleLeft.setOnClickListener(view -> finish());
         mBinding.fraLayoutTitleLeftImg.setOnClickListener(view -> finish());
-
-
-
     }
 
     /**
@@ -89,5 +143,71 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
                 mBinding.fraLayoutTitleLeftImg.setAlpha(titleImageAlpha);
             }
         });
+    }
+
+    /**
+     * 获取产品数据
+     */
+    public void getProductDetailsRequest() {
+
+        if (TextUtils.isEmpty(mProductCode)) return;
+
+        Map<String, String> map = new HashMap<>();
+
+        map.put("code", mProductCode);
+
+        Call call = RetrofitUtils.createApi(MyApiServer.class).getBrandProductDetails("805267", StringUtils.getJsonToString(map));
+
+        addCall(call);
+
+        showLoadingDialog();
+
+        call.enqueue(new BaseResponseModelCallBack<BrandProductModel>(this) {
+            @Override
+            protected void onSuccess(BrandProductModel data, String SucMessage) {
+                setBannerData(data.getPic());
+                setShowData(data);
+            }
+
+            @Override
+            protected void onFinish() {
+                disMissLoading();
+            }
+        });
+
+
+    }
+
+    /**
+     * 设置显示数据
+     *
+     * @param data
+     */
+    private void setShowData(BrandProductModel data) {
+        if (data == null) return;
+
+        mBinding.tvProductName.setText(data.getName());
+        mBinding.tvSlogan.setText(data.getSlogan());
+        mBinding.tvPrice.setText(MoneyUtils.showPrice(data.getPrice()));
+        mBinding.tvSellNum.setText("已出售："+data.getSoldOutCount());
+
+        mBinding.webView.loadData(data.getDescription(), "text/html;charset=utf-8", "utf-8");
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        mBinding.bannerProduct.stopAutoPlay();
+
+        mBinding.webView.clearHistory();
+        ((ViewGroup) mBinding.webView.getParent()).removeView(mBinding.webView);
+        mBinding.webView.loadUrl("about:blank");
+        mBinding.webView.stopLoading();
+        mBinding.webView.setWebChromeClient(null);
+        mBinding.webView.setWebViewClient(null);
+        mBinding.webView.destroy();
+
+        super.onDestroy();
+
     }
 }

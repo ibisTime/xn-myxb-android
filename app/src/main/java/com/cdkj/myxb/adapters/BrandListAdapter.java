@@ -35,6 +35,7 @@ public class BrandListAdapter extends BaseQuickAdapter<BrandProductModel, BaseVi
         helper.setText(R.id.tv_brand_product_name, item.getName());
         helper.setText(R.id.tv_brand_slogan, item.getSlogan());
         helper.setText(R.id.tv_brand_price, MoneyUtils.getShowPriceSign(item.getPrice()));
+        helper.setText(R.id.tv_brand_sell_num, "已出售：" + item.getSoldOutCount());
 
 
     }

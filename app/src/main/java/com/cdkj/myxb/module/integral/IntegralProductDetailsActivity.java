@@ -149,7 +149,7 @@ public class IntegralProductDetailsActivity extends AbsBaseLoadActivity {
         call.enqueue(new BaseResponseModelCallBack<IntegraProductDetailsModel>(this) {
             @Override
             protected void onSuccess(IntegraProductDetailsModel data, String SucMessage) {
-                setBannerData(data);
+                setBannerData(data.getPic());
                 setPageDaat(data);
             }
 
@@ -180,10 +180,10 @@ public class IntegralProductDetailsActivity extends AbsBaseLoadActivity {
     /**
      * 设置轮播图数据
      *
-     * @param data
+     * @param urls
      */
-    private void setBannerData(IntegraProductDetailsModel data) {
-        mbannerUrlList = StringUtils.splitAsPicList(data.getPic());
+    private void setBannerData(String urls) {
+        mbannerUrlList = StringUtils.splitAsPicList(urls);
         mBinding.bannerIntegral.setImages(mbannerUrlList);
         mBinding.bannerIntegral.start();
     }

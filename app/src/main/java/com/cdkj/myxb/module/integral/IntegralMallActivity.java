@@ -125,6 +125,13 @@ public class IntegralMallActivity extends AbsBaseLoadActivity {
         mBinding.layoutMallHeader.tvUserName.setText(mUserModel.getRealName());
         ImgUtils.loadLogo(this, MyCdConfig.QINIUURL + mUserModel.getPhoto(), mBinding.layoutMallHeader.imgUserLogo);
 
+        if (mUserModel.isMan()) {
+            mBinding.layoutMallHeader.imgGender.setImageResource(R.drawable.man);
+        } else {
+            mBinding.layoutMallHeader.imgGender.setImageResource(R.drawable.man_2);
+        }
+
+
     }
 
     private void initRefreHelper() {
