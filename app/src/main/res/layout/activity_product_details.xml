@@ -137,7 +137,7 @@
                 <View style="@style/style_split_line" />
 
                 <include
-                    android:id="@+id/scorfe_layout"
+                    android:id="@+id/score_layout"
                     layout="@layout/layout_score" />
 
                 <android.support.v7.widget.RecyclerView

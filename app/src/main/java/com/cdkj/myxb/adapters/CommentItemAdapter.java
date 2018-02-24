@@ -19,7 +19,7 @@ public class CommentItemAdapter extends BaseQuickAdapter<CommentItemModel, BaseV
 
 
     public CommentItemAdapter(@Nullable List<CommentItemModel> data) {
-        super(R.layout.item_comments, data);
+        super(R.layout.item_comments_change, data);
     }
 
     @Override

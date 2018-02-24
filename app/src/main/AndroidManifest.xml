@@ -143,6 +143,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/ActivityDialogStyleBottom"
             android:windowSoftInputMode="adjustPan" />
+        <!--获取评论列表-->
+        <activity
+            android:name=".module.product.ProductCommentListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityDialogStyleBottom"
+            android:windowSoftInputMode="adjustPan" />
 
 
     </application>

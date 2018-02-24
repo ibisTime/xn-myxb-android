@@ -249,15 +249,6 @@ public class StringUtils {
     }
 
 
-    /**
-     * 是否设置过支付密码
-     *
-     * @return
-     */
-    public static boolean getIsSetPayPwd(String state) {
-        return !TextUtils.equals("0", state);
-    }
-
 
     /**
      * Map转换String
@@ -334,21 +325,6 @@ public class StringUtils {
             }
         }});
 
-    }
-
-
-    /**
-     * 查询是否包含敏感词汇
-     */
-    public static boolean isFilterComments(String str) {
-        return str.indexOf("filter") == -1;
-    }
-
-    /**
-     * 根据状态查询是否展示评价
-     */
-    public static boolean isFilterCommentsByState(String state) {
-        return TextUtils.equals("A", state) || TextUtils.equals("B", state) || TextUtils.equals("AB", state);
     }
 
 }

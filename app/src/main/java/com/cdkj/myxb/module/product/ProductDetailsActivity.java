@@ -121,6 +121,8 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
             ProductOrderActivity.open(this, mProductCode);
         });
 
+        mBinding.scoreLayout.linToComments.setOnClickListener(view -> ProductCommentListActivity.open(this, mProductCode));
+
 
     }
 
@@ -195,7 +197,7 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
      * 获取评论总数和平均分
      */
     public void getCommentsCountAndAverage() {
-        if(TextUtils.isEmpty(mProductCode)) return;
+        if (TextUtils.isEmpty(mProductCode)) return;
 
         Map<String, String> map = new HashMap<>();
 
@@ -208,6 +210,13 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
         call.enqueue(new BaseResponseModelCallBack<CommentCountAndAverage>(this) {
             @Override
             protected void onSuccess(CommentCountAndAverage data, String SucMessage) {
+                if (data.getTotalCount() > 1000) {
+                    mBinding.scoreLayout.tvCount.setText("999+条评论");
+                } else {
+                    mBinding.scoreLayout.tvCount.setText(data.getTotalCount() + "条评论");
+                }
+                mBinding.scoreLayout.tvStarNum.setText(data.getAverage() + "星");
+                mBinding.scoreLayout.ratingbar.setStar(data.getAverage());
 
             }
 
