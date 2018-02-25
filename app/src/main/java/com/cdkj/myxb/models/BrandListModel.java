@@ -1,10 +1,13 @@
 package com.cdkj.myxb.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by 李先俊 on 2018/2/24.
  */
 
-public class BrandListModel {
+public class BrandListModel implements Parcelable {
 
 
     /**
@@ -130,4 +133,55 @@ public class BrandListModel {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.code);
+        dest.writeString(this.name);
+        dest.writeString(this.slogan);
+        dest.writeString(this.advPic);
+        dest.writeString(this.contacts);
+        dest.writeString(this.mobile);
+        dest.writeString(this.location);
+        dest.writeInt(this.orderNo);
+        dest.writeString(this.status);
+        dest.writeString(this.updater);
+        dest.writeString(this.updateDatetime);
+        dest.writeString(this.remark);
+    }
+
+    public BrandListModel() {
+    }
+
+    protected BrandListModel(Parcel in) {
+        this.code = in.readString();
+        this.name = in.readString();
+        this.slogan = in.readString();
+        this.advPic = in.readString();
+        this.contacts = in.readString();
+        this.mobile = in.readString();
+        this.location = in.readString();
+        this.orderNo = in.readInt();
+        this.status = in.readString();
+        this.updater = in.readString();
+        this.updateDatetime = in.readString();
+        this.remark = in.readString();
+    }
+
+    public static final Parcelable.Creator<BrandListModel> CREATOR = new Parcelable.Creator<BrandListModel>() {
+        @Override
+        public BrandListModel createFromParcel(Parcel source) {
+            return new BrandListModel(source);
+        }
+
+        @Override
+        public BrandListModel[] newArray(int size) {
+            return new BrandListModel[size];
+        }
+    };
 }

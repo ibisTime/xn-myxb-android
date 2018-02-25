@@ -109,7 +109,7 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
         Map<String, String> map = new HashMap<>();
         map.put("limit", limit + "");
         map.put("start", start + "");
-        map.put("status","AB"); //审核通过
+        map.put("status", "AB"); //审核通过
         map.put("type", "P");
 
 
@@ -129,5 +129,13 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mRefreshHelper != null) {
+            mRefreshHelper.onDestroy();
+        }
     }
 }

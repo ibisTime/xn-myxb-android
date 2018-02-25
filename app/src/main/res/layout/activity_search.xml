@@ -59,7 +59,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:paddingLeft="@dimen/layout_left_right_interval"
+                android:paddingLeft="10dp"
                 android:paddingRight="@dimen/layout_left_right_interval"
                 android:text="取消"
                 android:textColor="@color/white"
@@ -87,10 +87,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+
                 app:flexWrap="wrap" />
 
         </LinearLayout>
 
+        <include
+            android:id="@+id/layout_refresh"
+            layout="@layout/layout_recycler_refresh" />
 
     </LinearLayout>
 </layout>

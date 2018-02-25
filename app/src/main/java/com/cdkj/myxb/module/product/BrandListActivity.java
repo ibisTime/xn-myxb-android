@@ -10,6 +10,7 @@ import com.cdkj.baselibrary.activitys.CommonTablayoutActivity;
 import com.cdkj.baselibrary.nets.BaseResponseListCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
+import com.cdkj.myxb.R;
 import com.cdkj.myxb.models.BrandListModel;
 import com.cdkj.myxb.module.api.MyApiServer;
 
@@ -43,7 +44,13 @@ public class BrandListActivity extends CommonTablayoutActivity {
     @Override
     public void afterCreate(Bundle savedInstanceState) {
         mBaseBinding.titleView.setMidTitle("品牌下单");
+        mBaseBinding.titleView.setRightImg(R.drawable.search_waite);
         getBrandListBrand();
+    }
+
+    @Override
+    public void topTitleViewRightClick() {
+        BrandProductSearchActivity.open(this);
     }
 
     @Override

@@ -12,16 +12,25 @@ import android.view.ViewGroup;
 import com.cdkj.baselibrary.base.BaseLazyFragment;
 import com.cdkj.baselibrary.interfaces.BaseRefreshCallBack;
 import com.cdkj.baselibrary.interfaces.RefreshHelper;
+import com.cdkj.baselibrary.nets.BaseResponseListCallBack;
+import com.cdkj.baselibrary.nets.RetrofitUtils;
+import com.cdkj.baselibrary.utils.StringUtils;
+import com.cdkj.baselibrary.views.ScrollGridLayoutManager;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.adapters.FirstPageBrandAdapter;
 import com.cdkj.myxb.databinding.FragmentFirstPageBinding;
+import com.cdkj.myxb.models.BrandListModel;
+import com.cdkj.myxb.module.api.MyApiServer;
 import com.cdkj.myxb.module.common.MsgListActivity;
 import com.cdkj.myxb.module.product.BrandListActivity;
-import com.cdkj.myxb.module.product.ProductDetailsActivity;
+import com.cdkj.myxb.module.product.SpecificBrandListActivity;
 import com.cdkj.myxb.module.shopper.ShopperAppointmentListActivity;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import retrofit2.Call;
 
 /**
  * 首页
@@ -33,8 +42,6 @@ public class FirstPageFragment extends BaseLazyFragment {
     private FragmentFirstPageBinding mBinding;
 
     private RefreshHelper mRefreshHelper;
-
-    private FirstPageBrandAdapter mAdapter;
 
 
     public static FirstPageFragment getInstanse() {
@@ -52,6 +59,8 @@ public class FirstPageFragment extends BaseLazyFragment {
         initRefresh();
 
         initListener();
+
+        mRefreshHelper.onDefaluteMRefresh(true);
 
         return mBinding.getRoot();
     }
@@ -81,7 +90,7 @@ public class FirstPageFragment extends BaseLazyFragment {
         mRefreshHelper = new RefreshHelper(mActivity, new BaseRefreshCallBack(mActivity) {
             @Override
             public View getRefreshLayout() {
-                mBinding.refreshLayout.setEnableRefresh(false);
+//                mBinding.refreshLayout.setEnableRefresh(false);
                 return mBinding.refreshLayout;
             }
 
@@ -92,24 +101,41 @@ public class FirstPageFragment extends BaseLazyFragment {
 
             @Override
             public RecyclerView.Adapter getAdapter(List listData) {
-                initAdapter();
-                return mAdapter;
+                return getFirstPageBrandAdapter(listData);
             }
 
             @Override
             public void getListDataRequest(int pageindex, int limit, boolean isShowDialog) {
-
+                getBrandListBrand(pageindex, limit, isShowDialog);
             }
         });
 
         mRefreshHelper.init(10);
+        mRefreshHelper.setLayoutManager(new ScrollGridLayoutManager(mActivity, 2));
     }
 
     /**
-     * 初始化数据适配器
+     * 获取数据适配器
+     *
+     * @param listData
+     * @return
      */
-    private void initAdapter() {
-        mAdapter = new FirstPageBrandAdapter(new ArrayList<>());
+    @NonNull
+    private FirstPageBrandAdapter getFirstPageBrandAdapter(List listData) {
+
+        FirstPageBrandAdapter firstPageBrandAdapter = new FirstPageBrandAdapter(listData);
+
+        firstPageBrandAdapter.setOnItemClickListener((adapter, view, position) -> {
+
+            BrandListModel brandListModel = firstPageBrandAdapter.getItem(position);
+
+            if (brandListModel == null) return;
+
+            SpecificBrandListActivity.open(mActivity, brandListModel);
+
+        });
+
+        return firstPageBrandAdapter;
     }
 
 
@@ -129,6 +155,43 @@ public class FirstPageFragment extends BaseLazyFragment {
     protected void onInvisible() {
 
     }
+
+
+    /**
+     * 获取品牌列表 TO_Shelf("1", "未上架"), Shelf_YES("2", "已上架"), Shelf_NO("3", "已下架");
+     * <p>
+     * 0
+     */
+    public void getBrandListBrand(int pageindex, int limit, boolean isShowDialog) {
+
+        Map<String, String> map = new HashMap<>();
+
+        map.put("status", "2");
+        map.put("location", "1");//0否，1是
+        map.put("limit", limit + "");
+        map.put("start", pageindex + "");
+
+        Call call = RetrofitUtils.createApi(MyApiServer.class).getBrandList("805256", StringUtils.getJsonToString(map));
+
+
+        addCall(call);
+
+        if (isShowDialog) showLoadingDialog();
+
+        call.enqueue(new BaseResponseListCallBack<BrandListModel>(mActivity) {
+            @Override
+            protected void onSuccess(List<BrandListModel> data, String SucMessage) {
+                mRefreshHelper.setData(data, getString(R.string.no_recommended_brand), 0);
+            }
+
+            @Override
+            protected void onFinish() {
+                disMissLoading();
+            }
+        });
+
+    }
+
 
     @Override
     public void onDestroy() {

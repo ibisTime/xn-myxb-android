@@ -150,6 +150,17 @@
             android:theme="@style/ActivityDialogStyleBottom"
             android:windowSoftInputMode="adjustPan" />
 
+        <!--品牌搜索-->
+        <activity
+            android:name=".module.product.BrandProductSearchActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--具体品牌列表-->
+        <activity
+            android:name=".module.product.SpecificBrandListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
 
     </application>
 
