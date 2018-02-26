@@ -301,7 +301,7 @@ public class BrandProductSearchActivity extends AbsBaseLoadActivity {
         textView.setText(str);
         textView.setTextSize(14);
         textView.setTextColor(ContextCompat.getColor(this, R.color.app_txt_black));
-        textView.setBackgroundResource(R.drawable.search_bg_gray);
+        textView.setBackgroundResource(R.drawable.search_tx_gray);
         textView.setTag(str);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override

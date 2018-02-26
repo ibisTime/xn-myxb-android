@@ -147,7 +147,6 @@
         <activity
             android:name=".module.product.ProductCommentListActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/ActivityDialogStyleBottom"
             android:windowSoftInputMode="adjustPan" />
 
         <!--品牌搜索-->

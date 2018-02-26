@@ -129,7 +129,7 @@ public class IntegralOrderDetailsActivity extends AbsBaseLoadActivity {
 
         mOrderState = data.getStatus();
 
-        ImgUtils.loadImg(this, MyCdConfig.QINIUURL + data.getProductPic(), mBinding.headerLayout.imgGood);
+        ImgUtils.loadQiniuImg(this,  data.getProductPic(), mBinding.headerLayout.imgGood);
 
         //订单信息
         mBinding.headerLayout.tvOrderName.setText(data.getProductSlogan());

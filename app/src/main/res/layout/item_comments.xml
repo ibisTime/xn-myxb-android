@@ -6,17 +6,18 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical"
-    android:paddingBottom="15dp"
-    android:paddingLeft="@dimen/layout_left_interval"
-    android:paddingRight="@dimen/layout_right_interval"
+
     android:paddingTop="15dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/layout_left_interval"
+        android:paddingRight="@dimen/layout_right_interval">
 
         <ImageView
+            android:id="@+id/img_comment"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:src="@drawable/my_logo" />
@@ -28,6 +29,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_comment_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -37,6 +39,7 @@
                 tools:text="2018-02-07" />
 
             <com.cdkj.myxb.weight.views.MyRatingBar
+                android:id="@+id/ratingbar_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
@@ -54,6 +57,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_comment_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -64,6 +68,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tv_comment_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -73,4 +78,10 @@
         android:textColor="@color/app_txt_black"
         android:textSize="14sp"
         tools:text="效果很好效果很好效果很好效果很好效果很好效果很好效果很好效果很好效果很好" />
+
+    <View
+        style="@style/style_split_line"
+        android:layout_marginTop="15dp" />
+
+
 </LinearLayout>

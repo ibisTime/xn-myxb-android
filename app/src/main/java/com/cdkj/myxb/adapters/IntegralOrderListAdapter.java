@@ -31,7 +31,7 @@ public class IntegralOrderListAdapter extends BaseQuickAdapter<IntegralOrderList
 
         if (item == null) return;
 
-        ImgUtils.loadImg(mContext, MyCdConfig.QINIUURL + item.getProductPic(), helper.getView(R.id.img_good));
+        ImgUtils.loadQiniuImg(mContext, item.getProductPic(), helper.getView(R.id.img_good));
 
         helper.setText(R.id.tv_orderId, "订单编号：" + item.getCode());
         helper.setText(R.id.tv_time, DateUtil.formatStringData(item.getApplyDatetime(), DateUtil.DATE_YMD));

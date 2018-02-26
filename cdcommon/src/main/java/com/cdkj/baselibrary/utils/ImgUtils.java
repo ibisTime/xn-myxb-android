@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.cdkj.baselibrary.R;
+import com.cdkj.baselibrary.appmanager.MyCdConfig;
 import com.cdkj.baselibrary.utils.glidetransforms.GlideCircleTransform;
 
 /**
@@ -19,6 +20,13 @@ import com.cdkj.baselibrary.utils.glidetransforms.GlideCircleTransform;
  */
 public class ImgUtils {
 
+    public static void loadQiniuImg(Object obj, String imgid, ImageView img) {
+        loadImg(obj, MyCdConfig.QINIUURL + imgid, img);
+    }
+
+    public static void loadQiniuLogo(Object obj, String imgid, ImageView img) {
+        loadLogo(obj, MyCdConfig.QINIUURL + imgid, img);
+    }
 
     public static void loadImg(Object obj, Object imgid, ImageView img) {
 
@@ -26,13 +34,7 @@ public class ImgUtils {
 
         if (imgid instanceof Integer || imgid instanceof String) {
 
-            if (obj instanceof Context) {
-                try {
-                    Glide.with((Context) obj).load(imgid).placeholder(R.drawable.default_pic).error(R.drawable.default_pic).into(img);
-                } catch (Exception e) {
-                    LogUtil.E("图片加载错误");
-                }
-            } else if (obj instanceof Activity) {
+            if (obj instanceof Activity) {
 
                 if (!AppUtils.isActivityExist((Activity) obj)) {
 
@@ -54,6 +56,12 @@ public class ImgUtils {
                 } catch (Exception e) {
                     LogUtil.E("图片加载错误");
                 }
+            } else if (obj instanceof Context) {
+                try {
+                    Glide.with((Context) obj).load(imgid).placeholder(R.drawable.default_pic).error(R.drawable.default_pic).into(img);
+                } catch (Exception e) {
+                    LogUtil.E("图片加载错误");
+                }
             }
         }
     }
@@ -62,13 +70,7 @@ public class ImgUtils {
 
         if (imgid instanceof Integer || imgid instanceof String) {
 
-            if (obj instanceof Context) {
-                try {
-                    Glide.with((Context) obj).load(imgid).error(R.drawable.default_pic).into(img);
-                } catch (Exception e) {
-                    LogUtil.E("图片加载错误");
-                }
-            } else if (obj instanceof Activity) {
+            if (obj instanceof Activity) {
 
                 if (!AppUtils.isActivityExist((Activity) obj)) {
 
@@ -87,6 +89,12 @@ public class ImgUtils {
             } else if (obj instanceof Fragment) {
                 try {
                     Glide.with((Fragment) obj).load(imgid).error(R.drawable.default_pic).into(img);
+                } catch (Exception e) {
+                    LogUtil.E("图片加载错误");
+                }
+            } else if (obj instanceof Context) {
+                try {
+                    Glide.with((Context) obj).load(imgid).error(R.drawable.default_pic).into(img);
                 } catch (Exception e) {
                     LogUtil.E("图片加载错误");
                 }
@@ -184,6 +192,7 @@ public class ImgUtils {
 
     /**
      * 用于判断链接是否添加了七牛
+     *
      * @param url
      * @return
      */

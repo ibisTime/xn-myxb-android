@@ -4,23 +4,27 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.cdkj.baselibrary.api.BaseApiServer;
+import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
+import com.cdkj.baselibrary.interfaces.BaseRefreshCallBack;
+import com.cdkj.baselibrary.interfaces.RefreshHelper;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
-import com.cdkj.baselibrary.utils.AppUtils;
 import com.cdkj.baselibrary.utils.MoneyUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
+import com.cdkj.myxb.adapters.CommentListAdapter;
 import com.cdkj.myxb.databinding.ActivityProductDetailsBinding;
 import com.cdkj.myxb.models.BrandProductModel;
 import com.cdkj.myxb.models.CommentCountAndAverage;
-import com.cdkj.myxb.models.IntegraProductDetailsModel;
+import com.cdkj.myxb.models.CommentListMode;
 import com.cdkj.myxb.module.api.MyApiServer;
 import com.cdkj.myxb.module.common.CallPhoneActivity;
 import com.cdkj.myxb.weight.GlideImageLoader;
@@ -45,6 +49,8 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
     private ActivityProductDetailsBinding mBinding;
     private String mProductCode;//产品编号
     private List<String> mbannerUrlList;
+
+    private CommentListAdapter mCommentListAdapter;
 
     /**
      * @param context
@@ -82,8 +88,10 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
 
         initListener();
         initBanner();
+        initCommentAdapter();
         getProductDetailsRequest();
         getCommentsCountAndAverage();
+        getCommentList();
     }
 
 
@@ -96,6 +104,22 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
 
         mBinding.bannerProduct.setImageLoader(new GlideImageLoader());
 
+
+    }
+
+    private void initCommentAdapter() {
+
+        mCommentListAdapter = new CommentListAdapter(new ArrayList<>());
+
+        mBinding.recyclerViewComments.setAdapter(mCommentListAdapter);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false) {
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        };
+
+        mBinding.recyclerViewComments.setLayoutManager(linearLayoutManager);
 
     }
 
@@ -122,7 +146,6 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
         });
 
         mBinding.scoreLayout.linToComments.setOnClickListener(view -> ProductCommentListActivity.open(this, mProductCode));
-
 
     }
 
@@ -189,7 +212,6 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
             }
         });
 
-
     }
 
 
@@ -227,6 +249,40 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
             }
         });
 
+
+    }
+
+    /**
+     * 获取评论列表
+     */
+    public void getCommentList() {
+
+        if (TextUtils.isEmpty(mProductCode)) {
+            return;
+        }
+
+        Map<String, String> map = new HashMap<>();
+        map.put("limit", "10");
+        map.put("start", "1");
+        map.put("status", "AB"); //审核通过
+        map.put("type", "P");
+        map.put("entityCode", mProductCode);
+
+
+        Call call = RetrofitUtils.createApi(MyApiServer.class).getCommentList("805425", StringUtils.getJsonToString(map));
+
+
+        call.enqueue(new BaseResponseModelCallBack<ResponseInListModel<CommentListMode>>(this) {
+
+            @Override
+            protected void onSuccess(ResponseInListModel<CommentListMode> data, String SucMessage) {
+                mCommentListAdapter.replaceData(data.getList());
+            }
+
+            @Override
+            protected void onFinish() {
+            }
+        });
 
     }
 

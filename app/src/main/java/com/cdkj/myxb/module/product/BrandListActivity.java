@@ -74,7 +74,6 @@ public class BrandListActivity extends CommonTablayoutActivity {
 
         Call call = RetrofitUtils.createApi(MyApiServer.class).getBrandList("805258", StringUtils.getJsonToString(map));
 
-
         addCall(call);
 
         showLoadingDialog();

@@ -8,6 +8,7 @@ import com.cdkj.myxb.models.BrandListModel;
 import com.cdkj.myxb.models.BrandProductModel;
 import com.cdkj.myxb.models.CommentCountAndAverage;
 import com.cdkj.myxb.models.CommentItemModel;
+import com.cdkj.myxb.models.CommentListMode;
 import com.cdkj.myxb.models.IntegraProductDetailsModel;
 import com.cdkj.myxb.models.AccountDetailsModel;
 import com.cdkj.myxb.models.AccountListModel;
@@ -15,6 +16,7 @@ import com.cdkj.myxb.models.AddressModel;
 import com.cdkj.myxb.models.IntegralListModel;
 import com.cdkj.myxb.models.IntegralModel;
 import com.cdkj.myxb.models.IntegralOrderListModel;
+import com.cdkj.myxb.models.MsgListModel;
 import com.cdkj.myxb.models.OrderListModel;
 import com.cdkj.myxb.models.UserModel;
 
@@ -29,6 +31,35 @@ import retrofit2.http.POST;
 
 public interface MyApiServer {
 
+    /**
+     * 获取评论列表
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<ResponseInListModel<CommentListMode>>> getCommentList(@Field("code") String code, @Field("json") String json);
+
+
+    /**
+     * 获取用户列表
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<ResponseInListModel<UserModel>>> getUserList(@Field("code") String code, @Field("json") String json);
+
+
+
+    /**
+     * 获取消息列表
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<MsgListModel>> getMsgList(@Field("code") String code, @Field("json") String json);
 
 
     /**
@@ -112,6 +143,20 @@ public interface MyApiServer {
     @FormUrlEncoded
     @POST("api")
     Call<BaseResponseListModel<BrandListModel>> getBrandList(@Field("code") String code, @Field("json") String json);
+
+
+
+    /**
+     * 获取品牌
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<ResponseInListModel<BrandListModel>>> getSpeBrandList(@Field("code") String code, @Field("json") String json);
+
 
 
     /**

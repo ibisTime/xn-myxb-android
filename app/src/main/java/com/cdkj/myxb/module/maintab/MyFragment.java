@@ -15,6 +15,7 @@ import com.cdkj.baselibrary.base.BaseLazyFragment;
 import com.cdkj.baselibrary.dialog.UITipDialog;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
+import com.cdkj.baselibrary.utils.ImgUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.FragmentMyBinding;
@@ -125,10 +126,11 @@ public class MyFragment extends BaseLazyFragment {
             return;
         }
 
+        ImgUtils.loadQiniuLogo(this, mUserInfoMode.getPhoto(), mBinding.headerLayout.imgUserLogo);
 
         mBinding.headerLayout.tvUserName.setText(mUserInfoMode.getRealName());
 
-        mBinding.headerLayout.tvUserType.setText(getUserTypeByKind(mUserInfoMode.getKind()));
+        mBinding.headerLayout.tvUserType.setText(getUserTypeByKind(mUserInfoMode.getKind()) + " . " + mUserInfoMode.getSpeciality());
 
         if (mUserInfoMode.isMan()) {
             mBinding.headerLayout.imgGender.setImageResource(R.drawable.man_2);

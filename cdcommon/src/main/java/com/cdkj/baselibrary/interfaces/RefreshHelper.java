@@ -237,6 +237,7 @@ public class RefreshHelper<T> {
         }
 
         if (mEmptyView != null && mDataList.isEmpty()) {
+
             if (mRefreshInterface != null) {
                 mRefreshInterface.showEmptyState(emp, img);
             }

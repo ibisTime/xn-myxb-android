@@ -8,6 +8,7 @@
         android:orientation="vertical">
 
         <com.cdkj.baselibrary.views.RowMoreInfoLayout
+            android:id="@+id/row_update_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:txt_title="修改手机号" />
@@ -15,6 +16,7 @@
         <View style="@style/style_split_line" />
 
         <com.cdkj.baselibrary.views.RowMoreInfoLayout
+            android:id="@+id/row_update_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:txt_title="修改登录密码" />
@@ -28,6 +30,7 @@
             app:txt_title="地址管理" />
 
         <Button
+            android:id="@+id/btn_logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

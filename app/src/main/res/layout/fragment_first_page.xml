@@ -45,9 +45,12 @@
                         layout="@layout/layout_frist_page_headr" />
 
                     <android.support.v7.widget.RecyclerView
+                        android:background="@color/white"
                         android:id="@+id/recyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp"
                         android:overScrollMode="never" />
 
                 </LinearLayout>

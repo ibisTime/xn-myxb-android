@@ -63,6 +63,8 @@ public class SpecificBrandListActivity extends CommonTablayoutActivity {
         mBaseBinding.titleView.setMidTitle(mBrandListModel.getName());
 
         initData();
+
+        initViewPager();
     }
 
     @Override

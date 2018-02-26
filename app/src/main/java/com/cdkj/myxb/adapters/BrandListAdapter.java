@@ -30,7 +30,7 @@ public class BrandListAdapter extends BaseQuickAdapter<BrandProductModel, BaseVi
         if (item == null) return;
 
 
-        ImgUtils.loadImg(mContext, MyCdConfig.QINIUURL + item.getAdvPic(), helper.getView(R.id.img_brand_product));
+        ImgUtils.loadQiniuImg(mContext, item.getAdvPic(), helper.getView(R.id.img_brand_product));
 
         helper.setText(R.id.tv_brand_product_name, item.getName());
         helper.setText(R.id.tv_brand_slogan, item.getSlogan());

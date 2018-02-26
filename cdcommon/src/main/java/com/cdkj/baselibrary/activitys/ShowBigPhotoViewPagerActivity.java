@@ -96,7 +96,7 @@ public class ShowBigPhotoViewPagerActivity extends AbsBaseLoadActivity {
         public Object instantiateItem(ViewGroup container, int position) {
             String url = imageUrls.get(position);
             PhotoView photoView = new PhotoView(ShowBigPhotoViewPagerActivity.this);
-            ImgUtils.loadImg(ShowBigPhotoViewPagerActivity.this, MyCdConfig.QINIUURL + url, photoView);
+            ImgUtils.loadQiniuImg(ShowBigPhotoViewPagerActivity.this, url, photoView);
             container.addView(photoView);
 
             return photoView;

@@ -4,15 +4,19 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cdkj.baselibrary.api.ResponseInListModel;
+import com.cdkj.baselibrary.appmanager.MyCdConfig;
 import com.cdkj.baselibrary.base.BaseLazyFragment;
 import com.cdkj.baselibrary.interfaces.BaseRefreshCallBack;
 import com.cdkj.baselibrary.interfaces.RefreshHelper;
 import com.cdkj.baselibrary.nets.BaseResponseListCallBack;
+import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.baselibrary.views.ScrollGridLayoutManager;
@@ -20,6 +24,7 @@ import com.cdkj.myxb.R;
 import com.cdkj.myxb.adapters.FirstPageBrandAdapter;
 import com.cdkj.myxb.databinding.FragmentFirstPageBinding;
 import com.cdkj.myxb.models.BrandListModel;
+import com.cdkj.myxb.models.MsgListModel;
 import com.cdkj.myxb.module.api.MyApiServer;
 import com.cdkj.myxb.module.common.MsgListActivity;
 import com.cdkj.myxb.module.product.BrandListActivity;
@@ -61,6 +66,8 @@ public class FirstPageFragment extends BaseLazyFragment {
         initListener();
 
         mRefreshHelper.onDefaluteMRefresh(true);
+
+        getMsgRequest();
 
         return mBinding.getRoot();
     }
@@ -108,6 +115,8 @@ public class FirstPageFragment extends BaseLazyFragment {
             public void getListDataRequest(int pageindex, int limit, boolean isShowDialog) {
                 getBrandListBrand(pageindex, limit, isShowDialog);
             }
+
+
         });
 
         mRefreshHelper.init(10);
@@ -138,6 +147,45 @@ public class FirstPageFragment extends BaseLazyFragment {
         return firstPageBrandAdapter;
     }
 
+
+    public void getMsgRequest() {
+
+        Map<String, String> map = new HashMap<>();
+        map.put("channelType", "4");
+        map.put("start", "1");
+        map.put("limit", "1");
+        map.put("pushType", "41");
+        map.put("toKind", "C");
+        map.put("status", "1");
+        map.put("fromSystemCode", MyCdConfig.SYSTEMCODE);
+        map.put("toSystemCode", MyCdConfig.SYSTEMCODE);
+
+        Call call = RetrofitUtils.createApi(MyApiServer.class).getMsgList("804040", StringUtils.getJsonToString(map));
+
+        addCall(call);
+
+
+        call.enqueue(new BaseResponseModelCallBack<MsgListModel>(mActivity) {
+            @Override
+            protected void onSuccess(MsgListModel data, String SucMessage) {
+                if (data.getList() == null || data.getList().size() < 1) {
+                    return;
+                }
+
+                mBinding.headrLayout.tvMsg.setText(data.getList().get(0).getSmsTitle());
+            }
+
+            @Override
+            protected void onReqFailure(String errorCode, String errorMessage) {
+
+            }
+
+
+            @Override
+            protected void onFinish() {
+            }
+        });
+    }
 
     /**
      * 初始化布局
@@ -171,17 +219,26 @@ public class FirstPageFragment extends BaseLazyFragment {
         map.put("limit", limit + "");
         map.put("start", pageindex + "");
 
-        Call call = RetrofitUtils.createApi(MyApiServer.class).getBrandList("805256", StringUtils.getJsonToString(map));
+        Call call = RetrofitUtils.createApi(MyApiServer.class).getSpeBrandList("805256", StringUtils.getJsonToString(map));
 
 
         addCall(call);
 
         if (isShowDialog) showLoadingDialog();
 
-        call.enqueue(new BaseResponseListCallBack<BrandListModel>(mActivity) {
+        call.enqueue(new BaseResponseModelCallBack<ResponseInListModel<BrandListModel>>(mActivity) {
+
             @Override
-            protected void onSuccess(List<BrandListModel> data, String SucMessage) {
-                mRefreshHelper.setData(data, getString(R.string.no_recommended_brand), 0);
+            protected void onSuccess(ResponseInListModel<BrandListModel> data, String SucMessage) {
+                if (data.getList() == null || data.getList().isEmpty()) {
+                    if (pageindex == 1) {
+                        mRefreshHelper.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
+                    }
+                } else if (pageindex == 1) {
+                    mRefreshHelper.setLayoutManager(new ScrollGridLayoutManager(mActivity, 2));
+                }
+
+                mRefreshHelper.setData(data.getList(), getString(R.string.no_recommended_brand), 0);
             }
 
             @Override

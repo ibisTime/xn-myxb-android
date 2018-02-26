@@ -41,7 +41,7 @@ public class UserModel implements Parcelable {
     private String nickname;
     private String loginPwdStrength;
     private String kind;
-    private String level;
+    private int level;
     private String speciality;
     private String style;
     private String realName;
@@ -54,6 +54,16 @@ public class UserModel implements Parcelable {
     private String companyCode;
     private String systemCode;
     private String gender;
+    private String introduce;
+
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
+
     private boolean tradepwdFlag;
 
     public String getGender() {
@@ -128,13 +138,6 @@ public class UserModel implements Parcelable {
         this.kind = kind;
     }
 
-    public String getLevel() {
-        return level;
-    }
-
-    public void setLevel(String level) {
-        this.level = level;
-    }
 
     public String getSpeciality() {
         return speciality;
@@ -232,6 +235,14 @@ public class UserModel implements Parcelable {
         this.tradepwdFlag = tradepwdFlag;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
     public UserModel() {
     }
 
@@ -249,7 +260,7 @@ public class UserModel implements Parcelable {
         dest.writeString(this.nickname);
         dest.writeString(this.loginPwdStrength);
         dest.writeString(this.kind);
-        dest.writeString(this.level);
+        dest.writeInt(this.level);
         dest.writeString(this.speciality);
         dest.writeString(this.style);
         dest.writeString(this.realName);
@@ -261,6 +272,8 @@ public class UserModel implements Parcelable {
         dest.writeString(this.remark);
         dest.writeString(this.companyCode);
         dest.writeString(this.systemCode);
+        dest.writeString(this.gender);
+        dest.writeString(this.introduce);
         dest.writeByte(this.tradepwdFlag ? (byte) 1 : (byte) 0);
     }
 
@@ -272,7 +285,7 @@ public class UserModel implements Parcelable {
         this.nickname = in.readString();
         this.loginPwdStrength = in.readString();
         this.kind = in.readString();
-        this.level = in.readString();
+        this.level = in.readInt();
         this.speciality = in.readString();
         this.style = in.readString();
         this.realName = in.readString();
@@ -284,6 +297,8 @@ public class UserModel implements Parcelable {
         this.remark = in.readString();
         this.companyCode = in.readString();
         this.systemCode = in.readString();
+        this.gender = in.readString();
+        this.introduce = in.readString();
         this.tradepwdFlag = in.readByte() != 0;
     }
 

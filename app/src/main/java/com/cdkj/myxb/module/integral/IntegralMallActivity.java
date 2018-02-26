@@ -101,7 +101,7 @@ public class IntegralMallActivity extends AbsBaseLoadActivity {
 
     private void initListener() {
         //积分规则
-        mBinding.layoutMallHeader.tvIntegralRules.setOnClickListener(view -> WebViewActivity.openkey(this, "积分规则", "dd"));
+        mBinding.layoutMallHeader.tvIntegralRules.setOnClickListener(view -> WebViewActivity.openkey(this, "积分规则", "JF_RULE"));
 
         //积分列表
         mBinding.orderLayout.fraIntegralList.setOnClickListener(view -> IntegraListActivity.open(this, mAccountNum, mBinding.layoutMallHeader.tvMyintegral.getText().toString()));
@@ -121,7 +121,7 @@ public class IntegralMallActivity extends AbsBaseLoadActivity {
         if (mUserModel == null) return;
 
         mBinding.layoutMallHeader.tvUserName.setText(mUserModel.getRealName());
-        ImgUtils.loadLogo(this, MyCdConfig.QINIUURL + mUserModel.getPhoto(), mBinding.layoutMallHeader.imgUserLogo);
+        ImgUtils.loadQiniuLogo(this, mUserModel.getPhoto(), mBinding.layoutMallHeader.imgUserLogo);
 
         if (mUserModel.isMan()) {
             mBinding.layoutMallHeader.imgGender.setImageResource(R.drawable.man);

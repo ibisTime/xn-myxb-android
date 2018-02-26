@@ -5,9 +5,10 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 
-import com.cdkj.baselibrary.api.BaseApiServer;
+import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
 import com.cdkj.baselibrary.interfaces.BaseRefreshCallBack;
 import com.cdkj.baselibrary.interfaces.RefreshHelper;
@@ -15,7 +16,10 @@ import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
+import com.cdkj.myxb.adapters.CommentListAdapter;
 import com.cdkj.myxb.databinding.LayoutRecyclerRefreshBinding;
+import com.cdkj.myxb.models.CommentListMode;
+import com.cdkj.myxb.module.api.MyApiServer;
 
 import java.util.HashMap;
 import java.util.List;
@@ -89,7 +93,7 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
 
             @Override
             public RecyclerView.Adapter getAdapter(List listData) {
-                return null;
+                return new CommentListAdapter(listData);
             }
 
             @Override
@@ -105,22 +109,29 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
     /**
      * 获取评论列表
      */
-    public void getCommentList(int limit, int start, boolean isShowDialog) {
+    public void getCommentList(int start, int limit, boolean isShowDialog) {
+
+        if (TextUtils.isEmpty(mProductCode)) {
+            return;
+        }
+
         Map<String, String> map = new HashMap<>();
         map.put("limit", limit + "");
         map.put("start", start + "");
         map.put("status", "AB"); //审核通过
         map.put("type", "P");
+        map.put("entityCode", mProductCode);
 
 
-        Call call = RetrofitUtils.createApi(BaseApiServer.class).stringRequest("805425", StringUtils.getJsonToString(map));
+        Call call = RetrofitUtils.createApi(MyApiServer.class).getCommentList("805425", StringUtils.getJsonToString(map));
 
         if (isShowDialog) showLoadingDialog();
 
-        call.enqueue(new BaseResponseModelCallBack<String>(this) {
+        call.enqueue(new BaseResponseModelCallBack<ResponseInListModel<CommentListMode>>(this) {
+
             @Override
-            protected void onSuccess(String data, String SucMessage) {
-//                mRefreshHelper.setData(data.getList(), "暂无评论", 0);
+            protected void onSuccess(ResponseInListModel<CommentListMode> data, String SucMessage) {
+                mRefreshHelper.setData(data.getList(), "暂无评论", 0);
             }
 
             @Override

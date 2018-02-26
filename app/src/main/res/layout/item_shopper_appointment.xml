@@ -16,9 +16,10 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/img_logo"
             android:layout_width="@dimen/shopper_logo_width"
             android:layout_height="@dimen/shopper_logo_height"
-            android:src="@drawable/my_logo" />
+            tools:src="@drawable/my_logo" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,6 +44,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/tv_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
@@ -50,11 +52,12 @@
                             android:ellipsize="end"
                             android:maxLength="6"
                             android:singleLine="true"
-                            android:text="王二小"
                             android:textColor="@color/app_txt_black"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            tools:text="王二小" />
 
                         <ImageView
+                            android:id="@+id/tv_gender"
                             android:layout_width="16dp"
                             android:layout_height="16dp"
                             android:layout_gravity="center_vertical"
@@ -65,14 +68,15 @@
 
 
                     <TextView
+                        android:id="@+id/tv_specialty"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="5dp"
-                        android:text="2018-02-07"
                         android:textColor="@color/app_txt_black"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        tools:text="专长打发打发" />
 
 
                 </LinearLayout>
@@ -106,40 +110,26 @@
                     android:layout_marginTop="5dp"
                     app:flexWrap="wrap">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/bg_shopper_lable"
-                        android:gravity="center"
-                        android:paddingBottom="2dp"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:paddingTop="2dp"
-                        android:text="幽默"
-                        android:textColor="@color/shopper_lable_1"
-                        android:textSize="@dimen/shopper_lable_txt_size" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/bg_shopper_lable"
-                        android:gravity="center"
-                        android:paddingBottom="2dp"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:paddingTop="2dp"
-                        android:text="幽默"
-                        android:textColor="@color/shopper_lable_1"
-                        android:textSize="@dimen/shopper_lable_txt_size" />
+                    <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:background="@drawable/bg_shopper_lable"-->
+                    <!--android:gravity="center"-->
+                    <!--android:paddingBottom="2dp"-->
+                    <!--android:paddingLeft="8dp"-->
+                    <!--android:paddingRight="8dp"-->
+                    <!--android:paddingTop="2dp"-->
+                    <!--android:text="幽默"-->
+                    <!--android:textColor="@color/shopper_lable_1"-->
+                    <!--android:textSize="@dimen/shopper_lable_txt_size" />-->
 
                 </com.google.android.flexbox.FlexboxLayout>
 
 
                 <com.cdkj.myxb.weight.views.MyRatingBar
+                    android:id="@+id/ratingbar_shopper"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -160,18 +150,19 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tv_user_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
         android:lineSpacingExtra="4dp"
-        android:text="效果很好效果很好效果很好效果很好效果很好效果很好效果很好效果很好效果很好"
+        android:paddingTop="15dp"
         android:textColor="@color/app_txt_black"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        tools:text="效果很好效果很好效果很好效果很好效果很好效果很好效果很好效果很好效果很好" />
 
     <View
         style="@style/style_split_line"
-        android:layout_marginTop="15dp" />
+        android:layout_marginTop="10dp" />
 
 </LinearLayout>

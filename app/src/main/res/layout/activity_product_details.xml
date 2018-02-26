@@ -140,13 +140,22 @@
                     android:id="@+id/score_layout"
                     layout="@layout/layout_score" />
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerView_comments"
+                <View style="@style/style_split_line" />
+
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyclerView_comments"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                </android.support.v7.widget.RecyclerView>
+
+                    </android.support.v7.widget.RecyclerView>
+
+                </RelativeLayout>
+
 
             </LinearLayout>
 
@@ -208,13 +217,13 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/call_phone"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/selector_gray"
-                android:gravity="center">
+                android:gravity="center"
+                android:visibility="gone">
 
                 <ImageView
                     android:layout_width="20dp"
