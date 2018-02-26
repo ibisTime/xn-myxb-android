@@ -39,15 +39,22 @@ public class ShopperListAdapter extends BaseQuickAdapter<UserModel, BaseViewHold
         ImgUtils.loadQiniuLogo(mContext, item.getPhoto(), helper.getView(R.id.img_logo));
 
         helper.setText(R.id.tv_specialty, "美导  专长：" + item.getStyle());
-        helper.setText(R.id.tv_user_info, item.getIntroduce());
+        helper.setText(R.id.tv_user_info, item.getSlogan());
         helper.setText(R.id.tv_name, item.getRealName());
+
+        helper.setGone(R.id.tv_user_info, TextUtils.isEmpty(item.getSlogan()));
+
+        if (item.isMan()) {
+            helper.setImageResource(R.id.img_gender, R.drawable.man_2);
+        } else {
+            helper.setImageResource(R.id.img_gender, R.drawable.women_2);
+        }
 
         setTagLayout(helper, item);
 
         MyRatingBar ratingBar = helper.getView(R.id.ratingbar_shopper);
 
         ratingBar.setStar(item.getLevel());
-
 
     }
 
@@ -58,7 +65,10 @@ public class ShopperListAdapter extends BaseQuickAdapter<UserModel, BaseViewHold
      * @param item
      */
     private void setTagLayout(BaseViewHolder helper, UserModel item) {
+
         FlexboxLayout flexboxLayout = helper.getView(R.id.flexbox_layout_search);
+
+        flexboxLayout.removeAllViews();
 
         for (String searString : StringUtils.splitAsList(item.getStyle(), ",")) {
             if (TextUtils.isEmpty(searString)) return;
@@ -81,14 +91,14 @@ public class ShopperListAdapter extends BaseQuickAdapter<UserModel, BaseViewHold
         textView.setBackgroundResource(R.drawable.bg_shopper_lable);
         textView.setTag(str);
 
-        int padding = DisplayHelper.dip2px(mContext, 5);
-        int paddingLeftAndRight = DisplayHelper.dip2px(mContext, 10);
+        int padding = DisplayHelper.dip2px(mContext, 3);
+        int paddingLeftAndRight = DisplayHelper.dip2px(mContext, 12);
         ViewCompat.setPaddingRelative(textView, paddingLeftAndRight, padding, paddingLeftAndRight, padding);
         FlexboxLayout.LayoutParams layoutParams = new FlexboxLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         int margin = DisplayHelper.dip2px(mContext, 5);
-        int marginTop = DisplayHelper.dip2px(mContext, 16);
+        int marginTop = DisplayHelper.dip2px(mContext, 5);
         layoutParams.setMargins(margin, marginTop, margin, 0);
         textView.setLayoutParams(layoutParams);
         return textView;

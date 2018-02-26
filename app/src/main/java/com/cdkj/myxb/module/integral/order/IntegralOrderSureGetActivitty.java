@@ -90,8 +90,8 @@ public class IntegralOrderSureGetActivitty extends AbsBaseLoadActivity {
             }
 
             @Override
-            protected void onReqFailure(String errorCode, String errorMessage) {
-                super.onReqFailure(errorCode, errorMessage);
+            public void onFailure(Call call, Throwable t) {
+                super.onFailure(call, t);
                 finish();
             }
 

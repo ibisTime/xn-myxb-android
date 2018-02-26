@@ -15,6 +15,7 @@
         tools:showIn="@layout/activity_shopper_appointment">
 
         <ImageView
+            android:id="@+id/img_logo"
             android:layout_width="@dimen/shopper_logo_width"
             android:layout_height="@dimen/shopper_logo_height"
             android:src="@drawable/my_logo" />
@@ -32,6 +33,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/tv_user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -39,7 +41,7 @@
                     android:ellipsize="end"
                     android:maxLength="6"
                     android:singleLine="true"
-                    android:text="王二小"
+                    tools:text="王二小"
                     android:textColor="@color/app_txt_black"
                     android:textSize="15sp" />
 
@@ -54,56 +56,31 @@
 
 
             <TextView
+                android:id="@+id/tv_specialty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="5dp"
-                android:text="2018-02-07"
+                tools:text="2018-02-07"
                 android:textColor="@color/app_txt_black"
                 android:textSize="14sp" />
 
             <com.google.android.flexbox.FlexboxLayout
-                android:id="@+id/flexbox_layout_search"
+                android:id="@+id/flexbox_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 app:flexWrap="wrap">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/bg_shopper_lable"
-                    android:gravity="center"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:paddingTop="2dp"
-                    android:text="幽默"
-                    android:textColor="@color/shopper_lable_1"
-                    android:textSize="@dimen/shopper_lable_txt_size" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:background="@drawable/bg_shopper_lable"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:paddingTop="2dp"
-                    android:text="幽默幽默"
-                    android:textColor="@color/shopper_lable_1"
-                    android:textSize="@dimen/shopper_lable_txt_size" />
 
 
             </com.google.android.flexbox.FlexboxLayout>
 
 
             <com.cdkj.myxb.weight.views.MyRatingBar
+                android:id="@+id/ratingbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"

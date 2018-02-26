@@ -64,13 +64,14 @@ public class LoginActivity extends AbsBaseLoadActivity implements LoginInterface
     }
 
     @Override
-    protected boolean canLoadTopTitleView() {
-        return false;
+    public void topTitleViewRightClick() {
+        super.topTitleViewRightClick();
     }
 
     @Override
     public void afterCreate(Bundle savedInstanceState) {
 
+        mBaseBinding.titleView.setMidTitle("登录");
 
         mPresenter = new LoginPresenter(this);
 
@@ -198,18 +199,22 @@ public class LoginActivity extends AbsBaseLoadActivity implements LoginInterface
 
     @Override
     protected boolean canFinish() {
-        if (canOpenMain) {
-            finish();
-            return false;
-        } else {
-            return true;
-        }
+      return false;
+    }
+
+    @Override
+    public void topTitleViewleftClick() {
+        backClick();
     }
 
     @Override
     public void onBackPressed() {
+        backClick();
+    }
+
+    private void backClick() {
         if (canOpenMain) {
-            finish();
+            MainActivity.open(this);
         } else {
             super.onBackPressed();
         }

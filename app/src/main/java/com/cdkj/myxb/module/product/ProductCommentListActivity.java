@@ -37,8 +37,10 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
     private RefreshHelper mRefreshHelper;
 
     private static final String PRODUCTCODE = "productcode";
+    private static final String TYPE = "producttype";
 
     private String mProductCode;//产品编号
+    private String mType;//评论类型
 
     private LayoutRecyclerRefreshBinding mBinding;
 
@@ -47,12 +49,13 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
      * @param context
      * @param productCode 产品编号
      */
-    public static void open(Context context, String productCode) {
+    public static void open(Context context, String productCode, String type) {
         if (context == null) {
             return;
         }
         Intent intent = new Intent(context, ProductCommentListActivity.class);
         intent.putExtra(PRODUCTCODE, productCode);
+        intent.putExtra(TYPE, type);
         context.startActivity(intent);
     }
 
@@ -66,10 +69,11 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
     @Override
     public void afterCreate(Bundle savedInstanceState) {
 
-        mBaseBinding.titleView.setMidTitle("商品评论");
+        mBaseBinding.titleView.setMidTitle("评论");
 
         if (getIntent() != null) {
             mProductCode = getIntent().getStringExtra(PRODUCTCODE);
+            mType = getIntent().getStringExtra(TYPE);
         }
 
         initRefreshHelper();
@@ -111,7 +115,7 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
      */
     public void getCommentList(int start, int limit, boolean isShowDialog) {
 
-        if (TextUtils.isEmpty(mProductCode)) {
+        if (TextUtils.isEmpty(mProductCode) || TextUtils.isEmpty(mType)) {
             return;
         }
 
@@ -119,11 +123,13 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
         map.put("limit", limit + "");
         map.put("start", start + "");
         map.put("status", "AB"); //审核通过
-        map.put("type", "P");
+        map.put("type", mType);
         map.put("entityCode", mProductCode);
 
 
         Call call = RetrofitUtils.createApi(MyApiServer.class).getCommentList("805425", StringUtils.getJsonToString(map));
+
+        addCall(call);
 
         if (isShowDialog) showLoadingDialog();
 

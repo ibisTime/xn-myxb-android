@@ -27,6 +27,7 @@ import com.cdkj.myxb.models.CommentCountAndAverage;
 import com.cdkj.myxb.models.CommentListMode;
 import com.cdkj.myxb.module.api.MyApiServer;
 import com.cdkj.myxb.module.common.CallPhoneActivity;
+import com.cdkj.myxb.module.user.UserHelper;
 import com.cdkj.myxb.weight.GlideImageLoader;
 import com.cdkj.myxb.weight.views.MyScrollView;
 import com.youth.banner.BannerConfig;
@@ -145,7 +146,7 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
             ProductOrderActivity.open(this, mProductCode);
         });
 
-        mBinding.scoreLayout.linToComments.setOnClickListener(view -> ProductCommentListActivity.open(this, mProductCode));
+        mBinding.scoreLayout.linToComments.setOnClickListener(view -> ProductCommentListActivity.open(this, mProductCode, "P"));
 
     }
 
@@ -197,7 +198,6 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
 
         addCall(call);
 
-        showLoadingDialog();
 
         call.enqueue(new BaseResponseModelCallBack<BrandProductModel>(this) {
             @Override
@@ -208,7 +208,6 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
 
             @Override
             protected void onFinish() {
-                disMissLoading();
             }
         });
 
@@ -225,9 +224,10 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
 
         map.put("entityCode", mProductCode);
 
-        showLoadingDialog();
 
         Call call = RetrofitUtils.createApi(MyApiServer.class).getCommentCountAndAverage("805423", StringUtils.getJsonToString(map));
+
+        addCall(call);
 
         call.enqueue(new BaseResponseModelCallBack<CommentCountAndAverage>(this) {
             @Override
@@ -245,7 +245,7 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
 
             @Override
             protected void onFinish() {
-                disMissLoading();
+
             }
         });
 
@@ -271,6 +271,7 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
 
         Call call = RetrofitUtils.createApi(MyApiServer.class).getCommentList("805425", StringUtils.getJsonToString(map));
 
+        addCall(call);
 
         call.enqueue(new BaseResponseModelCallBack<ResponseInListModel<CommentListMode>>(this) {
 

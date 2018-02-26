@@ -1,4 +1,4 @@
-package com.cdkj.myxb.module.integral.order;
+package com.cdkj.myxb.module.appointment;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -15,19 +15,21 @@ import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
 import com.cdkj.baselibrary.base.BaseLazyFragment;
 import com.cdkj.baselibrary.interfaces.BaseRefreshCallBack;
 import com.cdkj.baselibrary.interfaces.RefreshHelper;
-import com.cdkj.baselibrary.nets.BaseResponseListCallBack;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
-import com.cdkj.myxb.adapters.IntegralOrderListAdapter;
+import com.cdkj.myxb.adapters.AppointmentListAdapter;
 import com.cdkj.myxb.databinding.LayoutRecyclerRefreshBinding;
+import com.cdkj.myxb.models.AppointmentCommentsSucc;
+import com.cdkj.myxb.models.AppointmentListModel;
 import com.cdkj.myxb.models.IntegralOrderCommentsSucc;
-import com.cdkj.myxb.models.IntegralOrderListModel;
-import com.cdkj.myxb.models.IntegralOrderSureGetSucc;
+import com.cdkj.myxb.models.AppointmentServiceDoneSucc;
+import com.cdkj.myxb.models.AppointmentServiceSucc;
 import com.cdkj.myxb.module.api.MyApiServer;
 import com.cdkj.myxb.module.integral.IntegralOrderCommentActivity;
 import com.cdkj.myxb.module.order.OrderHelper;
+import com.cdkj.myxb.module.user.UserHelper;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -38,12 +40,10 @@ import java.util.Map;
 import retrofit2.Call;
 
 /**
- * 积分订单列表
- * Created by cdkj on 2018/2/23.
+ * Created by 李先俊 on 2018/2/26.
  */
 
-public class IntegralOrderListFragment extends BaseLazyFragment {
-
+public class AppointmentListFragment extends BaseLazyFragment {
 
     private LayoutRecyclerRefreshBinding mBinding;
 
@@ -54,13 +54,16 @@ public class IntegralOrderListFragment extends BaseLazyFragment {
 
     private String mOrderState; //要查看的订单状态
 
+    private boolean mIsResumeRefresh;//在Resume时能不能刷新当前界面
+
+
     /**
      * @param state          订单状态
      * @param isFirstRequest 创建时是否进行请求
      * @return
      */
-    public static IntegralOrderListFragment getInstanse(String state, boolean isFirstRequest) {
-        IntegralOrderListFragment fragment = new IntegralOrderListFragment();
+    public static AppointmentListFragment getInstanse(String state, boolean isFirstRequest) {
+        AppointmentListFragment fragment = new AppointmentListFragment();
         Bundle bundle = new Bundle();
         bundle.putString(ORDERSTATE, state);
         bundle.putBoolean(ISFIRSTREQUEST, isFirstRequest);
@@ -72,15 +75,13 @@ public class IntegralOrderListFragment extends BaseLazyFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         mBinding = DataBindingUtil.inflate(inflater, R.layout.layout_recycler_refresh, null, false);
-
         if (getArguments() != null) {
             mOrderState = getArguments().getString(ORDERSTATE);
-
         }
 
         initRefreshHelper();
+
         if (getArguments() != null && getArguments().getBoolean(ISFIRSTREQUEST)) {
             mRefreshHelper.onDefaluteMRefresh(true);
         }
@@ -101,7 +102,7 @@ public class IntegralOrderListFragment extends BaseLazyFragment {
 
             @Override
             public RecyclerView.Adapter getAdapter(List listData) {
-                return getIntegralOrderListAdapter(listData);
+                return getAppointmentListAdapter(listData);
             }
 
             @Override
@@ -113,45 +114,38 @@ public class IntegralOrderListFragment extends BaseLazyFragment {
         mRefreshHelper.init(10);
     }
 
-    /**
-     * 获取数据适配器
-     *
-     * @param listData
-     * @return
-     */
     @NonNull
-    private IntegralOrderListAdapter getIntegralOrderListAdapter(List listData) {
-
-        IntegralOrderListAdapter integralOrderListAdapter = new IntegralOrderListAdapter(listData);
-
-        integralOrderListAdapter.setOnItemClickListener((adapter, view, position) -> {
-
-            IntegralOrderListModel listModel = integralOrderListAdapter.getItem(position);
+    private AppointmentListAdapter getAppointmentListAdapter(List listData) {
+        AppointmentListAdapter appointmentListAdapter = new AppointmentListAdapter(listData);
+        appointmentListAdapter.setOnItemChildClickListener((adapter, view, position) -> {
+            AppointmentListModel listModel = appointmentListAdapter.getItem(position);
 
             if (listModel == null) return;
 
-            IntegralOrderDetailsActivity.open(mActivity, listModel.getCode());
-        });
+            switch (view.getId()) {
+                case R.id.tv_to_comment: //评价
+                    AppointmentCommentActivity.open(mActivity, listModel.getCode(), listModel.getStatus());
+                    break;
+                case R.id.tv_state_do://上门  下课操作
+                    AppointmentDoActivity.open(mActivity, listModel.getCode(), listModel.getStatus());
+                    break;
 
-        //按钮点击
-        integralOrderListAdapter.setOnItemChildClickListener((adapter, view, position) -> {
-
-            if (view.getId() == R.id.tv_state_do) {
-
-                IntegralOrderListModel mo = integralOrderListAdapter.getItem(position);
-
-                if (mo == null) return;
-
-                if (TextUtils.equals(mo.getStatus(), OrderHelper.INTEGRALORDERWAITEGET)) { //待收货
-                    IntegralOrderSureGetActivitty.open(mActivity, mo.getCode());
-                } else if (TextUtils.equals(mo.getStatus(), OrderHelper.INTEGRALORDERWAITEECOMMENT)) {//待评价
-                    IntegralOrderCommentActivity.open(mActivity, mo.getCode());
-                }
             }
 
         });
-        return integralOrderListAdapter;
+
+
+        appointmentListAdapter.setOnItemClickListener((adapter, view, position) -> {
+            AppointmentListModel listModel = appointmentListAdapter.getItem(position);
+
+            if (listModel == null) return;
+
+            AppointmentDetailActivity.open(mActivity,listModel.getCode());
+        });
+
+        return appointmentListAdapter;
     }
+
 
     /**
      *
@@ -164,18 +158,19 @@ public class IntegralOrderListFragment extends BaseLazyFragment {
         map.put("limit", limit + "");
         map.put("start", pageindex + "");
         map.put("status", mOrderState);
+        map.put("type", UserHelper.T);
 
-        Call call = RetrofitUtils.createApi(MyApiServer.class).getIntegralOrderList("805294", StringUtils.getJsonToString(map));
+        Call call = RetrofitUtils.createApi(MyApiServer.class).getAppointmentList("805520", StringUtils.getJsonToString(map));
 
         addCall(call);
 
         if (isShowDialog) showLoadingDialog();
 
-        call.enqueue(new BaseResponseModelCallBack<ResponseInListModel<IntegralOrderListModel>>(mActivity) {
+        call.enqueue(new BaseResponseModelCallBack<ResponseInListModel<AppointmentListModel>>(mActivity) {
 
             @Override
-            protected void onSuccess(ResponseInListModel<IntegralOrderListModel> data, String SucMessage) {
-                mRefreshHelper.setData(data.getList(), "暂无订单", 0);
+            protected void onSuccess(ResponseInListModel<AppointmentListModel> data, String SucMessage) {
+                mRefreshHelper.setData(data.getList(), "暂无预约", 0);
             }
 
             @Override
@@ -186,9 +181,15 @@ public class IntegralOrderListFragment extends BaseLazyFragment {
 
     }
 
+
+    /**
+     * 上门成功
+     *
+     * @param serviceSucc
+     */
     @Subscribe
-    public void commentSucc(IntegralOrderCommentsSucc da) {
-        if (TextUtils.equals(mOrderState, OrderHelper.INTEGRALORDERWAITEECOMMENT) || TextUtils.isEmpty(mOrderState)) { //评价成功 如果是待评价页面则刷新
+    public void sureServiceSucc(AppointmentServiceSucc serviceSucc) {
+        if (TextUtils.equals(mOrderState, OrderHelper.APPOINTMENT_2) || TextUtils.isEmpty(mOrderState)) { //评价成功 如果是待评价页面则刷新
             if (mRefreshHelper != null) {
                 mRefreshHelper.onDefaluteMRefresh(false);
             }
@@ -196,28 +197,56 @@ public class IntegralOrderListFragment extends BaseLazyFragment {
     }
 
     /**
-     * 确认收货成功
+     * 下课成功
      *
-     * @param da
+     * @param
      */
     @Subscribe
-    public void sureGetSucc(IntegralOrderSureGetSucc da) {
-        if (TextUtils.equals(mOrderState, OrderHelper.INTEGRALORDERWAITEGET) || TextUtils.isEmpty(mOrderState)) { //收货成功
+    public void sureServiceDoneSucc(AppointmentServiceDoneSucc da) {
+        if (TextUtils.equals(mOrderState, OrderHelper.APPOINTMENT_4) || TextUtils.isEmpty(mOrderState)) { //收货成功
             if (mRefreshHelper != null) {
                 mRefreshHelper.onDefaluteMRefresh(false);
             }
         }
     }
 
+    /**
+     * 评价成功
+     *
+     * @param
+     */
+    @Subscribe
+    public void commentSucc(AppointmentCommentsSucc da) {
+        mIsResumeRefresh = true;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mRefreshHelper != null && mIsResumeRefresh) {
+            mIsResumeRefresh = false;
+            mRefreshHelper.onDefaluteMRefresh(false);
+        }
+    }
 
     @Override
     protected void lazyLoad() {
-        if (mRefreshHelper == null) return;
-        mRefreshHelper.onDefaluteMRefresh(false);
+
+        if (mRefreshHelper != null) {
+            mRefreshHelper.onDefaluteMRefresh(false);
+        }
     }
 
     @Override
     protected void onInvisible() {
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mRefreshHelper != null) {
+            mRefreshHelper.onDestroy();
+        }
     }
 }

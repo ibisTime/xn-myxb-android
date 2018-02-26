@@ -23,6 +23,44 @@ public class OrderHelper {
     public static final String ORDERWAITEECOMMENT = "3";//3待评价；
     public static final String ORDERDONE = "4";//4已完成；
 
+    /*1, 待审核, 2, 已排班待上门,3, 无档期, 4, 已上门待下课, 5, 已下课待录入,6, 已录入;*/
+    public static final String APPOINTMENTALL = "";
+    public static final String APPOINTMENT_1 = "1";
+    public static final String APPOINTMENT_2 = "2";
+    public static final String APPOINTMENT_3 = "3";
+    public static final String APPOINTMENT_4 = "4";
+    public static final String APPOINTMENT_5 = "5";
+    public static final String APPOINTMENT_6 = "6";
+
+
+    /**
+     * 获取预约状态
+     *
+     * @param state
+     * @return
+     */
+    public static String getAppoitmentState(String state) {
+
+        switch (state) {
+            case APPOINTMENT_1:
+                return "待审核";
+            case APPOINTMENT_2:
+                return "待上门";
+            case APPOINTMENT_3:
+                return "已取消";
+            case APPOINTMENT_4:
+                return "待下课";
+            case APPOINTMENT_5:
+                return "待录入";
+            case APPOINTMENT_6:
+                return "已完成";
+        }
+
+        return "";
+
+    }
+
+
     /**
      * @param state
      * @return
@@ -68,6 +106,7 @@ public class OrderHelper {
     }
 
     /**
+     * 积分订单
      * 是否可以显示底部按钮 （待收货 待评价可以显示）
      *
      * @return
@@ -77,12 +116,23 @@ public class OrderHelper {
     }
 
     /**
+     * 订单状态
      * 是否可以显示底部按钮 （待评价可以显示）
      *
      * @return
      */
     public static boolean canShowOrderButton(String state) {
         return TextUtils.equals(state, OrderHelper.ORDERWAITEECOMMENT);
+    }
+
+    /**
+     * 预约列表
+     * 是否可以显示底部按钮 （待上门  待录入 ）
+     *
+     * @return
+     */
+    public static boolean canShowAppointmentButton(String state) {
+        return TextUtils.equals(state, OrderHelper.APPOINTMENT_2) || TextUtils.equals(state, OrderHelper.APPOINTMENT_4);
     }
 
     /**
@@ -117,6 +167,26 @@ public class OrderHelper {
         return "";
 
     }
+
+    /**
+     * 积分订单底部按钮文字显示
+     *
+     * @return
+     */
+    public static String getAppointmentBtnStateString(String state) {
+
+        switch (state) {
+            case APPOINTMENT_2:
+                return "上门";
+            case APPOINTMENT_4:
+                return "下课";
+        }
+
+        return "";
+
+    }
+
+
 
 
 }

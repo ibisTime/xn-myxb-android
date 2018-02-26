@@ -16,7 +16,7 @@
                 layout="@layout/layout_address_info" />
 
             <LinearLayout
-                android:id="@+id/llayout_trip"
+                android:id="@+id/lin_start_date"
                 android:layout_width="match_parent"
                 android:layout_height="42dp"
                 android:background="@drawable/selector_gray"
@@ -27,7 +27,47 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:text="下单数量"
+                    android:text="预约开始时间"
+                    android:textColor="@color/app_txt_black"
+                    android:textColorHint="@color/app_txt_gray"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_start_date"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:hint="请选择预约开始时间"
+
+                    android:textColor="@color/app_txt_black"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginRight="@dimen/layout_right_interval"
+                    android:src="@drawable/more_right" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llayout_trip"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/selector_gray"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="预约天数"
                     android:textColor="@color/app_txt_black"
                     android:textSize="14sp" />
 
@@ -38,12 +78,12 @@
                     android:layout_marginLeft="15dp"
                     android:layout_weight="1"
                     android:background="@null"
+                    android:hint="请填写预约天数"
                     android:inputType="number"
-                    android:hint="请填写下单数量"
-                    android:textColorHint="@color/app_txt_gray"
                     android:maxLength="5"
                     android:text="1"
                     android:textColor="@color/app_txt_black"
+                    android:textColorHint="@color/app_txt_gray"
                     android:textSize="14sp" />
 
                 <ImageView
@@ -64,7 +104,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@color/white"
                 android:gravity="top"
-                android:hint="请填写下单说明"
+                android:hint="请填写预约说明"
                 android:paddingLeft="@dimen/layout_left_interval"
                 android:paddingRight="@dimen/layout_right_interval"
                 android:paddingTop="15dp"
@@ -78,7 +118,7 @@
                 android:layout_marginRight="@dimen/layout_right_interval"
                 android:layout_marginTop="40dp"
                 android:background="@drawable/btn_select_common"
-                android:text="确定下单"
+                android:text="确定预约"
                 android:textColor="@color/white" />
 
 

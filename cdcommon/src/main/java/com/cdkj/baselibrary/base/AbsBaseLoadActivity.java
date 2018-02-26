@@ -41,6 +41,7 @@ public abstract class AbsBaseLoadActivity extends BaseActivity {
                 public void onClick(View v) {
                     if (!canFinish()) {
                         topTitleViewleftClick();
+                        return;
                     }
                     finish();
                 }

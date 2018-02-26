@@ -21,6 +21,7 @@ import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.FragmentMyBinding;
 import com.cdkj.myxb.models.UserModel;
 import com.cdkj.myxb.module.api.MyApiServer;
+import com.cdkj.myxb.module.appointment.MyAppointmentActivity;
 import com.cdkj.myxb.module.integral.IntegralMallActivity;
 import com.cdkj.myxb.module.order.MyOrderActivity;
 import com.cdkj.myxb.module.user.UserHelper;
@@ -70,6 +71,9 @@ public class MyFragment extends BaseLazyFragment {
         /*积分商场*/
         mBinding.layoutMy.rowIntegral.setOnClickListener(view -> IntegralMallActivity.open(mActivity, mUserInfoMode));
         mBinding.layoutMyBoos.rowIntegral.setOnClickListener(view -> IntegralMallActivity.open(mActivity, mUserInfoMode));
+
+        //预约
+        mBinding.layoutMyBoos.rowMyAppointment.setOnClickListener(view -> MyAppointmentActivity.open(mActivity));
 
     }
 

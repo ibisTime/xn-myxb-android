@@ -55,6 +55,15 @@ public class UserModel implements Parcelable {
     private String systemCode;
     private String gender;
     private String introduce;
+    private String slogan;
+
+    public String getSlogan() {
+        return slogan;
+    }
+
+    public void setSlogan(String slogan) {
+        this.slogan = slogan;
+    }
 
     public String getIntroduce() {
         return introduce;
@@ -274,6 +283,7 @@ public class UserModel implements Parcelable {
         dest.writeString(this.systemCode);
         dest.writeString(this.gender);
         dest.writeString(this.introduce);
+        dest.writeString(this.slogan);
         dest.writeByte(this.tradepwdFlag ? (byte) 1 : (byte) 0);
     }
 
@@ -299,6 +309,7 @@ public class UserModel implements Parcelable {
         this.systemCode = in.readString();
         this.gender = in.readString();
         this.introduce = in.readString();
+        this.slogan = in.readString();
         this.tradepwdFlag = in.readByte() != 0;
     }
 

@@ -179,6 +179,11 @@ public class OrderListFragment extends BaseLazyFragment {
 
     }
 
+    /**
+     * 评价成功
+     *
+     * @param
+     */
     @Subscribe
     public void commentSucc(IntegralOrderCommentsSucc da) {
         if (TextUtils.equals(mOrderState, OrderHelper.ORDERWAITEECOMMENT) || TextUtils.isEmpty(mOrderState)) { //评价成功 如果是待评价页面则刷新

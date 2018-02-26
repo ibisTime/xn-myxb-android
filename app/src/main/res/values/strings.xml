@@ -45,4 +45,5 @@
     <string name="my_integral_order">我的积分订单</string>
     <string name="no_integral_list">您还没有积分流水</string>
     <string name="no_recommended_brand">暂无推荐品牌</string>
+    <string name="shopper_appointment">美导预约</string>
 </resources>

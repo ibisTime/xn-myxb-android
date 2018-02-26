@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.cdkj.baselibrary.appmanager.MyCdConfig;
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
@@ -17,7 +16,6 @@ import com.cdkj.baselibrary.utils.MoneyUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.ActivityIntegralOrderDetailsBinding;
-import com.cdkj.myxb.models.CommentCountAndAverage;
 import com.cdkj.myxb.models.OrderListModel;
 import com.cdkj.myxb.module.api.MyApiServer;
 
@@ -39,7 +37,6 @@ public class OrderDetailsActivity extends AbsBaseLoadActivity {
 
     private static final String ORDERCODE = "code";
 
-    private String mOrderState; //订单状态
 
     /**
      * @param context
@@ -129,7 +126,6 @@ public class OrderDetailsActivity extends AbsBaseLoadActivity {
 
         if (data == null) return;
 
-        mOrderState = data.getStatus();
 
         ImgUtils.loadQiniuImg(this,  data.getProductPic(), mBinding.headerLayout.imgGood);
 

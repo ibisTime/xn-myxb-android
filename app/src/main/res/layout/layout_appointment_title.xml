@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RadioGroup
+        android:id="@+id/radiogroup"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:background="@drawable/my_appointment"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <RadioButton
+            android:id="@+id/radio_shopper"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/top_appoi_left"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/shopper"
+            android:textColor="@drawable/txt_color_my_appo"
+            android:textSize="13sp" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/white" />
+
+        <RadioButton
+            android:id="@+id/radio_teacher"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/top_appoi_mid"
+            android:button="@null"
+            android:checked="false"
+            android:gravity="center"
+            android:text="@string/teacher"
+            android:textColor="@drawable/txt_color_my_appo"
+            android:textSize="13sp" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/white" />
+
+        <RadioButton
+            android:id="@+id/radio_experts"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/top_appoi_right"
+            android:button="@null"
+            android:checked="false"
+            android:gravity="center"
+            android:text="@string/experts"
+            android:textColor="@drawable/txt_color_my_appo"
+            android:textSize="13sp" />
+    </RadioGroup>
+</layout>

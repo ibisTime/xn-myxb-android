@@ -160,6 +160,29 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
 
+        <!--预约列表-->
+        <activity
+            android:name=".module.appointment.MyAppointmentActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--预约操作-->
+        <activity
+            android:name=".module.appointment.AppointmentDoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityDialogStyleBottom"
+            android:windowSoftInputMode="adjustPan" />
+        <!--预约评价-->
+        <activity
+            android:name=".module.appointment.AppointmentCommentActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--预约详情-->
+        <activity
+            android:name=".module.appointment.AppointmentDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
 
     </application>
 

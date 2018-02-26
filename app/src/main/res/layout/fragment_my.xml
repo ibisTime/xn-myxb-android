@@ -21,7 +21,7 @@
             <include
                 android:id="@+id/layout_my"
                 layout="@layout/layout_my"
-               />
+                android:visibility="gone" />
 
             <include
                 android:id="@+id/layout_my_boos"

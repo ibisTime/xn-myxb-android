@@ -91,7 +91,10 @@ public class ShopperAppointmentListActivity extends AbsBaseLoadActivity {
             public RecyclerView.Adapter getAdapter(List listData) {
                 ShopperListAdapter shopperListAdapter = new ShopperListAdapter(listData);
                 shopperListAdapter.setOnItemClickListener((adapter, view, position) -> {
-                    ShopperAppointmentActivity.open(ShopperAppointmentListActivity.this);
+
+                    if (shopperListAdapter.getItem(position) == null) return;
+
+                    ShopperAppointmentActivity.open(ShopperAppointmentListActivity.this, shopperListAdapter.getItem(position).getUserId());
                 });
                 return shopperListAdapter;
             }
@@ -112,7 +115,7 @@ public class ShopperAppointmentListActivity extends AbsBaseLoadActivity {
         map.put("kind", UserHelper.T);
         map.put("start", pageindex + "");
         map.put("limit", limit + "");
-        map.put("status", "0");
+        map.put("status", "0");//上架
 
         Call call = RetrofitUtils.createApi(MyApiServer.class).getUserList("805120", StringUtils.getJsonToString(map));
 

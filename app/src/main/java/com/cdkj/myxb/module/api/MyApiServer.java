@@ -4,6 +4,7 @@ import com.cdkj.baselibrary.api.BaseResponseListModel;
 import com.cdkj.baselibrary.api.BaseResponseModel;
 import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.model.CodeModel;
+import com.cdkj.myxb.models.AppointmentListModel;
 import com.cdkj.myxb.models.BrandListModel;
 import com.cdkj.myxb.models.BrandProductModel;
 import com.cdkj.myxb.models.CommentCountAndAverage;
@@ -30,6 +31,19 @@ import retrofit2.http.POST;
  */
 
 public interface MyApiServer {
+
+
+    /**
+     * 获取预定列表
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<ResponseInListModel<AppointmentListModel>>> getAppointmentList(@Field("code") String code, @Field("json") String json);
+
 
     /**
      * 获取评论列表
@@ -84,7 +98,16 @@ public interface MyApiServer {
     @FormUrlEncoded
     @POST("api")
     Call<BaseResponseListModel<CommentItemModel>> getCommentItem(@Field("code") String code, @Field("json") String json);
-
+    /**
+     * 获取预约详情
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<AppointmentListModel>> getAppointmentDetails(@Field("code") String code, @Field("json") String json);
 
     /**
      * 获取订单
@@ -180,7 +203,7 @@ public interface MyApiServer {
      */
     @FormUrlEncoded
     @POST("api")
-    Call<BaseResponseListModel<IntegralOrderListModel>> getIntegralOrderList(@Field("code") String code, @Field("json") String json);
+    Call<BaseResponseModel<ResponseInListModel<IntegralOrderListModel>>> getIntegralOrderList(@Field("code") String code, @Field("json") String json);
 
 
     /**
