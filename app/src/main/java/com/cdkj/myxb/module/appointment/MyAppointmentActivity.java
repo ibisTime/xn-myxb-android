@@ -12,6 +12,8 @@ import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.ActivityMyAppointmentBinding;
 import com.cdkj.myxb.module.maintab.FirstPageFragment;
 import com.cdkj.myxb.module.maintab.MyFragment;
+import com.cdkj.myxb.module.order.OrderHelper;
+import com.cdkj.myxb.module.user.UserHelper;
 
 import java.util.ArrayList;
 
@@ -48,11 +50,8 @@ public class MyAppointmentActivity extends AbsBaseLoadActivity {
     @Override
     public void afterCreate(Bundle savedInstanceState) {
         mBinding.framImgBack.setOnClickListener(view -> finish());
-
         initViewPager();
-
         initTopListener();
-
     }
 
     private void initTopListener() {
@@ -69,16 +68,15 @@ public class MyAppointmentActivity extends AbsBaseLoadActivity {
                     mBinding.viewpagerAppointment.setCurrentItem(2, false);
                     break;
             }
-
         });
 
     }
 
     private void initViewPager() {
         ArrayList fragments = new ArrayList<>();
-        fragments.add(AppointmentTabLayoutFragment.getInstanse());//美导
-        fragments.add(FirstPageFragment.getInstanse());
-        fragments.add(MyFragment.getInstanse());//
+        fragments.add(AppointmentTabLayoutFragment.getInstanse(UserHelper.T));//美导
+        fragments.add(AppointmentTabLayoutFragment.getInstanse(UserHelper.L));//讲师
+        fragments.add(AppointmentTabLayoutFragment.getInstanse(UserHelper.S));//专家
 
         mBinding.viewpagerAppointment.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), fragments));
         mBinding.viewpagerAppointment.setOffscreenPageLimit(fragments.size());

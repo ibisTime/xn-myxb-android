@@ -17,6 +17,7 @@ import com.cdkj.myxb.databinding.ActivityAppointmentDetailsBinding;
 import com.cdkj.myxb.models.AppointmentListModel;
 import com.cdkj.myxb.module.api.MyApiServer;
 import com.cdkj.myxb.module.order.OrderHelper;
+import com.cdkj.myxb.module.user.UserHelper;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,18 +33,20 @@ public class AppointmentDetailActivity extends AbsBaseLoadActivity {
 
     private ActivityAppointmentDetailsBinding mBinding;
     private String mCode;
+    private String mType;
 
     private AppointmentListModel mAppmModel;
 
     /**
      * @param context
      */
-    public static void open(Context context, String code) {
+    public static void open(Context context, String code, String type) {
         if (context == null) {
             return;
         }
         Intent intent = new Intent(context, AppointmentDetailActivity.class);
         intent.putExtra("code", code);
+        intent.putExtra("type", type);
         context.startActivity(intent);
     }
 
@@ -59,9 +62,12 @@ public class AppointmentDetailActivity extends AbsBaseLoadActivity {
 
         if (getIntent() != null) {
             mCode = getIntent().getStringExtra("code");
+            mType = getIntent().getStringExtra("type");
         }
 
-        mBaseBinding.titleView.setMidTitle("美导详情");
+        mBaseBinding.titleView.setMidTitle(UserHelper.getUserTypeByKind(mType) + "详情");
+
+        mBinding.tvAppioType.setText("预约" + UserHelper.getUserTypeByKind(mType));
 
         initListener();
 
@@ -75,7 +81,7 @@ public class AppointmentDetailActivity extends AbsBaseLoadActivity {
         });
         mBinding.btnToComment.setOnClickListener(view -> {  //评价
             if (mAppmModel == null) return;
-            AppointmentDetailActivity.open(this, mAppmModel.getCode());
+            AppointmentCommentActivity.open(this, mAppmModel.getCode(), mType);
         });
 
     }
@@ -135,6 +141,8 @@ public class AppointmentDetailActivity extends AbsBaseLoadActivity {
 
         mBinding.btnStateDo.setVisibility(OrderHelper.canShowAppointmentButton(data.getStatus()) ? View.VISIBLE : View.GONE);
         mBinding.btnToComment.setVisibility(OrderHelper.canAppointmentComment(data) ? View.VISIBLE : View.GONE);
+
+        mBinding.btnStateDo.setText(OrderHelper.getAppointmentBtnStateString(data.getStatus()));
 
 
     }

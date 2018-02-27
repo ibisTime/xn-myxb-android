@@ -91,6 +91,8 @@ public class BrandListActivity extends CommonTablayoutActivity {
 
                 initViewPager();
 
+                mTabLayoutBinding.viewpager.setOffscreenPageLimit(3);
+
             }
 
             @Override
@@ -106,7 +108,7 @@ public class BrandListActivity extends CommonTablayoutActivity {
         titles = new ArrayList<>();
 
         for (int i = 0; i < brandListModels.size(); i++) {
-            BrandListModel brandListModel =brandListModels.get(i);
+            BrandListModel brandListModel = brandListModels.get(i);
             if (brandListModel == null) continue;
             fras.add(BrandProductListFragment.getInstanse(brandListModel.getCode(), i == 0));
             titles.add(brandListModel.getName());

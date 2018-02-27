@@ -1,4 +1,4 @@
-package com.cdkj.myxb.module.shopper;
+package com.cdkj.myxb.module.appointment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,9 +17,8 @@ import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.DateUtil;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
-import com.cdkj.myxb.databinding.ActivityAppointmentOrderBinding;
 import com.cdkj.myxb.databinding.ActivityAppointmentShopperBinding;
-import com.cdkj.myxb.module.appointment.MyAppointmentActivity;
+import com.cdkj.myxb.module.user.UserHelper;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -28,12 +27,14 @@ import java.util.Map;
 
 import retrofit2.Call;
 
+import static com.cdkj.myxb.module.appointment.CommonAppointmentListActivity.INTENTTYPE;
+
 /**
- * 美导预约
+ * 预约下单
  * Created by cdkj on 2018/2/9.
  */
 
-public class ShopperAppointmentOrderActivity extends AbsBaseLoadActivity {
+public class CommonAppointmentOrderActivity extends AbsBaseLoadActivity {
 
     private ActivityAppointmentShopperBinding mBinding;
     private Calendar startCalendar;
@@ -43,16 +44,20 @@ public class ShopperAppointmentOrderActivity extends AbsBaseLoadActivity {
 
     private static final String SHOPPERID = "shopperId";
 
+    private String mType; //预约类型
+
+
     /**
      * @param context
      * @param shopperId 美导Id
      */
-    public static void open(Context context, String shopperId) {
+    public static void open(Context context, String shopperId,String title) {
         if (context == null) {
             return;
         }
-        Intent intent = new Intent(context, ShopperAppointmentOrderActivity.class);
+        Intent intent = new Intent(context, CommonAppointmentOrderActivity.class);
         intent.putExtra(SHOPPERID, shopperId);
+        intent.putExtra(INTENTTYPE, title);
         context.startActivity(intent);
     }
 
@@ -65,11 +70,13 @@ public class ShopperAppointmentOrderActivity extends AbsBaseLoadActivity {
 
     @Override
     public void afterCreate(Bundle savedInstanceState) {
-        mBaseBinding.titleView.setMidTitle(getString(R.string.shopper_appointment));
 
         if (getIntent() != null) {
             mShopperId = getIntent().getStringExtra(SHOPPERID);
+            mType = getIntent().getStringExtra(INTENTTYPE);
         }
+
+        mBaseBinding.titleView.setMidTitle(UserHelper.getAppointmentTypeByState(mType));
 
         startCalendar = Calendar.getInstance();
         endCalendar = Calendar.getInstance();
@@ -122,7 +129,7 @@ public class ShopperAppointmentOrderActivity extends AbsBaseLoadActivity {
             @Override
             protected void onSuccess(CodeModel data, String SucMessage) {
                 if (!TextUtils.isEmpty(data.getCode())) {
-                    MyAppointmentActivity.open(ShopperAppointmentOrderActivity.this);
+                    MyAppointmentActivity.open(CommonAppointmentOrderActivity.this);
                     finish();
                 }
             }

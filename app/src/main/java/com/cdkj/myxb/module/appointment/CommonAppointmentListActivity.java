@@ -1,53 +1,59 @@
-package com.cdkj.myxb.module.shopper;
+package com.cdkj.myxb.module.appointment;
 
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 
-import com.cdkj.baselibrary.api.BaseApiServer;
 import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
 import com.cdkj.baselibrary.databinding.LayoutCommonRecyclerRefreshBinding;
 import com.cdkj.baselibrary.interfaces.BaseRefreshCallBack;
 import com.cdkj.baselibrary.interfaces.RefreshHelper;
-import com.cdkj.baselibrary.nets.BaseResponseListCallBack;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
-import com.cdkj.myxb.adapters.ShopperListAdapter;
+import com.cdkj.myxb.adapters.CommonAppointmentListAdapter;
 import com.cdkj.myxb.models.UserModel;
 import com.cdkj.myxb.module.api.MyApiServer;
 import com.cdkj.myxb.module.user.UserHelper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
 
 /**
- * 美导预约 列表
+ * 预约 列表
  * Created by cdkj on 2018/2/9.
  */
 
-public class ShopperAppointmentListActivity extends AbsBaseLoadActivity {
+public class CommonAppointmentListActivity extends AbsBaseLoadActivity {
 
 
     private RefreshHelper mRefreshHelper;
 
     private LayoutCommonRecyclerRefreshBinding mBinding;
 
+    public static final String INTENTTYPE = "type";
 
-    public static void open(Context context) {
+    private String mType; //预约类型
+
+
+    /**
+     * @param context
+     * @param type    预约类型
+     */
+    public static void open(Context context, String type) {
         if (context == null) {
             return;
         }
-        Intent intent = new Intent(context, ShopperAppointmentListActivity.class);
+        Intent intent = new Intent(context, CommonAppointmentListActivity.class);
+        intent.putExtra(INTENTTYPE, type);
         context.startActivity(intent);
     }
 
@@ -60,13 +66,18 @@ public class ShopperAppointmentListActivity extends AbsBaseLoadActivity {
 
     @Override
     public void topTitleViewRightClick() {
-
+        AppointmentSearchActivity.open(this, mType);
     }
 
     @Override
     public void afterCreate(Bundle savedInstanceState) {
 
-        mBaseBinding.titleView.setMidTitle(getString(R.string.shopper_appoint));
+        if (getIntent() != null) {
+            mType = getIntent().getStringExtra(INTENTTYPE);
+        }
+
+        mBaseBinding.titleView.setMidTitle(UserHelper.getAppointmentTypeByState(mType));
+
         mBaseBinding.titleView.setRightImg(R.drawable.search_waite);
 
         initRefresh();
@@ -89,12 +100,12 @@ public class ShopperAppointmentListActivity extends AbsBaseLoadActivity {
 
             @Override
             public RecyclerView.Adapter getAdapter(List listData) {
-                ShopperListAdapter shopperListAdapter = new ShopperListAdapter(listData);
+                CommonAppointmentListAdapter shopperListAdapter = new CommonAppointmentListAdapter(listData);
                 shopperListAdapter.setOnItemClickListener((adapter, view, position) -> {
 
                     if (shopperListAdapter.getItem(position) == null) return;
 
-                    ShopperAppointmentActivity.open(ShopperAppointmentListActivity.this, shopperListAdapter.getItem(position).getUserId());
+                    CommonAppointmentUserDetailActivity.open(CommonAppointmentListActivity.this, shopperListAdapter.getItem(position).getUserId(), mType);
                 });
                 return shopperListAdapter;
             }
@@ -111,8 +122,10 @@ public class ShopperAppointmentListActivity extends AbsBaseLoadActivity {
 
     public void getShopperListRequest(int pageindex, int limit, boolean isShowDialog) {
 
+        if (TextUtils.isEmpty(mType)) return;
+
         Map map = RetrofitUtils.getRequestMap();
-        map.put("kind", UserHelper.T);
+        map.put("kind", mType);
         map.put("start", pageindex + "");
         map.put("limit", limit + "");
         map.put("status", "0");//上架

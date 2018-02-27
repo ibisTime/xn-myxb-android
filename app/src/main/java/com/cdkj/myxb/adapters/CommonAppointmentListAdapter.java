@@ -13,6 +13,8 @@ import com.cdkj.baselibrary.utils.ImgUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.models.UserModel;
+import com.cdkj.myxb.module.order.OrderHelper;
+import com.cdkj.myxb.module.user.UserHelper;
 import com.cdkj.myxb.weight.views.MyRatingBar;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -25,10 +27,10 @@ import java.util.List;
  * Created by cdkj on 2017/10/12.
  */
 
-public class ShopperListAdapter extends BaseQuickAdapter<UserModel, BaseViewHolder> {
+public class CommonAppointmentListAdapter extends BaseQuickAdapter<UserModel, BaseViewHolder> {
 
 
-    public ShopperListAdapter(@Nullable List<UserModel> data) {
+    public CommonAppointmentListAdapter(@Nullable List<UserModel> data) {
         super(R.layout.item_shopper_appointment, data);
     }
 
@@ -37,12 +39,14 @@ public class ShopperListAdapter extends BaseQuickAdapter<UserModel, BaseViewHold
         if (item == null) return;
 
         ImgUtils.loadQiniuLogo(mContext, item.getPhoto(), helper.getView(R.id.img_logo));
-
-        helper.setText(R.id.tv_specialty, "美导  专长：" + item.getStyle());
         helper.setText(R.id.tv_user_info, item.getSlogan());
         helper.setText(R.id.tv_name, item.getRealName());
 
-        helper.setGone(R.id.tv_user_info, TextUtils.isEmpty(item.getSlogan()));
+        helper.setGone(R.id.tv_user_info, !TextUtils.isEmpty(item.getSlogan()));
+
+        helper.setText(R.id.tv_specialty, UserHelper.getUserTypeByKind(item.getKind()) + "  专长：" + item.getSpeciality());
+
+        helper.setGone(R.id.tv_specialty, !TextUtils.isEmpty(item.getSpeciality()));
 
         if (item.isMan()) {
             helper.setImageResource(R.id.img_gender, R.drawable.man_2);

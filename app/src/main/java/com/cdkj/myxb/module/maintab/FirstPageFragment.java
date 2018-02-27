@@ -15,7 +15,6 @@ import com.cdkj.baselibrary.appmanager.MyCdConfig;
 import com.cdkj.baselibrary.base.BaseLazyFragment;
 import com.cdkj.baselibrary.interfaces.BaseRefreshCallBack;
 import com.cdkj.baselibrary.interfaces.RefreshHelper;
-import com.cdkj.baselibrary.nets.BaseResponseListCallBack;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
@@ -29,7 +28,8 @@ import com.cdkj.myxb.module.api.MyApiServer;
 import com.cdkj.myxb.module.common.MsgListActivity;
 import com.cdkj.myxb.module.product.BrandListActivity;
 import com.cdkj.myxb.module.product.SpecificBrandListActivity;
-import com.cdkj.myxb.module.shopper.ShopperAppointmentListActivity;
+import com.cdkj.myxb.module.appointment.CommonAppointmentListActivity;
+import com.cdkj.myxb.module.user.UserHelper;
 
 import java.util.HashMap;
 import java.util.List;
@@ -80,7 +80,15 @@ public class FirstPageFragment extends BaseLazyFragment {
 
         /*美导*/
         mBinding.headrLayout.llinayoutShopper.setOnClickListener(view -> {
-            ShopperAppointmentListActivity.open(mActivity);
+            CommonAppointmentListActivity.open(mActivity, UserHelper.T);
+        });
+        //讲师
+        mBinding.headrLayout.linTeacher.setOnClickListener(view -> {
+            CommonAppointmentListActivity.open(mActivity, UserHelper.L);
+        });
+        //专家
+        mBinding.headrLayout.linExperts.setOnClickListener(view -> {
+            CommonAppointmentListActivity.open(mActivity, UserHelper.S);
         });
         /*品牌*/
         mBinding.headrLayout.llayoutBrand.setOnClickListener(view -> {

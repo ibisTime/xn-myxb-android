@@ -3,6 +3,9 @@ package com.cdkj.myxb.module.user;
 import android.support.annotation.IntDef;
 import android.support.annotation.StringDef;
 
+import com.cdkj.myxb.BaseApplication;
+import com.cdkj.myxb.R;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -24,5 +27,46 @@ public class UserHelper {
     public @interface userType {
     }
 
+
+    /**
+     * 根据用户类型获取预约标题
+     *
+     * @param state
+     * @return
+     */
+    public static String getAppointmentTypeByState(String state) {
+
+        switch (state) {
+            case L:
+                return "讲师预约";
+            case T:
+                return "美导预约";
+            case S:
+                return "专家预约";
+        }
+
+        return "预约";
+
+    }
+
+    /**
+     * 根据kind获取类型
+     *
+     * @param kind
+     * @return
+     */
+    public static String getUserTypeByKind(String kind) {
+        switch (kind) {
+            case UserHelper.C:
+                return BaseApplication.getInstance().getString(R.string.mry);
+            case UserHelper.L:
+                return BaseApplication.getInstance().getString(R.string.teacher);
+            case UserHelper.S:
+                return BaseApplication.getInstance().getString(R.string.experts);
+            case UserHelper.T:
+                return BaseApplication.getInstance().getString(R.string.shopper);
+        }
+        return "";
+    }
 
 }

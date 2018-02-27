@@ -33,7 +33,7 @@ public class AppointmentListModel {
     private String isComment;
     private String planDatetime;
     private String planDays;
-    private MryUserBean mryUser;
+//    private MryUserBean mryUser;
     private UserBean user;
 
     public String getPlanDatetime() {
@@ -132,13 +132,13 @@ public class AppointmentListModel {
         this.isComment = isComment;
     }
 
-    public MryUserBean getMryUser() {
-        return mryUser;
-    }
-
-    public void setMryUser(MryUserBean mryUser) {
-        this.mryUser = mryUser;
-    }
+//    public MryUserBean getMryUser() {
+//        return mryUser;
+//    }
+//
+//    public void setMryUser(MryUserBean mryUser) {
+//        this.mryUser = mryUser;
+//    }
 
     public UserBean getUser() {
         return user;

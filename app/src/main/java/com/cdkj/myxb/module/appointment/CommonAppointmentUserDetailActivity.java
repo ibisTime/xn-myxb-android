@@ -1,4 +1,4 @@
-package com.cdkj.myxb.module.shopper;
+package com.cdkj.myxb.module.appointment;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -40,7 +40,6 @@ import com.cdkj.myxb.weight.views.TripDateView;
 import com.google.android.flexbox.FlexboxLayout;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -50,33 +49,35 @@ import retrofit2.Call;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
+import static com.cdkj.myxb.module.appointment.CommonAppointmentListActivity.INTENTTYPE;
 
 /**
+ * 预约用户详情
  * Created by cdkj on 2018/2/9.
  */
 
-public class ShopperAppointmentActivity extends AbsBaseLoadActivity {
+public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
 
     private ActivityShopperAppointmentBinding mBinding;
 
     private String mShoppperCode;
     private static final String USERCODE = "usercode";
-
     private UserModel mUserModel;
 
     private CommentListAdapter mCommentListAdapter;
-
+    private String mType; //预约类型
 
     /**
      * @param context
      * @param code    用户code
      */
-    public static void open(Context context, String code) {
+    public static void open(Context context, String code, String type) {
         if (context == null) {
             return;
         }
-        Intent intent = new Intent(context, ShopperAppointmentActivity.class);
+        Intent intent = new Intent(context, CommonAppointmentUserDetailActivity.class);
         intent.putExtra(USERCODE, code);
+        intent.putExtra(INTENTTYPE, type);
         context.startActivity(intent);
     }
 
@@ -89,13 +90,12 @@ public class ShopperAppointmentActivity extends AbsBaseLoadActivity {
 
     @Override
     public void afterCreate(Bundle savedInstanceState) {
-        mBaseBinding.titleView.setMidTitle(getString(R.string.shopper_appoint));
-
 
         if (getIntent() != null) {
             mShoppperCode = getIntent().getStringExtra(USERCODE);
+            mType = getIntent().getStringExtra(INTENTTYPE);
         }
-
+        mBaseBinding.titleView.setMidTitle(UserHelper.getAppointmentTypeByState(mType));
         initListener();
 
         initCommentAdapter();
@@ -116,11 +116,11 @@ public class ShopperAppointmentActivity extends AbsBaseLoadActivity {
             if (!SPUtilHelpr.isLogin(this, false)) {
                 return;
             }
-            ShopperAppointmentOrderActivity.open(this, mShoppperCode);
+            CommonAppointmentOrderActivity.open(this, mShoppperCode, mType);
         });
 
         //评论点击
-        mBinding.scoreLayout.linToComments.setOnClickListener(view -> ProductCommentListActivity.open(this, mShoppperCode, UserHelper.T));
+        mBinding.scoreLayout.linToComments.setOnClickListener(view -> ProductCommentListActivity.open(this, mShoppperCode, mType));
 
 
         //行程点击
@@ -150,7 +150,7 @@ public class ShopperAppointmentActivity extends AbsBaseLoadActivity {
 
                 if (mouthAppointmentModel == null || !mouthAppointmentModel.isSame()) return;
 
-                new TripTimeDialog(ShopperAppointmentActivity.this, mouthAppointmentModel).show();
+                new TripTimeDialog(CommonAppointmentUserDetailActivity.this, mouthAppointmentModel).show();
             }
 
             @Override
@@ -231,9 +231,15 @@ public class ShopperAppointmentActivity extends AbsBaseLoadActivity {
         ImgUtils.loadQiniuLogo(this, mUserModel.getPhoto(), mBinding.headerLayout.imgLogo);
 
         mBinding.headerLayout.tvUserName.setText(mUserModel.getRealName());
-        mBinding.headerLayout.tvSpecialty.setText("美导  专长：" + mUserModel.getStyle());
+
         mBinding.headerLayout.ratingbar.setStar(mUserModel.getLevel());
         mBinding.headerLayout.tvUserName.setText(mUserModel.getRealName());
+        if (TextUtils.isEmpty(mUserModel.getSpeciality())) {
+            mBinding.headerLayout.tvSpecialty.setVisibility(GONE);
+        } else {
+            mBinding.headerLayout.tvSpecialty.setVisibility(VISIBLE);
+            mBinding.headerLayout.tvSpecialty.setText(UserHelper.getUserTypeByKind(mType) + "  专长：" + mUserModel.getSpeciality());
+        }
 
 
         setTagLayout();
@@ -329,7 +335,7 @@ public class ShopperAppointmentActivity extends AbsBaseLoadActivity {
      */
     public void getCommentList() {
 
-        if (TextUtils.isEmpty(mShoppperCode)) {
+        if (TextUtils.isEmpty(mShoppperCode) || TextUtils.isEmpty(mType)) {
             return;
         }
 
@@ -337,7 +343,7 @@ public class ShopperAppointmentActivity extends AbsBaseLoadActivity {
         map.put("limit", "10");
         map.put("start", "1");
         map.put("status", "AB"); //审核通过
-        map.put("type", UserHelper.T);
+        map.put("type", mType);
         map.put("entityCode", mShoppperCode);
 
 
@@ -377,7 +383,7 @@ public class ShopperAppointmentActivity extends AbsBaseLoadActivity {
             @Override
             protected void onSuccess(String data, String SucMessage) {
                 Date mNowDate = DateUtil.parse(data, DateUtil.DEFAULT_DATE_FMT);
-                mBinding.tripDate.setDate(mNowDate,true);
+                mBinding.tripDate.setDate(mNowDate, true);
                 getAppointmentByMouth(data, false);
             }
 

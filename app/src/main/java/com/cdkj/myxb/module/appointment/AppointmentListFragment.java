@@ -39,6 +39,8 @@ import java.util.Map;
 
 import retrofit2.Call;
 
+import static com.cdkj.myxb.module.appointment.AppointmentTabLayoutFragment.INTENTTYPE;
+
 /**
  * Created by 李先俊 on 2018/2/26.
  */
@@ -52,21 +54,24 @@ public class AppointmentListFragment extends BaseLazyFragment {
     private static final String ORDERSTATE = "state";
     private static final String ISFIRSTREQUEST = "isFirstRequest";
 
+
     private String mOrderState; //要查看的订单状态
 
     private boolean mIsResumeRefresh;//在Resume时能不能刷新当前界面
 
+    private String mType;//用户类型
 
     /**
      * @param state          订单状态
      * @param isFirstRequest 创建时是否进行请求
      * @return
      */
-    public static AppointmentListFragment getInstanse(String state, boolean isFirstRequest) {
+    public static AppointmentListFragment getInstanse(String state, String type, boolean isFirstRequest) {
         AppointmentListFragment fragment = new AppointmentListFragment();
         Bundle bundle = new Bundle();
         bundle.putString(ORDERSTATE, state);
         bundle.putBoolean(ISFIRSTREQUEST, isFirstRequest);
+        bundle.putString(INTENTTYPE, type);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -78,6 +83,7 @@ public class AppointmentListFragment extends BaseLazyFragment {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.layout_recycler_refresh, null, false);
         if (getArguments() != null) {
             mOrderState = getArguments().getString(ORDERSTATE);
+            mType = getArguments().getString(INTENTTYPE);
         }
 
         initRefreshHelper();
@@ -124,7 +130,7 @@ public class AppointmentListFragment extends BaseLazyFragment {
 
             switch (view.getId()) {
                 case R.id.tv_to_comment: //评价
-                    AppointmentCommentActivity.open(mActivity, listModel.getCode(), UserHelper.T);
+                    AppointmentCommentActivity.open(mActivity, listModel.getCode(), mType);
                     break;
                 case R.id.tv_state_do://上门  下课操作
                     AppointmentDoActivity.open(mActivity, listModel.getCode(), listModel.getStatus());
@@ -140,7 +146,7 @@ public class AppointmentListFragment extends BaseLazyFragment {
 
             if (listModel == null) return;
 
-            AppointmentDetailActivity.open(mActivity,listModel.getCode());
+            AppointmentDetailActivity.open(mActivity, listModel.getCode(),mType);
         });
 
         return appointmentListAdapter;
@@ -152,13 +158,15 @@ public class AppointmentListFragment extends BaseLazyFragment {
      */
     public void getOrderListRequest(int pageindex, int limit, boolean isShowDialog) {
 
+        if (TextUtils.isEmpty(mType)) return;
+
         Map<String, String> map = new HashMap<>();
 
         map.put("applyUser", SPUtilHelpr.getUserId());
         map.put("limit", limit + "");
         map.put("start", pageindex + "");
         map.put("status", mOrderState);
-        map.put("type", UserHelper.T);
+        map.put("type", mType);
 
         Call call = RetrofitUtils.createApi(MyApiServer.class).getAppointmentList("805520", StringUtils.getJsonToString(map));
 

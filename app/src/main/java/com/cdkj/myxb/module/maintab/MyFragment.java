@@ -32,6 +32,8 @@ import java.util.Map;
 
 import retrofit2.Call;
 
+import static com.cdkj.myxb.module.user.UserHelper.getUserTypeByKind;
+
 /**
  * 我的
  * Created by cdkj on 2018/2/7.
@@ -153,25 +155,7 @@ public class MyFragment extends BaseLazyFragment {
 
     }
 
-    /**
-     * 根据kind获取类型
-     *
-     * @param kind
-     * @return
-     */
-    private String getUserTypeByKind(String kind) {
-        switch (kind) {
-            case UserHelper.C:
-                return getString(R.string.mry);
-            case UserHelper.L:
-                return getString(R.string.teacher);
-            case UserHelper.S:
-                return getString(R.string.experts);
-            case UserHelper.T:
-                return getString(R.string.shopper);
-        }
-        return "";
-    }
+
 
     /**
      * 用户数据是否为空
