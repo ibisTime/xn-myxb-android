@@ -17,6 +17,7 @@ import com.cdkj.myxb.models.AddressModel;
 import com.cdkj.myxb.models.IntegralListModel;
 import com.cdkj.myxb.models.IntegralModel;
 import com.cdkj.myxb.models.IntegralOrderListModel;
+import com.cdkj.myxb.models.MouthAppointmentModel;
 import com.cdkj.myxb.models.MsgListModel;
 import com.cdkj.myxb.models.OrderListModel;
 import com.cdkj.myxb.models.UserModel;
@@ -31,6 +32,18 @@ import retrofit2.http.POST;
  */
 
 public interface MyApiServer {
+
+
+    /**
+     * 获取预定列表
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseListModel<MouthAppointmentModel>> getMouthAppointment(@Field("code") String code, @Field("json") String json);
 
 
     /**
@@ -65,7 +78,6 @@ public interface MyApiServer {
     Call<BaseResponseModel<ResponseInListModel<UserModel>>> getUserList(@Field("code") String code, @Field("json") String json);
 
 
-
     /**
      * 获取消息列表
      *
@@ -98,6 +110,7 @@ public interface MyApiServer {
     @FormUrlEncoded
     @POST("api")
     Call<BaseResponseListModel<CommentItemModel>> getCommentItem(@Field("code") String code, @Field("json") String json);
+
     /**
      * 获取预约详情
      *
@@ -168,7 +181,6 @@ public interface MyApiServer {
     Call<BaseResponseListModel<BrandListModel>> getBrandList(@Field("code") String code, @Field("json") String json);
 
 
-
     /**
      * 获取品牌
      *
@@ -179,7 +191,6 @@ public interface MyApiServer {
     @FormUrlEncoded
     @POST("api")
     Call<BaseResponseModel<ResponseInListModel<BrandListModel>>> getSpeBrandList(@Field("code") String code, @Field("json") String json);
-
 
 
     /**

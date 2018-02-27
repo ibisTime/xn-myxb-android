@@ -68,7 +68,7 @@ public class RetrofitUtils {
             case DEBUG:
                 return "http://121.43.101.148:4401/forward-service/";//研发环境
             case TEST:
-                return "";//测试
+                return "http://47.96.161.183:4401/forward-service/";//测试
         }
         return "";//正式环境
     }

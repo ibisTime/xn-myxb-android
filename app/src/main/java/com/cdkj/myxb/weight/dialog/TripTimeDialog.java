@@ -9,8 +9,11 @@ import android.view.Gravity;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
+import com.cdkj.baselibrary.utils.DateUtil;
+import com.cdkj.baselibrary.utils.LogUtil;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.DialogTripTimeBinding;
+import com.cdkj.myxb.models.MouthAppointmentModel;
 
 /**
  * 行程显示时间
@@ -21,8 +24,11 @@ public class TripTimeDialog extends Dialog {
 
     private DialogTripTimeBinding mBinding;
 
-    public TripTimeDialog(@NonNull Context context) {
+    private MouthAppointmentModel appointmentDateViewModel;
+
+    public TripTimeDialog(@NonNull Context context,MouthAppointmentModel appointmentDateViewModel) {
         super(context, R.style.TipsDialog);
+        this.appointmentDateViewModel=appointmentDateViewModel;
     }
 
     @Override
@@ -39,6 +45,17 @@ public class TripTimeDialog extends Dialog {
         mBinding.btnIKnow.setOnClickListener(view -> {
             dismiss();
         });
+
+        setShowTime(appointmentDateViewModel);
+    }
+
+    private void setShowTime(MouthAppointmentModel appointmentDateViewModel) {
+        if (appointmentDateViewModel == null || mBinding == null) return ;
+
+        mBinding.tvEndTime.setText(DateUtil.formatStringData(appointmentDateViewModel.getEndDatetime(),DateUtil.DEFAULT_DATE_FMT));
+        mBinding.tvStartTime.setText(DateUtil.formatStringData(appointmentDateViewModel.getStartDatetime(),DateUtil.DEFAULT_DATE_FMT));
+
+        LogUtil.E(appointmentDateViewModel.getOneDayDateTime().size()+"ddddddd");
 
     }
 

@@ -81,6 +81,10 @@ public class DateUtil {
         }
         long d1 = date1.getTime();
         long d2 = date2.getTime();
+
+        LogUtil.E("now"+d1);
+        LogUtil.E("start"+d2);
+
         return d1 >= d2;
     }
 
@@ -305,7 +309,18 @@ public class DateUtil {
         Date endDate = DateUtil.getSupportEndDayofMonth(nowYear, nowMonth); //获取本月最后一天
 
         return DateUtil.getDatesBetweenTwoDate(beginDate, endDate);
+    }
 
+    public static List<Date> getMonthDataList(Date date) {
+        Calendar now = Calendar.getInstance();
+        now.setTime(date);
+        int nowYear = now.get(Calendar.YEAR);//获取年份
+        int nowMonth = now.get(Calendar.MONTH);//获取月份
+
+        Date beginDate = DateUtil.getSupportBeginDayofMonth(nowYear, nowMonth);//获取本月第一天
+        Date endDate = DateUtil.getSupportEndDayofMonth(nowYear, nowMonth); //获取本月最后一天
+
+        return DateUtil.getDatesBetweenTwoDate(beginDate, endDate);
     }
 
 
@@ -331,7 +346,7 @@ public class DateUtil {
         return days;
     }
 
-    //得到后两个月的日期
+    //得到后的日期
     public static Date getMonthToDate(int month) {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MONTH, month);

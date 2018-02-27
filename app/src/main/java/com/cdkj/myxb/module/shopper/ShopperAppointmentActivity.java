@@ -17,8 +17,10 @@ import android.widget.TextView;
 import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
+import com.cdkj.baselibrary.nets.BaseResponseListCallBack;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
+import com.cdkj.baselibrary.utils.DateUtil;
 import com.cdkj.baselibrary.utils.DisplayHelper;
 import com.cdkj.baselibrary.utils.ImgUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
@@ -27,15 +29,21 @@ import com.cdkj.myxb.adapters.CommentListAdapter;
 import com.cdkj.myxb.databinding.ActivityShopperAppointmentBinding;
 import com.cdkj.myxb.models.CommentCountAndAverage;
 import com.cdkj.myxb.models.CommentListMode;
+import com.cdkj.myxb.models.MouthAppointmentModel;
 import com.cdkj.myxb.models.UserModel;
 import com.cdkj.myxb.module.api.MyApiServer;
 import com.cdkj.myxb.module.common.CallPhoneActivity;
 import com.cdkj.myxb.module.product.ProductCommentListActivity;
 import com.cdkj.myxb.module.user.UserHelper;
+import com.cdkj.myxb.weight.dialog.TripTimeDialog;
+import com.cdkj.myxb.weight.views.TripDateView;
 import com.google.android.flexbox.FlexboxLayout;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -57,6 +65,7 @@ public class ShopperAppointmentActivity extends AbsBaseLoadActivity {
     private UserModel mUserModel;
 
     private CommentListAdapter mCommentListAdapter;
+
 
     /**
      * @param context
@@ -81,7 +90,7 @@ public class ShopperAppointmentActivity extends AbsBaseLoadActivity {
     @Override
     public void afterCreate(Bundle savedInstanceState) {
         mBaseBinding.titleView.setMidTitle(getString(R.string.shopper_appoint));
-        mBinding.tripDate.initData();
+
 
         if (getIntent() != null) {
             mShoppperCode = getIntent().getStringExtra(USERCODE);
@@ -89,14 +98,11 @@ public class ShopperAppointmentActivity extends AbsBaseLoadActivity {
 
         initListener();
 
-        getUserInfoRequest(true);
-
         initCommentAdapter();
 
-        getCommentList();
+        getUserInfoRequest(true);
 
-        getCommentsCountAndAverage();
-
+        getNowDate();
     }
 
     /**
@@ -116,6 +122,7 @@ public class ShopperAppointmentActivity extends AbsBaseLoadActivity {
         //评论点击
         mBinding.scoreLayout.linToComments.setOnClickListener(view -> ProductCommentListActivity.open(this, mShoppperCode, UserHelper.T));
 
+
         //行程点击
         ObjectAnimator animStart = ObjectAnimator.ofFloat(mBinding.imgTrip, "rotation", 0f, 90f);
         ObjectAnimator animEnd = ObjectAnimator.ofFloat(mBinding.imgTrip, "rotation", 90f, 0f);
@@ -130,6 +137,33 @@ public class ShopperAppointmentActivity extends AbsBaseLoadActivity {
             }
 
         });
+
+        /**
+         * 日历点击时显示行程dialog
+         */
+        mBinding.tripDate.setItemClickListener(new TripDateView.OnClickListener() {
+            @Override
+            public void OnItmeClick(List<MouthAppointmentModel> dateModels, int position) {
+                if (dateModels == null || dateModels.size() < position) return;
+
+                MouthAppointmentModel mouthAppointmentModel = dateModels.get(position);
+
+                if (mouthAppointmentModel == null || !mouthAppointmentModel.isSame()) return;
+
+                new TripTimeDialog(ShopperAppointmentActivity.this, mouthAppointmentModel).show();
+            }
+
+            @Override
+            public void OnPreviousClick(Date pDate) {
+                getAppointmentByMouth(DateUtil.format(pDate, DateUtil.DATE_YMD), true);
+            }
+
+            @Override
+            public void OnNextClick(Date nDate) {
+                getAppointmentByMouth(DateUtil.format(nDate, DateUtil.DATE_YMD), true);
+            }
+        });
+
     }
 
 
@@ -174,6 +208,8 @@ public class ShopperAppointmentActivity extends AbsBaseLoadActivity {
             protected void onSuccess(UserModel data, String SucMessage) {
                 mUserModel = data;
                 setShowData();
+                getCommentList();
+                getCommentsCountAndAverage();
             }
 
             @Override
@@ -318,6 +354,98 @@ public class ShopperAppointmentActivity extends AbsBaseLoadActivity {
 
             @Override
             protected void onFinish() {
+
+            }
+        });
+
+    }
+
+    /**
+     * 获取当前时间用于初始化日历
+     */
+    public void getNowDate() {
+
+        Map<String, String> map = new HashMap<>();
+
+        Call call = RetrofitUtils.getBaseAPiService().stringRequest("805126", StringUtils.getJsonToString(map));
+
+        showLoadingDialog();
+
+        addCall(call);
+
+        call.enqueue(new BaseResponseModelCallBack<String>(this) {
+            @Override
+            protected void onSuccess(String data, String SucMessage) {
+                Date mNowDate = DateUtil.parse(data, DateUtil.DEFAULT_DATE_FMT);
+                mBinding.tripDate.setDate(mNowDate,true);
+                getAppointmentByMouth(data, false);
+            }
+
+            @Override
+            protected void onFinish() {
+                disMissLoading();
+            }
+        });
+
+    }
+
+
+    /**
+     * 根据月份获取预约行程
+     *
+     * @param mouth
+     */
+    public void getAppointmentByMouth(String mouth, boolean isShowDialog) {
+
+        if (TextUtils.isEmpty(mouth) || TextUtils.isEmpty(mShoppperCode)) {
+            return;
+        }
+
+        Map<String, String> map = new HashMap<>();
+
+        map.put("startMonth", mouth);
+        map.put("userId", mShoppperCode);
+
+
+        Call call = RetrofitUtils.createApi(MyApiServer.class).getMouthAppointment("805508", StringUtils.getJsonToString(map));
+
+        addCall(call);
+
+        if (isShowDialog) showLoadingDialog();
+
+        call.enqueue(new BaseResponseListCallBack<MouthAppointmentModel>(this) {
+            @Override
+            protected void onSuccess(List<MouthAppointmentModel> data, String SucMessage) {
+
+                List<MouthAppointmentModel> appointmentModels = new ArrayList<>();
+
+
+                appointmentModels.addAll(data);
+
+                //找出是相同一天的日期
+                for (MouthAppointmentModel dataAppModel : data) {
+
+                    List<MouthAppointmentModel> appointmentModels2 = new ArrayList<>();
+
+                    for (MouthAppointmentModel appointmentModel : appointmentModels) {
+
+                        if (DateUtil.inSameDay(new Date(dataAppModel.getStartDatetime()), new Date(appointmentModel.getStartDatetime()))) {
+
+                            appointmentModels2.add(appointmentModel);
+
+                        }
+
+                    }
+                    dataAppModel.setOneDayDateTime(appointmentModels2);
+                }
+
+
+                mBinding.tripDate.setCompareData(data);
+            }
+
+            @Override
+            protected void onFinish() {
+                disMissLoading();
             }
         });
 

@@ -124,7 +124,7 @@ public class AppointmentListFragment extends BaseLazyFragment {
 
             switch (view.getId()) {
                 case R.id.tv_to_comment: //评价
-                    AppointmentCommentActivity.open(mActivity, listModel.getCode(), listModel.getStatus());
+                    AppointmentCommentActivity.open(mActivity, listModel.getCode(), UserHelper.T);
                     break;
                 case R.id.tv_state_do://上门  下课操作
                     AppointmentDoActivity.open(mActivity, listModel.getCode(), listModel.getStatus());

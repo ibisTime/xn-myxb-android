@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -34,6 +35,22 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/tv_start_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                tools:text="sdfsdfdsdfsfsdf" />
+
+            <TextView
+                android:id="@+id/tv_end_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                tools:text="sdfsdfdsdfsfsdf" />
+
+
             <Button
                 android:id="@+id/btn_i_know"
                 android:layout_width="match_parent"
@@ -41,6 +58,7 @@
                 android:layout_marginBottom="25dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/btn_select_common"
                 android:text="@string/i_know"
                 android:textColor="@color/white"

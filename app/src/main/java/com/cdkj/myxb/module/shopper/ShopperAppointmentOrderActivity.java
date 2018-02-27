@@ -19,6 +19,7 @@ import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.ActivityAppointmentOrderBinding;
 import com.cdkj.myxb.databinding.ActivityAppointmentShopperBinding;
+import com.cdkj.myxb.module.appointment.MyAppointmentActivity;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -121,6 +122,7 @@ public class ShopperAppointmentOrderActivity extends AbsBaseLoadActivity {
             @Override
             protected void onSuccess(CodeModel data, String SucMessage) {
                 if (!TextUtils.isEmpty(data.getCode())) {
+                    MyAppointmentActivity.open(ShopperAppointmentOrderActivity.this);
                     finish();
                 }
             }
