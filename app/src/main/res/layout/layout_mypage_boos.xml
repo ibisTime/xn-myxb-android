@@ -22,6 +22,7 @@
             android:layout_marginLeft="15dp" />
 
         <com.cdkj.baselibrary.views.RowInfoLayout
+            android:id="@+id/row_my_order"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:img_left="@drawable/my_next_go"
@@ -43,6 +44,7 @@
             android:layout_marginLeft="15dp" />
 
         <com.cdkj.baselibrary.views.RowInfoLayout
+            android:id="@+id/row_my_comment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:img_left="@drawable/my_info"

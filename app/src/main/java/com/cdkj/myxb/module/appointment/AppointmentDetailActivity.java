@@ -137,6 +137,11 @@ public class AppointmentDetailActivity extends AbsBaseLoadActivity {
 
         mBinding.tvAppioTimePlan.setText(DateUtil.formatStringData(data.getPlanDatetime(), DateUtil.DATE_YYMMddHHmm));
         mBinding.tvAppioDaysPlan.setText(data.getAppointDays() + "天");
+
+        mBinding.linPlanTime.setVisibility(TextUtils.isEmpty(data.getPlanDatetime()) ? View.GONE : View.VISIBLE);
+        mBinding.linPlanDays.setVisibility(TextUtils.isEmpty(data.getPlanDatetime()) ? View.GONE : View.VISIBLE);
+
+
         mBinding.tvState.setText(OrderHelper.getAppoitmentState(data.getStatus()));
 
         mBinding.btnStateDo.setVisibility(OrderHelper.canShowAppointmentButton(data.getStatus()) ? View.VISIBLE : View.GONE);

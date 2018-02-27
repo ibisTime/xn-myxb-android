@@ -59,6 +59,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
                         android:background="@color/white"
                         android:orientation="horizontal"
                         android:paddingBottom="10dp"
@@ -88,6 +89,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
                         android:background="@color/white"
                         android:orientation="horizontal"
                         android:paddingBottom="10dp"
@@ -115,8 +117,10 @@
 
 
                     <LinearLayout
+                        android:id="@+id/lin_plan_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
                         android:background="@color/white"
                         android:orientation="horizontal"
                         android:paddingBottom="10dp"
@@ -144,8 +148,10 @@
 
 
                     <LinearLayout
+                        android:id="@+id/lin_plan_days"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
                         android:background="@color/white"
                         android:orientation="horizontal"
                         android:paddingBottom="10dp"
@@ -174,6 +180,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
                         android:background="@color/white"
                         android:orientation="horizontal"
                         android:paddingBottom="10dp"
@@ -337,10 +344,10 @@
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_select_common"
+                android:text="前往评价"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                android:visibility="gone"
-                android:text="前往评价" />
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/btn_state_do"

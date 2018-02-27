@@ -24,6 +24,7 @@ import com.cdkj.myxb.module.api.MyApiServer;
 import com.cdkj.myxb.module.appointment.MyAppointmentActivity;
 import com.cdkj.myxb.module.integral.IntegralMallActivity;
 import com.cdkj.myxb.module.order.MyOrderActivity;
+import com.cdkj.myxb.module.order.ResultsOrderActivity;
 import com.cdkj.myxb.module.user.UserHelper;
 import com.cdkj.myxb.module.user.UserSettingActivity;
 
@@ -69,14 +70,24 @@ public class MyFragment extends BaseLazyFragment {
         mBinding.layoutMy.rowMyOrder.setOnClickListener(view -> {
             MyOrderActivity.open(mActivity);
         });
+        /*普通角色*/
 
+        //成果订单
+        mBinding.layoutMy.rowMyOrder.setOnClickListener(view -> ResultsOrderActivity.open(mActivity) );
         /*积分商场*/
         mBinding.layoutMy.rowIntegral.setOnClickListener(view -> IntegralMallActivity.open(mActivity, mUserInfoMode));
-        mBinding.layoutMyBoos.rowIntegral.setOnClickListener(view -> IntegralMallActivity.open(mActivity, mUserInfoMode));
+
+
+        /*美容院*/
 
         //预约
         mBinding.layoutMyBoos.rowMyAppointment.setOnClickListener(view -> MyAppointmentActivity.open(mActivity));
-
+        //订单
+        mBinding.layoutMyBoos.rowMyOrder.setOnClickListener(view -> MyOrderActivity.open(mActivity));
+        //积分商城
+        mBinding.layoutMyBoos.rowIntegral.setOnClickListener(view -> IntegralMallActivity.open(mActivity, mUserInfoMode));
+        //我的评论
+        mBinding.layoutMyBoos.rowMyComment.setOnClickListener(view -> IntegralMallActivity.open(mActivity, mUserInfoMode));
     }
 
 
@@ -154,7 +165,6 @@ public class MyFragment extends BaseLazyFragment {
         }
 
     }
-
 
 
     /**
