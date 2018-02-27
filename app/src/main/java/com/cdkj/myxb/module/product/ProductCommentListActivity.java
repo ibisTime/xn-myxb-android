@@ -4,23 +4,36 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
 import com.cdkj.baselibrary.interfaces.BaseRefreshCallBack;
 import com.cdkj.baselibrary.interfaces.RefreshHelper;
+import com.cdkj.baselibrary.nets.BaseResponseListCallBack;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
+import com.cdkj.baselibrary.utils.DisplayHelper;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.adapters.CommentListAdapter;
+import com.cdkj.myxb.databinding.LayoutFlexboxBinding;
 import com.cdkj.myxb.databinding.LayoutRecyclerRefreshBinding;
 import com.cdkj.myxb.models.CommentListMode;
+import com.cdkj.myxb.models.UserModel;
 import com.cdkj.myxb.module.api.MyApiServer;
+import com.chad.library.adapter.base.BaseViewHolder;
+import com.google.android.flexbox.FlexboxLayout;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,6 +56,13 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
     private String mType;//评论类型
 
     private LayoutRecyclerRefreshBinding mBinding;
+    private CommentListAdapter commentListAdapter;
+    private LayoutFlexboxBinding mTagLayout;
+    private List<TextView> textViews;
+
+    private String mTagString;//点击的标签文字
+
+    private boolean isShowTagComment;//是否是标签评论
 
 
     /**
@@ -75,8 +95,10 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
             mProductCode = getIntent().getStringExtra(PRODUCTCODE);
             mType = getIntent().getStringExtra(TYPE);
         }
-
+        initCommentListAdapter();
         initRefreshHelper();
+
+        getTagRequest();
 
         mRefreshHelper.onDefaluteMRefresh(true);
 
@@ -97,17 +119,34 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
 
             @Override
             public RecyclerView.Adapter getAdapter(List listData) {
-                return new CommentListAdapter(listData);
+                return commentListAdapter;
             }
 
             @Override
             public void getListDataRequest(int pageindex, int limit, boolean isShowDialog) {
-                getCommentList(pageindex, limit, isShowDialog);
+                if (isShowTagComment) {
+                    getCommentListByTag(mTagString, pageindex, limit, isShowDialog);
+                } else {
+                    getCommentList(pageindex, limit, isShowDialog);
+                }
             }
         });
 
         mRefreshHelper.init(10);
 
+    }
+
+    /**
+     * 获评论适配器
+     *
+     * @param
+     * @return
+     */
+    @NonNull
+    private void initCommentListAdapter() {
+        commentListAdapter = new CommentListAdapter(new ArrayList<>());
+        commentListAdapter.setHeaderAndEmpty(true);
+        commentListAdapter.addHeaderView(getHeaderView());
     }
 
     /**
@@ -148,6 +187,134 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
 
     }
 
+
+    public View getHeaderView() {
+        mTagLayout = DataBindingUtil.inflate(getLayoutInflater(), R.layout.layout_flexbox, null, false);
+
+        return mTagLayout.getRoot();
+    }
+
+
+    /**
+     * 获取评论tag
+     */
+    public void getTagRequest() {
+
+        textViews = new ArrayList<>();
+
+        for (int i = 0; i < 10; i++) {
+            TextView tv = createNewFlexItemTextView("sdf" + i);
+            textViews.add(tv);
+            mTagLayout.flexboxLayout.addView(tv);
+
+        }
+
+//        if (TextUtils.isEmpty(mProductCode) || TextUtils.isEmpty(mType)) {
+//            return;
+//        }
+//
+//        Map<String, String> map = new HashMap<>();
+//
+//        map.put("entityCode", mProductCode);
+//        map.put("kind", mType);
+//
+//        Call call=RetrofitUtils.createApi(MyApiServer.class).getCommentTag("805427",StringUtils.getJsonToString(map));
+//
+//        addCall(call);
+//
+//        call.enqueue(new BaseResponseListCallBack(this) {
+//            @Override
+//            protected void onSuccess(List data, String SucMessage) {
+//
+//
+//
+//            }
+//
+//            @Override
+//            protected void onFinish() {
+//
+//            }
+//        });
+
+
+    }
+
+    /**
+     * 动态创建TextView
+     *
+     * @param
+     * @return
+     */
+    private TextView createNewFlexItemTextView(String str) {
+        final TextView textView = new TextView(this);
+        textView.setGravity(Gravity.CENTER);
+        textView.setText(str);
+        textView.setTextSize(12);
+        textView.setTextColor(ContextCompat.getColor(this, R.color.white));
+        textView.setBackgroundResource(R.drawable.comment_tag_bg);
+        textView.setTag(str);
+
+        textView.setOnClickListener(view -> {
+            isShowTagComment = true;
+            mTagString = textView.getText().toString();
+            mRefreshHelper.onDefaluteMRefresh(true);
+
+            for (TextView textView1 : textViews) {
+                textView1.setBackgroundResource(R.drawable.comment_tag_bg);
+            }
+            textView.setBackgroundResource(R.drawable.comment_tag_bg_click);
+        });
+
+        int padding = DisplayHelper.dip2px(this, 3);
+        int paddingLeftAndRight = DisplayHelper.dip2px(this, 12);
+        ViewCompat.setPaddingRelative(textView, paddingLeftAndRight, padding, paddingLeftAndRight, padding);
+        FlexboxLayout.LayoutParams layoutParams = new FlexboxLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        int margin = DisplayHelper.dip2px(this, 5);
+        int marginTop = DisplayHelper.dip2px(this, 5);
+        layoutParams.setMargins(margin, marginTop, margin, 0);
+        textView.setLayoutParams(layoutParams);
+        return textView;
+    }
+
+
+    private void getCommentListByTag(String tag, int start, int limit, boolean isShowDialog) {
+
+        if (TextUtils.isEmpty(mProductCode) || TextUtils.isEmpty(mType) || TextUtils.isEmpty(tag)) {
+            return;
+        }
+
+        Map<String, String> map = new HashMap<>();
+        map.put("limit", limit + "");
+        map.put("start", start + "");
+        map.put("status", "AB"); //审核通过
+        map.put("type", mType);
+        map.put("entityCode", mProductCode);
+        map.put("keyWord", tag);
+
+        Call call = RetrofitUtils.createApi(MyApiServer.class).getCommentList("805428", StringUtils.getJsonToString(map));
+
+        addCall(call);
+
+        if (isShowDialog) showLoadingDialog();
+
+        call.enqueue(new BaseResponseModelCallBack<ResponseInListModel<CommentListMode>>(this) {
+
+            @Override
+            protected void onSuccess(ResponseInListModel<CommentListMode> data, String SucMessage) {
+                mRefreshHelper.setData(data.getList(), "暂无评论", 0);
+            }
+
+            @Override
+            protected void onFinish() {
+                disMissLoading();
+            }
+        });
+
+    }
+
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -155,4 +322,6 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
             mRefreshHelper.onDestroy();
         }
     }
+
+
 }

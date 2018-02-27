@@ -212,16 +212,21 @@ public class DateUtil {
      * 判断两个date是否是同一天
      *
      * @param date1
-     * @param Date2
+     * @param date2
      * @return
      */
-    public static boolean inSameDay(Date date1, Date Date2) {
+    public static boolean inSameDay(Date date1, Date date2) {
+
+        if(date1==null || date2==null) {
+            return false;
+        }
+
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date1);
         int year1 = calendar.get(Calendar.YEAR);
         int day1 = calendar.get(Calendar.DAY_OF_YEAR);
 
-        calendar.setTime(Date2);
+        calendar.setTime(date2);
         int year2 = calendar.get(Calendar.YEAR);
         int day2 = calendar.get(Calendar.DAY_OF_YEAR);
 

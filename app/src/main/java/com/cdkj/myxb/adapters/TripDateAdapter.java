@@ -21,11 +21,8 @@ import java.util.List;
 public class TripDateAdapter extends BaseQuickAdapter<MouthAppointmentModel, BaseViewHolder> {
 
 
-    private List<MouthAppointmentModel> datetimeModels;
-
     public TripDateAdapter(@Nullable List<MouthAppointmentModel> data) {
         super(R.layout.item_trip_date, data);
-        datetimeModels = new ArrayList<>();
     }
 
 
@@ -38,8 +35,7 @@ public class TripDateAdapter extends BaseQuickAdapter<MouthAppointmentModel, Bas
         }
         viewHolder.setText(R.id.tv_data_sign, DateUtil.format(item.getDate(), "dd"));
 
-        if (isSameDate(item)) {
-            item.setSame(true);
+        if (item.isSame()) {
             viewHolder.setBackgroundRes(R.id.tv_data_sign, R.drawable.trip_date_select);
             viewHolder.setTextColor(R.id.tv_data_sign, ContextCompat.getColor(mContext, R.color.white));
 
@@ -50,41 +46,5 @@ public class TripDateAdapter extends BaseQuickAdapter<MouthAppointmentModel, Bas
 
     }
 
-    public void setCompareData(List<MouthAppointmentModel> das) {
-        if (das == null || das.size() == 0) return;
-        datetimeModels.clear();
-        datetimeModels.addAll(das);
-        notifyDataSetChanged();
-
-    }
-
-
-
-
-    /**
-     * 循环遍历是否是相同日期
-     *
-     * @param posiDate
-     * @return
-     */
-    public boolean isSameDate(MouthAppointmentModel posiDate) {
-        for (MouthAppointmentModel datetimeModel : datetimeModels) {
-            if (datetimeModel == null) {
-                continue;
-            }
-
-            posiDate.setStartDatetime(datetimeModel.getStartDatetime());
-            posiDate.setEndDatetime(datetimeModel.getEndDatetime());
-
-            boolean isSame = DateUtil.inSameDay(posiDate.getDate(), new Date(datetimeModel.getStartDatetime()));
-
-            if (isSame) {
-                posiDate.setOneDayDateTime(datetimeModel.getOneDayDateTime());
-                return true;
-            }
-
-        }
-        return false;
-    }
 
 }

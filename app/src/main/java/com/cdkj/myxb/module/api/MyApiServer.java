@@ -10,6 +10,7 @@ import com.cdkj.myxb.models.BrandProductModel;
 import com.cdkj.myxb.models.CommentCountAndAverage;
 import com.cdkj.myxb.models.CommentItemModel;
 import com.cdkj.myxb.models.CommentListMode;
+import com.cdkj.myxb.models.CommentTagModel;
 import com.cdkj.myxb.models.IntegraProductDetailsModel;
 import com.cdkj.myxb.models.AccountDetailsModel;
 import com.cdkj.myxb.models.AccountListModel;
@@ -33,6 +34,16 @@ import retrofit2.http.POST;
 
 public interface MyApiServer {
 
+    /**
+     * 获取订单
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseListModel<CommentTagModel>> getCommentTag(@Field("code") String code, @Field("json") String json);
 
     /**
      * 获取预定列表

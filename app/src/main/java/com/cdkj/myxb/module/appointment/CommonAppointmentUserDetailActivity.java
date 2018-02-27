@@ -66,6 +66,7 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
 
     private CommentListAdapter mCommentListAdapter;
     private String mType; //预约类型
+    private Date mNowDate;
 
     /**
      * @param context
@@ -155,11 +156,13 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
 
             @Override
             public void OnPreviousClick(Date pDate) {
+                mNowDate=pDate;
                 getAppointmentByMouth(DateUtil.format(pDate, DateUtil.DATE_YMD), true);
             }
 
             @Override
             public void OnNextClick(Date nDate) {
+                mNowDate=nDate;
                 getAppointmentByMouth(DateUtil.format(nDate, DateUtil.DATE_YMD), true);
             }
         });
@@ -382,8 +385,8 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
         call.enqueue(new BaseResponseModelCallBack<String>(this) {
             @Override
             protected void onSuccess(String data, String SucMessage) {
-                Date mNowDate = DateUtil.parse(data, DateUtil.DEFAULT_DATE_FMT);
-                mBinding.tripDate.setDate(mNowDate, true);
+                mNowDate = DateUtil.parse(data, DateUtil.DEFAULT_DATE_FMT);
+                mBinding.tripDate.setmStartDate(mNowDate);
                 getAppointmentByMouth(data, false);
             }
 
@@ -422,31 +425,7 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
         call.enqueue(new BaseResponseListCallBack<MouthAppointmentModel>(this) {
             @Override
             protected void onSuccess(List<MouthAppointmentModel> data, String SucMessage) {
-
-                List<MouthAppointmentModel> appointmentModels = new ArrayList<>();
-
-
-                appointmentModels.addAll(data);
-
-                //找出是相同一天的日期
-                for (MouthAppointmentModel dataAppModel : data) {
-
-                    List<MouthAppointmentModel> appointmentModels2 = new ArrayList<>();
-
-                    for (MouthAppointmentModel appointmentModel : appointmentModels) {
-
-                        if (DateUtil.inSameDay(new Date(dataAppModel.getStartDatetime()), new Date(appointmentModel.getStartDatetime()))) {
-
-                            appointmentModels2.add(appointmentModel);
-
-                        }
-
-                    }
-                    dataAppModel.setOneDayDateTime(appointmentModels2);
-                }
-
-
-                mBinding.tripDate.setCompareData(data);
+                mBinding.tripDate.setDate(mNowDate,data);
             }
 
             @Override

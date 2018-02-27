@@ -179,9 +179,9 @@ public class OrderHelper {
 
         switch (state) {
             case APPOINTMENT_2:
-                return "上门";
+                return "确认上门";
             case APPOINTMENT_4:
-                return "下课";
+                return "确认下课";
         }
 
         return "";
@@ -199,9 +199,6 @@ public class OrderHelper {
     public static boolean canAppointmentComment(AppointmentListModel item) {
         return TextUtils.equals("0", item.getIsComment()) && !TextUtils.equals(item.getStatus(), OrderHelper.APPOINTMENT_1) && TextUtils.equals(item.getStatus(), OrderHelper.APPOINTMENT_2);
     }
-
-
-
 
 
 }

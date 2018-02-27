@@ -5,6 +5,8 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -14,6 +16,8 @@ import com.cdkj.baselibrary.utils.LogUtil;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.DialogTripTimeBinding;
 import com.cdkj.myxb.models.MouthAppointmentModel;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 
 /**
  * 行程显示时间
@@ -26,9 +30,9 @@ public class TripTimeDialog extends Dialog {
 
     private MouthAppointmentModel appointmentDateViewModel;
 
-    public TripTimeDialog(@NonNull Context context,MouthAppointmentModel appointmentDateViewModel) {
+    public TripTimeDialog(@NonNull Context context, MouthAppointmentModel appointmentDateViewModel) {
         super(context, R.style.TipsDialog);
-        this.appointmentDateViewModel=appointmentDateViewModel;
+        this.appointmentDateViewModel = appointmentDateViewModel;
     }
 
     @Override
@@ -50,12 +54,17 @@ public class TripTimeDialog extends Dialog {
     }
 
     private void setShowTime(MouthAppointmentModel appointmentDateViewModel) {
-        if (appointmentDateViewModel == null || mBinding == null) return ;
+        if (appointmentDateViewModel == null || mBinding == null) return;
 
-        mBinding.tvEndTime.setText(DateUtil.formatStringData(appointmentDateViewModel.getEndDatetime(),DateUtil.DEFAULT_DATE_FMT));
-        mBinding.tvStartTime.setText(DateUtil.formatStringData(appointmentDateViewModel.getStartDatetime(),DateUtil.DEFAULT_DATE_FMT));
+        mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        mBinding.recyclerView.setAdapter(new BaseQuickAdapter<MouthAppointmentModel, BaseViewHolder>(R.layout.item_dialog_appointment, appointmentDateViewModel.getOneDayDateTime()) {
+            @Override
+            protected void convert(BaseViewHolder helper, MouthAppointmentModel item) {
+                if (item == null) return;
+                helper.setText(R.id.tv_time, DateUtil.formatStringData(item.getStartDatetime(), DateUtil.DATE_YYMMddHHmm) + " - " + DateUtil.formatStringData(item.getEndDatetime(), DateUtil.DATE_YYMMddHHmm));
 
-        LogUtil.E(appointmentDateViewModel.getOneDayDateTime().size()+"ddddddd");
+            }
+        });
 
     }
 

@@ -82,7 +82,7 @@ public class AppointmentDoActivity extends AbsBaseLoadActivity {
             });
 
         } else if (TextUtils.equals(OrderHelper.APPOINTMENT_4, mState)) {//下课
-            showDoubleWarnListen("确认已上下课？", view -> {
+            showDoubleWarnListen("确认已下课？", view -> {
                 finish();
             }, view -> {
                 sureServicDone();
