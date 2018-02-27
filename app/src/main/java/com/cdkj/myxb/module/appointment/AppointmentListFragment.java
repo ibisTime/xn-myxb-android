@@ -135,7 +135,7 @@ public class AppointmentListFragment extends BaseLazyFragment {
         });
 
 
-        appointmentListAdapter.setOnItemClickListener((adapter, view, position) -> {
+        appointmentListAdapter.setOnItemClickListener((adapter, view, position) -> { //评价
             AppointmentListModel listModel = appointmentListAdapter.getItem(position);
 
             if (listModel == null) return;

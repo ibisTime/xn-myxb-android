@@ -320,20 +320,43 @@
             </LinearLayout>
         </ScrollView>
 
-        <Button
-            android:id="@+id/btn_state_do"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="@dimen/layout_left_interval"
-            android:layout_marginRight="@dimen/layout_right_interval"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/btn_select_common"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:visibility="gone"
-            tools:text="确认收获" />
+            android:orientation="horizontal"
+            android:paddingTop="5dp">
+
+            <Button
+                android:id="@+id/btn_to_comment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/layout_left_interval"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_select_common"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:visibility="gone"
+                tools:text="确认收获" />
+
+            <Button
+                android:id="@+id/btn_state_do"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="@dimen/layout_right_interval"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_select_common"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:visibility="gone"
+                tools:text="确认收获" />
+        </LinearLayout>
+
 
     </LinearLayout>
 </layout>

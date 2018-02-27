@@ -2,6 +2,8 @@ package com.cdkj.myxb.module.order;
 
 import android.text.TextUtils;
 
+import com.cdkj.myxb.models.AppointmentListModel;
+
 /**
  * Created by 李先俊 on 2018/2/23.
  */
@@ -187,6 +189,16 @@ public class OrderHelper {
     }
 
 
+    /**
+     * 预约list 详情呢弄否显示评价
+     * 是否可以进行评价 0 可以评价 (待审核 已排班待上门时不能评价)
+     *
+     * @param item
+     * @return
+     */
+    public static boolean canAppointmentComment(AppointmentListModel item) {
+        return TextUtils.equals("0", item.getIsComment()) && !TextUtils.equals(item.getStatus(), OrderHelper.APPOINTMENT_1) && TextUtils.equals(item.getStatus(), OrderHelper.APPOINTMENT_2);
+    }
 
 
 }

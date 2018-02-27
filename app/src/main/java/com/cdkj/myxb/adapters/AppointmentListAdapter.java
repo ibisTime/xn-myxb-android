@@ -41,22 +41,14 @@ public class AppointmentListAdapter extends BaseQuickAdapter<AppointmentListMode
 
         helper.setText(R.id.tv_state_do, OrderHelper.getAppointmentBtnStateString(item.getStatus()));
 
-        helper.setGone(R.id.lin_buttom, canComment(item) || OrderHelper.canShowAppointmentButton(item.getStatus())); //可以评价或有操作时可以显示
+        helper.setGone(R.id.lin_buttom, OrderHelper.canAppointmentComment(item) || OrderHelper.canShowAppointmentButton(item.getStatus())); //可以评价或有操作时可以显示
         helper.setGone(R.id.tv_state_do, OrderHelper.canShowAppointmentButton(item.getStatus()));
-        helper.setGone(R.id.tv_to_comment, canComment(item));//
+        helper.setGone(R.id.tv_to_comment, OrderHelper.canAppointmentComment(item));//
 
         helper.addOnClickListener(R.id.tv_state_do);
         helper.addOnClickListener(R.id.tv_to_comment);
 
     }
 
-    /**
-     * 是否可以进行评价 0 可以评价 (待审核 已排班待上门时不能评价)
-     *
-     * @param item
-     * @return
-     */
-    private boolean canComment(AppointmentListModel item) {
-        return TextUtils.equals("0", item.getIsComment()) && !TextUtils.equals(item.getStatus(), OrderHelper.APPOINTMENT_1) && TextUtils.equals(item.getStatus(), OrderHelper.APPOINTMENT_2);
-    }
+
 }

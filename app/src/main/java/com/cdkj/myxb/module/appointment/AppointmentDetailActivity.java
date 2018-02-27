@@ -33,6 +33,8 @@ public class AppointmentDetailActivity extends AbsBaseLoadActivity {
     private ActivityAppointmentDetailsBinding mBinding;
     private String mCode;
 
+    private AppointmentListModel mAppmModel;
+
     /**
      * @param context
      */
@@ -55,10 +57,32 @@ public class AppointmentDetailActivity extends AbsBaseLoadActivity {
     @Override
     public void afterCreate(Bundle savedInstanceState) {
 
-        if(getIntent()!=null){
-            mCode=getIntent().getStringExtra("code");
+        if (getIntent() != null) {
+            mCode = getIntent().getStringExtra("code");
         }
 
+        mBaseBinding.titleView.setMidTitle("美导详情");
+
+        initListener();
+
+    }
+
+    private void initListener() {
+
+        mBinding.btnStateDo.setOnClickListener(view -> { //上门 下课
+            if (mAppmModel == null) return;
+            AppointmentDoActivity.open(this, mAppmModel.getCode(), mAppmModel.getStatus());
+        });
+        mBinding.btnToComment.setOnClickListener(view -> {  //评价
+            if (mAppmModel == null) return;
+            AppointmentDetailActivity.open(this, mAppmModel.getCode());
+        });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         getAppointmentDetail();
     }
 
@@ -84,6 +108,7 @@ public class AppointmentDetailActivity extends AbsBaseLoadActivity {
         call.enqueue(new BaseResponseModelCallBack<AppointmentListModel>(this) {
             @Override
             protected void onSuccess(AppointmentListModel data, String SucMessage) {
+                mAppmModel = data;
                 sheShowData(data);
             }
 
@@ -108,5 +133,11 @@ public class AppointmentDetailActivity extends AbsBaseLoadActivity {
         mBinding.tvAppioDaysPlan.setText(data.getAppointDays() + "天");
         mBinding.tvState.setText(OrderHelper.getAppoitmentState(data.getStatus()));
 
+        mBinding.btnStateDo.setVisibility(OrderHelper.canShowAppointmentButton(data.getStatus()) ? View.VISIBLE : View.GONE);
+        mBinding.btnToComment.setVisibility(OrderHelper.canAppointmentComment(data) ? View.VISIBLE : View.GONE);
+
+
     }
+
+
 }
