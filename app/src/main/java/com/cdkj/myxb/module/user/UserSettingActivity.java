@@ -8,15 +8,25 @@ import android.view.View;
 
 import com.cdkj.baselibrary.activitys.FindPwdActivity;
 import com.cdkj.baselibrary.activitys.UpdatePhoneActivity;
+import com.cdkj.baselibrary.api.BaseApiServer;
 import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
 import com.cdkj.baselibrary.dialog.CommonDialog;
 import com.cdkj.baselibrary.model.eventmodels.EventFinishAll;
+import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
+import com.cdkj.baselibrary.nets.RetrofitUtils;
+import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.ActivityUserSettingBinding;
 import com.cdkj.myxb.module.common.address.AddressListActivity;
+import com.cdkj.myxb.weight.dialog.LogoSelectDialog;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import retrofit2.Call;
 
 /**
  * 用户设置
@@ -67,11 +77,12 @@ public class UserSettingActivity extends AbsBaseLoadActivity {
         });
 
         mBinding.rowUpdatePassword.setOnClickListener(view -> {
-            FindPwdActivity.open(this,SPUtilHelpr.getUserPhoneNum());
+            FindPwdActivity.open(this, SPUtilHelpr.getUserPhoneNum());
         });
 
         mBinding.rowUpdatePhone.setOnClickListener(view -> UpdatePhoneActivity.open(this));
-
+        mBinding.linLogoUpdate.setOnClickListener(view -> new LogoSelectDialog(this, null).show());
+        getLogoList();
     }
 
     private void logOut() {
@@ -80,4 +91,33 @@ public class UserSettingActivity extends AbsBaseLoadActivity {
         EventBus.getDefault().post(new EventFinishAll()); //结束所有界面
         finish();
     }
+
+    public void getLogoList(){
+
+        Map<String,String> map=new HashMap<>();
+
+        map.put("kind","T");
+        map.put("level","1");
+        map.put("kind","T");
+        map.put("limit","10");
+        map.put("start","1");
+
+        Call call= RetrofitUtils.createApi(BaseApiServer.class).stringRequest("805443", StringUtils.getJsonToString(map));
+
+        addCall(call);
+
+        call.enqueue(new BaseResponseModelCallBack(this) {
+            @Override
+            protected void onSuccess(Object data, String SucMessage) {
+
+            }
+
+            @Override
+            protected void onFinish() {
+
+            }
+        });
+
+    }
+
 }

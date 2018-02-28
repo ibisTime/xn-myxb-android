@@ -36,7 +36,7 @@ public class TripListAdapter extends BaseQuickAdapter<TripListModel, BaseViewHol
 
         Date date = new Date(item.getStartDatetime());
 
-        helper.setText(R.id.tv_week, DateUtil.getWeekOfDate(date));
+//        helper.setText(R.id.tv_week, DateUtil.getWeekOfDate(date));
         helper.setText(R.id.tv_date, DateUtil.format(date, DateUtil.DATE_YMD));
         helper.setText(R.id.tv_minutes, DateUtil.formatStringData(item.getStartDatetime(), "HH:mm") + " - " + DateUtil.formatStringData(item.getEndDatetime(), "HH:mm"));
 
