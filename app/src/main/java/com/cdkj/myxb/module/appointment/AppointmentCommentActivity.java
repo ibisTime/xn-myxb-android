@@ -50,7 +50,7 @@ public class AppointmentCommentActivity extends AbsBaseLoadActivity {
     private String mOrderCode;
     private CommentItemAdapter commentItemAdapter;
 
-    private String mType;
+    private String mType;   //用户类型
     private final static String TYPE = "state";
     private final static String ORDERCODE = "ordercode";
 

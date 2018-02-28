@@ -22,10 +22,12 @@ import com.cdkj.myxb.databinding.FragmentMyBinding;
 import com.cdkj.myxb.models.UserModel;
 import com.cdkj.myxb.module.api.MyApiServer;
 import com.cdkj.myxb.module.appointment.MyAppointmentActivity;
+import com.cdkj.myxb.module.common.CallPhoneActivity;
 import com.cdkj.myxb.module.integral.IntegralMallActivity;
 import com.cdkj.myxb.module.order.MyOrderActivity;
 import com.cdkj.myxb.module.order.ResultsOrderActivity;
 import com.cdkj.myxb.module.user.ExpertRankListActivity;
+import com.cdkj.myxb.module.user.MyCommentsAllActivity;
 import com.cdkj.myxb.module.user.TripListActivity;
 import com.cdkj.myxb.module.user.UserHelper;
 import com.cdkj.myxb.module.user.UserInfoUpdateActivity;
@@ -103,6 +105,17 @@ public class MyFragment extends BaseLazyFragment {
         mBinding.layoutMyBoos.rowIntegral.setOnClickListener(view -> IntegralMallActivity.open(mActivity, mUserInfoMode));
         //我的评论
         mBinding.layoutMyBoos.rowMyComment.setOnClickListener(view -> IntegralMallActivity.open(mActivity, mUserInfoMode));
+        //我的评论
+        mBinding.layoutMyBoos.rowMyComment.setOnClickListener(view -> MyCommentsAllActivity.open(mActivity));
+        //团队顾问
+
+        mBinding.layoutMyBoos.rowRowTeam.setOnClickListener(view -> {
+
+            if (mUserInfoMode == null || mUserInfoMode.getAdviserUser() == null) return;
+
+            CallPhoneActivity.open(mActivity, mUserInfoMode.getAdviserUser().getMobile());
+
+        });
     }
 
 
@@ -162,7 +175,12 @@ public class MyFragment extends BaseLazyFragment {
 
         mBinding.headerLayout.tvUserName.setText(mUserInfoMode.getRealName());
 
-        mBinding.headerLayout.tvUserType.setText(getUserTypeByKind(mUserInfoMode.getKind()) + " . " + mUserInfoMode.getSpeciality());
+        if (TextUtils.isEmpty(mUserInfoMode.getSpeciality())) {
+            mBinding.headerLayout.tvUserType.setText(getUserTypeByKind(mUserInfoMode.getKind()));
+        } else {
+            mBinding.headerLayout.tvUserType.setText(getUserTypeByKind(mUserInfoMode.getKind()) + " . " + mUserInfoMode.getSpeciality());
+        }
+
 
         if (mUserInfoMode.isMan()) {
             mBinding.headerLayout.imgGender.setImageResource(R.drawable.man_2);

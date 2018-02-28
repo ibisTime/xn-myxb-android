@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import java.math.BigDecimal;
 
 /**
+ *
  * Created by 李先俊 on 2018/2/22.
  */
 
@@ -56,6 +57,16 @@ public class UserModel implements Parcelable {
     private String gender;
     private String introduce;
     private String slogan;
+
+    private AdviserUserModel adviserUser;
+
+    public AdviserUserModel getAdviserUser() {
+        return adviserUser;
+    }
+
+    public void setAdviserUser(AdviserUserModel adviserUser) {
+        this.adviserUser = adviserUser;
+    }
 
     public String getSlogan() {
         return slogan;

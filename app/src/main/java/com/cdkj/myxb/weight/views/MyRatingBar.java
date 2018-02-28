@@ -189,6 +189,9 @@ public class MyRatingBar extends LinearLayout {
         return imageView;
     }
     public void setStar2(float starCount) {
+        if(starCount<=0){
+            return;
+        }
 
         int fint = (int) starCount;
         BigDecimal b1 = new BigDecimal(Float.toString(starCount));
@@ -223,6 +226,10 @@ public class MyRatingBar extends LinearLayout {
 
     }
     public void setStar(float starCount) {
+
+        if(starCount<=0){
+            return;
+        }
 
         int fint = (int) starCount;
         BigDecimal b1 = new BigDecimal(Float.toString(starCount));

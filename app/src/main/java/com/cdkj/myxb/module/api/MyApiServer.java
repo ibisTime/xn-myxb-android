@@ -4,18 +4,19 @@ import com.cdkj.baselibrary.api.BaseResponseListModel;
 import com.cdkj.baselibrary.api.BaseResponseModel;
 import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.model.CodeModel;
+import com.cdkj.myxb.models.AccountDetailsModel;
+import com.cdkj.myxb.models.AccountListModel;
+import com.cdkj.myxb.models.AddressModel;
 import com.cdkj.myxb.models.AppointmentListModel;
 import com.cdkj.myxb.models.BrandListModel;
 import com.cdkj.myxb.models.BrandProductModel;
+import com.cdkj.myxb.models.ClassStyleModel;
 import com.cdkj.myxb.models.CommentCountAndAverage;
 import com.cdkj.myxb.models.CommentItemModel;
 import com.cdkj.myxb.models.CommentListMode;
 import com.cdkj.myxb.models.CommentTagModel;
 import com.cdkj.myxb.models.ExpertRankListModel;
 import com.cdkj.myxb.models.IntegraProductDetailsModel;
-import com.cdkj.myxb.models.AccountDetailsModel;
-import com.cdkj.myxb.models.AccountListModel;
-import com.cdkj.myxb.models.AddressModel;
 import com.cdkj.myxb.models.IntegralListModel;
 import com.cdkj.myxb.models.IntegralModel;
 import com.cdkj.myxb.models.IntegralOrderListModel;
@@ -23,6 +24,7 @@ import com.cdkj.myxb.models.MouthAppointmentModel;
 import com.cdkj.myxb.models.MsgListModel;
 import com.cdkj.myxb.models.OrderListModel;
 import com.cdkj.myxb.models.TripListModel;
+import com.cdkj.myxb.models.UpdateUserInfo;
 import com.cdkj.myxb.models.UserModel;
 
 import retrofit2.Call;
@@ -35,6 +37,32 @@ import retrofit2.http.POST;
  */
 
 public interface MyApiServer {
+
+    /**
+     * 获取授课风格列表
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<UpdateUserInfo>> getUpdateUserInfo(@Field("code") String code, @Field("json") String json);
+
+
+
+    /**
+     * 获取授课风格列表
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseListModel<ClassStyleModel>> getClassStyleList(@Field("code") String code, @Field("json") String json);
+
+
     /**
      * 获取专家排名列表
      *

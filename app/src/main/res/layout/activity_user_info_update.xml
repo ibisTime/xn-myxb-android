@@ -22,6 +22,7 @@
                 android:textSize="14sp" />
 
             <EditText
+                android:id="@+id/edit_name"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="@dimen/layout_right_interval"
@@ -37,9 +38,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp">
 
             <TextView
                 android:layout_width="80dp"
@@ -51,8 +54,9 @@
                 android:textSize="14sp" />
 
             <EditText
+                android:id="@+id/edit_speciality"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/layout_right_interval"
                 android:layout_weight="1"
                 android:background="@null"
@@ -65,35 +69,69 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/lin_style"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp">
 
             <TextView
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="15dp"
+                android:text="广告语"
+                android:textColor="@color/app_txt_black"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/edit_slogan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/layout_right_interval"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请填写广告语"
+                android:textColor="@color/app_txt_black"
+                android:textColorHint="@color/app_txt_gray"
+                android:textSize="14sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@color/white"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
                 android:text="授课风格"
                 android:textColor="@color/app_txt_black"
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/tv_style"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@null"
                 android:gravity="center_vertical"
                 android:hint="请选择授课风格"
+                android:singleLine="false"
+                android:textColor="@color/app_txt_black"
                 android:textColorHint="@color/app_txt_gray"
                 android:textSize="14sp" />
 
             <ImageView
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                android:layout_gravity="center_vertical"
                 android:layout_marginRight="@dimen/layout_right_interval"
                 android:src="@drawable/more_right" />
 
@@ -118,6 +156,7 @@
                 android:textSize="14sp" />
 
             <EditText
+                android:id="@+id/edit_user_info"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
