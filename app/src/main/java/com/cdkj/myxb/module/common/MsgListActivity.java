@@ -2,21 +2,15 @@ package com.cdkj.myxb.module.common;
 
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import com.cdkj.baselibrary.appmanager.MyCdConfig;
-import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
-import com.cdkj.baselibrary.interfaces.BaseRefreshCallBack;
-import com.cdkj.baselibrary.interfaces.RefreshHelper;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.DateUtil;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
-import com.cdkj.myxb.databinding.LayoutRecyclerRefreshBinding;
 import com.cdkj.myxb.models.MsgListModel;
 import com.cdkj.myxb.module.api.MyApiServer;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -33,12 +27,8 @@ import retrofit2.Call;
  * Created by cdkj on 2017/8/9.
  */
 
-public class MsgListActivity extends AbsBaseLoadActivity {
+public class MsgListActivity extends AbsRefreshListActivity {
 
-
-    private RefreshHelper mRefreshHelper;
-
-    private LayoutRecyclerRefreshBinding mBinding;
 
 
     /**
@@ -54,8 +44,8 @@ public class MsgListActivity extends AbsBaseLoadActivity {
         context.startActivity(intent);
     }
 
-
-    public BaseQuickAdapter getAdapter(List<MsgListModel.ListBean> listData) {
+    @Override
+    public RecyclerView.Adapter getListAdapter(List listData) {
         return new BaseQuickAdapter<MsgListModel.ListBean, BaseViewHolder>(R.layout.item_msg, listData) {
             @Override
             protected void convert(BaseViewHolder helper, MsgListModel.ListBean item) {
@@ -69,8 +59,8 @@ public class MsgListActivity extends AbsBaseLoadActivity {
         };
     }
 
-    public void getMsgListRequest(int pageindex, int limit, boolean canShowDialog) {
-
+    @Override
+    public void getListRequest(int pageindex, int limit, boolean isShowDialog) {
 
         Map<String, String> map = new HashMap<>();
         map.put("channelType", "4");
@@ -86,7 +76,7 @@ public class MsgListActivity extends AbsBaseLoadActivity {
 
         addCall(call);
 
-        if (canShowDialog) showLoadingDialog();
+        if (isShowDialog) showLoadingDialog();
 
         call.enqueue(new BaseResponseModelCallBack<MsgListModel>(this) {
             @Override
@@ -112,55 +102,14 @@ public class MsgListActivity extends AbsBaseLoadActivity {
         });
     }
 
-
-    @Override
-    public View addMainView() {
-        mBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.layout_recycler_refresh, null, false);
-        return mBinding.getRoot();
-    }
-
     @Override
     public void afterCreate(Bundle savedInstanceState) {
         mBaseBinding.titleView.setMidTitle(getString(R.string.center_msg));
 
-        initRefreshHelper();
+        initRefreshHelper(10);
 
         mRefreshHelper.onDefaluteMRefresh(true);
     }
 
-    private void initRefreshHelper() {
 
-        mRefreshHelper = new RefreshHelper(this, new BaseRefreshCallBack(this) {
-            @Override
-            public View getRefreshLayout() {
-                return mBinding.refreshLayout;
-            }
-
-            @Override
-            public RecyclerView getRecyclerView() {
-                return mBinding.recyclerView;
-            }
-
-            @Override
-            public RecyclerView.Adapter getAdapter(List listData) {
-                return MsgListActivity.this.getAdapter(listData);
-            }
-
-            @Override
-            public void getListDataRequest(int pageindex, int limit, boolean isShowDialog) {
-                getMsgListRequest(pageindex, limit, isShowDialog);
-            }
-        });
-
-        mRefreshHelper.init(10);
-
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (mRefreshHelper != null) {
-            mRefreshHelper.onDestroy();
-        }
-    }
 }

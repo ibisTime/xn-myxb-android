@@ -81,7 +81,6 @@
                     android:hint="请填写预约天数"
                     android:inputType="number"
                     android:maxLength="5"
-                    android:text="1"
                     android:textColor="@color/app_txt_black"
                     android:textColorHint="@color/app_txt_gray"
                     android:textSize="14sp" />
@@ -104,7 +103,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@color/white"
                 android:gravity="top"
-                android:hint="请填写预约说明"
+                android:hint="请填写预约说明（选填）"
                 android:paddingLeft="@dimen/layout_left_interval"
                 android:paddingRight="@dimen/layout_right_interval"
                 android:paddingTop="15dp"

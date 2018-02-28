@@ -9,10 +9,6 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.cdkj.baselibrary.api.ResponseInListModel;
-import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
-import com.cdkj.baselibrary.databinding.LayoutCommonRecyclerRefreshBinding;
-import com.cdkj.baselibrary.interfaces.BaseRefreshCallBack;
-import com.cdkj.baselibrary.interfaces.RefreshHelper;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
@@ -20,6 +16,7 @@ import com.cdkj.myxb.R;
 import com.cdkj.myxb.adapters.CommonAppointmentListAdapter;
 import com.cdkj.myxb.models.UserModel;
 import com.cdkj.myxb.module.api.MyApiServer;
+import com.cdkj.myxb.module.common.AbsRefreshListActivity;
 import com.cdkj.myxb.module.user.UserHelper;
 
 import java.util.List;
@@ -32,12 +29,7 @@ import retrofit2.Call;
  * Created by cdkj on 2018/2/9.
  */
 
-public class CommonAppointmentListActivity extends AbsBaseLoadActivity {
-
-
-    private RefreshHelper mRefreshHelper;
-
-    private LayoutCommonRecyclerRefreshBinding mBinding;
+public class CommonAppointmentListActivity extends AbsRefreshListActivity {
 
     public static final String INTENTTYPE = "type";
 
@@ -57,71 +49,20 @@ public class CommonAppointmentListActivity extends AbsBaseLoadActivity {
         context.startActivity(intent);
     }
 
-
     @Override
-    public View addMainView() {
-        mBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.layout_common_recycler_refresh, null, false);
-        return mBinding.getRoot();
-    }
+    public RecyclerView.Adapter getListAdapter(List listData) {
+        CommonAppointmentListAdapter shopperListAdapter = new CommonAppointmentListAdapter(listData);
+        shopperListAdapter.setOnItemClickListener((adapter, view, position) -> {
 
-    @Override
-    public void topTitleViewRightClick() {
-        AppointmentSearchActivity.open(this, mType);
-    }
+            if (shopperListAdapter.getItem(position) == null) return;
 
-    @Override
-    public void afterCreate(Bundle savedInstanceState) {
-
-        if (getIntent() != null) {
-            mType = getIntent().getStringExtra(INTENTTYPE);
-        }
-
-        mBaseBinding.titleView.setMidTitle(UserHelper.getAppointmentTypeByState(mType));
-
-        mBaseBinding.titleView.setRightImg(R.drawable.search_waite);
-
-        initRefresh();
-
-        mRefreshHelper.onDefaluteMRefresh(true);
-
-    }
-
-    private void initRefresh() {
-        mRefreshHelper = new RefreshHelper(this, new BaseRefreshCallBack(this) {
-            @Override
-            public View getRefreshLayout() {
-                return mBinding.refreshLayout;
-            }
-
-            @Override
-            public RecyclerView getRecyclerView() {
-                return mBinding.rv;
-            }
-
-            @Override
-            public RecyclerView.Adapter getAdapter(List listData) {
-                CommonAppointmentListAdapter shopperListAdapter = new CommonAppointmentListAdapter(listData);
-                shopperListAdapter.setOnItemClickListener((adapter, view, position) -> {
-
-                    if (shopperListAdapter.getItem(position) == null) return;
-
-                    CommonAppointmentUserDetailActivity.open(CommonAppointmentListActivity.this, shopperListAdapter.getItem(position).getUserId(), mType);
-                });
-                return shopperListAdapter;
-            }
-
-            @Override
-            public void getListDataRequest(int pageindex, int limit, boolean isShowDialog) {
-                getShopperListRequest(pageindex, limit, isShowDialog);
-            }
+            CommonAppointmentUserDetailActivity.open(CommonAppointmentListActivity.this, shopperListAdapter.getItem(position).getUserId(), mType);
         });
-
-        mRefreshHelper.init(10);
+        return shopperListAdapter;
     }
 
-
-    public void getShopperListRequest(int pageindex, int limit, boolean isShowDialog) {
-
+    @Override
+    public void getListRequest(int pageindex, int limit, boolean isShowDialog) {
         if (TextUtils.isEmpty(mType)) return;
 
         Map map = RetrofitUtils.getRequestMap();
@@ -148,6 +89,27 @@ public class CommonAppointmentListActivity extends AbsBaseLoadActivity {
                 disMissLoading();
             }
         });
+    }
+
+    @Override
+    public void topTitleViewRightClick() {
+        AppointmentSearchActivity.open(this, mType);
+    }
+
+    @Override
+    public void afterCreate(Bundle savedInstanceState) {
+
+        if (getIntent() != null) {
+            mType = getIntent().getStringExtra(INTENTTYPE);
+        }
+
+        mBaseBinding.titleView.setMidTitle(UserHelper.getAppointmentTypeByState(mType));
+
+        mBaseBinding.titleView.setRightImg(R.drawable.search_waite);
+
+        initRefreshHelper(10);
+
+        mRefreshHelper.onDefaluteMRefresh(true);
 
     }
 

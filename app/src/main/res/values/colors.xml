@@ -18,6 +18,7 @@
     <color name="ratingbar_color">#ffbe00</color>
 
     <color name="address_select">#48b0fb</color>
+    <color name="comment_tag">#999999</color>
 
 
 </resources>

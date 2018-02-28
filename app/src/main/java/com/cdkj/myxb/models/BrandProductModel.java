@@ -41,7 +41,7 @@ public class BrandProductModel implements Parcelable {
     private String updater;
     private String updateDatetime;
     private String remark;
-    private String soldOutCount;
+    private int soldOutCount;
     private String mobile;
 
     public String getMobile() {
@@ -52,11 +52,11 @@ public class BrandProductModel implements Parcelable {
         this.mobile = mobile;
     }
 
-    public String getSoldOutCount() {
+    public int getSoldOutCount() {
         return soldOutCount;
     }
 
-    public void setSoldOutCount(String soldOutCount) {
+    public void setSoldOutCount(int soldOutCount) {
         this.soldOutCount = soldOutCount;
     }
 
@@ -187,7 +187,7 @@ public class BrandProductModel implements Parcelable {
         dest.writeString(this.updater);
         dest.writeString(this.updateDatetime);
         dest.writeString(this.remark);
-        dest.writeString(this.soldOutCount);
+        dest.writeInt(this.soldOutCount);
         dest.writeString(this.mobile);
     }
 
@@ -205,7 +205,7 @@ public class BrandProductModel implements Parcelable {
         this.updater = in.readString();
         this.updateDatetime = in.readString();
         this.remark = in.readString();
-        this.soldOutCount = in.readString();
+        this.soldOutCount = in.readInt();
         this.mobile = in.readString();
     }
 

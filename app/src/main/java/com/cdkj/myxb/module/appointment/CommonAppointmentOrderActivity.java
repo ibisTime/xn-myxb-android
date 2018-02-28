@@ -51,13 +51,13 @@ public class CommonAppointmentOrderActivity extends AbsBaseLoadActivity {
      * @param context
      * @param shopperId 美导Id
      */
-    public static void open(Context context, String shopperId,String title) {
+    public static void open(Context context, String shopperId,String type) {
         if (context == null) {
             return;
         }
         Intent intent = new Intent(context, CommonAppointmentOrderActivity.class);
         intent.putExtra(SHOPPERID, shopperId);
-        intent.putExtra(INTENTTYPE, title);
+        intent.putExtra(INTENTTYPE, type);
         context.startActivity(intent);
     }
 
@@ -101,10 +101,6 @@ public class CommonAppointmentOrderActivity extends AbsBaseLoadActivity {
             UITipDialog.showInfo(this, "请填写数量");
             return;
         }
-        if (TextUtils.isEmpty(mBinding.editApplyNote.getText().toString())) {
-            UITipDialog.showInfo(this, "请填写预约说明");
-            return;
-        }
 
         if (TextUtils.isEmpty(mShopperId)) {
             return;
@@ -129,8 +125,10 @@ public class CommonAppointmentOrderActivity extends AbsBaseLoadActivity {
             @Override
             protected void onSuccess(CodeModel data, String SucMessage) {
                 if (!TextUtils.isEmpty(data.getCode())) {
-                    MyAppointmentActivity.open(CommonAppointmentOrderActivity.this);
-                    finish();
+                    UITipDialog.showSuccess(CommonAppointmentOrderActivity.this,"预约成功",dialogInterface -> {
+                        MyAppointmentActivity.open(CommonAppointmentOrderActivity.this,mType);
+                        finish();
+                    });
                 }
             }
 

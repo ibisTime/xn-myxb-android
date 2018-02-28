@@ -1,31 +1,25 @@
 package com.cdkj.myxb.module.integral.order;
 
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
-import com.cdkj.baselibrary.base.BaseLazyFragment;
-import com.cdkj.baselibrary.interfaces.BaseRefreshCallBack;
-import com.cdkj.baselibrary.interfaces.RefreshHelper;
-import com.cdkj.baselibrary.nets.BaseResponseListCallBack;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.adapters.IntegralOrderListAdapter;
-import com.cdkj.myxb.databinding.LayoutRecyclerRefreshBinding;
 import com.cdkj.myxb.models.IntegralOrderCommentsSucc;
 import com.cdkj.myxb.models.IntegralOrderListModel;
 import com.cdkj.myxb.models.IntegralOrderSureGetSucc;
 import com.cdkj.myxb.module.api.MyApiServer;
+import com.cdkj.myxb.module.common.AbsRefreshListFragment;
 import com.cdkj.myxb.module.integral.IntegralOrderCommentActivity;
 import com.cdkj.myxb.module.order.OrderHelper;
 
@@ -42,12 +36,8 @@ import retrofit2.Call;
  * Created by cdkj on 2018/2/23.
  */
 
-public class IntegralOrderListFragment extends BaseLazyFragment {
+public class IntegralOrderListFragment extends AbsRefreshListFragment {
 
-
-    private LayoutRecyclerRefreshBinding mBinding;
-
-    private RefreshHelper mRefreshHelper;
 
     private static final String ORDERSTATE = "state";
     private static final String ISFIRSTREQUEST = "isFirstRequest";
@@ -68,60 +58,22 @@ public class IntegralOrderListFragment extends BaseLazyFragment {
         return fragment;
     }
 
-
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.layout_recycler_refresh, null, false);
-
+    protected void afterCreate(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (getArguments() != null) {
             mOrderState = getArguments().getString(ORDERSTATE);
 
         }
 
-        initRefreshHelper();
+        initRefreshHelper(10);
+
         if (getArguments() != null && getArguments().getBoolean(ISFIRSTREQUEST)) {
             mRefreshHelper.onDefaluteMRefresh(true);
         }
-        return mBinding.getRoot();
     }
 
-    private void initRefreshHelper() {
-        mRefreshHelper = new RefreshHelper(mActivity, new BaseRefreshCallBack(mActivity) {
-            @Override
-            public View getRefreshLayout() {
-                return mBinding.refreshLayout;
-            }
-
-            @Override
-            public RecyclerView getRecyclerView() {
-                return mBinding.recyclerView;
-            }
-
-            @Override
-            public RecyclerView.Adapter getAdapter(List listData) {
-                return getIntegralOrderListAdapter(listData);
-            }
-
-            @Override
-            public void getListDataRequest(int pageindex, int limit, boolean isShowDialog) {
-                getOrderListRequest(pageindex, limit, isShowDialog);
-            }
-        });
-
-        mRefreshHelper.init(10);
-    }
-
-    /**
-     * 获取数据适配器
-     *
-     * @param listData
-     * @return
-     */
-    @NonNull
-    private IntegralOrderListAdapter getIntegralOrderListAdapter(List listData) {
-
+    @Override
+    public RecyclerView.Adapter getListAdapter(List listData) {
         IntegralOrderListAdapter integralOrderListAdapter = new IntegralOrderListAdapter(listData);
 
         integralOrderListAdapter.setOnItemClickListener((adapter, view, position) -> {
@@ -153,11 +105,8 @@ public class IntegralOrderListFragment extends BaseLazyFragment {
         return integralOrderListAdapter;
     }
 
-    /**
-     *
-     */
-    public void getOrderListRequest(int pageindex, int limit, boolean isShowDialog) {
-
+    @Override
+    public void getListRequest(int pageindex, int limit, boolean isShowDialog) {
         Map<String, String> map = new HashMap<>();
 
         map.put("applyUser", SPUtilHelpr.getUserId());
@@ -185,6 +134,7 @@ public class IntegralOrderListFragment extends BaseLazyFragment {
         });
 
     }
+
 
     @Subscribe
     public void commentSucc(IntegralOrderCommentsSucc da) {

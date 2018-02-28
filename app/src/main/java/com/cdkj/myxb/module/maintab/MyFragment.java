@@ -25,7 +25,10 @@ import com.cdkj.myxb.module.appointment.MyAppointmentActivity;
 import com.cdkj.myxb.module.integral.IntegralMallActivity;
 import com.cdkj.myxb.module.order.MyOrderActivity;
 import com.cdkj.myxb.module.order.ResultsOrderActivity;
+import com.cdkj.myxb.module.user.ExpertRankListActivity;
+import com.cdkj.myxb.module.user.TripListActivity;
 import com.cdkj.myxb.module.user.UserHelper;
+import com.cdkj.myxb.module.user.UserInfoUpdateActivity;
 import com.cdkj.myxb.module.user.UserSettingActivity;
 
 import java.util.HashMap;
@@ -73,15 +76,27 @@ public class MyFragment extends BaseLazyFragment {
         /*普通角色*/
 
         //成果订单
-        mBinding.layoutMy.rowMyOrder.setOnClickListener(view -> ResultsOrderActivity.open(mActivity) );
-        /*积分商场*/
+        mBinding.layoutMy.rowMyOrder.setOnClickListener(view -> ResultsOrderActivity.open(mActivity));
+        //积分商场
         mBinding.layoutMy.rowIntegral.setOnClickListener(view -> IntegralMallActivity.open(mActivity, mUserInfoMode));
+
+        //用户资料
+        mBinding.layoutMy.rowUserInfo.setOnClickListener(view -> UserInfoUpdateActivity.open(mActivity));
+
+        //行程列表
+        mBinding.layoutMy.rowTrip.setOnClickListener(view -> TripListActivity.open(mActivity));
+
+        //我的排名
+        mBinding.layoutMy.rowMyRank.setOnClickListener(view -> ExpertRankListActivity.open(mActivity));
+
+
+
 
 
         /*美容院*/
 
         //预约
-        mBinding.layoutMyBoos.rowMyAppointment.setOnClickListener(view -> MyAppointmentActivity.open(mActivity));
+        mBinding.layoutMyBoos.rowMyAppointment.setOnClickListener(view -> MyAppointmentActivity.open(mActivity, UserHelper.L));
         //订单
         mBinding.layoutMyBoos.rowMyOrder.setOnClickListener(view -> MyOrderActivity.open(mActivity));
         //积分商城
@@ -155,15 +170,28 @@ public class MyFragment extends BaseLazyFragment {
             mBinding.headerLayout.imgGender.setImageResource(R.drawable.women_2);
         }
 
-        //根据用户类型显示相应布局
-        if (TextUtils.equals(mUserInfoMode.getKind(), UserHelper.C)) {
+        setShowLayoutByType();
+
+
+    }
+
+    //根据用户类型显示相应布局
+    private void setShowLayoutByType() {
+
+        if (TextUtils.equals(mUserInfoMode.getKind(), UserHelper.C)) {          //美容院
             mBinding.layoutMyBoos.linBoos.setVisibility(View.VISIBLE);
             mBinding.layoutMy.linMy.setVisibility(View.GONE);
         } else {
             mBinding.layoutMyBoos.linBoos.setVisibility(View.GONE);
             mBinding.layoutMy.linMy.setVisibility(View.VISIBLE);
-        }
 
+            if (TextUtils.equals(mUserInfoMode.getKind(), UserHelper.S)) {     //专家显示排名
+                mBinding.layoutMy.rowMyRank.setVisibility(View.VISIBLE);
+            } else {
+                mBinding.layoutMy.rowMyRank.setVisibility(View.GONE);
+            }
+
+        }
     }
 
 

@@ -2,10 +2,13 @@ package com.cdkj.myxb.module.user;
 
 import android.content.Context;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;
 
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
+import com.cdkj.myxb.R;
+import com.cdkj.myxb.databinding.ActivityUserInfoUpdateBinding;
 
 /**
  * 用户资料修改
@@ -14,6 +17,7 @@ import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
 
 public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
 
+    private ActivityUserInfoUpdateBinding mBinding;
 
 
     public static void open(Context context) {
@@ -27,7 +31,8 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
 
     @Override
     public View addMainView() {
-        return null;
+        mBinding= DataBindingUtil.inflate(getLayoutInflater(), R.layout.activity_user_info_update, null, false);
+        return mBinding.getRoot();
     }
 
     @Override

@@ -11,6 +11,9 @@ import com.cdkj.myxb.models.BrandProductModel;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 /**
@@ -39,4 +42,12 @@ public class BrandListAdapter extends BaseQuickAdapter<BrandProductModel, BaseVi
 
 
     }
+
+    public static String getShowDiscount(BigDecimal discount) {
+        if (discount == null) return "0";
+        double zhek = (discount.doubleValue() * 10);
+        NumberFormat nf = new DecimalFormat("#.##");
+        return nf.format(zhek);
+    }
+
 }

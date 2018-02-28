@@ -21,12 +21,14 @@
             <include
                 android:id="@+id/layout_my"
                 layout="@layout/layout_my"
+                android:visibility="gone"
               />
 
             <include
                 android:id="@+id/layout_my_boos"
                 layout="@layout/layout_mypage_boos"
-                android:visibility="gone" />
+                android:visibility="gone"
+                />
 
         </LinearLayout>
 

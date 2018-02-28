@@ -38,6 +38,7 @@ public class AppointmentListAdapter extends BaseQuickAdapter<AppointmentListMode
         helper.setText(R.id.tv_orderId, "订单编号：" + item.getCode());
         helper.setText(R.id.tv_state, OrderHelper.getAppoitmentState(item.getStatus()));
         helper.setText(R.id.tv_time, DateUtil.formatStringData(item.getApplyDatetime(), DateUtil.DATE_YYMMddHHmm));
+        helper.setText(R.id.tv_days, "预约天数: " + item.getAppointDays() + "天");
 
         helper.setText(R.id.tv_state_do, OrderHelper.getAppointmentBtnStateString(item.getStatus()));
 

@@ -24,6 +24,7 @@ import com.cdkj.myxb.adapters.BrandListAdapter;
 import com.cdkj.myxb.databinding.LayoutRecyclerRefreshBinding;
 import com.cdkj.myxb.models.BrandProductModel;
 import com.cdkj.myxb.module.api.MyApiServer;
+import com.cdkj.myxb.module.common.AbsRefreshListFragment;
 
 import java.util.HashMap;
 import java.util.List;
@@ -36,17 +37,13 @@ import retrofit2.Call;
  * Created by 李先俊 on 2018/2/24.
  */
 
-public class BrandProductListFragment extends BaseLazyFragment {
+public class BrandProductListFragment extends AbsRefreshListFragment {
 
 
     private static final String BRANDCODE = "brandCode";
     private static final String ISFIRSTREQUEST = "isFirstRequest";
-    private LayoutRecyclerRefreshBinding mBinding;
 
     private String mBrandCode;//品牌编号
-
-    private RefreshHelper mRefreshHelper;
-
 
     /**
      * @param brandCode 品牌编号
@@ -61,64 +58,36 @@ public class BrandProductListFragment extends BaseLazyFragment {
         return fragment;
     }
 
-    @Nullable
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.layout_recycler_refresh, null, false);
+    protected void lazyLoad() {
+        if (mRefreshHelper != null) {
+            mRefreshHelper.onDefaluteMRefresh(false);
+        }
+    }
+
+    @Override
+    protected void onInvisible() {
+
+    }
+
+    @Override
+    protected void afterCreate(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         if (getArguments() != null) {
             mBrandCode = getArguments().getString(BRANDCODE);
         }
 
-        initRefreshHelper();
+        initRefreshHelper(10);
 
         if (getArguments() != null && getArguments().getBoolean(ISFIRSTREQUEST)) {
             mRefreshHelper.onDefaluteMRefresh(true);
         }
 
-        return mBinding.getRoot();
     }
 
-    /**
-     * 初始化刷新辅助类
-     */
-    private void initRefreshHelper() {
-
-        mRefreshHelper = new RefreshHelper(mActivity, new BaseRefreshCallBack(mActivity) {
-            @Override
-            public View getRefreshLayout() {
-                return mBinding.refreshLayout;
-            }
-
-            @Override
-            public RecyclerView getRecyclerView() {
-                mBinding.recyclerView.addItemDecoration(new DividerItemDecoration(mActivity, DividerItemDecoration.VERTICAL));//添加分割线
-                return mBinding.recyclerView;
-            }
-
-            @Override
-            public RecyclerView.Adapter getAdapter(List listData) {
-                return getBrandListAdapter(listData);
-            }
-
-            @Override
-            public void getListDataRequest(int pageindex, int limit, boolean isShowDialog) {
-                getBrandProductListRequest(pageindex, limit, isShowDialog);
-            }
-        });
-
-        mRefreshHelper.init(10);
-    }
-
-    /**
-     * 获取数据适配器
-     *
-     * @param listData
-     * @return
-     */
-    @NonNull
-    private BrandListAdapter getBrandListAdapter(List listData) {
-
+    @Override
+    public RecyclerView.Adapter getListAdapter(List listData) {
         BrandListAdapter brandListAdapter = new BrandListAdapter(listData);
 
         brandListAdapter.setOnItemClickListener((adapter, view, position) -> {
@@ -134,16 +103,8 @@ public class BrandProductListFragment extends BaseLazyFragment {
         return brandListAdapter;
     }
 
-
-    /**
-     * 获取品牌数据
-     *
-     * @param pageindex
-     * @param limit
-     * @param isShowDialog
-     */
-    public void getBrandProductListRequest(int pageindex, int limit, boolean isShowDialog) {
-
+    @Override
+    public void getListRequest(int pageindex, int limit, boolean isShowDialog) {
         if (TextUtils.isEmpty(mBrandCode)) {
             return;
         }
@@ -173,27 +134,6 @@ public class BrandProductListFragment extends BaseLazyFragment {
                 disMissLoading();
             }
         });
-
     }
 
-
-    @Override
-    protected void lazyLoad() {
-        if (mRefreshHelper != null) {
-            mRefreshHelper.onDefaluteMRefresh(false);
-        }
-    }
-
-    @Override
-    protected void onInvisible() {
-
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mRefreshHelper != null) {
-            mRefreshHelper.onDestroy();
-        }
-    }
 }

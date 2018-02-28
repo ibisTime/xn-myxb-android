@@ -28,9 +28,8 @@ import com.cdkj.myxb.adapters.CommentListAdapter;
 import com.cdkj.myxb.databinding.LayoutFlexboxBinding;
 import com.cdkj.myxb.databinding.LayoutRecyclerRefreshBinding;
 import com.cdkj.myxb.models.CommentListMode;
-import com.cdkj.myxb.models.UserModel;
+import com.cdkj.myxb.models.CommentTagModel;
 import com.cdkj.myxb.module.api.MyApiServer;
-import com.chad.library.adapter.base.BaseViewHolder;
 import com.google.android.flexbox.FlexboxLayout;
 
 import java.util.ArrayList;
@@ -58,7 +57,7 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
     private LayoutRecyclerRefreshBinding mBinding;
     private CommentListAdapter commentListAdapter;
     private LayoutFlexboxBinding mTagLayout;
-    private List<TextView> textViews;
+    private List<TextView> textViews = new ArrayList<>();
 
     private String mTagString;//点击的标签文字
 
@@ -200,43 +199,46 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
      */
     public void getTagRequest() {
 
-        textViews = new ArrayList<>();
-
-        for (int i = 0; i < 10; i++) {
-            TextView tv = createNewFlexItemTextView("sdf" + i);
-            textViews.add(tv);
-            mTagLayout.flexboxLayout.addView(tv);
-
+        if (TextUtils.isEmpty(mProductCode) || TextUtils.isEmpty(mType)) {
+            return;
         }
 
-//        if (TextUtils.isEmpty(mProductCode) || TextUtils.isEmpty(mType)) {
-//            return;
-//        }
-//
-//        Map<String, String> map = new HashMap<>();
-//
-//        map.put("entityCode", mProductCode);
-//        map.put("kind", mType);
-//
-//        Call call=RetrofitUtils.createApi(MyApiServer.class).getCommentTag("805427",StringUtils.getJsonToString(map));
-//
-//        addCall(call);
-//
-//        call.enqueue(new BaseResponseListCallBack(this) {
-//            @Override
-//            protected void onSuccess(List data, String SucMessage) {
-//
-//
-//
-//            }
-//
-//            @Override
-//            protected void onFinish() {
-//
-//            }
-//        });
+        Map<String, String> map = new HashMap<>();
+
+        map.put("entityCode", mProductCode);
+        map.put("kind", mType);
+
+        Call call = RetrofitUtils.createApi(MyApiServer.class).getCommentTag("805427", StringUtils.getJsonToString(map));
+
+        addCall(call);
+
+        call.enqueue(new BaseResponseListCallBack<CommentTagModel>(this) {
+            @Override
+            protected void onSuccess(List<CommentTagModel> data, String SucMessage) {
+                initTagViews(data);
+            }
+
+            @Override
+            protected void onFinish() {
+
+            }
+        });
 
 
+    }
+
+
+    /**
+     * 新增tag
+     *
+     * @param data
+     */
+    private void initTagViews(List<CommentTagModel> data) {
+        for (CommentTagModel tagModel : data) {
+            TextView tv = createNewFlexItemTextView(tagModel.getWord() + " (" + tagModel.getCount() + ")");
+            textViews.add(tv);
+            mTagLayout.flexboxLayout.addView(tv);
+        }
     }
 
     /**
@@ -250,7 +252,7 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
         textView.setGravity(Gravity.CENTER);
         textView.setText(str);
         textView.setTextSize(12);
-        textView.setTextColor(ContextCompat.getColor(this, R.color.white));
+        textView.setTextColor(ContextCompat.getColor(this, R.color.comment_tag));
         textView.setBackgroundResource(R.drawable.comment_tag_bg);
         textView.setTag(str);
 
@@ -260,8 +262,10 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
             mRefreshHelper.onDefaluteMRefresh(true);
 
             for (TextView textView1 : textViews) {
+                textView1.setTextColor(ContextCompat.getColor(this, R.color.comment_tag));
                 textView1.setBackgroundResource(R.drawable.comment_tag_bg);
             }
+            textView.setTextColor(ContextCompat.getColor(this, R.color.white));
             textView.setBackgroundResource(R.drawable.comment_tag_bg_click);
         });
 

@@ -23,6 +23,7 @@
             android:layout_marginLeft="15dp" />
 
         <com.cdkj.baselibrary.views.RowInfoLayout
+            android:id="@+id/row_trip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:img_left="@drawable/my_next_go"
@@ -44,12 +45,15 @@
             android:layout_marginLeft="15dp" />
 
         <com.cdkj.baselibrary.views.RowInfoLayout
+            android:id="@+id/row_user_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:img_left="@drawable/my_info"
             app:txt_left="我的资料" />
 
         <com.cdkj.baselibrary.views.RowInfoLayout
+            android:visibility="gone"
+            android:id="@+id/row_my_rank"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -57,6 +61,7 @@
             app:txt_left="我的排名" />
 
         <com.cdkj.baselibrary.views.RowInfoLayout
+            android:id="@+id/row_help_center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

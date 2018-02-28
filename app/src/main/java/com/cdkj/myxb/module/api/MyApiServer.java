@@ -11,6 +11,7 @@ import com.cdkj.myxb.models.CommentCountAndAverage;
 import com.cdkj.myxb.models.CommentItemModel;
 import com.cdkj.myxb.models.CommentListMode;
 import com.cdkj.myxb.models.CommentTagModel;
+import com.cdkj.myxb.models.ExpertRankListModel;
 import com.cdkj.myxb.models.IntegraProductDetailsModel;
 import com.cdkj.myxb.models.AccountDetailsModel;
 import com.cdkj.myxb.models.AccountListModel;
@@ -21,6 +22,7 @@ import com.cdkj.myxb.models.IntegralOrderListModel;
 import com.cdkj.myxb.models.MouthAppointmentModel;
 import com.cdkj.myxb.models.MsgListModel;
 import com.cdkj.myxb.models.OrderListModel;
+import com.cdkj.myxb.models.TripListModel;
 import com.cdkj.myxb.models.UserModel;
 
 import retrofit2.Call;
@@ -33,6 +35,27 @@ import retrofit2.http.POST;
  */
 
 public interface MyApiServer {
+    /**
+     * 获取专家排名列表
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<ResponseInListModel<ExpertRankListModel>>> getExpertRankList(@Field("code") String code, @Field("json") String json);
+
+    /**
+     * 获取行程列表
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<ResponseInListModel<TripListModel>>> getTripList(@Field("code") String code, @Field("json") String json);
 
     /**
      * 获取订单
