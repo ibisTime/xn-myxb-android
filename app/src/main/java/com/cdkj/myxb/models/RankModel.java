@@ -1,5 +1,7 @@
 package com.cdkj.myxb.models;
 
+import java.math.BigDecimal;
+
 /**
  * Created by 李先俊 on 2018/3/1.
  */
@@ -17,19 +19,28 @@ public class RankModel {
      * type : 0
      */
 
-    private int amount;
+    private BigDecimal amount;
     private String code;
     private String name;
     private String periods;
     private int rank;
     private String refNo;
     private String type;
+    private String photo;
 
-    public int getAmount() {
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 

@@ -6,17 +6,28 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:paddingLeft="@dimen/layout_left_interval"
-    android:paddingRight="@dimen/layout_right_interval">
+    android:paddingRight="@dimen/layout_right_interval"
+    android:paddingTop="10dp">
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="sdfdsf"
+        android:textColor="@color/app_txt_gray" />
 
     <View
-
-        style="@style/style_split_line" />
+        style="@style/style_split_line"
+        android:layout_marginTop="5dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:orientation="horizontal">
+
 
         <FrameLayout
             android:layout_width="85dp"
@@ -33,14 +44,14 @@
                 android:visibility="gone" />
 
             <ImageView
+                android:visibility="gone"
+                android:layout_marginRight="15dp"
                 android:id="@+id/img_rank"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
-                android:layout_marginRight="15dp"
                 android:layout_marginTop="10dp"
-                android:visibility="gone"
                 tools:src="@drawable/rank_1" />
         </FrameLayout>
 

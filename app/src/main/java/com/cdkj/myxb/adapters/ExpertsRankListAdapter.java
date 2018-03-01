@@ -18,11 +18,11 @@ import java.util.List;
  * Created by cdkj on 2017/10/12.
  */
 
-public class RankListAdapter extends BaseQuickAdapter<ExpertRankListModel, BaseViewHolder> {
+public class ExpertsRankListAdapter extends BaseQuickAdapter<ExpertRankListModel, BaseViewHolder> {
 
 
-    public RankListAdapter(@Nullable List<ExpertRankListModel> data) {
-        super(R.layout.item_rank, data);
+    public ExpertsRankListAdapter(@Nullable List<ExpertRankListModel> data) {
+        super(R.layout.item_my_rank, data);
     }
 
     @Override

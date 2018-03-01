@@ -233,7 +233,7 @@
 
         <!--喜报详情-->
         <activity
-            android:name=".module.banner.RankListActivity"
+            android:name=".module.banner.AllRankListActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
     </application>

@@ -64,7 +64,7 @@ public interface MyApiServer {
      */
     @FormUrlEncoded
     @POST("api")
-    Call<BaseResponseModel<ResponseInListModel<RankModel>>> getRankList(@Field("code") String code, @Field("json") String json);
+    Call<BaseResponseListModel<RankModel>> getRankList(@Field("code") String code, @Field("json") String json);
 
     /**
      * 获取喜报列表

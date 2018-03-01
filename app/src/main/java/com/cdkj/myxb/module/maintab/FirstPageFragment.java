@@ -30,7 +30,7 @@ import com.cdkj.myxb.models.FirstPageBanner;
 import com.cdkj.myxb.models.MsgListModel;
 import com.cdkj.myxb.module.api.MyApiServer;
 import com.cdkj.myxb.module.banner.HappyMsgListActivity;
-import com.cdkj.myxb.module.banner.RankListActivity;
+import com.cdkj.myxb.module.banner.AllRankListActivity;
 import com.cdkj.myxb.module.common.MsgListActivity;
 import com.cdkj.myxb.module.product.BrandListActivity;
 import com.cdkj.myxb.module.product.SpecificBrandListActivity;
@@ -162,15 +162,14 @@ public class FirstPageFragment extends BaseLazyFragment {
 
         //广告点击
         mBinding.headrLayout.bannerFirstPage.setOnBannerListener(position -> {
-
             bannerItemClick(position);
-
         });
 
     }
 
     /**
      * 广告点击
+     *
      * @param position
      */
     private void bannerItemClick(int position) {
@@ -195,13 +194,13 @@ public class FirstPageFragment extends BaseLazyFragment {
                 HappyMsgListActivity.open(mActivity, HappyMsgListActivity.TODOMSG);
                 break;
             case "4":
-                RankListActivity.open(mActivity);
+                AllRankListActivity.open(mActivity, AllRankListActivity.BRANDTYPE);
                 break;
             case "5":
-                RankListActivity.open(mActivity);
+                AllRankListActivity.open(mActivity, AllRankListActivity.BRANDTYPE);
                 break;
             case "6":
-                RankListActivity.open(mActivity);
+                AllRankListActivity.open(mActivity, AllRankListActivity.EXPERTSTYPE);
                 break;
 
         }

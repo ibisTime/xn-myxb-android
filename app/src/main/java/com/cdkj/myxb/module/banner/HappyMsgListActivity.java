@@ -85,7 +85,13 @@ public class HappyMsgListActivity extends AbsRefreshListActivity {
 
             @Override
             protected void onSuccess(ResponseInListModel<HappyMsgModel> data, String SucMessage) {
-                mRefreshHelper.setData(data.getList(), "暂无喜报", 0);
+                if (TextUtils.equals(mType, HAPPYMSG)) {
+                    mRefreshHelper.setData(data.getList(), "暂无喜报", 0);
+                } else {
+                    mRefreshHelper.setData(data.getList(), "暂无预报", 0);
+                }
+
+
             }
 
             @Override

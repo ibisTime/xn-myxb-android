@@ -10,7 +10,7 @@ import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
-import com.cdkj.myxb.adapters.RankListAdapter;
+import com.cdkj.myxb.adapters.ExpertsRankListAdapter;
 import com.cdkj.myxb.models.ExpertRankListModel;
 import com.cdkj.myxb.module.api.MyApiServer;
 import com.cdkj.myxb.module.common.AbsRefreshListActivity;
@@ -48,7 +48,7 @@ public class ExpertRankListActivity extends AbsRefreshListActivity {
 
     @Override
     public RecyclerView.Adapter getListAdapter(List listData) {
-        return new RankListAdapter(listData);
+        return new ExpertsRankListAdapter(listData);
     }
 
     @Override
