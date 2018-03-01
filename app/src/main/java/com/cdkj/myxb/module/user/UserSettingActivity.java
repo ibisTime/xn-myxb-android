@@ -15,13 +15,16 @@ import com.cdkj.baselibrary.dialog.CommonDialog;
 import com.cdkj.baselibrary.model.eventmodels.EventFinishAll;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
+import com.cdkj.baselibrary.utils.ImgUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.ActivityUserSettingBinding;
+import com.cdkj.myxb.models.LogoUpdateSucc;
 import com.cdkj.myxb.module.common.address.AddressListActivity;
 import com.cdkj.myxb.weight.dialog.LogoSelectDialog;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -59,6 +62,7 @@ public class UserSettingActivity extends AbsBaseLoadActivity {
 
         initListener();
 
+        ImgUtils.loadQiniuLogo(this, SPUtilHelpr.getUserPhoto(), mBinding.imgUserLogo);
     }
 
     private void initListener() {
@@ -81,9 +85,18 @@ public class UserSettingActivity extends AbsBaseLoadActivity {
         });
 
         mBinding.rowUpdatePhone.setOnClickListener(view -> UpdatePhoneActivity.open(this));
-        mBinding.linLogoUpdate.setOnClickListener(view -> new LogoSelectDialog(this, null).show());
-        getLogoList();
+        mBinding.linLogoUpdate.setOnClickListener(view -> LogoSelectActivity.open(this));
+
     }
+
+    //更新头像
+
+    @Subscribe
+    public void updateLogo(LogoUpdateSucc logoUpdateSucc) {
+        if (logoUpdateSucc == null) return;
+        ImgUtils.loadQiniuLogo(this, logoUpdateSucc.getUrl(), mBinding.imgUserLogo);
+    }
+
 
     private void logOut() {
         SPUtilHelpr.logOutClear();
@@ -92,32 +105,5 @@ public class UserSettingActivity extends AbsBaseLoadActivity {
         finish();
     }
 
-    public void getLogoList(){
-
-        Map<String,String> map=new HashMap<>();
-
-        map.put("kind","T");
-        map.put("level","1");
-        map.put("kind","T");
-        map.put("limit","10");
-        map.put("start","1");
-
-        Call call= RetrofitUtils.createApi(BaseApiServer.class).stringRequest("805443", StringUtils.getJsonToString(map));
-
-        addCall(call);
-
-        call.enqueue(new BaseResponseModelCallBack(this) {
-            @Override
-            protected void onSuccess(Object data, String SucMessage) {
-
-            }
-
-            @Override
-            protected void onFinish() {
-
-            }
-        });
-
-    }
 
 }

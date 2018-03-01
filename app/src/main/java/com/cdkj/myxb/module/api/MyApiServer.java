@@ -20,6 +20,7 @@ import com.cdkj.myxb.models.IntegraProductDetailsModel;
 import com.cdkj.myxb.models.IntegralListModel;
 import com.cdkj.myxb.models.IntegralModel;
 import com.cdkj.myxb.models.IntegralOrderListModel;
+import com.cdkj.myxb.models.LogoListModel;
 import com.cdkj.myxb.models.MouthAppointmentModel;
 import com.cdkj.myxb.models.MsgListModel;
 import com.cdkj.myxb.models.OrderListModel;
@@ -47,8 +48,19 @@ public interface MyApiServer {
      */
     @FormUrlEncoded
     @POST("api")
-    Call<BaseResponseModel<UpdateUserInfo>> getUpdateUserInfo(@Field("code") String code, @Field("json") String json);
+    Call<BaseResponseModel<ResponseInListModel<LogoListModel>>> getLogoList(@Field("code") String code, @Field("json") String json);
 
+
+    /**
+     * 获取授课风格列表
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<UpdateUserInfo>> getUpdateUserInfo(@Field("code") String code, @Field("json") String json);
 
 
     /**

@@ -19,6 +19,7 @@ import com.cdkj.baselibrary.utils.ImgUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.FragmentMyBinding;
+import com.cdkj.myxb.models.LogoUpdateSucc;
 import com.cdkj.myxb.models.UserModel;
 import com.cdkj.myxb.module.api.MyApiServer;
 import com.cdkj.myxb.module.appointment.MyAppointmentActivity;
@@ -32,6 +33,8 @@ import com.cdkj.myxb.module.user.TripListActivity;
 import com.cdkj.myxb.module.user.UserHelper;
 import com.cdkj.myxb.module.user.UserInfoUpdateActivity;
 import com.cdkj.myxb.module.user.UserSettingActivity;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -143,11 +146,7 @@ public class MyFragment extends BaseLazyFragment {
             @Override
             protected void onSuccess(UserModel data, String SucMessage) {
                 mUserInfoMode = data;
-                SPUtilHelpr.saveisTradepwdFlag(data.isTradepwdFlag());
-                SPUtilHelpr.saveUserPhoneNum(data.getMobile());
-                SPUtilHelpr.saveUserName(data.getRealName());
-                SPUtilHelpr.saveUserNickName(data.getNickname());
-                SPUtilHelpr.saveUserPhoto(data.getPhoto());
+                saveUserInfo(data);
                 setShowData();
             }
 
@@ -164,6 +163,20 @@ public class MyFragment extends BaseLazyFragment {
     }
 
     /**
+     * 保存用户相关信息
+     * @param data
+     */
+    private void saveUserInfo(UserModel data) {
+        SPUtilHelpr.saveisTradepwdFlag(data.isTradepwdFlag());
+        SPUtilHelpr.saveUserPhoneNum(data.getMobile());
+        SPUtilHelpr.saveUserName(data.getRealName());
+        SPUtilHelpr.saveUserNickName(data.getNickname());
+        SPUtilHelpr.saveUserPhoto(data.getPhoto());
+        SPUtilHelpr.saveUserLevel(data.getLevel() + "");
+        SPUtilHelpr.saveUserType(data.getKind());
+    }
+
+    /**
      * 设置显示数据
      */
     private void setShowData() {
@@ -171,9 +184,9 @@ public class MyFragment extends BaseLazyFragment {
             return;
         }
 
-        ImgUtils.loadQiniuLogo(this, mUserInfoMode.getPhoto(), mBinding.headerLayout.imgUserLogo);
+        ImgUtils.loadQiNiuBorderLogo(mActivity, mUserInfoMode.getPhoto(), mBinding.headerLayout.imgUserLogo, R.color.white_50);
 
-        mBinding.headerLayout.tvUserName.setText(mUserInfoMode.getRealName());
+        mBinding.headerLayout.tvUserName.setText(TextUtils.isEmpty(mUserInfoMode.getRealName()) ? "暂无" : mUserInfoMode.getRealName());
 
         if (TextUtils.isEmpty(mUserInfoMode.getSpeciality())) {
             mBinding.headerLayout.tvUserType.setText(getUserTypeByKind(mUserInfoMode.getKind()));
@@ -210,6 +223,17 @@ public class MyFragment extends BaseLazyFragment {
             }
 
         }
+    }
+
+    //更新头像
+    @Subscribe
+    public void updateLogo(LogoUpdateSucc logoUpdateSucc) {
+        if (logoUpdateSucc == null) return;
+        ImgUtils.loadQiniuLogo(this, logoUpdateSucc.getUrl(), mBinding.headerLayout.imgUserLogo);
+        if (mUserInfoMode != null) {
+            mUserInfoMode.setPhoto(logoUpdateSucc.getUrl());
+        }
+
     }
 
 

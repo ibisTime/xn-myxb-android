@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import com.cdkj.baselibrary.utils.DateUtil;
+import com.cdkj.baselibrary.utils.DisplayHelper;
 import com.cdkj.baselibrary.utils.LogUtil;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.DialogTripTimeBinding;
@@ -39,7 +40,8 @@ public class TripTimeDialog extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.dialog_trip_time, null, false);
-        int screenWidth = ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getWidth();
+//        int screenWidth = ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getWidth();
+        int screenWidth = DisplayHelper.getScreenWidth(getContext());
         setContentView(mBinding.getRoot());
         getWindow().setLayout((int) (screenWidth * 0.8f), ViewGroup.LayoutParams.WRAP_CONTENT);
         getWindow().setGravity(Gravity.CENTER);

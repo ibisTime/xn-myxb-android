@@ -35,6 +35,42 @@ public class SPUtilHelpr {
         return SPUtils.getString(CdApplication.getContext(), USERTOKEN, "");
     }
 
+    /**
+     * 设置用户类型
+     *
+     * @param s
+     */
+    public static void saveUserType(String s) {
+        SPUtils.put(CdApplication.getContext(), "user_type", s);
+    }
+
+    /**
+     * 获取用户类型
+     *
+     * @param
+     */
+    public static String getUserType() {
+        return SPUtils.getString(CdApplication.getContext(), "user_type", "");
+    }
+
+    /**
+     * 设置用户等级
+     *
+     * @param s
+     */
+    public static void saveUserLevel(String s) {
+        SPUtils.put(CdApplication.getContext(), "user_level", s);
+    }
+
+    /**
+     * 获取用户等级
+     *
+     * @param
+     */
+    public static String getUserLevel() {
+        return SPUtils.getString(CdApplication.getContext(), "user_level", "");
+    }
+
 
     /**
      * 设置用户token
@@ -226,6 +262,8 @@ public class SPUtilHelpr {
         saveUserNickName("");
         saveisTradepwdFlag(false);
         saveUserIsBindCard(false);
+        saveUserType("");
+        saveUserLevel("");
     }
 
 }
