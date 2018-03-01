@@ -19,7 +19,7 @@ import io.reactivex.functions.Consumer;
 
 /**
  * 启动页
- * Created by 李先俊 on 2017/6/8.
+ * Created by cdkj on 2017/6/8.
  */
 
 public class WelcomeAcitivity extends BaseActivity {

@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.util.List;
 
 /**
- * Created by 李先俊 on 2017/7/20.
+ * Created by cdkj on 2017/7/20.
  */
 
 public class MsgListModel implements Parcelable {

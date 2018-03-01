@@ -17,7 +17,7 @@ import com.cdkj.baselibrary.databinding.ActivityTabBinding;
 import java.util.List;
 
 /**
- * Created by 李先俊 on 2018/2/26.
+ * Created by cdkj on 2018/2/26.
  */
 
 public abstract class CommonTablayoutFragment extends BaseLazyFragment {

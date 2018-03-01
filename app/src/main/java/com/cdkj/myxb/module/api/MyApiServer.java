@@ -16,6 +16,8 @@ import com.cdkj.myxb.models.CommentItemModel;
 import com.cdkj.myxb.models.CommentListMode;
 import com.cdkj.myxb.models.CommentTagModel;
 import com.cdkj.myxb.models.ExpertRankListModel;
+import com.cdkj.myxb.models.FirstPageBanner;
+import com.cdkj.myxb.models.HappyMsgModel;
 import com.cdkj.myxb.models.IntegraProductDetailsModel;
 import com.cdkj.myxb.models.IntegralListModel;
 import com.cdkj.myxb.models.IntegralModel;
@@ -24,6 +26,7 @@ import com.cdkj.myxb.models.LogoListModel;
 import com.cdkj.myxb.models.MouthAppointmentModel;
 import com.cdkj.myxb.models.MsgListModel;
 import com.cdkj.myxb.models.OrderListModel;
+import com.cdkj.myxb.models.RankModel;
 import com.cdkj.myxb.models.TripListModel;
 import com.cdkj.myxb.models.UpdateUserInfo;
 import com.cdkj.myxb.models.UserModel;
@@ -38,6 +41,51 @@ import retrofit2.http.POST;
  */
 
 public interface MyApiServer {
+
+
+    /**
+     * 获取喜报详情
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<HappyMsgModel>> getHappyMsgDetail(@Field("code") String code, @Field("json") String json);
+
+
+    /**
+     * 获取品牌 美容院 专家排名
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<ResponseInListModel<RankModel>>> getRankList(@Field("code") String code, @Field("json") String json);
+
+    /**
+     * 获取喜报列表
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<ResponseInListModel<HappyMsgModel>>> getHappyMsgList(@Field("code") String code, @Field("json") String json);
+
+    /**
+     * 获取首页广告
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseListModel<FirstPageBanner>> getFirstBanner(@Field("code") String code, @Field("json") String json);
+
 
     /**
      * 获取授课风格列表

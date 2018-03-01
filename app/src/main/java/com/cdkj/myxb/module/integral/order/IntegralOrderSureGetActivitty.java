@@ -22,7 +22,7 @@ import retrofit2.Call;
 
 /**
  * 确认收获界面
- * Created by 李先俊 on 2018/2/23.
+ * Created by cdkj on 2018/2/23.
  */
 
 public class IntegralOrderSureGetActivitty extends AbsBaseLoadActivity {

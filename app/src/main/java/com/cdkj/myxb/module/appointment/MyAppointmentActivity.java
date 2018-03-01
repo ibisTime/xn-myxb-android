@@ -27,7 +27,7 @@ import static com.cdkj.myxb.module.user.UserHelper.T;
 
 /**
  * 我的预约界面
- * Created by 李先俊 on 2018/2/26.
+ * Created by cdkj on 2018/2/26.
  */
 
 public class MyAppointmentActivity extends AbsBaseLoadActivity {

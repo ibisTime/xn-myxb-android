@@ -33,7 +33,7 @@ import retrofit2.Call;
 
 /**
  * 积分产品详情
- * Created by 李先俊 on 2018/2/23.
+ * Created by cdkj on 2018/2/23.
  */
 
 public class IntegralProductDetailsActivity extends AbsBaseLoadActivity {
@@ -191,7 +191,6 @@ public class IntegralProductDetailsActivity extends AbsBaseLoadActivity {
     @Override
     protected void onDestroy() {
         mBinding.bannerIntegral.stopAutoPlay();
-        super.onDestroy();
 
         if (null != webView) {
             webView.clearHistory();
@@ -203,7 +202,7 @@ public class IntegralProductDetailsActivity extends AbsBaseLoadActivity {
             webView.destroy();
             webView = null;
         }
-
+        super.onDestroy();
     }
 
 

@@ -6,7 +6,7 @@ import android.content.Context;
 import com.cdkj.baselibrary.CdApplication;
 
 /**
- * Created by 李先俊 on 2018/1/31.
+ * Created by cdkj on 2018/1/31.
  */
 
 public class BaseApplication extends Application {

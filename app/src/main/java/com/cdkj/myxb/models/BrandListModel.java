@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by 李先俊 on 2018/2/24.
+ * Created by cdkj on 2018/2/24.
  */
 
 public class BrandListModel implements Parcelable {

@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import com.cdkj.myxb.models.AppointmentListModel;
 
 /**
- * Created by 李先俊 on 2018/2/23.
+ * Created by cdkj on 2018/2/23.
  */
 
 public class OrderHelper {

@@ -34,7 +34,7 @@ import retrofit2.Call;
 import static com.cdkj.myxb.module.appointment.AppointmentTabLayoutFragment.INTENTTYPE;
 
 /**
- * Created by 李先俊 on 2018/2/26.
+ * Created by cdkj on 2018/2/26.
  */
 
 public class AppointmentListFragment extends AbsRefreshListFragment {

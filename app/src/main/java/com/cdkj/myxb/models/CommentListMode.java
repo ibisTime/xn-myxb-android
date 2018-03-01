@@ -1,7 +1,7 @@
 package com.cdkj.myxb.models;
 
 /**评论列表
- * Created by 李先俊 on 2018/2/26.
+ * Created by cdkj on 2018/2/26.
  */
 
 public class CommentListMode {

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:banner="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <com.youth.banner.Banner
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/banner_height"
+                banner:delay_time="4000"
+                banner:indicator_drawable_selected="@drawable/banner_select"
+                banner:indicator_drawable_unselected="@drawable/banner_un_select"
+                banner:indicator_height="8dp"
+                banner:indicator_margin="5dp"
+                banner:indicator_width="8dp" />
+
+            <View
+                style="@style/style_split_line"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:paddingRight="@dimen/layout_right_interval"
+                android:paddingTop="10dp">
+
+                <ImageView
+                    android:id="@+id/img_msg"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_marginLeft="@dimen/layout_left_interval"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/default_pic" />
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/app_txt_black"
+                    android:textSize="16sp"
+                    tools:text="dfdfdfdffdfdf" />
+
+            </LinearLayout>
+
+
+            <View
+                style="@style/style_split_line"
+                android:layout_height="10dp" />
+
+            <WebView
+                android:id="@+id/webView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/layout_right_interval"
+                android:layout_marginRight="@dimen/layout_right_interval">
+
+            </WebView>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</layout>

@@ -1,7 +1,7 @@
 package com.cdkj.myxb.models;
 
 /**
- * Created by 李先俊 on 2018/3/1.
+ * Created by cdkj on 2018/3/1.
  */
 
 public class LogoListModel {

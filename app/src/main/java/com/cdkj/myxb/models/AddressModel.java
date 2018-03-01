@@ -5,7 +5,7 @@ import android.os.Parcelable;
 import android.text.TextUtils;
 
 /**收货地址
- * Created by 李先俊 on 2017/6/17.
+ * Created by cdkj on 2017/6/17.
  */
 
 public class AddressModel implements Parcelable {

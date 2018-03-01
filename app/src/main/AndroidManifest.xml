@@ -7,9 +7,8 @@
     <application
         android:name=".BaseApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".WelcomeAcitivity">
@@ -219,6 +218,23 @@
             android:name=".module.user.LogoSelectActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ActivityDialogStyleBottom"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--喜报-->
+        <activity
+            android:name=".module.banner.HappyMsgListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--喜报详情-->
+        <activity
+            android:name=".module.banner.HappyMsgDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--喜报详情-->
+        <activity
+            android:name=".module.banner.RankListActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
     </application>
 

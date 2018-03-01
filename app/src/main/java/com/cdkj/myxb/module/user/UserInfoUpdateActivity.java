@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -12,16 +11,15 @@ import com.bigkoo.pickerview.OptionsPickerView;
 import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
 import com.cdkj.baselibrary.dialog.UITipDialog;
+import com.cdkj.baselibrary.model.CodeModel;
 import com.cdkj.baselibrary.model.IsSuccessModes;
 import com.cdkj.baselibrary.nets.BaseResponseListCallBack;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
-import com.cdkj.baselibrary.utils.LogUtil;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.ActivityUserInfoUpdateBinding;
 import com.cdkj.myxb.models.ClassStyleModel;
-import com.cdkj.myxb.models.LoginTypeModel;
 import com.cdkj.myxb.models.UpdateUserInfo;
 import com.cdkj.myxb.module.api.MyApiServer;
 
@@ -44,7 +42,7 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
     private OptionsPickerView mStylePicker;//授课风格选择
     private List<ClassStyleModel> mStyles;
     private List<ClassStyleModel> mSelectStyle;//用户选择的授课风格
-    private List<String> selectStyleId;
+    private List<String> mSelectStyleId;
 
     private UpdateUserInfo mUserInfo;
     private final String SEP1 = ",";
@@ -85,11 +83,13 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
         mBaseBinding.titleView.setRightTitle("保存");
 
         mSelectStyle = new ArrayList<>();
-        selectStyleId = new ArrayList<>();
+        mSelectStyleId = new ArrayList<>();
+        mStyles = new ArrayList<>();
+
         initPickerView();
 
         mBinding.linStyle.setOnClickListener(view -> {
-            if (mStyles == null) {
+            if (mStyles.isEmpty()) {
                 getClassStyle(true);
                 return;
             }
@@ -119,20 +119,20 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
 
             return;
         }
-        if (TextUtils.isEmpty(mBinding.tvStyle.getText().toString()) || selectStyleId.isEmpty()) {
+        if (TextUtils.isEmpty(mBinding.tvStyle.getText().toString()) || mSelectStyleId.isEmpty()) {
 
             UITipDialog.showFall(this, "请选择授课风格");
 
             return;
         }
-        if (TextUtils.isEmpty(mBinding.editSlogan.getText().toString()) || selectStyleId.isEmpty()) {
+        if (TextUtils.isEmpty(mBinding.editSlogan.getText().toString()) || mSelectStyleId.isEmpty()) {
 
             UITipDialog.showFall(this, "请填写广告语");
 
             return;
         }
 
-        if (TextUtils.isEmpty(mBinding.editUserInfo.getText().toString()) || selectStyleId.isEmpty()) {
+        if (TextUtils.isEmpty(mBinding.editUserInfo.getText().toString()) || mSelectStyleId.isEmpty()) {
 
             UITipDialog.showFall(this, "请填写个人简介");
 
@@ -145,20 +145,20 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
         map.put("realName", mBinding.editName.getText().toString());
         map.put("speciality", mBinding.editSpeciality.getText().toString());
         map.put("description", mBinding.editUserInfo.getText().toString());
-        map.put("style", StringUtils.listToString(selectStyleId, SEP1));
+        map.put("style", StringUtils.listToString(mSelectStyleId, SEP1));
         map.put("slogan", mBinding.editSlogan.getText().toString());
         map.put("userId", SPUtilHelpr.getUserId());
 
         showLoadingDialog();
 
-        Call call = RetrofitUtils.getBaseAPiService().successRequest("805530", StringUtils.getJsonToString(map));
+        Call call = RetrofitUtils.getBaseAPiService().codeRequest("805530", StringUtils.getJsonToString(map));
 
         addCall(call);
 
-        call.enqueue(new BaseResponseModelCallBack<IsSuccessModes>(this) {
+        call.enqueue(new BaseResponseModelCallBack<CodeModel>(this) {
             @Override
-            protected void onSuccess(IsSuccessModes data, String SucMessage) {
-                if (data.isSuccess()) {
+            protected void onSuccess(CodeModel data, String SucMessage) {
+                if (!TextUtils.isEmpty(data.getCode())) {
 
                     if (mUserInfo != null) {
                         mUserInfo.setStatus("5");
@@ -199,7 +199,9 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
 
             @Override
             protected void onSuccess(List<ClassStyleModel> data, String SucMessage) {
-                mStyles = data;
+
+                setStyleData(data);
+
                 if (isShowPicker) {
                     mStylePicker.setPicker(mStyles);
                     mStylePicker.show();
@@ -217,6 +219,21 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
 
     }
 
+    /**
+     * 设置显示的滚轮数据
+     *
+     * @param data
+     */
+    private void setStyleData(List<ClassStyleModel> data) {
+        ClassStyleModel classStyleModel = new ClassStyleModel();
+        classStyleModel.setClear(true);
+        classStyleModel.setDvalue("清空选择");            //第一项是清空操作
+
+        mStyles.clear();
+        mStyles.add(classStyleModel);
+        mStyles.addAll(data);
+    }
+
     public void initPickerView() {
 
 
@@ -227,6 +244,15 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
             }
 
             ClassStyleModel classStyleModel = mStyles.get(options1);
+
+            if (classStyleModel == null) return;
+
+            if (classStyleModel.isClear()) { //如果用户选择的是清除操作
+                mSelectStyle.clear();
+                mSelectStyleId.clear();
+                mBinding.tvStyle.setText("");
+                return;
+            }
 
             if (mSelectStyle.contains(classStyleModel)) {
                 return;
@@ -242,11 +268,12 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
      * 设置风格文本
      */
     private void setStyleText() {
+        mBinding.tvStyle.setText("");
         StringBuffer selectStyleName = new StringBuffer();
 
         for (ClassStyleModel styleModel : mSelectStyle) {
             selectStyleName.append(styleModel.getDvalue() + " ");
-            selectStyleId.add(styleModel.getId() + SEP1);
+            mSelectStyleId.add(styleModel.getId() + SEP1);
         }
 
         mBinding.tvStyle.setText(selectStyleName.toString());
@@ -256,9 +283,10 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
      * 通过获取的样式ide设置文本
      */
     private void setStyleTextById() {
+        mBinding.tvStyle.setText("");
         StringBuffer selectStyleName = new StringBuffer();
 
-        for (String id : selectStyleId) {
+        for (String id : mSelectStyleId) {
 
             for (ClassStyleModel classStyleModel : mStyles) {
 
@@ -308,8 +336,8 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
 
         if (data == null) return;
 
-        selectStyleId.clear();
-        selectStyleId.addAll(StringUtils.splitAsList(data.getStyle(), SEP1));
+        mSelectStyleId.clear();
+        mSelectStyleId.addAll(StringUtils.splitAsList(data.getStyle(), SEP1));
 
 
         mBinding.editName.setText(data.getRealName());

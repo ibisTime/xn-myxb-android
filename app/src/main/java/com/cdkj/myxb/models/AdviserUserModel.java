@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**团队顾问
- * Created by 李先俊 on 2018/2/28.
+ * Created by cdkj on 2018/2/28.
  */
 
 public class AdviserUserModel implements Parcelable {

@@ -29,6 +29,16 @@ public class ClassStyleModel implements IPickerViewData {
     private String dkey;
     private String dvalue;
 
+    private boolean isClear; //是否清楚之前的选择
+
+    public boolean isClear() {
+        return isClear;
+    }
+
+    public void setClear(boolean clear) {
+        isClear = clear;
+    }
+
     public int getId() {
         return id;
     }

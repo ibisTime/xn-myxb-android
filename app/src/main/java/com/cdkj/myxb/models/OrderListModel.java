@@ -3,7 +3,7 @@ package com.cdkj.myxb.models;
 import java.math.BigDecimal;
 
 /**
- * Created by 李先俊 on 2018/2/24.
+ * Created by cdkj on 2018/2/24.
  */
 
 public class OrderListModel {

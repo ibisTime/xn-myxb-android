@@ -32,9 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:text="很好很好很好很好很好很好很好很好ddd"
+            android:text="很好很好很好很好很好很很好很好很好很好很好很好很好很好ddd很好很好很好很好很好很好很好很好ddd很好很好很好很好很好很好很好很好ddd很好很好很好很好很好很好很好很好ddd好很好很好ddd"
             android:textColor="@color/text_color"
             android:textSize="16sp" />
 
@@ -59,7 +57,7 @@
                 <ImageView
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:src="@drawable/more_right" />
+                    android:src="@drawable/msg_time" />
 
                 <TextView
                     android:id="@+id/tv_time"

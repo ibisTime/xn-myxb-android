@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by 李先俊 on 2018/2/27.
+ * Created by cdkj on 2018/2/27.
  */
 
 public class MouthAppointmentModel  {
