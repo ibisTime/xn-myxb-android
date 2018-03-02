@@ -10,6 +10,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.cdkj.baselibrary.utils.DisplayHelper;
+
 /**
  * Created by cdkj on 2017/6/21.
  */
@@ -78,7 +80,7 @@ public class MyDividerItemDecoration extends RecyclerView.ItemDecoration {
                     .getLayoutParams();
             final int top = child.getBottom() + params.bottomMargin +
                     Math.round(ViewCompat.getTranslationY(child));
-            final int bottom = top + mDivider.getIntrinsicHeight();
+            final int bottom = top + DisplayHelper.dpToPx(0.5f);
             mDivider.setBounds(left, top, right, bottom);
             mDivider.draw(c);
         }

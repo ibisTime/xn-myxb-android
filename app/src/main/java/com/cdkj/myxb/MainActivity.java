@@ -90,6 +90,11 @@ public class MainActivity extends AbsBaseLoadActivity {
             setShowIndex(SHOWHELP);
         });
         mBinding.layoutTab.llayoutTab3.setOnClickListener(view -> {
+            if (!SPUtilHelpr.isLoginNoStart()) {
+                setShowButIndex();
+                LoginActivity.open(this, false);
+                return;
+            }
             setShowIndex(SHOWINVITATION);
 
         });

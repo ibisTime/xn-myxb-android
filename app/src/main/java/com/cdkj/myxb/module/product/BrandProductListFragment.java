@@ -1,27 +1,18 @@
 package com.cdkj.myxb.module.product;
 
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
-import com.cdkj.baselibrary.api.BaseApiServer;
 import com.cdkj.baselibrary.api.ResponseInListModel;
-import com.cdkj.baselibrary.base.BaseLazyFragment;
-import com.cdkj.baselibrary.interfaces.BaseRefreshCallBack;
-import com.cdkj.baselibrary.interfaces.RefreshHelper;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
-import com.cdkj.myxb.R;
 import com.cdkj.myxb.adapters.BrandListAdapter;
-import com.cdkj.myxb.databinding.LayoutRecyclerRefreshBinding;
 import com.cdkj.myxb.models.BrandProductModel;
 import com.cdkj.myxb.module.api.MyApiServer;
 import com.cdkj.myxb.module.common.AbsRefreshListFragment;

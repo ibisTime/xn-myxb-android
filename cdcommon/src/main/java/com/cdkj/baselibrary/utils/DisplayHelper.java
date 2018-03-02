@@ -56,7 +56,7 @@ public class DisplayHelper {
      * @param dpValue 以 dp 为单位的值
      * @return px value
      */
-    public static int dpToPx(int dpValue) {
+    public static int dpToPx(float dpValue) {
         return (int) (dpValue * DENSITY + 0.5f);
     }
 

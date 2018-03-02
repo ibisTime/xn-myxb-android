@@ -2,20 +2,14 @@ package com.cdkj.myxb;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 
-import com.cdkj.baselibrary.appmanager.MyCdConfig;
 import com.cdkj.baselibrary.base.BaseActivity;
-import com.cdkj.baselibrary.utils.LogUtil;
-import com.cdkj.baselibrary.utils.StringUtils;
-import com.cdkj.myxb.module.user.LoginActivity;
-import com.cdkj.myxb.weight.dialog.IntegralChangeDialog;
 
-import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 
 /**
  * 启动页
@@ -38,15 +32,14 @@ public class WelcomeAcitivity extends BaseActivity {
             }
         } catch (Exception e) {
         }
-//        setContentView(R.layout.activity_welcom);
-//        ImageView img = (ImageView) findViewById(R.id.img_start);
-//        img.setImageResource(R.drawable.welcome);
+        setContentView(R.layout.activity_welcom);
+        ImageView img = (ImageView) findViewById(R.id.img_start);
+        img.setImageResource(R.drawable.start);
         mSubscription.add(Observable.timer(2, TimeUnit.SECONDS)
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
                     MainActivity.open(this);
-//                    LoginActivity.open(this, true);
                     finish();
                 }, Throwable::printStackTrace));
     }

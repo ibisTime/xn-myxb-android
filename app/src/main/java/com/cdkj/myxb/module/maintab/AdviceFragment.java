@@ -4,7 +4,6 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -21,12 +20,12 @@ import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.baselibrary.utils.ToastUtil;
+import com.cdkj.baselibrary.views.MyDividerItemDecoration;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.adapters.AdviceListAdapter;
 import com.cdkj.myxb.databinding.FragmentAdviceBinding;
 import com.cdkj.myxb.models.AdviceListModel;
 import com.cdkj.myxb.models.AdviceScoreModel;
-import com.cdkj.myxb.models.CommentListMode;
 import com.cdkj.myxb.module.api.MyApiServer;
 import com.cdkj.myxb.module.common.AdviceActivity;
 import com.cdkj.myxb.module.common.AdviceListActivity;
@@ -104,7 +103,7 @@ public class AdviceFragment extends BaseLazyFragment {
         EmptyViewBinding emptyViewBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.empty_view, null, false);
         emptyViewBinding.tv.setText("暂无建议");
         adviceListAdapter.setEmptyView(emptyViewBinding.getRoot());
-        mBinding.recyclerView.addItemDecoration(new DividerItemDecoration(mActivity, DividerItemDecoration.VERTICAL));
+        mBinding.recyclerView.addItemDecoration(new MyDividerItemDecoration(mActivity, MyDividerItemDecoration.VERTICAL_LIST));
         mBinding.recyclerView.setAdapter(adviceListAdapter);
     }
 

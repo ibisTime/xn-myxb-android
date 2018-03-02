@@ -3,7 +3,6 @@ package com.cdkj.myxb.module.banner;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 
@@ -11,6 +10,7 @@ import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
+import com.cdkj.baselibrary.views.MyDividerItemDecoration;
 import com.cdkj.myxb.adapters.HappyMsgListAdapter;
 import com.cdkj.myxb.models.HappyMsgModel;
 import com.cdkj.myxb.module.api.MyApiServer;
@@ -129,7 +129,7 @@ public class HappyMsgListActivity extends AbsRefreshListActivity {
 
 
         initRefreshHelper(10);
-        mRefreshBinding.recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        mRefreshBinding.recyclerView.addItemDecoration(new MyDividerItemDecoration(this, MyDividerItemDecoration.VERTICAL_LIST));
         mRefreshHelper.onDefaluteMRefresh(true);
     }
 }

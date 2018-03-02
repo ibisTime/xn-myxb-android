@@ -79,7 +79,7 @@ public class LogoSelectActivity extends AbsBaseLoadActivity {
                 updateLogo(url);
             }
         });
-        getLogoList(0, 0, true, true);
+        getLogoList(1, 10, true, true);
 
     }
 

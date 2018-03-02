@@ -24,6 +24,7 @@ import com.cdkj.myxb.models.IntegraProductDetailsModel;
 import com.cdkj.myxb.models.IntegralListModel;
 import com.cdkj.myxb.models.IntegralModel;
 import com.cdkj.myxb.models.IntegralOrderListModel;
+import com.cdkj.myxb.models.InvitationModel;
 import com.cdkj.myxb.models.LogoListModel;
 import com.cdkj.myxb.models.MouthAppointmentModel;
 import com.cdkj.myxb.models.MsgListModel;
@@ -43,6 +44,17 @@ import retrofit2.http.POST;
  */
 
 public interface MyApiServer {
+
+    /**
+     * 获取邀请信息
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<InvitationModel>> getInvitationInfo(@Field("code") String code, @Field("json") String json);
 
 
     /**
