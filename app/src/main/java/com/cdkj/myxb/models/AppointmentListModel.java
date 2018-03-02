@@ -1,5 +1,7 @@
 package com.cdkj.myxb.models;
 
+import java.math.BigDecimal;
+
 /**
  * Created by cdkj on 2018/2/26.
  */
@@ -23,6 +25,25 @@ public class AppointmentListModel {
 
     private String code;
     private String type;
+
+
+
+    public String getRealDatetime() {
+        return realDatetime;
+    }
+
+    public void setRealDatetime(String realDatetime) {
+        this.realDatetime = realDatetime;
+    }
+
+    public BigDecimal getSaleAmount() {
+        return saleAmount;
+    }
+
+    public void setSaleAmount(BigDecimal saleAmount) {
+        this.saleAmount = saleAmount;
+    }
+
     private String owner;
     private String appointDatetime;
     private int appointDays;
@@ -33,8 +54,45 @@ public class AppointmentListModel {
     private String isComment;
     private String planDatetime;
     private String planDays;
-//    private MryUserBean mryUser;
+    private int clientNumber; //见客户量
+    private int sucNumber;  //成交数
+    private int realDays;  //实际天数
+    private String realDatetime;  //实际上门时间
+    private BigDecimal saleAmount;  //销售额
+    private MryUserBean mryUser;
     private UserBean user;
+
+    public int getClientNumber() {
+        return clientNumber;
+    }
+
+    public void setClientNumber(int clientNumber) {
+        this.clientNumber = clientNumber;
+    }
+
+    public int getSucNumber() {
+        return sucNumber;
+    }
+
+    public void setSucNumber(int sucNumber) {
+        this.sucNumber = sucNumber;
+    }
+
+    public int getRealDays() {
+        return realDays;
+    }
+
+    public void setRealDays(int realDays) {
+        this.realDays = realDays;
+    }
+
+    public MryUserBean getMryUser() {
+        return mryUser;
+    }
+
+    public void setMryUser(MryUserBean mryUser) {
+        this.mryUser = mryUser;
+    }
 
     public String getPlanDatetime() {
         return planDatetime;
@@ -173,99 +231,27 @@ public class AppointmentListModel {
          * tradepwdFlag : false
          */
 
-        private String userId;
-        private String loginName;
-        private String mobile;
-        private String nickname;
-        private String loginPwdStrength;
-        private String kind;
-        private String level;
-        private String adviser;
-        private String storeName;
+//        private String userId;
+//        private String loginName;
+//        private String mobile;
+//        private String nickname;
+//        private String loginPwdStrength;
+//        private String kind;
+//        private String level;
+//        private String adviser;
+//        private String storeName;
         private String realName;
-        private String status;
-        private String gender;
-        private String introduce;
-        private int score;
-        private String createDatetime;
-        private String updater;
-        private String updateDatetime;
-        private String remark;
-        private String companyCode;
-        private String systemCode;
-        private boolean tradepwdFlag;
-
-        public String getUserId() {
-            return userId;
-        }
-
-        public void setUserId(String userId) {
-            this.userId = userId;
-        }
-
-        public String getLoginName() {
-            return loginName;
-        }
-
-        public void setLoginName(String loginName) {
-            this.loginName = loginName;
-        }
-
-        public String getMobile() {
-            return mobile;
-        }
-
-        public void setMobile(String mobile) {
-            this.mobile = mobile;
-        }
-
-        public String getNickname() {
-            return nickname;
-        }
-
-        public void setNickname(String nickname) {
-            this.nickname = nickname;
-        }
-
-        public String getLoginPwdStrength() {
-            return loginPwdStrength;
-        }
-
-        public void setLoginPwdStrength(String loginPwdStrength) {
-            this.loginPwdStrength = loginPwdStrength;
-        }
-
-        public String getKind() {
-            return kind;
-        }
-
-        public void setKind(String kind) {
-            this.kind = kind;
-        }
-
-        public String getLevel() {
-            return level;
-        }
-
-        public void setLevel(String level) {
-            this.level = level;
-        }
-
-        public String getAdviser() {
-            return adviser;
-        }
-
-        public void setAdviser(String adviser) {
-            this.adviser = adviser;
-        }
-
-        public String getStoreName() {
-            return storeName;
-        }
-
-        public void setStoreName(String storeName) {
-            this.storeName = storeName;
-        }
+//        private String status;
+//        private String gender;
+//        private String introduce;
+//        private int score;
+//        private String createDatetime;
+//        private String updater;
+//        private String updateDatetime;
+//        private String remark;
+//        private String companyCode;
+//        private String systemCode;
+        private String photo;
 
         public String getRealName() {
             return realName;
@@ -275,92 +261,12 @@ public class AppointmentListModel {
             this.realName = realName;
         }
 
-        public String getStatus() {
-            return status;
+        public String getPhoto() {
+            return photo;
         }
 
-        public void setStatus(String status) {
-            this.status = status;
-        }
-
-        public String getGender() {
-            return gender;
-        }
-
-        public void setGender(String gender) {
-            this.gender = gender;
-        }
-
-        public String getIntroduce() {
-            return introduce;
-        }
-
-        public void setIntroduce(String introduce) {
-            this.introduce = introduce;
-        }
-
-        public int getScore() {
-            return score;
-        }
-
-        public void setScore(int score) {
-            this.score = score;
-        }
-
-        public String getCreateDatetime() {
-            return createDatetime;
-        }
-
-        public void setCreateDatetime(String createDatetime) {
-            this.createDatetime = createDatetime;
-        }
-
-        public String getUpdater() {
-            return updater;
-        }
-
-        public void setUpdater(String updater) {
-            this.updater = updater;
-        }
-
-        public String getUpdateDatetime() {
-            return updateDatetime;
-        }
-
-        public void setUpdateDatetime(String updateDatetime) {
-            this.updateDatetime = updateDatetime;
-        }
-
-        public String getRemark() {
-            return remark;
-        }
-
-        public void setRemark(String remark) {
-            this.remark = remark;
-        }
-
-        public String getCompanyCode() {
-            return companyCode;
-        }
-
-        public void setCompanyCode(String companyCode) {
-            this.companyCode = companyCode;
-        }
-
-        public String getSystemCode() {
-            return systemCode;
-        }
-
-        public void setSystemCode(String systemCode) {
-            this.systemCode = systemCode;
-        }
-
-        public boolean isTradepwdFlag() {
-            return tradepwdFlag;
-        }
-
-        public void setTradepwdFlag(boolean tradepwdFlag) {
-            this.tradepwdFlag = tradepwdFlag;
+        public void setPhoto(String photo) {
+            this.photo = photo;
         }
     }
 

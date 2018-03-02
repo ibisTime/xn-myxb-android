@@ -40,13 +40,17 @@ public class AppointmentListAdapter extends BaseQuickAdapter<AppointmentListMode
         helper.setText(R.id.tv_time, DateUtil.formatStringData(item.getApplyDatetime(), DateUtil.DATE_YYMMddHHmm));
         helper.setText(R.id.tv_days, "预约天数: " + item.getAppointDays() + "天");
 
-        helper.setText(R.id.tv_state_do, OrderHelper.getAppointmentBtnStateString(item.getStatus()));
+        helper.setGone(R.id.tv_to_comment, OrderHelper.canAppointmentComment(item));
 
-        helper.setGone(R.id.lin_buttom, OrderHelper.canAppointmentComment(item) || OrderHelper.canShowAppointmentButton(item.getStatus())); //可以评价或有操作时可以显示
-        helper.setGone(R.id.tv_state_do, OrderHelper.canShowAppointmentButton(item.getStatus()));
-        helper.setGone(R.id.tv_to_comment, OrderHelper.canAppointmentComment(item));//
+        helper.setGone(R.id.lin_buttom, OrderHelper.canAppointmentComment(item)); //可以评价或有操作时可以显示 || OrderHelper.canShowAppointmentButton(item.getStatus())
 
-        helper.addOnClickListener(R.id.tv_state_do);
+//        helper.setText(R.id.tv_state_do, OrderHelper.getAppointmentBtnStateString(item.getStatus()));
+//
+
+//        helper.setGone(R.id.tv_state_do, OrderHelper.canShowAppointmentButton(item.getStatus()));
+//        helper.setGone(R.id.tv_to_comment, OrderHelper.canAppointmentComment(item));//
+
+//        helper.addOnClickListener(R.id.tv_state_do);
         helper.addOnClickListener(R.id.tv_to_comment);
 
     }

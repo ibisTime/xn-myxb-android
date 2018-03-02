@@ -64,7 +64,7 @@
                         android:ellipsize="end"
                         android:gravity="left"
                         android:maxLines="2"
-                        android:textColor="@color/app_txt_gray"
+                        android:textColor="@color/app_txt_black"
                         android:textSize="16sp"
                         tools:text="23232" />
 
@@ -79,7 +79,7 @@
                         android:ellipsize="end"
                         android:gravity="left"
                         android:maxLines="2"
-                        android:textColor="@color/app_txt_gray"
+                        android:textColor="@color/app_txt_black"
                         android:textSize="16sp"
                         tools:text="23232" />
 

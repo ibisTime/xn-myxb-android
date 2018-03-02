@@ -126,9 +126,6 @@ public class AllRankListActivity extends AbsRefreshListActivity {
 
             @Override
             protected void onSuccess(List<RankModel> data, String SucMessage) {
-                data.addAll(data);
-                data.addAll(data);
-                data.addAll(data);
                 setShowData(data);
             }
 

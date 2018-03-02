@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cdkj.baselibrary.activitys.WebViewActivity;
 import com.cdkj.baselibrary.api.BaseApiServer;
 import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
 import com.cdkj.baselibrary.base.BaseLazyFragment;
@@ -81,7 +82,11 @@ public class MyFragment extends BaseLazyFragment {
         /*普通角色*/
 
         //成果订单
-        mBinding.layoutMy.rowMyOrder.setOnClickListener(view -> ResultsOrderActivity.open(mActivity));
+        mBinding.layoutMy.rowMyOrder.setOnClickListener(view -> {
+
+            if (mUserInfoMode == null) return;
+            ResultsOrderActivity.open(mActivity, mUserInfoMode.getKind());
+        });
         //积分商场
         mBinding.layoutMy.rowIntegral.setOnClickListener(view -> IntegralMallActivity.open(mActivity, mUserInfoMode));
 
@@ -94,7 +99,7 @@ public class MyFragment extends BaseLazyFragment {
         //我的排名
         mBinding.layoutMy.rowMyRank.setOnClickListener(view -> ExpertRankListActivity.open(mActivity));
 
-
+        mBinding.layoutMy.rowHelpCenter.setOnClickListener(view -> WebViewActivity.openkey(mActivity, "帮助中心", "help_center"));
 
 
 
@@ -119,6 +124,8 @@ public class MyFragment extends BaseLazyFragment {
             CallPhoneActivity.open(mActivity, mUserInfoMode.getAdviserUser().getMobile());
 
         });
+
+        mBinding.layoutMyBoos.rowHelpCenter.setOnClickListener(view -> WebViewActivity.openkey(mActivity, "帮助中心", "help_center"));
     }
 
 
@@ -145,6 +152,7 @@ public class MyFragment extends BaseLazyFragment {
         call.enqueue(new BaseResponseModelCallBack<UserModel>(mActivity) {
             @Override
             protected void onSuccess(UserModel data, String SucMessage) {
+
                 mUserInfoMode = data;
                 saveUserInfo(data);
                 setShowData();
@@ -164,6 +172,7 @@ public class MyFragment extends BaseLazyFragment {
 
     /**
      * 保存用户相关信息
+     *
      * @param data
      */
     private void saveUserInfo(UserModel data) {
@@ -183,7 +192,7 @@ public class MyFragment extends BaseLazyFragment {
         if (isUserInfoIsNull()) {
             return;
         }
-
+        mBinding.headerLayout.linUserInfo.setVisibility(View.VISIBLE);
         ImgUtils.loadQiNiuBorderLogo(mActivity, mUserInfoMode.getPhoto(), mBinding.headerLayout.imgUserLogo, R.color.white_50);
 
         mBinding.headerLayout.tvUserName.setText(TextUtils.isEmpty(mUserInfoMode.getRealName()) ? "暂无" : mUserInfoMode.getRealName());

@@ -7,6 +7,8 @@ import com.cdkj.baselibrary.model.CodeModel;
 import com.cdkj.myxb.models.AccountDetailsModel;
 import com.cdkj.myxb.models.AccountListModel;
 import com.cdkj.myxb.models.AddressModel;
+import com.cdkj.myxb.models.AdviceListModel;
+import com.cdkj.myxb.models.AdviceScoreModel;
 import com.cdkj.myxb.models.AppointmentListModel;
 import com.cdkj.myxb.models.BrandListModel;
 import com.cdkj.myxb.models.BrandProductModel;
@@ -41,6 +43,18 @@ import retrofit2.http.POST;
  */
 
 public interface MyApiServer {
+
+
+    /**
+     * 获取建议分数
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<AdviceScoreModel>> getAdviceScore(@Field("code") String code, @Field("json") String json);
 
 
     /**
@@ -179,6 +193,15 @@ public interface MyApiServer {
     @POST("api")
     Call<BaseResponseModel<ResponseInListModel<AppointmentListModel>>> getAppointmentList(@Field("code") String code, @Field("json") String json);
 
+
+    /**
+     * 获取建议列表
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<ResponseInListModel<AdviceListModel>>> getAdviceList(@Field("code") String code, @Field("json") String json);
 
     /**
      * 获取评论列表

@@ -1,4 +1,4 @@
-package com.cdkj.myxb.module.appointment;
+package com.cdkj.myxb.module.order;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,12 +11,15 @@ import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.DateUtil;
+import com.cdkj.baselibrary.utils.MoneyUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
-import com.cdkj.myxb.databinding.ActivityAppointmentDetailsBinding;
+import com.cdkj.myxb.databinding.ActivityExpertsOrderDetailsBinding;
+import com.cdkj.myxb.databinding.ActivityResultOrderDetailsBinding;
 import com.cdkj.myxb.models.AppointmentListModel;
 import com.cdkj.myxb.module.api.MyApiServer;
-import com.cdkj.myxb.module.order.OrderHelper;
+import com.cdkj.myxb.module.appointment.AppointmentCommentActivity;
+import com.cdkj.myxb.module.appointment.AppointmentDoActivity;
 import com.cdkj.myxb.module.user.UserHelper;
 
 import java.util.HashMap;
@@ -25,13 +28,13 @@ import java.util.Map;
 import retrofit2.Call;
 
 /**
- * 预约详情
+ * 专家预约成果订单详情
  * Created by cdkj on 2018/2/26.
  */
 
-public class AppointmentDetailActivity extends AbsBaseLoadActivity {
+public class ExpertsOrderDetailActivity extends AbsBaseLoadActivity {
 
-    private ActivityAppointmentDetailsBinding mBinding;
+    private ActivityExpertsOrderDetailsBinding mBinding;
     private String mCode;
     private String mType;
 
@@ -44,7 +47,7 @@ public class AppointmentDetailActivity extends AbsBaseLoadActivity {
         if (context == null) {
             return;
         }
-        Intent intent = new Intent(context, AppointmentDetailActivity.class);
+        Intent intent = new Intent(context, ExpertsOrderDetailActivity.class);
         intent.putExtra("code", code);
         intent.putExtra("type", type);
         context.startActivity(intent);
@@ -53,7 +56,7 @@ public class AppointmentDetailActivity extends AbsBaseLoadActivity {
 
     @Override
     public View addMainView() {
-        mBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.activity_appointment_details, null, false);
+        mBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.activity_experts_order_details, null, false);
         return mBinding.getRoot();
     }
 
@@ -66,8 +69,6 @@ public class AppointmentDetailActivity extends AbsBaseLoadActivity {
         }
 
         mBaseBinding.titleView.setMidTitle(UserHelper.getUserTypeByKind(mType) + "详情");
-
-        mBinding.tvAppioType.setText("预约" + UserHelper.getUserTypeByKind(mType));
 
         initListener();
 
@@ -128,26 +129,24 @@ public class AppointmentDetailActivity extends AbsBaseLoadActivity {
     }
 
     private void sheShowData(AppointmentListModel data) {
-        if (data.getUser() != null) {
-            mBinding.tvName.setText(data.getUser().getRealName());
+        if (data.getMryUser() != null) {
+            mBinding.tvName.setText(data.getMryUser().getRealName());
         }
 
-        mBinding.tvAppioTime.setText(DateUtil.formatStringData(data.getApplyDatetime(), DateUtil.DATE_YYMMddHHmm));
-        mBinding.tvAppioDays.setText(data.getAppointDays() + "天");
+        mBinding.tvAppioTime.setText(DateUtil.formatStringData(data.getRealDatetime(), DateUtil.DATE_YYMMddHHmm));
+        mBinding.tvAppioDays.setText(data.getRealDays() + "天");
 
-        mBinding.tvAppioTimePlan.setText(DateUtil.formatStringData(data.getPlanDatetime(), DateUtil.DATE_YYMMddHHmm));
-        mBinding.tvAppioDaysPlan.setText(data.getAppointDays() + "天");
-
-        mBinding.linPlanTime.setVisibility(TextUtils.isEmpty(data.getPlanDatetime()) ? View.GONE : View.VISIBLE);
-        mBinding.linPlanDays.setVisibility(TextUtils.isEmpty(data.getPlanDatetime()) ? View.GONE : View.VISIBLE);
+        mBinding.tvSeeNum.setText(data.getClientNumber() + "");
+        mBinding.tvSeeDoneNum.setText(data.getSucNumber() + "");
+        mBinding.tvSales.setText(MoneyUtils.showPrice(data.getSaleAmount()));
 
 
         mBinding.tvState.setText(OrderHelper.getAppoitmentState(data.getStatus()));
 
-//        mBinding.btnStateDo.setVisibility(OrderHelper.canShowAppointmentButton(data.getStatus()) ? View.VISIBLE : View.GONE);
-        mBinding.btnToComment.setVisibility(OrderHelper.canAppointmentComment(data) ? View.VISIBLE : View.GONE);
+        mBinding.btnStateDo.setVisibility(OrderHelper.canShowAppointmentButton(data.getStatus()) ? View.VISIBLE : View.GONE);
+//        mBinding.btnToComment.setVisibility(OrderHelper.canAppointmentComment(data) ? View.VISIBLE : View.GONE);
 
-//        mBinding.btnStateDo.setText(OrderHelper.getAppointmentBtnStateString(data.getStatus()));
+        mBinding.btnStateDo.setText(OrderHelper.getAppointmentBtnStateString(data.getStatus()));
 
 
     }

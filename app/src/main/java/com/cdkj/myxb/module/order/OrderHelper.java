@@ -11,6 +11,7 @@ import com.cdkj.myxb.models.AppointmentListModel;
 public class OrderHelper {
 
 
+    /*积分订单*/
     public static final String INTEGRALORDERWAITESEND = "0";//待发货；
     public static final String INTEGRALORDERWAITEGET = "1";//待收货；
     public static final String INTEGRALORDERWAITEECOMMENT = "2";//待评价；
@@ -18,6 +19,7 @@ public class OrderHelper {
     public static final String INTEGRALORDERCANCEL = "4";//已取消；
 
 
+    /*产品订单*/
     /*0待审核，1审核未通过，2待发货，3待评价，4已完成*/
     public static final String ORDERWAITEAUDIT = "0";//0待审核；
     public static final String ORDERWAITEAUDIT_NO = "1";//1审核未通过；
@@ -25,6 +27,7 @@ public class OrderHelper {
     public static final String ORDERWAITEECOMMENT = "3";//3待评价；
     public static final String ORDERDONE = "4";//4已完成；
 
+    /*成果订单 预约订单*/
     /*1, 待审核, 2, 已排班待上门,3, 无档期, 4, 已上门待下课, 5, 已下课待录入,6, 已录入;*/
     public static final String APPOINTMENTALL = "";
     public static final String APPOINTMENT_1 = "1";
@@ -191,13 +194,13 @@ public class OrderHelper {
 
     /**
      * 预约list 详情呢弄否显示评价
-     * 是否可以进行评价 0 可以评价 (待审核 已排班待上门时不能评价)
+     * 是否可以进行评价 0 可以评价 (待录入 已完成才可以进行评价)
      *
      * @param item
      * @return
      */
     public static boolean canAppointmentComment(AppointmentListModel item) {
-        return TextUtils.equals("0", item.getIsComment()) && !TextUtils.equals(item.getStatus(), OrderHelper.APPOINTMENT_1) && TextUtils.equals(item.getStatus(), OrderHelper.APPOINTMENT_2);
+        return TextUtils.equals("0", item.getIsComment()) && TextUtils.equals(item.getStatus(), OrderHelper.APPOINTMENT_5) && TextUtils.equals(item.getStatus(), OrderHelper.APPOINTMENT_6);
     }
 
 

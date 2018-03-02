@@ -6,6 +6,7 @@
     tools:showIn="@layout/fragment_my">
 
     <LinearLayout
+        android:visibility="invisible"
         android:id="@+id/lin_user_info"
         android:layout_width="match_parent"
         android:layout_height="145dp"

@@ -189,7 +189,7 @@ public class MyRatingBar extends LinearLayout {
         return imageView;
     }
     public void setStar2(float starCount) {
-        if(starCount<=0){
+        if(starCount<0){
             return;
         }
 
@@ -227,7 +227,7 @@ public class MyRatingBar extends LinearLayout {
     }
     public void setStar(float starCount) {
 
-        if(starCount<=0){
+        if(starCount<0){
             return;
         }
 

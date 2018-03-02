@@ -25,18 +25,19 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="评分及评论"
+                android:text="评分及建议"
                 android:textColor="@color/app_txt_black"
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/tv_average"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="7.7"
                 android:textColor="@color/app_txt_red"
                 android:textSize="45sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="7.7" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -167,11 +168,10 @@
                         android:gravity="center">
 
                         <ProgressBar
+                            android:id="@+id/progressBar_5"
                             style="@android:style/Widget.ProgressBar.Horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/advice_progressbar_hegiht"
-                            android:max="100"
-                            android:progress="50"
                             android:progressDrawable="@drawable/shape_advice_progress" />
 
                     </LinearLayout>
@@ -184,11 +184,10 @@
                         android:gravity="center">
 
                         <ProgressBar
+                            android:id="@+id/progressBar_4"
                             style="@android:style/Widget.ProgressBar.Horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/advice_progressbar_hegiht"
-                            android:max="100"
-                            android:progress="50"
                             android:progressDrawable="@drawable/shape_advice_progress" />
 
                     </LinearLayout>
@@ -200,11 +199,10 @@
                         android:gravity="center">
 
                         <ProgressBar
+                            android:id="@+id/progressBar_3"
                             style="@android:style/Widget.ProgressBar.Horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/advice_progressbar_hegiht"
-                            android:max="100"
-                            android:progress="50"
                             android:progressDrawable="@drawable/shape_advice_progress" />
 
                     </LinearLayout>
@@ -216,11 +214,10 @@
                         android:gravity="center">
 
                         <ProgressBar
+                            android:id="@+id/progressBar_2"
                             style="@android:style/Widget.ProgressBar.Horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/advice_progressbar_hegiht"
-                            android:max="100"
-                            android:progress="50"
                             android:progressDrawable="@drawable/shape_advice_progress" />
 
                     </LinearLayout>
@@ -232,11 +229,10 @@
                         android:gravity="center">
 
                         <ProgressBar
+                            android:id="@+id/progressBar_1"
                             style="@android:style/Widget.ProgressBar.Horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/advice_progressbar_hegiht"
-                            android:max="100"
-                            android:progress="50"
                             android:progressDrawable="@drawable/shape_advice_progress" />
 
                     </LinearLayout>
@@ -246,12 +242,13 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:text="186个评分"
                 android:textColor="@color/app_txt_gray"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tools:text="186个评分" />
 
         </LinearLayout>
 

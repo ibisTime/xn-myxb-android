@@ -40,9 +40,9 @@
                             android:id="@+id/tv_appio_type"
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
+                            android:text="美容院"
                             android:textColor="@color/app_txt_black"
-                            android:textSize="14sp"
-                            tools:text="预约美导" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/tv_name"
@@ -69,7 +69,7 @@
                         <TextView
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:text="预约开始时间"
+                            android:text="开始时间"
                             android:textColor="@color/app_txt_black"
                             android:textSize="14sp" />
 
@@ -99,7 +99,7 @@
                         <TextView
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:text="预约天数"
+                            android:text="天数"
                             android:textColor="@color/app_txt_black"
                             android:textSize="14sp" />
 
@@ -130,12 +130,12 @@
                         <TextView
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:text="预约排班时间"
+                            android:text="见客户量"
                             android:textColor="@color/app_txt_black"
                             android:textSize="14sp" />
 
                         <TextView
-                            android:id="@+id/tv_appio_time_plan"
+                            android:id="@+id/tv_see_num"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/app_txt_black"
@@ -161,12 +161,41 @@
                         <TextView
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:text="预约排班天数"
+                            android:text="成交客户量"
                             android:textColor="@color/app_txt_black"
                             android:textSize="14sp" />
 
                         <TextView
-                            android:id="@+id/tv_appio_days_plan"
+                            android:id="@+id/tv_see_done_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/app_txt_black"
+                            android:textSize="14sp"
+                            tools:text="产品名称" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="@dimen/layout_left_interval"
+                        android:paddingRight="@dimen/layout_right_interval"
+                        android:paddingTop="15dp">
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="销售业绩"
+                            android:textColor="@color/app_txt_black"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_sales"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/app_txt_black"

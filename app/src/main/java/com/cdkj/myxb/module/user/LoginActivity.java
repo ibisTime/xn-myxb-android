@@ -215,6 +215,7 @@ public class LoginActivity extends AbsBaseLoadActivity implements LoginInterface
     private void backClick() {
         if (canOpenMain) {
             MainActivity.open(this);
+            finish();
         } else {
             super.onBackPressed();
         }

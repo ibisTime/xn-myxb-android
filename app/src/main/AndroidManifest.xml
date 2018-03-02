@@ -236,6 +236,27 @@
             android:name=".module.banner.AllRankListActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
+        <!--平台建议-->
+        <activity
+            android:name=".module.common.AdviceActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--平台建议-->
+        <activity
+            android:name=".module.common.AdviceListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--成果订单-->
+        <activity
+            android:name=".module.order.ResultOrderDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--专家成果订单详情-->
+        <activity
+            android:name=".module.order.ExpertsOrderDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>

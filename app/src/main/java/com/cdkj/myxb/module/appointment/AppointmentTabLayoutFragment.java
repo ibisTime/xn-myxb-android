@@ -62,7 +62,7 @@ public class AppointmentTabLayoutFragment extends CommonTablayoutFragment {
         fragments.add(AppointmentListFragment.getInstanse(OrderHelper.APPOINTMENT_4, mType, false));
         fragments.add(AppointmentListFragment.getInstanse(OrderHelper.APPOINTMENT_5, mType, false));
         fragments.add(AppointmentListFragment.getInstanse(OrderHelper.APPOINTMENT_6, mType, false));
-        fragments.add(AppointmentListFragment.getInstanse(OrderHelper.APPOINTMENT_3, mType, false));
+//        fragments.add(AppointmentListFragment.getInstanse(OrderHelper.APPOINTMENT_3, mType, false));
 
 
         return fragments;
@@ -79,7 +79,7 @@ public class AppointmentTabLayoutFragment extends CommonTablayoutFragment {
         strings.add("待下课");
         strings.add("待录入");
         strings.add("已完成");
-        strings.add("已取消");
+//        strings.add("已取消");
         return strings;
     }
 }

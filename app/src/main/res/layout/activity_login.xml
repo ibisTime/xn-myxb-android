@@ -95,7 +95,7 @@
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/phone_login" />
+                    android:src="@drawable/user_type" />
 
                 <TextView
                     android:id="@+id/tv_logintype"

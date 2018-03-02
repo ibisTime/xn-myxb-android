@@ -2,175 +2,188 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+
     <LinearLayout
         android:id="@+id/lin_head"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:paddingBottom="10dp"
         android:weightSum="3">
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
-            <FrameLayout
-                android:layout_width="70dp"
-                android:layout_height="70dp">
 
-                <ImageView
-                    android:id="@+id/img_rank_2"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
-                    tools:src="@mipmap/icon" />
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="right|bottom"
-                    android:src="@drawable/rank_2" />
-
-            </FrameLayout>
-
-            <TextView
-                android:id="@+id/tv_name_2"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:textColor="@color/app_txt_black"
-                android:textSize="16sp"
-                tools:text="sdf" />
+                android:layout_marginTop="45dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_price_2"
-                android:layout_width="wrap_content"
+                <FrameLayout
+                    android:layout_width="70dp"
+                    android:layout_height="70dp">
+
+                    <ImageView
+                        android:id="@+id/img_rank_2"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        tools:src="@mipmap/icon" />
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="right|bottom"
+                        android:src="@drawable/rank_2" />
+
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tv_name_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="@color/app_txt_black"
+                    android:textSize="16sp"
+                    tools:text="sdf" />
+
+                <TextView
+                    android:id="@+id/tv_price_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="@color/app_txt_black"
+                    android:textSize="14sp"
+                    tools:text="sdf" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:textColor="@color/app_txt_black"
-                android:textSize="14sp"
-                tools:text="sdf" />
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
 
+                <FrameLayout
+                    android:layout_width="70dp"
+                    android:layout_height="70dp">
+
+                    <ImageView
+                        android:id="@+id/img_rank_1"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        tools:src="@mipmap/icon" />
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="right|bottom"
+                        android:src="@drawable/rank_1" />
+
+                </FrameLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_name_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="@color/app_txt_black"
+                    android:textSize="16sp"
+                    tools:text="sdf" />
+
+                <TextView
+                    android:id="@+id/tv_price_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="@color/app_txt_black"
+                    android:textSize="14sp"
+                    tools:text="sdf" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="45dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="70dp"
+                    android:layout_height="70dp">
+
+                    <ImageView
+                        android:id="@+id/img_rank_3"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        tools:src="@mipmap/icon" />
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="right|bottom"
+                        android:src="@drawable/rank_3" />
+
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tv_name_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="@color/app_txt_black"
+                    android:textSize="16sp"
+                    tools:text="sdf" />
+
+                <TextView
+                    android:id="@+id/tv_price_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="@color/app_txt_black"
+                    android:textSize="14sp"
+                    tools:text="sdf" />
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <FrameLayout
-                android:layout_width="70dp"
-                android:layout_height="70dp">
-
-                <ImageView
-                    android:id="@+id/img_rank_1"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
-                    tools:src="@mipmap/icon" />
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="right|bottom"
-                    android:src="@drawable/rank_1" />
-
-            </FrameLayout>
-
-
-            <TextView
-                android:id="@+id/tv_name_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:textColor="@color/app_txt_black"
-                android:textSize="16sp"
-                tools:text="sdf" />
-
-            <TextView
-                android:id="@+id/tv_price_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:textColor="@color/app_txt_black"
-                android:textSize="14sp"
-                tools:text="sdf" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <FrameLayout
-                android:layout_width="70dp"
-                android:layout_height="70dp">
-
-                <ImageView
-                    android:id="@+id/img_rank_3"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
-                    tools:src="@mipmap/icon" />
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="right|bottom"
-                    android:src="@drawable/rank_3" />
-
-            </FrameLayout>
-
-            <TextView
-                android:id="@+id/tv_name_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:textColor="@color/app_txt_black"
-                android:textSize="16sp"
-                tools:text="sdf" />
-
-            <TextView
-                android:id="@+id/tv_price_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:textColor="@color/app_txt_black"
-                android:textSize="14sp"
-                tools:text="sdf" />
-
-
-        </LinearLayout>
-
+        <View
+            style="@style/style_split_line"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp" />
 
     </LinearLayout>
 </layout>

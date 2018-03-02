@@ -40,9 +40,9 @@
                             android:id="@+id/tv_appio_type"
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
+                            android:text="美容院"
                             android:textColor="@color/app_txt_black"
-                            android:textSize="14sp"
-                            tools:text="预约美导" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/tv_name"
