@@ -138,19 +138,28 @@
 
             </FrameLayout>
 
-            <TextView
-                android:id="@+id/tv_rule"
+
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="24dp"
+                android:layout_weight="1"
                 android:background="@color/app_invitation_friend_yellow"
                 android:paddingBottom="15dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:paddingTop="15dp"
-                tools:text="sdfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfssdfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsfsfsfsdfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsfsfsfsdfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsfsfsfsdfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsfsfsfsdfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsfsfsfdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsdfsfsfsfsfsfsfsf" />
+                android:paddingTop="15dp">
+
+                <WebView
+                    android:id="@+id/tv_rule"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+
+            </FrameLayout>
 
 
         </LinearLayout>

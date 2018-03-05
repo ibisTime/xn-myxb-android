@@ -72,7 +72,7 @@ public class IntegralProductDetailsActivity extends AbsBaseLoadActivity {
 
     @Override
     public void afterCreate(Bundle savedInstanceState) {
-        mBaseBinding.titleView.setMidTitle("产品详情");
+        mBaseBinding.titleView.setMidTitle("商品详情");
 
         if (getIntent() != null) {
             mProductCode = getIntent().getStringExtra(PRODUCTCODE);
@@ -149,7 +149,7 @@ public class IntegralProductDetailsActivity extends AbsBaseLoadActivity {
         call.enqueue(new BaseResponseModelCallBack<IntegraProductDetailsModel>(this) {
             @Override
             protected void onSuccess(IntegraProductDetailsModel data, String SucMessage) {
-                setBannerData(data.getPic());
+                setBannerData(data.getAdvPic());
                 setPageData(data);
             }
 
@@ -171,9 +171,9 @@ public class IntegralProductDetailsActivity extends AbsBaseLoadActivity {
 
         webView.loadData(data.getDescription(), "text/html;charset=utf-8", "utf-8");
 
-        mBinding.tvIntegralName.setText(data.getName());
+        mBinding.tvIntegralName.setText("【"+data.getName()+"】");
         mBinding.tvIntegralSlogan.setText(data.getSlogan());
-        mBinding.tvIntegralPrice.setText(MoneyUtils.showPrice(data.getPrice()));
+        mBinding.tvIntegralPrice.setText(MoneyUtils.showPrice(data.getPrice())+"积分");
         mBinding.tvIntegralQuantity.setText(data.getQuantity() + "");
     }
 

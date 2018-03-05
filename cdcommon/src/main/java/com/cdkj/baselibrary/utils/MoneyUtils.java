@@ -13,6 +13,8 @@ public class MoneyUtils {
 
     public static final String MONEYSING = "¥";
 
+    /*NumberFormat currency = NumberFormat.getCurrencyInstance();    //建立货币格式化引用*/
+
     /**
      * 发起请求的金额计算
      *

@@ -26,10 +26,15 @@ import com.cdkj.myxb.adapters.AdviceListAdapter;
 import com.cdkj.myxb.databinding.FragmentAdviceBinding;
 import com.cdkj.myxb.models.AdviceListModel;
 import com.cdkj.myxb.models.AdviceScoreModel;
+import com.cdkj.myxb.models.AdviceSucc;
 import com.cdkj.myxb.module.api.MyApiServer;
 import com.cdkj.myxb.module.common.AdviceActivity;
 import com.cdkj.myxb.module.common.AdviceListActivity;
 
+import org.greenrobot.eventbus.Subscribe;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -57,10 +62,20 @@ public class AdviceFragment extends BaseLazyFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_advice, null, false);
 
-        mBinding.headerLayout.tvShowAll.setOnClickListener(view -> {
+        mBinding.refreshLayout.setEnableLoadmore(false);
 
+        mBinding.refreshLayout.setOnRefreshListener(refreshlayout -> {
+            getAllRequest();
         });
 
+        initListener();
+
+        initAdviceAdapter();
+
+        return mBinding.getRoot();
+    }
+
+    private void initListener() {
         mBinding.tvToComment.setOnClickListener(view -> {
             if (!SPUtilHelpr.isLogin(mActivity, false)) {
 
@@ -82,10 +97,6 @@ public class AdviceFragment extends BaseLazyFragment {
         });
 
         mBinding.headerLayout.tvShowAll.setOnClickListener(view -> AdviceListActivity.open(mActivity));
-
-        initAdviceAdapter();
-
-        return mBinding.getRoot();
     }
 
     /**
@@ -112,10 +123,17 @@ public class AdviceFragment extends BaseLazyFragment {
     protected void lazyLoad() {
 
         if (mBinding != null) {
-            getScoreRequest();
-            getAdviceList(1, 10, false);
+            getAllRequest();
         }
 
+    }
+
+    /**
+     * 获取所有请求
+     */
+    private void getAllRequest() {
+        getScoreRequest();
+        getAdviceList(1, 10, false);
     }
 
     @Override
@@ -145,7 +163,6 @@ public class AdviceFragment extends BaseLazyFragment {
             }
         });
 
-
     }
 
     public void releaseRequest(int score) {
@@ -169,6 +186,7 @@ public class AdviceFragment extends BaseLazyFragment {
 
                 if (!TextUtils.isEmpty(data.getCode())) {
                     UITipDialog.showSuccess(mActivity, "评分成功");
+                    getAllRequest();
                 }
             }
 
@@ -180,12 +198,18 @@ public class AdviceFragment extends BaseLazyFragment {
     }
 
 
+    /**
+     * 获取建议列表
+     *
+     * @param pageindex
+     * @param limit
+     * @param isShowDialog
+     */
     public void getAdviceList(int pageindex, int limit, boolean isShowDialog) {
 
         Map<String, String> map = new HashMap<>();
         map.put("limit", limit + "");
         map.put("start", pageindex + "");
-        map.put("isAccept", "2"); //0待采纳，1未采纳，2已采纳
         map.put("status", "AB");
 
         Call call = RetrofitUtils.createApi(MyApiServer.class).getAdviceList("805405", StringUtils.getJsonToString(map));
@@ -209,6 +233,16 @@ public class AdviceFragment extends BaseLazyFragment {
 
     }
 
+    /**
+     * 评价成功
+     *
+     * @param adviceSucc
+     */
+    @Subscribe
+    public void AdvicedRefresh(AdviceSucc adviceSucc) {
+        getAllRequest();
+    }
+
 
     /**
      * 设置分数信息
@@ -216,7 +250,7 @@ public class AdviceFragment extends BaseLazyFragment {
      * @param data
      */
     private void sheShowScoreData(AdviceScoreModel data) {
-        mBinding.headerLayout.tvAverage.setText(data.getAverage() + "");
+        mBinding.headerLayout.tvAverage.setText(averageForma(data.getAverage()));
         if (data.getTotalCount() > 999) {
             mBinding.headerLayout.tvCount.setText("999+条建议");
         } else {
@@ -235,6 +269,17 @@ public class AdviceFragment extends BaseLazyFragment {
         mBinding.headerLayout.progressBar4.setProgress(data.getSiCount());
         mBinding.headerLayout.progressBar5.setProgress(data.getWfCount());
 
+    }
+
+    /**
+     * 平均分格式化 保留一位小数
+     * @param discount
+     * @return
+     */
+    public  String averageForma(Float discount) {
+        if (discount == null) return "0";
+        NumberFormat nf = new DecimalFormat("#.#");
+        return nf.format(discount);
     }
 
 }

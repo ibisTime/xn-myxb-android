@@ -118,7 +118,7 @@
                 android:gravity="center"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="前往评价"
+                android:text="评价"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:visibility="gone" />

@@ -33,21 +33,15 @@ public class BrandListAdapter extends BaseQuickAdapter<BrandProductModel, BaseVi
         if (item == null) return;
 
 
-        ImgUtils.loadQiniuImg(mContext, item.getAdvPic(), helper.getView(R.id.img_brand_product));
+        ImgUtils.loadQiniuImg(mContext, item.getPic(), helper.getView(R.id.img_brand_product));
 
         helper.setText(R.id.tv_brand_product_name, item.getName());
         helper.setText(R.id.tv_brand_slogan, item.getSlogan());
         helper.setText(R.id.tv_brand_price, MoneyUtils.getShowPriceSign(item.getPrice()));
-        helper.setText(R.id.tv_brand_sell_num, "已出售：" + item.getSoldOutCount());
+        helper.setText(R.id.tv_brand_sell_num, "已出售:" + item.getSoldOutCount());
 
 
     }
 
-    public static String getShowDiscount(BigDecimal discount) {
-        if (discount == null) return "0";
-        double zhek = (discount.doubleValue() * 10);
-        NumberFormat nf = new DecimalFormat("#.##");
-        return nf.format(zhek);
-    }
 
 }

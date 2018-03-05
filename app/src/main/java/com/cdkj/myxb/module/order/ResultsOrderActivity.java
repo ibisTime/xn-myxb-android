@@ -43,7 +43,7 @@ public class ResultsOrderActivity extends CommonTablayoutActivity {
         initViewPager();
 
         mBaseBinding.titleView.setMidTitle("成果订单");
-        mTabLayoutBinding.tablayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        mTabLayoutBinding.tablayout.setTabMode(TabLayout.MODE_FIXED);
     }
 
     @Override

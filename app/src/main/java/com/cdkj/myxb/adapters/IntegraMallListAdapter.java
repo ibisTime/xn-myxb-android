@@ -34,7 +34,7 @@ public class IntegraMallListAdapter extends BaseQuickAdapter<IntegralModel, Base
         helper.setText(R.id.tv_integra_title, item.getName());
         helper.setText(R.id.tv_integra, MoneyUtils.showPrice(item.getPrice()));
 
-        ImgUtils.loadQiniuImg(mContext, item.getAdvPic(), helper.getView(R.id.img_integra));
+        ImgUtils.loadQiniuImg(mContext, item.getPic(), helper.getView(R.id.img_integra));
 
     }
 }

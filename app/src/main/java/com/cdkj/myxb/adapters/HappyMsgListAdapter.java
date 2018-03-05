@@ -30,7 +30,7 @@ public class HappyMsgListAdapter extends BaseQuickAdapter<HappyMsgModel, BaseVie
     protected void convert(BaseViewHolder helper, HappyMsgModel item) {
         if (item == null) return;
 
-        ImgUtils.loadQiniuImg(mContext, item.getPic(), helper.getView(R.id.img_msg));
+        ImgUtils.loadQiniuImg(mContext, item.getAdvPic(), helper.getView(R.id.img_msg));
 
         helper.setText(R.id.tv_title, item.getTitle());
 

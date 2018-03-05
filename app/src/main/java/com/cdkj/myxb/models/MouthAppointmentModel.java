@@ -16,16 +16,7 @@ public class MouthAppointmentModel  {
     private String endDatetime;
 
 
-    private Date date;
-    private boolean isSame;
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
 
     private List<MouthAppointmentModel> oneDayDateTime;//一天内的相同日期
 
@@ -37,13 +28,6 @@ public class MouthAppointmentModel  {
         this.oneDayDateTime = oneDayDateTime;
     }
 
-    public boolean isSame() {
-        return isSame;
-    }
-
-    public void setSame(boolean same) {
-        isSame = same;
-    }
 
     public String getStartDatetime() {
         return startDatetime;

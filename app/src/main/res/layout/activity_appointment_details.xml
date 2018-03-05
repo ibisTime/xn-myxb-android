@@ -343,7 +343,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_select_common"
-                android:text="前往评价"
+                android:text="评价"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:visibility="gone" />

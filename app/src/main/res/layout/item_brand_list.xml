@@ -55,21 +55,24 @@
 
             <TextView
                 android:id="@+id/tv_brand_price"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
+                android:layout_weight="1"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:textColor="@color/app_txt_red"
                 android:textSize="15sp"
-                tools:text="商品商品商品" />
+                tools:text="商品商品商品商品商品商品" />
+
 
             <TextView
                 android:id="@+id/tv_brand_sell_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:layout_marginRight="@dimen/layout_right_interval"
                 android:layout_marginTop="15dp"
                 android:ellipsize="end"
                 android:singleLine="true"

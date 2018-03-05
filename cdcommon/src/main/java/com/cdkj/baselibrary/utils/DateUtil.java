@@ -52,6 +52,7 @@ public class DateUtil {
         return dayAfter;
     }
 
+
     /**
      * date1比date2更新（更迟，更晚），返回true，否则返回false
      *
@@ -82,8 +83,8 @@ public class DateUtil {
         long d1 = date1.getTime();
         long d2 = date2.getTime();
 
-        LogUtil.E("now"+d1);
-        LogUtil.E("start"+d2);
+        LogUtil.E("now" + d1);
+        LogUtil.E("start" + d2);
 
         return d1 >= d2;
     }
@@ -103,6 +104,44 @@ public class DateUtil {
         int d2 = now.get(Calendar.MONTH) + 1;
         return (day1 >= d1 && month >= d2) || month > d2;
     }
+
+
+    /**
+     * 判断当前时间是否在[startTime, endTime]区间，注意时间格式要一致
+     *
+     * @param nowTime   当前时间
+     * @param startTime 开始时间
+     * @param endTime   结束时间
+     * @return
+     * @author jqlin
+     */
+    public static boolean isEffectiveDate(Date nowTime, Date startTime, Date endTime) {
+
+        if (nowTime == null || startTime == null || endTime == null) {
+            return false;
+        }
+
+        if (nowTime.getTime() == startTime.getTime()
+                || nowTime.getTime() == endTime.getTime()) {
+            return true;
+        }
+
+        Calendar date = Calendar.getInstance();
+        date.setTime(nowTime);
+
+        Calendar begin = Calendar.getInstance();
+        begin.setTime(startTime);
+
+        Calendar end = Calendar.getInstance();
+        end.setTime(endTime);
+
+        if (date.after(begin) && date.before(end)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     public static Date parse(String input, String fmt) {
         try {
@@ -217,7 +256,7 @@ public class DateUtil {
      */
     public static boolean inSameDay(Date date1, Date date2) {
 
-        if(date1==null || date2==null) {
+        if (date1 == null || date2 == null) {
             return false;
         }
 

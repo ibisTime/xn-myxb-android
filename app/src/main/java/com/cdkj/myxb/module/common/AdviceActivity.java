@@ -17,6 +17,9 @@ import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.ActivityAdviceEditBinding;
+import com.cdkj.myxb.models.AdviceSucc;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -104,15 +107,20 @@ public class AdviceActivity extends AbsBaseLoadActivity {
         String s = "filter";//是否包含敏感词汇
         if (!TextUtils.isEmpty(data.getCode()) && !StringUtils.contains(data.getCode(), s)) {
 
-            UITipDialog.showSuccess(AdviceActivity.this, "发布评价成功", new DialogInterface.OnDismissListener() {
+            EventBus.getDefault().post(new AdviceSucc());
+
+            UITipDialog.showSuccess(AdviceActivity.this, "发布成功", new DialogInterface.OnDismissListener() {
                 @Override
                 public void onDismiss(DialogInterface dialogInterface) {
                     finish();
                 }
             });
+
         } else if (StringUtils.contains(data.getCode(), s)) {
 
-            UITipDialog.showSuccess(AdviceActivity.this, "评价成功, 您的评价包含敏感字符,我们将进行审核", new DialogInterface.OnDismissListener() {
+            EventBus.getDefault().post(new AdviceSucc());
+
+            UITipDialog.showSuccess(AdviceActivity.this, "发布成功, 您的评价包含敏感字符,我们将进行审核", new DialogInterface.OnDismissListener() {
                 @Override
                 public void onDismiss(DialogInterface dialogInterface) {
                     finish();

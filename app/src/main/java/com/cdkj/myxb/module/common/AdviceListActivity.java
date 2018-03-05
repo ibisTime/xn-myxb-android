@@ -61,7 +61,6 @@ public class AdviceListActivity extends AbsRefreshListActivity {
         Map<String, String> map = new HashMap<>();
         map.put("limit", limit + "");
         map.put("start", pageindex + "");
-        map.put("isAccept", "2"); //0待采纳，1未采纳，2已采纳
         map.put("status", "AB");
 
         Call call = RetrofitUtils.createApi(MyApiServer.class).getAdviceList("805405", StringUtils.getJsonToString(map));
@@ -74,7 +73,7 @@ public class AdviceListActivity extends AbsRefreshListActivity {
 
             @Override
             protected void onSuccess(ResponseInListModel<AdviceListModel> data, String SucMessage) {
-                mRefreshHelper.setData(data.getList(), "暂无评论", 0);
+                mRefreshHelper.setData(data.getList(), "暂无建议", 0);
             }
 
             @Override

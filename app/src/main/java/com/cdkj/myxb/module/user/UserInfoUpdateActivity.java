@@ -65,6 +65,9 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
 
     @Override
     public void topTitleViewRightClick() {
+
+        if (checkInput()) return;
+
         if (mUserInfo != null && isWaitePass(mUserInfo.getStatus())) {
             showSureDialog("您的资料正在审核中,无法进行修改", view -> {
 
@@ -74,6 +77,41 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
         }
         updateRequest();
 
+    }
+
+    private boolean checkInput() {
+        if (TextUtils.isEmpty(mBinding.editName.getText().toString())) {
+
+            UITipDialog.showFall(this, "请填写姓名");
+
+            return true;
+        }
+        if (TextUtils.isEmpty(mBinding.editSpeciality.getText().toString())) {
+
+            UITipDialog.showFall(this, "请填写擅长领域");
+
+            return true;
+        }
+        if (TextUtils.isEmpty(mBinding.tvStyle.getText().toString()) || mSelectStyleId.isEmpty()) {
+
+            UITipDialog.showFall(this, "请选择授课风格");
+
+            return true;
+        }
+        if (TextUtils.isEmpty(mBinding.editSlogan.getText().toString()) || mSelectStyleId.isEmpty()) {
+
+            UITipDialog.showFall(this, "请填写广告语");
+
+            return true;
+        }
+
+        if (TextUtils.isEmpty(mBinding.editUserInfo.getText().toString()) || mSelectStyleId.isEmpty()) {
+
+            UITipDialog.showFall(this, "请填写个人简介");
+
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -105,39 +143,6 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
      * 更新请求
      */
     public void updateRequest() {
-
-
-        if (TextUtils.isEmpty(mBinding.editName.getText().toString())) {
-
-            UITipDialog.showFall(this, "请填写姓名");
-
-            return;
-        }
-        if (TextUtils.isEmpty(mBinding.editSpeciality.getText().toString())) {
-
-            UITipDialog.showFall(this, "请填写擅长领域");
-
-            return;
-        }
-        if (TextUtils.isEmpty(mBinding.tvStyle.getText().toString()) || mSelectStyleId.isEmpty()) {
-
-            UITipDialog.showFall(this, "请选择授课风格");
-
-            return;
-        }
-        if (TextUtils.isEmpty(mBinding.editSlogan.getText().toString()) || mSelectStyleId.isEmpty()) {
-
-            UITipDialog.showFall(this, "请填写广告语");
-
-            return;
-        }
-
-        if (TextUtils.isEmpty(mBinding.editUserInfo.getText().toString()) || mSelectStyleId.isEmpty()) {
-
-            UITipDialog.showFall(this, "请填写个人简介");
-
-            return;
-        }
 
 
         Map<String, String> map = new HashMap<>();

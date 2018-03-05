@@ -29,7 +29,7 @@ public class FirstPageBrandAdapter extends BaseQuickAdapter<BrandListModel, Base
         if (item == null) return;
 
 
-        ImgUtils.loadImg(mContext, item.getAdvPic(), helper.getView(R.id.img_brand));
+        ImgUtils.loadQiniuImg(mContext, item.getAdvPic(), helper.getView(R.id.img_brand));
 
         helper.setText(R.id.tv_brand_name, item.getName());
 

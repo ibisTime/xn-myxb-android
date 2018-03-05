@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.cdkj.baselibrary.activitys.WebViewActivity;
 import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.appmanager.MyCdConfig;
+import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
 import com.cdkj.baselibrary.base.BaseLazyFragment;
 import com.cdkj.baselibrary.interfaces.BaseRefreshCallBack;
 import com.cdkj.baselibrary.interfaces.RefreshHelper;
@@ -242,7 +243,7 @@ public class FirstPageFragment extends BaseLazyFragment {
         map.put("start", "1");
         map.put("limit", "1");
         map.put("pushType", "41");
-        map.put("toKind", "C");
+        map.put("toKind", SPUtilHelpr.getUserType());
         map.put("status", "1");
         map.put("fromSystemCode", MyCdConfig.SYSTEMCODE);
         map.put("toSystemCode", MyCdConfig.SYSTEMCODE);
@@ -331,6 +332,7 @@ public class FirstPageFragment extends BaseLazyFragment {
     @Override
     protected void lazyLoad() {
         if (mBinding != null) {
+            getMsgRequest();
             mBinding.headrLayout.bannerFirstPage.startAutoPlay();
         }
     }
@@ -342,6 +344,14 @@ public class FirstPageFragment extends BaseLazyFragment {
         }
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (getUserVisibleHint()) {
+            getMsgRequest();
+        }
+    }
 
     /**
      * 获取品牌列表 TO_Shelf("1", "未上架"), Shelf_YES("2", "已上架"), Shelf_NO("3", "已下架");

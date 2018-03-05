@@ -202,7 +202,7 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
         call.enqueue(new BaseResponseModelCallBack<BrandProductModel>(this) {
             @Override
             protected void onSuccess(BrandProductModel data, String SucMessage) {
-                setBannerData(data.getPic());
+                setBannerData(data.getAdvPic());
                 setShowData(data);
             }
 

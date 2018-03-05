@@ -3,6 +3,7 @@ package com.cdkj.myxb.module.order;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 
 import com.cdkj.baselibrary.activitys.CommonTablayoutActivity;
@@ -30,6 +31,7 @@ public class MyOrderActivity extends CommonTablayoutActivity {
     @Override
     public void afterCreate(Bundle savedInstanceState) {
         super.afterCreate(savedInstanceState);
+        mTabLayoutBinding.tablayout.setTabMode(TabLayout.MODE_FIXED);
         mBaseBinding.titleView.setMidTitle(getString(R.string.my_order_all));
     }
 

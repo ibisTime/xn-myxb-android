@@ -48,6 +48,9 @@ public class InvitationFriendFragment extends BaseLazyFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_invitation_friend, null, false);
 
+
+        mBinding.tvRule.setBackgroundColor(0); // 设置背景色
+
         initListener();
 
         return mBinding.getRoot();
@@ -145,9 +148,7 @@ public class InvitationFriendFragment extends BaseLazyFragment {
                 if (TextUtils.isEmpty(data.getCvalue())) {
                     return;
                 }
-
-                mBinding.tvRule.setText(data.getCvalue());
-
+                mBinding.tvRule.loadData(data.getCvalue(), "text/html;charset=utf-8", "utf-8");
             }
 
 
@@ -214,4 +215,15 @@ public class InvitationFriendFragment extends BaseLazyFragment {
     }
 
 
+    @Override
+    public void onDestroy() {
+        mBinding.tvRule.clearHistory();
+        ((ViewGroup) mBinding.tvRule.getParent()).removeView(mBinding.tvRule);
+        mBinding.tvRule.loadUrl("about:blank");
+        mBinding.tvRule.stopLoading();
+        mBinding.tvRule.setWebChromeClient(null);
+        mBinding.tvRule.setWebViewClient(null);
+        mBinding.tvRule.destroy();
+        super.onDestroy();
+    }
 }

@@ -150,8 +150,9 @@ public class ProductOrderActivity extends AbsBaseLoadActivity {
         call.enqueue(new BaseResponseModelCallBack<String>(this) {
             @Override
             protected void onSuccess(String data, String SucMessage) {
-                MyOrderActivity.open(ProductOrderActivity.this);
-                finish();
+                UITipDialog.showSuccess(ProductOrderActivity.this, "下单成功", dialogInterface -> {
+                    MyOrderActivity.open(ProductOrderActivity.this);
+                });
             }
 
             @Override

@@ -18,7 +18,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white">
+            android:background="@color/bg_gray">
 
 
             <LinearLayout
@@ -42,16 +42,16 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/recyclerView_integral"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="7dp"
                         android:layout_marginRight="7dp"
-                        android:layout_marginTop="10dp"
-                        >
-                    </android.support.v7.widget.RecyclerView>
+                        android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
                 </RelativeLayout>
 
 

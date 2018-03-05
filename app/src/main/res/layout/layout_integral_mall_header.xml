@@ -8,6 +8,7 @@
         android:id="@+id/lin_user_info"
         android:layout_width="match_parent"
         android:layout_height="85dp"
+        android:background="@color/white"
         android:paddingLeft="@dimen/layout_left_interval">
 
         <FrameLayout
@@ -71,7 +72,7 @@
                     android:id="@+id/tv_myintegral"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="10dp"
                     android:ellipsize="end"
                     android:singleLine="true"

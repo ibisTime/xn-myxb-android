@@ -106,7 +106,7 @@ public class MyFragment extends BaseLazyFragment {
         /*美容院*/
 
         //预约
-        mBinding.layoutMyBoos.rowMyAppointment.setOnClickListener(view -> MyAppointmentActivity.open(mActivity, UserHelper.L));
+        mBinding.layoutMyBoos.rowMyAppointment.setOnClickListener(view -> MyAppointmentActivity.open(mActivity,SPUtilHelpr.getUserType()));
         //订单
         mBinding.layoutMyBoos.rowMyOrder.setOnClickListener(view -> MyOrderActivity.open(mActivity));
         //积分商城
@@ -160,6 +160,7 @@ public class MyFragment extends BaseLazyFragment {
 
             @Override
             protected void onReqFailure(String errorCode, String errorMessage) {
+                mBinding.headerLayout.linUserInfo.setVisibility(View.VISIBLE);
                 UITipDialog.showFall(mActivity, errorMessage);
             }
 

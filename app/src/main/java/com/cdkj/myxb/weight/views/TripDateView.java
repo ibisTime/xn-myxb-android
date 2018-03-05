@@ -3,8 +3,8 @@ package com.cdkj.myxb.weight.views;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
@@ -19,6 +19,8 @@ import com.cdkj.myxb.models.MouthAppointmentModel;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -46,6 +48,10 @@ public class TripDateView extends LinearLayout {
 
     private Date mStartDate = new Date();
     private Date mNowDate;//当前月份
+    private List<MouthAppointmentModel> mCopareDatas;
+    private Date endData;
+    private Date mCompareEndData; //比对开始时间
+    private Date mCompareStartData;//比对结束
 
 
     public void setItemClickListener(OnClickListener itemClickListener) {
@@ -71,7 +77,7 @@ public class TripDateView extends LinearLayout {
 
 
         mSubscription = new CompositeDisposable();
-
+        mCopareDatas = new ArrayList<>();
         initListener();
 
         initDateAdapter(context);
@@ -97,7 +103,6 @@ public class TripDateView extends LinearLayout {
             if (itemClickListener != null) {
                 itemClickListener.OnPreviousClick(mNowDate);
             }
-
         });
 
 
@@ -113,9 +118,14 @@ public class TripDateView extends LinearLayout {
         calendar.setTime(mNowDate);
         calendar.add(Calendar.MONTH, change);
         mNowDate = calendar.getTime();
-        setDate(mNowDate, null);
+        setDate(mNowDate);
     }
 
+    /**
+     * 初始化适配器
+     *
+     * @param context
+     */
     private void initDateAdapter(Context context) {
         mBinding.recyclerDate.setLayoutManager(new ScrollGridLayoutManager(context, 7));
         tripDateAdapter = new TripDateAdapter(new ArrayList<>());
@@ -123,12 +133,21 @@ public class TripDateView extends LinearLayout {
 
         tripDateAdapter.setOnItemClickListener((adapter, view, position) -> {
             if (itemClickListener != null) {
-                itemClickListener.OnItmeClick(tripDateAdapter.getData(), position);
+
+                if (tripDateAdapter.isHaveSameDay(tripDateAdapter.getItem(position))) {  //有预约时才可以点击
+                    itemClickListener.OnItmeClick(getSameData(tripDateAdapter.getItem(position)), position);
+                }
+
             }
         });
     }
 
 
+    /**
+     * 设置开始时间
+     *
+     * @param mStartDate
+     */
     public void setmStartDate(Date mStartDate) {
         this.mStartDate = mStartDate;
     }
@@ -136,7 +155,7 @@ public class TripDateView extends LinearLayout {
     /**
      * @param date
      */
-    public void setDate(Date date, List<MouthAppointmentModel> compareDates) {
+    public void setDate(Date date) {
         if (date == null) return;
 
         mNowDate = date;
@@ -144,10 +163,10 @@ public class TripDateView extends LinearLayout {
         mSubscription.add(Observable.just(DateUtil.getMonthDataList(date))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(Schedulers.newThread())
-                .map(new Function<List<Date>, List<MouthAppointmentModel>>() {
+                .map(new Function<List<Date>, List<Date>>() {
                     @Override
-                    public List<MouthAppointmentModel> apply(List<Date> dates) throws Exception {
-                        List<MouthAppointmentModel> dateList = new ArrayList<>();
+                    public List<Date> apply(List<Date> dates) throws Exception {
+                        List<Date> dateList = new ArrayList<>();
                         Calendar now = Calendar.getInstance();
                         now.setTime(date);
                         int nowYear = now.get(Calendar.YEAR);//获取年份
@@ -157,26 +176,16 @@ public class TripDateView extends LinearLayout {
                             dateList.add(null);
                         }
 
-                        for (Date date1 : dates) {
-                            MouthAppointmentModel appointmentDateViewModel = new MouthAppointmentModel();
-                            appointmentDateViewModel.setDate(date1);
-                            dateList.add(appointmentDateViewModel);
-                        }
+                        dateList.addAll(dates);
 
                         return dateList;
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<MouthAppointmentModel>>() {
+                .subscribe(new Consumer<List<Date>>() {
                     @Override
-                    public void accept(List<MouthAppointmentModel> datas) throws Exception {
-
-                        if (compareDates == null || compareDates.isEmpty()) {
-                            tripDateAdapter.replaceData(datas);
-                            return;
-                        }
-                        tripDateAdapter.replaceData(filterCompareData(datas, compareDates));
-
+                    public void accept(List<Date> datas) throws Exception {
+                        tripDateAdapter.replaceData(datas);
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -186,38 +195,148 @@ public class TripDateView extends LinearLayout {
                 }));
     }
 
+
     /**
-     * 过滤对比数据 如果日期相同这说明有行程安排
+     * 设置比对数据 找出开始时间和结束时间 获取之前的data 传入比对
      *
      * @param datas
-     * @param das
+     */
+    public void setCompareData(List<MouthAppointmentModel> datas) {
+        if (datas == null || datas.isEmpty()) {
+            return;
+        }
+
+        mCopareDatas.clear();
+        mCopareDatas.addAll(datas);
+
+        mCompareStartData = getCompareStarDate(datas);
+
+        mCompareEndData = getCompreEndDate(datas);
+
+        if (mCompareStartData == null || mCompareEndData == null) {
+            return;
+        }
+
+        if (tripDateAdapter == null) {
+            return;
+        }
+
+        tripDateAdapter.setCompareData(DateUtil.getDatesBetweenTwoDate(mCompareStartData, mCompareEndData));
+    }
+
+
+    /**
+     * 获取结束时间
+     *
+     * @param modelList
      * @return
      */
-    @NonNull
-    private List<MouthAppointmentModel> filterCompareData(List<MouthAppointmentModel> datas, List<MouthAppointmentModel> das) {
-        List<MouthAppointmentModel> newDatas = new ArrayList<>();
+    private Date getCompreEndDate(List<MouthAppointmentModel> modelList) {
 
-        for (MouthAppointmentModel mouthAppointmentModel : datas) {
+        List<MouthAppointmentModel> datas2 = new ArrayList<>();
 
-            if (mouthAppointmentModel != null) {
+        datas2.addAll(modelList);
 
-                List<MouthAppointmentModel> appointmentModels2 = new ArrayList<>();
+        Collections.sort(datas2, new Comparator() {       //按照getEndDatetime 顺序排序
+            @Override
+            public int compare(Object o1, Object o2) {
+                MouthAppointmentModel stu1 = (MouthAppointmentModel) o1;
+                MouthAppointmentModel stu2 = (MouthAppointmentModel) o2;
 
-                for (MouthAppointmentModel datetimeModel : das) {
-
-                    if (DateUtil.inSameDay(mouthAppointmentModel.getDate(), new Date(datetimeModel.getStartDatetime()))) {
-                        mouthAppointmentModel.setSame(true);
-                        appointmentModels2.add(datetimeModel);
-                    }
+                if (stu1 == null || stu2 == null || TextUtils.isEmpty(stu1.getEndDatetime()) || TextUtils.isEmpty(stu2.getEndDatetime())) {
+                    return 1;
                 }
 
-                mouthAppointmentModel.setOneDayDateTime(appointmentModels2); //设置同一天的行程数据
+                if (DateUtil.isNewer(new Date(stu1.getEndDatetime()), new Date(stu2.getEndDatetime()))) {
+                    return 1;
+                } else if (DateUtil.isNewer2(new Date(stu1.getEndDatetime()), new Date(stu2.getEndDatetime()))) {
+                    return 0;
+                } else {
+                    return -1;
+                }
+            }
+        });
+
+        if (datas2.isEmpty()) return null;
+
+        MouthAppointmentModel appointmentModel = datas2.get(datas2.size() - 1);
+
+        if (appointmentModel == null || TextUtils.isEmpty(appointmentModel.getEndDatetime()))
+            return null;
+
+        return new Date(appointmentModel.getEndDatetime());
+    }
+
+
+    /**
+     * 根据date获取相同的日期 用于dialog显示
+     *
+     * @return
+     */
+    private List<MouthAppointmentModel> getSameData(Date date) {
+
+        if (date == null) return null;
+
+        List<MouthAppointmentModel> filterData = new ArrayList<>();
+
+        for (MouthAppointmentModel mouthAppointmentModel : mCopareDatas) {
+
+            if (mouthAppointmentModel == null || TextUtils.isEmpty(mouthAppointmentModel.getStartDatetime())) {
+                continue;
             }
 
-            newDatas.add(mouthAppointmentModel);
+            if (DateUtil.isEffectiveDate(mCompareStartData, new Date(mouthAppointmentModel.getStartDatetime()), mCompareEndData)) {
+                filterData.add(mouthAppointmentModel);
+            }
+
         }
-        return newDatas;
+        return filterData;
+
     }
+
+
+    /**
+     * 获取开始时间
+     *
+     * @param modelList
+     * @return
+     */
+    private Date getCompareStarDate(List<MouthAppointmentModel> modelList) {
+
+        List<MouthAppointmentModel> datas1 = new ArrayList<>();
+
+        datas1.addAll(modelList);
+
+        Collections.sort(datas1, new Comparator() {        //按照getStartDatetime 顺序排序
+            @Override
+            public int compare(Object o1, Object o2) {
+                MouthAppointmentModel stu1 = (MouthAppointmentModel) o1;
+                MouthAppointmentModel stu2 = (MouthAppointmentModel) o2;
+
+                if (stu1 == null || stu2 == null || TextUtils.isEmpty(stu1.getStartDatetime()) || TextUtils.isEmpty(stu2.getStartDatetime())) {
+                    return 1;
+                }
+
+                if (DateUtil.isNewer(new Date(stu1.getStartDatetime()), new Date(stu2.getStartDatetime()))) {
+                    return 1;
+                } else if (DateUtil.isNewer2(new Date(stu1.getStartDatetime()), new Date(stu2.getStartDatetime()))) {
+                    return 0;
+                } else {
+                    return -1;
+                }
+            }
+        });
+
+        if (datas1.isEmpty()) return null;
+
+        MouthAppointmentModel appointmentModel = datas1.get(0);
+
+        if (appointmentModel == null || TextUtils.isEmpty(appointmentModel.getStartDatetime()))
+            return null;
+
+        return new Date(appointmentModel.getStartDatetime());
+    }
+
 
     public void destroyView() {
         if (mSubscription != null) {

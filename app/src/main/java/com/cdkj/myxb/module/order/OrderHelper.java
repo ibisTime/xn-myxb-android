@@ -151,7 +151,7 @@ public class OrderHelper {
         }
 
         if (TextUtils.equals(state, OrderHelper.INTEGRALORDERWAITEECOMMENT)) {
-            return "前往评价";
+            return "评论";
         }
 
         return "";
@@ -166,7 +166,7 @@ public class OrderHelper {
     public static String getOrderBtnStateString(String state) {
 
         if (TextUtils.equals(state, OrderHelper.ORDERWAITEECOMMENT)) {
-            return "前往评价";
+            return "评论";
         }
 
         return "";

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.BigDecimalUtils;
 import com.cdkj.baselibrary.utils.ImgUtils;
+import com.cdkj.baselibrary.utils.MoneyUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.baselibrary.views.ScrollGridLayoutManager;
 import com.cdkj.myxb.R;
@@ -34,6 +36,7 @@ import com.cdkj.myxb.module.api.MyApiServer;
 import com.cdkj.myxb.module.integral.order.MyIntegralOrderActivity;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -218,7 +221,7 @@ public class IntegralMallActivity extends AbsBaseLoadActivity {
 
             @Override
             protected void onSuccess(AccountDetailsModel data, String SucMessage) {
-                mBinding.layoutMallHeader.tvMyintegral.setText(BigDecimalUtils.intValue(data.getAmount()) + "");
+                mBinding.layoutMallHeader.tvMyintegral.setText(MoneyUtils.showPrice(new BigDecimal(BigDecimalUtils.intValue(data.getAmount()))) + "");
             }
 
             @Override
@@ -262,6 +265,7 @@ public class IntegralMallActivity extends AbsBaseLoadActivity {
         map.put("limit", limit + "");
         map.put("start", start + "");
         map.put("status", "2"); //2已上架
+        map.put("faceKind", SPUtilHelpr.getUserId()); //查看对象
 
         Call call = RetrofitUtils.createApi(MyApiServer.class).getIntegralProductList("805285", StringUtils.getJsonToString(map));
 
@@ -272,6 +276,15 @@ public class IntegralMallActivity extends AbsBaseLoadActivity {
         call.enqueue(new BaseResponseModelCallBack<ResponseInListModel<IntegralModel>>(this) {
             @Override
             protected void onSuccess(ResponseInListModel<IntegralModel> data, String SucMessage) {
+
+                if (data.getList() == null || data.getList().isEmpty()) {
+                    if (start == 1) {
+                        mRefreshHelper.setLayoutManager(new LinearLayoutManager(IntegralMallActivity.this, LinearLayoutManager.VERTICAL, false));
+                    }
+                } else if (start == 1) {
+                    mRefreshHelper.setLayoutManager(new ScrollGridLayoutManager(IntegralMallActivity.this, 2));
+                }
+
                 mRefreshHelper.setData(data.getList(), "暂无积分商品", 0);
             }
 

@@ -6,19 +6,18 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 
 import com.cdkj.baselibrary.utils.DateUtil;
 import com.cdkj.baselibrary.utils.DisplayHelper;
-import com.cdkj.baselibrary.utils.LogUtil;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.DialogTripTimeBinding;
 import com.cdkj.myxb.models.MouthAppointmentModel;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+
+import java.util.List;
 
 /**
  * 行程显示时间
@@ -29,11 +28,11 @@ public class TripTimeDialog extends Dialog {
 
     private DialogTripTimeBinding mBinding;
 
-    private MouthAppointmentModel appointmentDateViewModel;
+    private List<MouthAppointmentModel> appointmentDateViewModels;
 
-    public TripTimeDialog(@NonNull Context context, MouthAppointmentModel appointmentDateViewModel) {
+    public TripTimeDialog(@NonNull Context context, List<MouthAppointmentModel> appointmentDateViewModel) {
         super(context, R.style.TipsDialog);
-        this.appointmentDateViewModel = appointmentDateViewModel;
+        this.appointmentDateViewModels = appointmentDateViewModel;
     }
 
     @Override
@@ -52,14 +51,14 @@ public class TripTimeDialog extends Dialog {
             dismiss();
         });
 
-        setShowTime(appointmentDateViewModel);
+        setShowTime();
     }
 
-    private void setShowTime(MouthAppointmentModel appointmentDateViewModel) {
-        if (appointmentDateViewModel == null || mBinding == null) return;
+    private void setShowTime() {
+        if (appointmentDateViewModels == null || mBinding == null) return;
 
         mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        mBinding.recyclerView.setAdapter(new BaseQuickAdapter<MouthAppointmentModel, BaseViewHolder>(R.layout.item_dialog_appointment, appointmentDateViewModel.getOneDayDateTime()) {
+        mBinding.recyclerView.setAdapter(new BaseQuickAdapter<MouthAppointmentModel, BaseViewHolder>(R.layout.item_dialog_appointment, appointmentDateViewModels) {
             @Override
             protected void convert(BaseViewHolder helper, MouthAppointmentModel item) {
                 if (item == null) return;

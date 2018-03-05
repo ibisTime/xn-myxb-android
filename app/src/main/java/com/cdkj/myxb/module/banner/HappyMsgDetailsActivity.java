@@ -113,7 +113,7 @@ public class HappyMsgDetailsActivity extends AbsBaseLoadActivity {
 
     private void setShowData(HappyMsgModel data) {
         setBannerData(data.getAdvPic());
-        ImgUtils.loadQiniuImg(this, data.getPic(),mBinding.imgMsg);
+        ImgUtils.loadQiniuImg(this, data.getPic(), mBinding.imgMsg);
 
         mBinding.tvTitle.setText(data.getTitle());
         mBinding.webView.loadData(data.getDescription(), "text/html;charset=utf-8", "utf-8");

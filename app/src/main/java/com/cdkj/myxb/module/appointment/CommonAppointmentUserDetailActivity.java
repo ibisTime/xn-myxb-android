@@ -66,7 +66,6 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
 
     private CommentListAdapter mCommentListAdapter;
     private String mType; //预约类型
-    private Date mNowDate;
 
     /**
      * @param context
@@ -145,24 +144,17 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
         mBinding.tripDate.setItemClickListener(new TripDateView.OnClickListener() {
             @Override
             public void OnItmeClick(List<MouthAppointmentModel> dateModels, int position) {
-                if (dateModels == null || dateModels.size() < position) return;
 
-                MouthAppointmentModel mouthAppointmentModel = dateModels.get(position);
-
-                if (mouthAppointmentModel == null || !mouthAppointmentModel.isSame()) return;
-
-                new TripTimeDialog(CommonAppointmentUserDetailActivity.this, mouthAppointmentModel).show();
+                new TripTimeDialog(CommonAppointmentUserDetailActivity.this, dateModels).show();
             }
 
             @Override
             public void OnPreviousClick(Date pDate) {
-                mNowDate=pDate;
                 getAppointmentByMouth(DateUtil.format(pDate, DateUtil.DATE_YMD), true);
             }
 
             @Override
             public void OnNextClick(Date nDate) {
-                mNowDate=nDate;
                 getAppointmentByMouth(DateUtil.format(nDate, DateUtil.DATE_YMD), true);
             }
         });
@@ -385,8 +377,9 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
         call.enqueue(new BaseResponseModelCallBack<String>(this) {
             @Override
             protected void onSuccess(String data, String SucMessage) {
-                mNowDate = DateUtil.parse(data, DateUtil.DEFAULT_DATE_FMT);
-                mBinding.tripDate.setmStartDate(mNowDate);
+                Date nowDate = DateUtil.parse(data, DateUtil.DEFAULT_DATE_FMT);
+                mBinding.tripDate.setmStartDate(nowDate);
+                mBinding.tripDate.setDate(nowDate);
                 getAppointmentByMouth(data, false);
             }
 
@@ -425,8 +418,22 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
         call.enqueue(new BaseResponseListCallBack<MouthAppointmentModel>(this) {
             @Override
             protected void onSuccess(List<MouthAppointmentModel> data, String SucMessage) {
-                mBinding.tripDate.setDate(mNowDate,data);
+//                data.addAll(data);
+//                MouthAppointmentModel model = new MouthAppointmentModel();
+//                model.setStartDatetime("Mar 1, 2018 12:00:00 AM");
+//                model.setEndDatetime("Mar 18, 2018 12:00:00 AM");
+//                data.add(model);
+//                MouthAppointmentModel mo2 = new MouthAppointmentModel();
+//                mo2.setStartDatetime("Mar 2, 2018 12:00:00 AM");
+//                mo2.setEndDatetime("Mar 19, 2018 12:00:00 AM");
+//                data.add(mo2);
+//                MouthAppointmentModel mo3 = new MouthAppointmentModel();
+//                mo3.setStartDatetime("Mar 3, 2018 12:00:00 AM");
+//                mo3.setEndDatetime("Mar 10, 2018 12:00:00 AM");
+//                data.add(mo3);
+                mBinding.tripDate.setCompareData(data);
             }
+
 
             @Override
             protected void onFinish() {

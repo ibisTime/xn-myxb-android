@@ -1,6 +1,7 @@
 package com.cdkj.myxb.adapters;
 
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 
 import com.cdkj.baselibrary.utils.DateUtil;
 import com.cdkj.baselibrary.utils.ImgUtils;
@@ -40,6 +41,8 @@ public class AdviceListAdapter extends BaseQuickAdapter<AdviceListModel, BaseVie
         helper.setText(R.id.tv_comment_name, item.getRealName());
         helper.setText(R.id.tv_comment_time, DateUtil.formatStringData(item.getCommentDatetime(), DateUtil.DATE_YMD));
         helper.setText(R.id.tv_comment_info, item.getContent());
+
+        helper.setGone(R.id.tv_comment_info, !TextUtils.isEmpty(item.getContent()));
 
     }
 

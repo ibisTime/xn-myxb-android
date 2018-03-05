@@ -40,6 +40,8 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderListModel, BaseViewH
         helper.setText(R.id.tv_price_all, MoneyUtils.getShowPriceSign(item.getAmount()));
         helper.setText(R.id.tv_state, OrderHelper.getOrderState(item.getStatus()));
 
+        helper.setText(R.id.tv_quantity, "X" + item.getQuantity());
+
         helper.setGone(R.id.lin_buttom, OrderHelper.canShowOrderButton(item.getStatus()));
 
         helper.setText(R.id.tv_state_do, OrderHelper.getOrderBtnStateString(item.getStatus()));

@@ -169,7 +169,7 @@ public class LogoSelectActivity extends AbsBaseLoadActivity {
                         logoSelectDialog.getmRefreshHelper().setLayoutManager(new LinearLayoutManager(LogoSelectActivity.this, LinearLayoutManager.VERTICAL, false));
                     }
                 } else if (start == 1) {
-                    logoSelectDialog.getmRefreshHelper().setLayoutManager(new ScrollGridLayoutManager(LogoSelectActivity.this, 2));
+                    logoSelectDialog.getmRefreshHelper().setLayoutManager(new ScrollGridLayoutManager(LogoSelectActivity.this, 3));
                 }
                 logoSelectDialog.getmRefreshHelper().setData(data.getList(), "暂无可选头像", 0);
                 if (isShowSelectDialog) {

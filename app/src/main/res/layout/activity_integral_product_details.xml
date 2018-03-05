@@ -62,7 +62,7 @@
                             android:id="@+id/tv_integral_price"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="12dp"
+                            android:layout_marginLeft="5dp"
                             android:textColor="@color/integral_yellow"
                             tools:text="2000积分" />
 
@@ -88,7 +88,7 @@
                             android:id="@+id/tv_integral_quantity"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="12dp"
+                            android:layout_marginLeft="5dp"
                             android:textColor="@color/app_txt_gray"
                             tools:text="300套" />
 
@@ -113,16 +113,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
                     android:layout_marginTop="15dp"
-                    android:text="商品名称"
+                    tools:text="商品商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称名称"
                     android:textColor="@color/app_txt_black"
                     android:textSize="14sp" />
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:id="@+id/lin_webView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
 
                 </LinearLayout>
 
