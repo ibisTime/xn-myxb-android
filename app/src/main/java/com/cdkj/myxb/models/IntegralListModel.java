@@ -1,5 +1,7 @@
 package com.cdkj.myxb.models;
 
+import java.math.BigDecimal;
+
 /**
  * Created by cdkj on 2018/2/23.
  */
@@ -28,7 +30,7 @@ public class IntegralListModel {
     private String code;
     private String refNo;
     private String accountNumber;
-    private String transAmount;
+    private BigDecimal transAmount;
     private String userId;
     private String realName;
     private String type;
@@ -65,11 +67,11 @@ public class IntegralListModel {
         this.accountNumber = accountNumber;
     }
 
-    public String getTransAmount() {
+    public BigDecimal getTransAmount() {
         return transAmount;
     }
 
-    public void setTransAmount(String transAmount) {
+    public void setTransAmount(BigDecimal transAmount) {
         this.transAmount = transAmount;
     }
 

@@ -257,6 +257,12 @@
             android:name=".module.order.ExpertsOrderDetailActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
+        <!--分享-->
+        <activity
+            android:name=".module.common.ShareActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityDialogStyleBottom"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>

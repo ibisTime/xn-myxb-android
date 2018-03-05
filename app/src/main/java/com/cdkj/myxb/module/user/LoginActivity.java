@@ -16,13 +16,22 @@ import com.cdkj.baselibrary.dialog.UITipDialog;
 import com.cdkj.baselibrary.interfaces.LoginInterface;
 import com.cdkj.baselibrary.interfaces.LoginPresenter;
 import com.cdkj.baselibrary.model.UserLoginModel;
+import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
+import com.cdkj.baselibrary.nets.RetrofitUtils;
+import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.MainActivity;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.ActivityLoginBinding;
 import com.cdkj.myxb.models.LoginTypeModel;
+import com.cdkj.myxb.models.UserModel;
+import com.cdkj.myxb.module.api.MyApiServer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import retrofit2.Call;
 
 /**
  * 登录
@@ -169,8 +178,55 @@ public class LoginActivity extends AbsBaseLoadActivity implements LoginInterface
         SPUtilHelpr.saveUserId(user.getUserId());
         SPUtilHelpr.saveUserToken(user.getToken());
         SPUtilHelpr.saveUserPhoneNum(mBinding.editUsername.getText().toString());
-        startNext();
+        getUserInfoRequest();
     }
+
+
+    /**
+     * 获取用户信息
+     */
+    public void getUserInfoRequest() {
+
+        Map<String, String> map = new HashMap<>();
+
+        map.put("userId", SPUtilHelpr.getUserId());
+        map.put("token", SPUtilHelpr.getUserToken());
+
+        Call call = RetrofitUtils.createApi(MyApiServer.class).getUserInfoDetails("805121", StringUtils.getJsonToString(map));
+
+        addCall(call);
+
+
+
+        call.enqueue(new BaseResponseModelCallBack<UserModel>(this) {
+            @Override
+            protected void onSuccess(UserModel data, String SucMessage) {
+                saveUserInfo(data);
+                startNext();
+            }
+
+
+            @Override
+            protected void onFinish() {
+                disMissLoading();
+            }
+        });
+    }
+    /**
+     * 保存用户相关信息
+     *
+     * @param data
+     */
+    private void saveUserInfo(UserModel data) {
+        SPUtilHelpr.saveisTradepwdFlag(data.isTradepwdFlag());
+        SPUtilHelpr.saveUserPhoneNum(data.getMobile());
+        SPUtilHelpr.saveUserName(data.getRealName());
+        SPUtilHelpr.saveUserNickName(data.getNickname());
+        SPUtilHelpr.saveUserPhoto(data.getPhoto());
+        SPUtilHelpr.saveUserLevel(data.getLevel() + "");
+        SPUtilHelpr.saveUserType(data.getKind());
+    }
+
 
     @Override
     public void LoginFailed(String code, String msg) {
@@ -185,7 +241,7 @@ public class LoginActivity extends AbsBaseLoadActivity implements LoginInterface
 
     @Override
     public void EndLogin() {
-        disMissLoading();
+
     }
 
     @Override
@@ -199,7 +255,7 @@ public class LoginActivity extends AbsBaseLoadActivity implements LoginInterface
 
     @Override
     protected boolean canFinish() {
-      return false;
+        return false;
     }
 
     @Override

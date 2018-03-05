@@ -99,7 +99,7 @@ public class IntegralOrderDetailsActivity extends AbsBaseLoadActivity {
 
         showLoadingDialog();
 
-        Call call = RetrofitUtils.createApi(MyApiServer.class).getIntegralOrderDetails("805295", StringUtils.getJsonToString(map));
+        Call call = RetrofitUtils.createApi(MyApiServer.class).getIntegralOrderDetails("805293", StringUtils.getJsonToString(map));
 
         call.enqueue(new BaseResponseModelCallBack<IntegralOrderListModel>(this) {
             @Override

@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.cdkj.baselibrary.utils.DateUtil;
+import com.cdkj.baselibrary.utils.MoneyUtils;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.models.IntegralListModel;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -32,7 +33,7 @@ public class IntegralListAdapter extends BaseQuickAdapter<IntegralListModel, Bas
 
         helper.setText(R.id.tv_time, DateUtil.formatStringData(item.getCreateDatetime(), DateUtil.DEFAULT_DATE_FMT));
         helper.setText(R.id.tv_name, item.getBizNote());
-        helper.setText(R.id.tv_sum, item.getTransAmount());
+        helper.setText(R.id.tv_sum, MoneyUtils.showPrice(item.getTransAmount()));
 
 
     }

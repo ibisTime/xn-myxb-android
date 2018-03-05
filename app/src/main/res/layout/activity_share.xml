@@ -6,7 +6,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <RelativeLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -14,7 +14,7 @@
                 android:id="@+id/layout_share"
                 android:layout_width="match_parent"
                 android:layout_height="193dp"
-                android:layout_alignParentBottom="true"
+                android:layout_gravity="bottom"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -42,7 +42,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:layout_marginTop="23dp"
-                            android:background="@drawable/wx" />
+                            android:background="@drawable/share_wx" />
 
                         <ImageView
                             android:id="@+id/img_pyq"
@@ -50,7 +50,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:layout_marginTop="23dp"
-                            android:background="@drawable/pyq" />
+                            android:background="@drawable/share_wx_pyq" />
 
                     </LinearLayout>
 
@@ -70,7 +70,7 @@
 
             </LinearLayout>
 
-        </RelativeLayout>
+        </FrameLayout>
 
     </LinearLayout>
 </layout>

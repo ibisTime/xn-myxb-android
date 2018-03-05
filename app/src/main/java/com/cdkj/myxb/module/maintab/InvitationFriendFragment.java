@@ -20,6 +20,8 @@ import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.FragmentInvitationFriendBinding;
 import com.cdkj.myxb.models.InvitationModel;
 import com.cdkj.myxb.module.api.MyApiServer;
+import com.cdkj.myxb.module.common.ShareActivity;
+import com.cdkj.myxb.weight.dialog.SharePhotoDialog;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -57,7 +59,15 @@ public class InvitationFriendFragment extends BaseLazyFragment {
             if (!SPUtilHelpr.isLogin(mActivity, false)) {
                 return;
             }
-            getShareUrl("SHARE_URL");
+            getShareUrl("0");
+        });
+
+        mBinding.btnSharePhoto.setOnClickListener(view -> {
+            if (!SPUtilHelpr.isLogin(mActivity, false)) {
+                return;
+            }
+            getShareUrl("1");
+
         });
 
     }
@@ -152,16 +162,13 @@ public class InvitationFriendFragment extends BaseLazyFragment {
     /**
      * 获取要分享的链接
      *
-     * @param key
+     * @param type 0 分享链接  1 分享图片
      */
-    public void getShareUrl(String key) {
+    public void getShareUrl(String type) {
 
-        if (TextUtils.isEmpty(key)) {
-            return;
-        }
 
         Map<String, String> map = new HashMap<>();
-        map.put("ckey", key);
+        map.put("ckey", "SHARE_URL");
         map.put("systemCode", MyCdConfig.SYSTEMCODE);
         map.put("companyCode", MyCdConfig.COMPANYCODE);
 
@@ -174,9 +181,17 @@ public class InvitationFriendFragment extends BaseLazyFragment {
         call.enqueue(new BaseResponseModelCallBack<IntroductionInfoModel>(mActivity) {
             @Override
             protected void onSuccess(IntroductionInfoModel data, String SucMessage) {
+
                 if (TextUtils.isEmpty(data.getCvalue())) {
                     return;
                 }
+
+                if (TextUtils.equals(type, "0")) {
+                    ShareActivity.open(mActivity, InvitationFriendFragment.this.getShareUrl(data));
+                } else {
+                    new SharePhotoDialog(mActivity, InvitationFriendFragment.this.getShareUrl(data)).show();
+                }
+
             }
 
 
@@ -185,7 +200,17 @@ public class InvitationFriendFragment extends BaseLazyFragment {
                 disMissLoading();
             }
         });
+    }
 
+    /**
+     * 获取要分享的字符串
+     *
+     * @param data
+     * @return
+     */
+    @NonNull
+    private String getShareUrl(IntroductionInfoModel data) {
+        return data.getCvalue() + "?userReferee=" + SPUtilHelpr.getUserId() + "&kind=" + SPUtilHelpr.getUserType();
     }
 
 

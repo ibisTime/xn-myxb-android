@@ -72,7 +72,7 @@ android {
         api 'com.qiniu:qiniu-android-sdk:7.3.+'
 
         //微信支付
-//        api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+        api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
         ///高德定位
 //        api 'com.amap.api:location:latest.integration'
         //支付宝
