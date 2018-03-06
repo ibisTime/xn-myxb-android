@@ -154,7 +154,7 @@ public class OrderDetailsActivity extends AbsBaseLoadActivity {
                     }
                 }
                 if (!isUse) {
-                    mBinding.tvLogisticscompany.setText("物流公司:暂无");
+                    mBinding.tvLogisticscompany.setText("暂无");
                 }
             }
 
@@ -215,7 +215,7 @@ public class OrderDetailsActivity extends AbsBaseLoadActivity {
         }
         if (!TextUtils.isEmpty(data.getReAddress())) {
             mBinding.tvAddress.setVisibility(View.VISIBLE);
-            mBinding.tvAddress.setText(data.getReAddress());
+            mBinding.tvAddress.setText("收货地址: "+data.getReAddress());
         }
 
         //物流信息

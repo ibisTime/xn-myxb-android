@@ -8,7 +8,11 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.cdkj.baselibrary.appmanager.MyCdConfig;
+import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
+import com.cdkj.baselibrary.dialog.UITipDialog;
+import com.cdkj.baselibrary.model.IntroductionDkeyModel;
+import com.cdkj.baselibrary.nets.BaseResponseListCallBack;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.DateUtil;
@@ -20,9 +24,11 @@ import com.cdkj.myxb.databinding.ActivityIntegralOrderDetailsBinding;
 import com.cdkj.myxb.models.IntegralOrderListModel;
 import com.cdkj.myxb.module.api.MyApiServer;
 import com.cdkj.myxb.module.integral.IntegralOrderCommentActivity;
+import com.cdkj.myxb.module.order.OrderDetailsActivity;
 import com.cdkj.myxb.module.order.OrderHelper;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -106,6 +112,7 @@ public class IntegralOrderDetailsActivity extends AbsBaseLoadActivity {
             protected void onSuccess(IntegralOrderListModel data, String SucMessage) {
                 mBaseBinding.contentView.setShowText(null);
                 setShowData(data);
+                getCompnayRequest(data.getLogisticsCompany());
             }
 
             @Override
@@ -129,7 +136,7 @@ public class IntegralOrderDetailsActivity extends AbsBaseLoadActivity {
 
         mOrderState = data.getStatus();
 
-        ImgUtils.loadQiniuImg(this,  data.getProductPic(), mBinding.headerLayout.imgGood);
+        ImgUtils.loadQiniuImg(this, data.getProductPic(), mBinding.headerLayout.imgGood);
 
         //订单信息
         mBinding.headerLayout.tvOrderName.setText(data.getProductSlogan());
@@ -164,7 +171,7 @@ public class IntegralOrderDetailsActivity extends AbsBaseLoadActivity {
         }
         if (!TextUtils.isEmpty(data.getReAddress())) {
             mBinding.tvAddress.setVisibility(View.VISIBLE);
-            mBinding.tvAddress.setText(data.getReAddress());
+            mBinding.tvAddress.setText("收货地址: " + data.getReAddress());
         }
 
         //物流信息
@@ -182,7 +189,52 @@ public class IntegralOrderDetailsActivity extends AbsBaseLoadActivity {
             mBinding.linLogisticscode.setVisibility(View.VISIBLE);
         }
 
+    }
 
+    /**
+     * 获取物流公司
+     */
+    private void getCompnayRequest(final String key) {
+
+        if (TextUtils.isEmpty(key)) return;
+
+        Map<String, String> map = new HashMap<>();
+
+        map.put("systemCode", MyCdConfig.SYSTEMCODE);
+        map.put("companyCode", MyCdConfig.COMPANYCODE);
+        map.put("token", SPUtilHelpr.getUserToken());
+        map.put("parentKey", "kd_company");
+
+        Call call = RetrofitUtils.createApi(MyApiServer.class).getdKeyListInfo("805906", StringUtils.getJsonToString(map));
+
+        addCall(call);
+
+        call.enqueue(new BaseResponseListCallBack<IntroductionDkeyModel>(this) {
+            @Override
+            protected void onSuccess(List<IntroductionDkeyModel> data, String SucMessage) {
+                boolean isUse = false;
+                for (IntroductionDkeyModel model : data) {
+                    if (model == null) continue;
+                    if (TextUtils.equals(model.getDkey(), key)) {
+                        mBinding.tvLogisticscompany.setText(model.getDvalue());
+                        isUse = true;
+                        break;
+                    }
+                }
+                if (!isUse) {
+                    mBinding.tvLogisticscompany.setText("暂无");
+                }
+            }
+
+            @Override
+            protected void onReqFailure(String errorCode, String errorMessage) {
+                UITipDialog.showFall(IntegralOrderDetailsActivity.this, errorMessage);
+            }
+
+            @Override
+            protected void onFinish() {
+            }
+        });
     }
 
 }
