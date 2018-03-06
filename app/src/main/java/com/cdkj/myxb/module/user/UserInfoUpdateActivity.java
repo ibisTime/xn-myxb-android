@@ -289,7 +289,7 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
 
         for (ClassStyleModel styleModel : mSelectStyle) {
             selectStyleName.append(styleModel.getDvalue() + " ");
-            mSelectStyleId.add(styleModel.getId() + SEP1);
+            mSelectStyleId.add(styleModel.getDkey() + SEP1);
         }
 
         mBinding.tvStyle.setText(selectStyleName.toString());
@@ -306,7 +306,7 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
 
             for (ClassStyleModel classStyleModel : mStyles) {
 
-                if (TextUtils.equals(id, String.valueOf(classStyleModel.getId()))) { //比对选择的style Id
+                if (TextUtils.equals(id, String.valueOf(classStyleModel.getDkey()))) { //比对选择的style Id
                     selectStyleName.append(classStyleModel.getDvalue() + " ");
                 }
             }
@@ -349,7 +349,7 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
 
     private void setShowData(UpdateUserInfo data) {
 
-        if (data == null) return;
+        if (data == null || TextUtils.isEmpty(data.getRealName())) return;
 
         mSelectStyleId.clear();
         mSelectStyleId.addAll(StringUtils.splitAsList(data.getStyle(), SEP1));
