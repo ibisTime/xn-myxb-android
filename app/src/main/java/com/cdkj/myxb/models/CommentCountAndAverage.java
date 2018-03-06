@@ -13,14 +13,14 @@ public class CommentCountAndAverage {
      * totalCount : 0
      */
 
-    private int average;
+    private float average;
     private int totalCount;
 
-    public int getAverage() {
+    public float getAverage() {
         return average;
     }
 
-    public void setAverage(int average) {
+    public void setAverage(float average) {
         this.average = average;
     }
 

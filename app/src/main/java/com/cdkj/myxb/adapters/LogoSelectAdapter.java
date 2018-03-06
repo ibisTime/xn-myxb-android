@@ -36,12 +36,12 @@ public class LogoSelectAdapter extends BaseQuickAdapter<LogoListModel, BaseViewH
             return;
         }
 
-        FrameLayout fr = viewHolder.getView(R.id.fra_bg);
 
         if (selectPosition == viewHolder.getLayoutPosition()) {
-            fr.setBackgroundResource(R.drawable.logo_select);
+            viewHolder.setGone(R.id.img_logo_select, true);
+
         } else {
-            fr.setBackgroundResource(R.drawable.logo_select_un);
+            viewHolder.setGone(R.id.img_logo_select, false);
         }
         ImgUtils.loadQiniuLogo(mContext, item.getUrl(), viewHolder.getView(R.id.img_logo));
     }

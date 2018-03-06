@@ -328,7 +328,7 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
                 } else {
                     mBinding.scoreLayout.tvCount.setText(data.getTotalCount() + "条评价");
                 }
-                mBinding.scoreLayout.tvStarNum.setText(data.getAverage() + "星");
+                mBinding.scoreLayout.tvStarNum.setText(StringUtils.formatInteger(data.getAverage()) + "星");
                 mBinding.scoreLayout.ratingbar.setStar(data.getAverage());
 
             }

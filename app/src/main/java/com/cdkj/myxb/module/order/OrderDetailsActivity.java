@@ -135,12 +135,11 @@ public class OrderDetailsActivity extends AbsBaseLoadActivity {
         map.put("systemCode", MyCdConfig.SYSTEMCODE);
         map.put("companyCode", MyCdConfig.COMPANYCODE);
         map.put("token", SPUtilHelpr.getUserToken());
-        map.put("parentKey", "back_kd_company");
+        map.put("parentKey", "kd_company");
 
-        Call call = RetrofitUtils.createApi(MyApiServer.class).getdKeyListInfo("801907", StringUtils.getJsonToString(map));
+        Call call = RetrofitUtils.createApi(MyApiServer.class).getdKeyListInfo("805906", StringUtils.getJsonToString(map));
 
         addCall(call);
-
 
         call.enqueue(new BaseResponseListCallBack<IntroductionDkeyModel>(this) {
             @Override

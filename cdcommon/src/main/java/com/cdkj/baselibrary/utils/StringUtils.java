@@ -6,9 +6,7 @@ import android.text.TextUtils;
 import android.widget.EditText;
 
 import com.alibaba.fastjson.JSON;
-import com.cdkj.baselibrary.appmanager.MyCdConfig;
 
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -140,8 +138,8 @@ public class StringUtils {
     /**
      * @return
      */
-    public static String formatInteger(Double discount) {
-        if (discount == null) return "00";
+    public static String formatInteger(float discount) {
+        if (discount <= 0) return "0";
         NumberFormat nf = new DecimalFormat("#.##");
         return nf.format(discount);
     }
