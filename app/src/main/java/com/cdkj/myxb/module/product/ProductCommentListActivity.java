@@ -40,11 +40,12 @@ import java.util.Map;
 import retrofit2.Call;
 
 /**
- * 产品评论列表
+ * 产品评价列表
  * Created by cdkj on 2018/2/24.
  */
 
 public class ProductCommentListActivity extends AbsBaseLoadActivity {
+
 
     private RefreshHelper mRefreshHelper;
 
@@ -52,7 +53,7 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
     private static final String TYPE = "producttype";
 
     private String mProductCode;//产品编号
-    private String mType;//评论类型
+    private String mType;//评价类型
 
     private LayoutRecyclerRefreshBinding mBinding;
     private CommentListAdapter commentListAdapter;
@@ -61,7 +62,7 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
 
     private String mTagString;//点击的标签文字
 
-    private boolean isShowTagComment;//是否是标签评论
+    private boolean isShowTagComment;//是否是标签评价
 
 
     /**
@@ -88,13 +89,13 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
     @Override
     public void afterCreate(Bundle savedInstanceState) {
 
-        mBaseBinding.titleView.setMidTitle("评论");
+        mBaseBinding.titleView.setMidTitle("评价");
 
         if (getIntent() != null) {
             mProductCode = getIntent().getStringExtra(PRODUCTCODE);
             mType = getIntent().getStringExtra(TYPE);
         }
-        initCommentListAdapter();
+
         initRefreshHelper();
 
         getTagRequest();
@@ -118,6 +119,7 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
 
             @Override
             public RecyclerView.Adapter getAdapter(List listData) {
+                initCommentListAdapter(listData);
                 return commentListAdapter;
             }
 
@@ -136,20 +138,20 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
     }
 
     /**
-     * 获评论适配器
+     * 获评价适配器
      *
      * @param
      * @return
      */
     @NonNull
-    private void initCommentListAdapter() {
-        commentListAdapter = new CommentListAdapter(new ArrayList<>());
+    private void initCommentListAdapter(List listData) {
+        commentListAdapter = new CommentListAdapter(listData);
         commentListAdapter.setHeaderAndEmpty(true);
         commentListAdapter.addHeaderView(getHeaderView());
     }
 
     /**
-     * 获取评论列表
+     * 获取评价列表
      */
     public void getCommentList(int start, int limit, boolean isShowDialog) {
 
@@ -175,7 +177,7 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
 
             @Override
             protected void onSuccess(ResponseInListModel<CommentListMode> data, String SucMessage) {
-                mRefreshHelper.setData(data.getList(), "暂无评论", 0);
+                mRefreshHelper.setData(data.getList(), "暂无评价", 0);
             }
 
             @Override
@@ -195,7 +197,7 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
 
 
     /**
-     * 获取评论tag
+     * 获取评价tag
      */
     public void getTagRequest() {
 
@@ -307,7 +309,7 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
 
             @Override
             protected void onSuccess(ResponseInListModel<CommentListMode> data, String SucMessage) {
-                mRefreshHelper.setData(data.getList(), "暂无评论", 0);
+                mRefreshHelper.setData(data.getList(), "暂无评价", 0);
             }
 
             @Override

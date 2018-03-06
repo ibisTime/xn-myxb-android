@@ -163,7 +163,8 @@ public class AppointmentSearchActivity extends AbsBaseLoadActivity {
         map.put("limit", limit + "");
         map.put("status", "0");//上架
         map.put("userName", mBinding.editSerchView.getText().toString());//上架
-
+        map.put("orderColumn", "order_no");
+        map.put("orderDir", "asc");
         Call call = RetrofitUtils.createApi(MyApiServer.class).getUserList("805120", StringUtils.getJsonToString(map));
 
         addCall(call);

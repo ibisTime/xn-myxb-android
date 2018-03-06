@@ -55,7 +55,7 @@
 
             <TextView
                 android:id="@+id/tv_brand_price"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
@@ -64,7 +64,7 @@
                 android:singleLine="true"
                 android:textColor="@color/app_txt_red"
                 android:textSize="15sp"
-                tools:text="商品商品商品商品商品商品" />
+                tools:text="120000000" />
 
 
             <TextView

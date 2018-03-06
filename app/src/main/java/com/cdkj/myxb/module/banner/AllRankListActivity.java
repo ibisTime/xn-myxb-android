@@ -82,7 +82,7 @@ public class AllRankListActivity extends AbsRefreshListActivity {
      */
     private void setTopTitle() {
         if (TextUtils.equals(BRANDTYPE, mType)) {
-            mBaseBinding.titleView.setMidTitle("品牌排名");
+            mBaseBinding.titleView.setMidTitle("店铺排名");
         } else if (TextUtils.equals(MRYTYPE, mType)) {
             mBaseBinding.titleView.setMidTitle("美容院排名");
         } else if (TextUtils.equals(EXPERTSTYPE, mType)) {

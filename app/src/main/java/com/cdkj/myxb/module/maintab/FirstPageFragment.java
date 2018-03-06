@@ -284,6 +284,8 @@ public class FirstPageFragment extends BaseLazyFragment {
         Map<String, String> map = RetrofitUtils.getRequestMap();
         map.put("location", "index_banner");
         map.put("type", "2");
+        map.put("orderColumn", "order_no");
+        map.put("orderDir", "asc");
 
         Call call = RetrofitUtils.createApi(MyApiServer.class).getFirstBanner("805806", StringUtils.getJsonToString(map));
 

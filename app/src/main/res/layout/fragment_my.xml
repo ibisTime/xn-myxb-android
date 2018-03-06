@@ -14,6 +14,15 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/app_txt_red"
+                android:gravity="center"
+                android:text="@string/mine"
+                android:textColor="@color/white"
+                android:textSize="@dimen/top_center_title_size" />
+
             <include
                 android:id="@+id/header_layout"
                 layout="@layout/layout_my_fragment_header" />
@@ -21,14 +30,12 @@
             <include
                 android:id="@+id/layout_my"
                 layout="@layout/layout_my"
-                android:visibility="gone"
-              />
+                android:visibility="gone" />
 
             <include
                 android:id="@+id/layout_my_boos"
                 layout="@layout/layout_mypage_boos"
-                android:visibility="gone"
-                />
+                android:visibility="gone" />
 
         </LinearLayout>
 

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 我的评论
+ * 我的评价
  * Created by cdkj on 2018/2/28.
  */
 
@@ -29,7 +29,7 @@ public class MyCommentsAllActivity extends CommonTablayoutActivity {
     @Override
     public void afterCreate(Bundle savedInstanceState) {
         super.afterCreate(savedInstanceState);
-        mBaseBinding.titleView.setMidTitle("我的评论");
+        mBaseBinding.titleView.setMidTitle("我的评价");
     }
 
     @Override

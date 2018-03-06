@@ -130,7 +130,7 @@ public class OrderCommentActivity extends AbsBaseLoadActivity {
     }
 
     /**
-     * 发布评论
+     * 发布评价
      */
     public void releaseRequest() {
 

@@ -2,11 +2,9 @@ package com.cdkj.myxb.module.appointment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.view.View;
 
 import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
@@ -70,7 +68,8 @@ public class CommonAppointmentListActivity extends AbsRefreshListActivity {
         map.put("start", pageindex + "");
         map.put("limit", limit + "");
         map.put("status", "0");//上架
-
+        map.put("orderColumn", "order_no");
+        map.put("orderDir", "asc");
         Call call = RetrofitUtils.createApi(MyApiServer.class).getUserList("805120", StringUtils.getJsonToString(map));
 
         addCall(call);
@@ -81,7 +80,7 @@ public class CommonAppointmentListActivity extends AbsRefreshListActivity {
 
             @Override
             protected void onSuccess(ResponseInListModel<UserModel> data, String SucMessage) {
-                mRefreshHelper.setData(data.getList(), "暂无可预约美导", 0);
+                mRefreshHelper.setData(data.getList(), "暂无可预约" + UserHelper.getUserTypeByKind(mType), 0);
             }
 
             @Override

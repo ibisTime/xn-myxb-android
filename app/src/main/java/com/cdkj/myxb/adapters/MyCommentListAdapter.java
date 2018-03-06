@@ -13,7 +13,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import java.util.List;
 
 /**
- * 评论列表
+ * 评价列表
  * Created by cdkj on 2017/10/12.
  */
 

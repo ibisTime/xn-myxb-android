@@ -105,7 +105,8 @@ public class BrandProductListFragment extends AbsRefreshListFragment {
         map.put("limit", limit + "");
         map.put("start", pageindex + "");
         map.put("status", "2");//TO_Shelf("1", "未上架"), Shelf_YES("2", "已上架"), Shelf_NO("3", "已下架");
-
+        map.put("orderColumn", "order_no");
+        map.put("orderDir", "asc");
         Call call = RetrofitUtils.createApi(MyApiServer.class).getBrandProductList("805266", StringUtils.getJsonToString(map));
 
         addCall(call);

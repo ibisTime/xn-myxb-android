@@ -25,7 +25,7 @@ import java.util.Map;
 import retrofit2.Call;
 
 /**
- * 我的评论列表
+ * 我的评价列表
  * Created by cdkj on 2018/2/28.
  */
 
@@ -35,7 +35,7 @@ public class MyCommentsListFragment extends AbsRefreshListFragment {
     private static final String TYPE = "producttype";
 
     /**
-     * @param type 查看的评论类型
+     * @param type 查看的评价类型
      * @return
      */
     public static MyCommentsListFragment getInstanse(String type) {
@@ -99,7 +99,7 @@ public class MyCommentsListFragment extends AbsRefreshListFragment {
 
             @Override
             protected void onSuccess(ResponseInListModel<CommentListMode> data, String SucMessage) {
-                mRefreshHelper.setData(data.getList(), "暂无评论", 0);
+                mRefreshHelper.setData(data.getList(), "暂无评价", 0);
             }
 
             @Override

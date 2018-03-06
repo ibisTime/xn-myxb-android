@@ -25,7 +25,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_weight="1"
-                android:enabled="true"
                 android:maxLines="1"
                 android:textColor="@color/app_txt_gray"
                 android:textSize="13sp"

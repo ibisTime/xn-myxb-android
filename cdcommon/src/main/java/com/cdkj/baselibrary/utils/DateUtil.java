@@ -83,26 +83,7 @@ public class DateUtil {
         long d1 = date1.getTime();
         long d2 = date2.getTime();
 
-        LogUtil.E("now" + d1);
-        LogUtil.E("start" + d2);
-
         return d1 >= d2;
-    }
-
-    /**
-     * 大于等于今天返回true
-     *
-     * @param
-     * @param
-     * @return
-     */
-    public static boolean isNewer2(int day1, int month, Calendar now) {
-        if (day1 == 0 || now == null) {
-            return false;
-        }
-        int d1 = now.get(Calendar.DAY_OF_MONTH);
-        int d2 = now.get(Calendar.MONTH) + 1;
-        return (day1 >= d1 && month >= d2) || month > d2;
     }
 
 
@@ -123,6 +104,11 @@ public class DateUtil {
 
         if (nowTime.getTime() == startTime.getTime()
                 || nowTime.getTime() == endTime.getTime()) {
+            return true;
+        }
+
+        if (inSameDay(nowTime, startTime)
+                || inSameDay(nowTime, endTime)) {
             return true;
         }
 

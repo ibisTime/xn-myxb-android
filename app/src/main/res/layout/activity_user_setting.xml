@@ -31,8 +31,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="点击更换头像" />
-
+                android:text="按照等级从图片库中选择" />
 
             <ImageView
                 android:id="@+id/img_right"

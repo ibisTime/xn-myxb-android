@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
@@ -55,9 +56,26 @@ public class CallPhoneActivity extends AbsBaseLoadActivity {
             mobile = getIntent().getStringExtra("mobile");
         }
 
+        if (TextUtils.isEmpty(mobile)) {
+            finish();
+            return;
+        }
+
+        showDoubleWarnListen("即将拨打号码:" + mobile, view -> {
+            finish();
+        }, view -> {
+            permissionRequest();
+        });
+    }
+
+    /**
+     * 拨打电话权限请求
+     */
+    private void permissionRequest() {
         mPermissionHelper.requestPermissions(new PermissionHelper.PermissionListener() {
             @Override
             public void doAfterGrand(String... permission) {
+
                 AppUtils.callPhonePage(CallPhoneActivity.this, mobile);
                 finish();
             }
@@ -67,7 +85,6 @@ public class CallPhoneActivity extends AbsBaseLoadActivity {
                 showSureDialog("没有权限，无法拨打电话，请到设置--->权限管理里授予用户拨打电话权限", view -> finish());
             }
         }, Manifest.permission.CALL_PHONE);
-
     }
 
     @Override

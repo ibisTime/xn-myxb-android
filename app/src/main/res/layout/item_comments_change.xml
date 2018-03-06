@@ -19,7 +19,7 @@
         android:layout_marginLeft="15dp"
         android:textColor="@color/app_txt_black"
         android:textSize="14sp"
-        tools:text="42条评论" />
+        tools:text="42条评价" />
 
 
     <com.cdkj.myxb.weight.views.MyRatingBar

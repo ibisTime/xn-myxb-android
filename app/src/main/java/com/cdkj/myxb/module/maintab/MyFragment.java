@@ -23,6 +23,7 @@ import com.cdkj.myxb.databinding.FragmentMyBinding;
 import com.cdkj.myxb.models.LogoUpdateSucc;
 import com.cdkj.myxb.models.UserModel;
 import com.cdkj.myxb.module.api.MyApiServer;
+import com.cdkj.myxb.module.appointment.CommonAppointmentUserDetailActivity;
 import com.cdkj.myxb.module.appointment.MyAppointmentActivity;
 import com.cdkj.myxb.module.common.CallPhoneActivity;
 import com.cdkj.myxb.module.integral.IntegralMallActivity;
@@ -106,33 +107,43 @@ public class MyFragment extends BaseLazyFragment {
         /*美容院*/
 
         //预约
-        mBinding.layoutMyBoos.rowMyAppointment.setOnClickListener(view -> MyAppointmentActivity.open(mActivity,SPUtilHelpr.getUserType()));
+        mBinding.layoutMyBoos.rowMyAppointment.setOnClickListener(view -> {
+            if (mUserInfoMode == null) return;
+            MyAppointmentActivity.open(mActivity, mUserInfoMode.getKind());
+        });
         //订单
         mBinding.layoutMyBoos.rowMyOrder.setOnClickListener(view -> MyOrderActivity.open(mActivity));
         //积分商城
         mBinding.layoutMyBoos.rowIntegral.setOnClickListener(view -> IntegralMallActivity.open(mActivity, mUserInfoMode));
-        //我的评论
+        //我的评价
         mBinding.layoutMyBoos.rowMyComment.setOnClickListener(view -> IntegralMallActivity.open(mActivity, mUserInfoMode));
-        //我的评论
+        //我的评价
         mBinding.layoutMyBoos.rowMyComment.setOnClickListener(view -> MyCommentsAllActivity.open(mActivity));
         //团队顾问
 
         mBinding.layoutMyBoos.rowRowTeam.setOnClickListener(view -> {
-
-            if (mUserInfoMode == null || mUserInfoMode.getAdviserUser() == null) return;
-
-            CallPhoneActivity.open(mActivity, mUserInfoMode.getAdviserUser().getMobile());
-
+            getUserInfoRequest(true, true);
         });
 
         mBinding.layoutMyBoos.rowHelpCenter.setOnClickListener(view -> WebViewActivity.openkey(mActivity, "帮助中心", "help_center"));
+    }
+
+    private void callPhone() {
+        if (mUserInfoMode == null || mUserInfoMode.getAdviserUser() == null) return;
+
+        if (TextUtils.isEmpty( mUserInfoMode.getAdviserUser().getMobile())) {
+            UITipDialog.showInfo(mActivity, "暂无顾问信息");
+            return;
+        }
+
+        CallPhoneActivity.open(mActivity, mUserInfoMode.getAdviserUser().getMobile());
     }
 
 
     /**
      * 获取用户信息
      */
-    public void getUserInfoRequest(final boolean isShowdialog) {
+    public void getUserInfoRequest(boolean isCallPhone, final boolean isShowdialog) {
 
         if (!SPUtilHelpr.isLoginNoStart()) {  //没有登录不用请求
             return;
@@ -152,8 +163,11 @@ public class MyFragment extends BaseLazyFragment {
         call.enqueue(new BaseResponseModelCallBack<UserModel>(mActivity) {
             @Override
             protected void onSuccess(UserModel data, String SucMessage) {
-
                 mUserInfoMode = data;
+                if (isCallPhone) {
+                    callPhone();
+                    return;
+                }
                 saveUserInfo(data);
                 setShowData();
             }
@@ -259,7 +273,7 @@ public class MyFragment extends BaseLazyFragment {
 
     @Override
     protected void lazyLoad() {
-        getUserInfoRequest(false);
+        getUserInfoRequest(false, false);
     }
 
     @Override

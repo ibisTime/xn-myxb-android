@@ -51,7 +51,7 @@
             android:layout_marginLeft="5dp"
             android:textColor="@color/app_txt_black"
             android:textSize="14sp"
-            tools:text="42条评论" />
+            tools:text="42条评价" />
 
 
         <ImageView

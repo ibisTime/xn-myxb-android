@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:img_left="@drawable/my_info"
-            app:txt_left="我的评论" />
+            app:txt_left="我的评价" />
 
         <com.cdkj.baselibrary.views.RowInfoLayout
             android:id="@+id/row_row_team"

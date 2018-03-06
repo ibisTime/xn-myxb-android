@@ -216,7 +216,7 @@ public interface MyApiServer {
     Call<BaseResponseModel<ResponseInListModel<AdviceListModel>>> getAdviceList(@Field("code") String code, @Field("json") String json);
 
     /**
-     * 获取评论列表
+     * 获取评价列表
      *
      * @return
      */
@@ -246,7 +246,7 @@ public interface MyApiServer {
 
 
     /**
-     * 获取评论总数和平均分
+     * 获取评价总数和平均分
      *
      * @param code
      * @param json
@@ -258,7 +258,7 @@ public interface MyApiServer {
 
 
     /**
-     * 获取要评论的项
+     * 获取要评价的项
      *
      * @param code
      * @param json

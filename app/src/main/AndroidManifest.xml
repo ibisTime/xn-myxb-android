@@ -130,7 +130,7 @@
             android:name=".module.order.OrderDetailsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-        <!--订单评论-->
+        <!--订单评价-->
         <activity
             android:name=".module.order.OrderCommentActivity"
             android:screenOrientation="portrait"
@@ -142,7 +142,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/ActivityDialogStyleBottom"
             android:windowSoftInputMode="adjustPan" />
-        <!--获取评论列表-->
+        <!--获取评价列表-->
         <activity
             android:name=".module.product.ProductCommentListActivity"
             android:screenOrientation="portrait"
@@ -207,7 +207,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
 
-        <!--我的评论-->
+        <!--我的评价-->
         <activity
             android:name=".module.user.MyCommentsAllActivity"
             android:screenOrientation="portrait"

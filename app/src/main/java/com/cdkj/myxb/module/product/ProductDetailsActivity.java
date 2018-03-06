@@ -215,7 +215,7 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
 
 
     /**
-     * 获取评论总数和平均分
+     * 获取评价总数和平均分
      */
     public void getCommentsCountAndAverage() {
         if (TextUtils.isEmpty(mProductCode)) return;
@@ -233,9 +233,9 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
             @Override
             protected void onSuccess(CommentCountAndAverage data, String SucMessage) {
                 if (data.getTotalCount() > 1000) {
-                    mBinding.scoreLayout.tvCount.setText("999+条评论");
+                    mBinding.scoreLayout.tvCount.setText("999+条评价");
                 } else {
-                    mBinding.scoreLayout.tvCount.setText(data.getTotalCount() + "条评论");
+                    mBinding.scoreLayout.tvCount.setText(data.getTotalCount() + "条评价");
                 }
                 mBinding.scoreLayout.tvStarNum.setText(data.getAverage() + "星");
                 mBinding.scoreLayout.ratingbar.setStar(data.getAverage());
@@ -253,7 +253,7 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
     }
 
     /**
-     * 获取评论列表
+     * 获取评价列表
      */
     public void getCommentList() {
 

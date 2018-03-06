@@ -27,7 +27,7 @@ import java.util.Map;
 import retrofit2.Call;
 
 /**
- * 平台建议评论
+ * 平台建议评价
  * Created by cdkj on 2018/3/1.
  */
 
@@ -60,7 +60,7 @@ public class AdviceActivity extends AbsBaseLoadActivity {
     @Override
     public void afterCreate(Bundle savedInstanceState) {
 
-        mBaseBinding.titleView.setMidTitle("撰写评论");
+        mBaseBinding.titleView.setMidTitle("撰写建议");
         mBaseBinding.titleView.setRightTitle("取消");
 
         mBinding.ratingbar.setOnRatingChangeListener(ra -> {

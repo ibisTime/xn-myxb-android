@@ -3,6 +3,7 @@ package com.cdkj.myxb.module.order;
 import android.text.TextUtils;
 
 import com.cdkj.myxb.models.AppointmentListModel;
+import com.cdkj.myxb.module.user.UserHelper;
 
 /**
  * Created by cdkj on 2018/2/23.
@@ -151,7 +152,7 @@ public class OrderHelper {
         }
 
         if (TextUtils.equals(state, OrderHelper.INTEGRALORDERWAITEECOMMENT)) {
-            return "评论";
+            return "评价";
         }
 
         return "";
@@ -166,7 +167,7 @@ public class OrderHelper {
     public static String getOrderBtnStateString(String state) {
 
         if (TextUtils.equals(state, OrderHelper.ORDERWAITEECOMMENT)) {
-            return "评论";
+            return "评价";
         }
 
         return "";
@@ -200,8 +201,17 @@ public class OrderHelper {
      * @return
      */
     public static boolean canAppointmentComment(AppointmentListModel item) {
-        return TextUtils.equals("0", item.getIsComment()) && TextUtils.equals(item.getStatus(), OrderHelper.APPOINTMENT_5) && TextUtils.equals(item.getStatus(), OrderHelper.APPOINTMENT_6);
+        return TextUtils.equals("0", item.getIsComment()) && (TextUtils.equals(item.getStatus(), OrderHelper.APPOINTMENT_5) || TextUtils.equals(item.getStatus(), OrderHelper.APPOINTMENT_6));
     }
 
+
+    /**
+     *根据用户类型判断是否能显示带录入状态 美导和讲师不能显示
+     * @param type
+     * @return
+     */
+    public static boolean canShowWaiteInputByUserType(String type){
+       return  !TextUtils.equals(type, UserHelper.T) && !TextUtils.equals(type, UserHelper.L);
+    }
 
 }

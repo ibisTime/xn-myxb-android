@@ -1,7 +1,7 @@
 package com.cdkj.myxb.models;
 
 /**
- * 评论标签
+ * 评价标签
  * Created by cdkj on 2018/2/27.
  */
 

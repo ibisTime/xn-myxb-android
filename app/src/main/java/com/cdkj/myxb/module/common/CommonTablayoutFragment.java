@@ -32,7 +32,12 @@ public abstract class CommonTablayoutFragment extends BaseLazyFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mTabLayoutBinding = DataBindingUtil.inflate(getLayoutInflater(), com.cdkj.baselibrary.R.layout.activity_tab, null, false);
         initViewPager();
+        afterCreate();
         return mTabLayoutBinding.getRoot();
+    }
+
+    protected void afterCreate(){
+
     }
 
     protected void initViewPager() {
@@ -47,7 +52,7 @@ public abstract class CommonTablayoutFragment extends BaseLazyFragment {
         mTabLayoutBinding.viewpager.setAdapter(tablayoutAdapter);
         mTabLayoutBinding.tablayout.setupWithViewPager(mTabLayoutBinding.viewpager);        //viewpager和tablayout关联
         mTabLayoutBinding.viewpager.setOffscreenPageLimit(3);
-        mTabLayoutBinding.tablayout.setTabMode(TabLayout.MODE_SCROLLABLE);//设置滑动模式 /TabLayout.MODE_SCROLLABLE 可滑动 ，TabLayout.MODE_FIXED表示不可滑动
+//        mTabLayoutBinding.tablayout.setTabMode(TabLayout.MODE_SCROLLABLE);//设置滑动模式 /TabLayout.MODE_SCROLLABLE 可滑动 ，TabLayout.MODE_FIXED表示不可滑动
     }
 
     //获取要显示的fragment

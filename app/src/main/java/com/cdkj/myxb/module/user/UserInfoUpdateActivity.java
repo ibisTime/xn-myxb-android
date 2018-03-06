@@ -100,7 +100,7 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
         }
         if (TextUtils.isEmpty(mBinding.editSlogan.getText().toString()) || mSelectStyleId.isEmpty()) {
 
-            UITipDialog.showFall(this, "请填写广告语");
+            UITipDialog.showFall(this, "请填写个性签名");
 
             return true;
         }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 
 import com.cdkj.baselibrary.appmanager.MyCdConfig;
+import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.DateUtil;
@@ -28,7 +29,6 @@ import retrofit2.Call;
  */
 
 public class MsgListActivity extends AbsRefreshListActivity {
-
 
 
     /**
@@ -67,7 +67,7 @@ public class MsgListActivity extends AbsRefreshListActivity {
         map.put("start", pageindex + "");
         map.put("limit", limit + "");
         map.put("pushType", "41");
-        map.put("toKind", "C");
+        map.put("toKind", SPUtilHelpr.getUserType());
         map.put("status", "1");
         map.put("fromSystemCode", MyCdConfig.SYSTEMCODE);
         map.put("toSystemCode", MyCdConfig.SYSTEMCODE);

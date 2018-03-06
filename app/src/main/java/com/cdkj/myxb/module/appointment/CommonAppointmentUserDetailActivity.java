@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
+import com.cdkj.baselibrary.dialog.UITipDialog;
 import com.cdkj.baselibrary.nets.BaseResponseListCallBack;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
@@ -96,11 +97,12 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
             mType = getIntent().getStringExtra(INTENTTYPE);
         }
         mBaseBinding.titleView.setMidTitle(UserHelper.getAppointmentTypeByState(mType));
+
         initListener();
 
         initCommentAdapter();
 
-        getUserInfoRequest(true);
+        getUserInfoRequest(false, true);
 
         getNowDate();
     }
@@ -109,6 +111,14 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
      *
      */
     private void initListener() {
+        //拨打电话
+        mBinding.callPhone.setOnClickListener(view -> {
+
+            getUserInfoRequest(true, true);
+
+
+        });
+
 
         //预约
         mBinding.btnToApppintment.setOnClickListener(view -> {
@@ -119,7 +129,7 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
             CommonAppointmentOrderActivity.open(this, mShoppperCode, mType);
         });
 
-        //评论点击
+        //评价点击
         mBinding.scoreLayout.linToComments.setOnClickListener(view -> ProductCommentListActivity.open(this, mShoppperCode, mType));
 
 
@@ -181,8 +191,11 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
 
     /**
      * 获取用户信息
+     *
+     * @param isCallPhone  是否是为了拨打电话而请求
+     * @param isShowdialog
      */
-    public void getUserInfoRequest(final boolean isShowdialog) {
+    public void getUserInfoRequest(boolean isCallPhone, boolean isShowdialog) {
 
         if (TextUtils.isEmpty(mShoppperCode)) {
             return;
@@ -202,6 +215,14 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
             @Override
             protected void onSuccess(UserModel data, String SucMessage) {
                 mUserModel = data;
+                if (isCallPhone) {
+                    if (TextUtils.isEmpty(mUserModel.getMobile())) {
+                        UITipDialog.showInfo(CommonAppointmentUserDetailActivity.this, "暂无信息");
+                        return;
+                    }
+                    CallPhoneActivity.open(CommonAppointmentUserDetailActivity.this, mUserModel.getMobile());
+                    return;
+                }
                 setShowData();
                 getCommentList();
                 getCommentsCountAndAverage();
@@ -243,9 +264,6 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
             mBinding.callPhone.setVisibility(View.GONE);
         } else {
             mBinding.callPhone.setVisibility(View.VISIBLE);
-            mBinding.callPhone.setOnClickListener(view -> {
-                CallPhoneActivity.open(this, mUserModel.getMobile());
-            });
         }
 
     }
@@ -289,7 +307,7 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
 
 
     /**
-     * 获取评论总数和平均分
+     * 获取评价总数和平均分
      */
     public void getCommentsCountAndAverage() {
         if (TextUtils.isEmpty(mShoppperCode)) return;
@@ -306,9 +324,9 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
             @Override
             protected void onSuccess(CommentCountAndAverage data, String SucMessage) {
                 if (data.getTotalCount() > 1000) {
-                    mBinding.scoreLayout.tvCount.setText("999+条评论");
+                    mBinding.scoreLayout.tvCount.setText("999+条评价");
                 } else {
-                    mBinding.scoreLayout.tvCount.setText(data.getTotalCount() + "条评论");
+                    mBinding.scoreLayout.tvCount.setText(data.getTotalCount() + "条评价");
                 }
                 mBinding.scoreLayout.tvStarNum.setText(data.getAverage() + "星");
                 mBinding.scoreLayout.ratingbar.setStar(data.getAverage());
@@ -326,7 +344,7 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
     }
 
     /**
-     * 获取评论列表
+     * 获取评价列表
      */
     public void getCommentList() {
 

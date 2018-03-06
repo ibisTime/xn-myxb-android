@@ -54,7 +54,7 @@ public class ResultsOrderActivity extends CommonTablayoutActivity {
         fragments.add(ResultsOrderListFragment.getInstanse(OrderHelper.APPOINTMENT_1, mType, false));
         fragments.add(ResultsOrderListFragment.getInstanse(OrderHelper.APPOINTMENT_2, mType, false));
         fragments.add(ResultsOrderListFragment.getInstanse(OrderHelper.APPOINTMENT_4, mType, false));
-        if (!TextUtils.equals(mType, UserHelper.T)) {                                                                      //美导没有待录入状态
+        if (OrderHelper.canShowWaiteInputByUserType(mType)) {                                                                      //美导没有待录入状态
             fragments.add(ResultsOrderListFragment.getInstanse(OrderHelper.APPOINTMENT_5, mType, false));
         }
         fragments.add(ResultsOrderListFragment.getInstanse(OrderHelper.APPOINTMENT_6, mType, false));
@@ -73,10 +73,9 @@ public class ResultsOrderActivity extends CommonTablayoutActivity {
         strings.add("待审核");
         strings.add("待上门");
         strings.add("待下课");
-        if (!TextUtils.equals(mType, UserHelper.T)) {
+        if (OrderHelper.canShowWaiteInputByUserType(mType)) {
             strings.add("待录入");
         }
-
         strings.add("已完成");
 //        strings.add("已取消");
         return strings;
