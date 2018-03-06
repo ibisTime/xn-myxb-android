@@ -34,11 +34,7 @@ public class TripListAdapter extends BaseQuickAdapter<TripListModel, BaseViewHol
 
         ImgUtils.loadQiniuLogo(mContext, SPUtilHelpr.getUserPhoto(), helper.getView(R.id.img_logo));
 
-        Date date = new Date(item.getStartDatetime());
-
-//        helper.setText(R.id.tv_week, DateUtil.getWeekOfDate(date));
-        helper.setText(R.id.tv_date, DateUtil.format(date, DateUtil.DATE_YMD));
-        helper.setText(R.id.tv_minutes, DateUtil.formatStringData(item.getStartDatetime(), "HH:mm") + " - " + DateUtil.formatStringData(item.getEndDatetime(), "HH:mm"));
+        helper.setText(R.id.tv_date, DateUtil.formatStringData(item.getStartDatetime(), DateUtil.DEFAULT_DATE_FMT) + "-" + DateUtil.formatStringData(item.getEndDatetime(), DateUtil.DEFAULT_DATE_FMT));
 
 
     }

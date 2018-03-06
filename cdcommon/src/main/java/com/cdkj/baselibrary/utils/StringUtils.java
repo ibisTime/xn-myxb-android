@@ -52,11 +52,16 @@ public class StringUtils {
 
     public static int parseInt(String s) {
 
-        if (TextUtils.isEmpty(s)) {
-            return 0;
-        }
+        try {
+            if (TextUtils.isEmpty(s)) {
+                return 0;
+            }
 
-        return Integer.valueOf(s);
+            return Integer.valueOf(s);
+        } catch (Exception e) {
+
+        }
+        return 0;
 
     }
 
@@ -131,9 +136,8 @@ public class StringUtils {
             return sourceDate.toString();
         }
     }
+
     /**
-     *
-     *
      * @return
      */
     public static String formatInteger(Double discount) {
@@ -247,7 +251,6 @@ public class StringUtils {
         }});
 
     }
-
 
 
     /**

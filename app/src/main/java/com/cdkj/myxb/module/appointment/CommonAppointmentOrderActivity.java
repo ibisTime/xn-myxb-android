@@ -97,8 +97,8 @@ public class CommonAppointmentOrderActivity extends AbsBaseLoadActivity {
             return;
         }
 
-        if (TextUtils.isEmpty(mBinding.editQuantity.getText().toString()) || Integer.parseInt(mBinding.editQuantity.getText().toString()) <= 0) {
-            UITipDialog.showInfo(this, "请填写数量");
+        if (TextUtils.isEmpty(mBinding.editQuantity.getText().toString()) || StringUtils.parseInt(mBinding.editQuantity.getText().toString()) <= 0) {
+            UITipDialog.showInfo(this, "请填写正确的预约数量");
             return;
         }
 

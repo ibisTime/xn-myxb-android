@@ -119,8 +119,8 @@ public class ProductOrderActivity extends AbsBaseLoadActivity {
             UITipDialog.showInfo(this, "请设置收货人姓名");
             return;
         }
-        if (TextUtils.isEmpty(mBinding.editQuantity.getText().toString()) || Integer.parseInt(mBinding.editQuantity.getText().toString()) <= 0) {
-            UITipDialog.showInfo(this, "请填写数量");
+        if (TextUtils.isEmpty(mBinding.editQuantity.getText().toString()) || StringUtils.parseInt(mBinding.editQuantity.getText().toString()) <= 0) {
+            UITipDialog.showInfo(this, "请填写正确的下单数量");
             return;
         }
 

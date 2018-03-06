@@ -271,7 +271,7 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
 
     private void setTagLayout() {
 
-        for (String searString : StringUtils.splitAsList(mUserModel.getStyle(), ",")) {
+        for (String searString : StringUtils.splitAsList(mUserModel.getStyleName(), ",")) {
             if (TextUtils.isEmpty(searString)) return;
             mBinding.headerLayout.flexboxLayout.addView(createNewFlexItemTextView(searString));
         }

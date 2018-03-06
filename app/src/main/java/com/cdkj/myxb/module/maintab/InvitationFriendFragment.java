@@ -211,7 +211,7 @@ public class InvitationFriendFragment extends BaseLazyFragment {
      */
     @NonNull
     private String getShareUrl(IntroductionInfoModel data) {
-        return data.getCvalue() + "?userReferee=" + SPUtilHelpr.getUserId() + "&kind=" + SPUtilHelpr.getUserType();
+        return data.getCvalue() + "?userReferee=" + SPUtilHelpr.getUserPhoneNum() + "&kind=" + SPUtilHelpr.getUserType();
     }
 
 

@@ -57,6 +57,15 @@ public class UserModel implements Parcelable {
     private String gender;
     private String introduce;
     private String slogan;
+    private String styleName;
+
+    public String getStyleName() {
+        return styleName;
+    }
+
+    public void setStyleName(String styleName) {
+        this.styleName = styleName;
+    }
 
     private AdviserUserModel adviserUser;
 
@@ -295,6 +304,8 @@ public class UserModel implements Parcelable {
         dest.writeString(this.gender);
         dest.writeString(this.introduce);
         dest.writeString(this.slogan);
+        dest.writeString(this.styleName);
+        dest.writeParcelable(this.adviserUser, flags);
         dest.writeByte(this.tradepwdFlag ? (byte) 1 : (byte) 0);
     }
 
@@ -321,6 +332,8 @@ public class UserModel implements Parcelable {
         this.gender = in.readString();
         this.introduce = in.readString();
         this.slogan = in.readString();
+        this.styleName = in.readString();
+        this.adviserUser = in.readParcelable(AdviserUserModel.class.getClassLoader());
         this.tradepwdFlag = in.readByte() != 0;
     }
 

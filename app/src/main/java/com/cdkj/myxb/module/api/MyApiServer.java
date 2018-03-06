@@ -4,6 +4,7 @@ import com.cdkj.baselibrary.api.BaseResponseListModel;
 import com.cdkj.baselibrary.api.BaseResponseModel;
 import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.model.CodeModel;
+import com.cdkj.baselibrary.model.IntroductionDkeyModel;
 import com.cdkj.myxb.models.AccountDetailsModel;
 import com.cdkj.myxb.models.AccountListModel;
 import com.cdkj.myxb.models.AddressModel;
@@ -45,6 +46,14 @@ import retrofit2.http.POST;
 
 public interface MyApiServer {
 
+    /**
+     * 根据ckey查询系统参数
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseListModel<IntroductionDkeyModel>> getdKeyListInfo(@Field("code") String code, @Field("json") String json);
     /**
      * 获取邀请信息
      *

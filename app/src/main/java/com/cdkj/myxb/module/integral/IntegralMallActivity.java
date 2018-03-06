@@ -127,9 +127,9 @@ public class IntegralMallActivity extends AbsBaseLoadActivity {
         ImgUtils.loadQiniuLogo(this, mUserModel.getPhoto(), mBinding.layoutMallHeader.imgUserLogo);
 
         if (mUserModel.isMan()) {
-            mBinding.layoutMallHeader.imgGender.setImageResource(R.drawable.man);
-        } else {
             mBinding.layoutMallHeader.imgGender.setImageResource(R.drawable.man_2);
+        } else {
+            mBinding.layoutMallHeader.imgGender.setImageResource(R.drawable.women_2);
         }
 
 

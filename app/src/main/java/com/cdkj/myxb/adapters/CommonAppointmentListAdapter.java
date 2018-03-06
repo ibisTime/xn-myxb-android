@@ -74,7 +74,7 @@ public class CommonAppointmentListAdapter extends BaseQuickAdapter<UserModel, Ba
 
         flexboxLayout.removeAllViews();
 
-        for (String searString : StringUtils.splitAsList(item.getStyle(), ",")) {
+        for (String searString : StringUtils.splitAsList(item.getStyleName(), ",")) {
             if (TextUtils.isEmpty(searString)) return;
             flexboxLayout.addView(createNewFlexItemTextView(searString));
         }

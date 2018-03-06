@@ -15,22 +15,22 @@ public class SearchSaveUtils {
      *
      * @param info
      */
-    public static void saveSearchInfo(String info) {
-        SPUtils.put(BaseApplication.getInstance(), "SearchInfo", info);
+    public static void saveSearchInfo(String key, String info) {
+        SPUtils.put(BaseApplication.getInstance(), key, info);
     }
 
     /**
      * 获取用户搜索的内容
      */
-    public static String getSaveSearchInfo() {
-        return SPUtils.getString(BaseApplication.getInstance(), "SearchInfo", "暂无");
+    public static String getSaveSearchInfo(String key) {
+        return SPUtils.getString(BaseApplication.getInstance(), key, "暂无");
     }
 
     /**
      * 清除用户搜索的内容
      */
-    public static void clearSearchInfo() {
-        SPUtils.remove(BaseApplication.getInstance(), "SearchInfo");
+    public static void clearSearchInfo(String key) {
+        SPUtils.remove(BaseApplication.getInstance(), key);
     }
 
 

@@ -222,6 +222,9 @@ public class AdviceFragment extends BaseLazyFragment {
 
             @Override
             protected void onSuccess(ResponseInListModel<AdviceListModel> data, String SucMessage) {
+                if (mBinding.refreshLayout.isRefreshing()) {
+                    mBinding.refreshLayout.finishRefresh();
+                }
                 adviceListAdapter.replaceData(data.getList());
             }
 
@@ -273,10 +276,11 @@ public class AdviceFragment extends BaseLazyFragment {
 
     /**
      * 平均分格式化 保留一位小数
+     *
      * @param discount
      * @return
      */
-    public  String averageForma(Float discount) {
+    public String averageForma(Float discount) {
         if (discount == null) return "0";
         NumberFormat nf = new DecimalFormat("#.#");
         return nf.format(discount);

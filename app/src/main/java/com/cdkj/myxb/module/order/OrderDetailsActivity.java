@@ -7,7 +7,12 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.cdkj.baselibrary.appmanager.MyCdConfig;
+import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
+import com.cdkj.baselibrary.dialog.UITipDialog;
+import com.cdkj.baselibrary.model.IntroductionDkeyModel;
+import com.cdkj.baselibrary.nets.BaseResponseListCallBack;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.DateUtil;
@@ -20,6 +25,7 @@ import com.cdkj.myxb.models.OrderListModel;
 import com.cdkj.myxb.module.api.MyApiServer;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -83,7 +89,7 @@ public class OrderDetailsActivity extends AbsBaseLoadActivity {
      */
     public void getOrderDetailsRequest() {
 
-        if(TextUtils.isEmpty(mOrderCode)) return;
+        if (TextUtils.isEmpty(mOrderCode)) return;
 
         Map<String, String> map = new HashMap<>();
 
@@ -98,6 +104,7 @@ public class OrderDetailsActivity extends AbsBaseLoadActivity {
             protected void onSuccess(OrderListModel data, String SucMessage) {
                 mBaseBinding.contentView.setShowText(null);
                 setShowData(data);
+                getCompnayRequest(data.getLogisiticsCompany());
             }
 
             @Override
@@ -116,6 +123,53 @@ public class OrderDetailsActivity extends AbsBaseLoadActivity {
     }
 
 
+    /**
+     * 获取物流公司
+     */
+    private void getCompnayRequest(final String key) {
+
+        if (TextUtils.isEmpty(key)) return;
+
+        Map<String, String> map = new HashMap<>();
+
+        map.put("systemCode", MyCdConfig.SYSTEMCODE);
+        map.put("companyCode", MyCdConfig.COMPANYCODE);
+        map.put("token", SPUtilHelpr.getUserToken());
+        map.put("parentKey", "back_kd_company");
+
+        Call call = RetrofitUtils.createApi(MyApiServer.class).getdKeyListInfo("801907", StringUtils.getJsonToString(map));
+
+        addCall(call);
+
+
+        call.enqueue(new BaseResponseListCallBack<IntroductionDkeyModel>(this) {
+            @Override
+            protected void onSuccess(List<IntroductionDkeyModel> data, String SucMessage) {
+                boolean isUse = false;
+                for (IntroductionDkeyModel model : data) {
+                    if (model == null) continue;
+                    if (TextUtils.equals(model.getDkey(), key)) {
+                        mBinding.tvLogisticscompany.setText(model.getDvalue());
+                        isUse = true;
+                        break;
+                    }
+                }
+                if (!isUse) {
+                    mBinding.tvLogisticscompany.setText("物流公司:暂无");
+                }
+            }
+
+            @Override
+            protected void onReqFailure(String errorCode, String errorMessage) {
+                UITipDialog.showFall(OrderDetailsActivity.this, errorMessage);
+            }
+
+            @Override
+            protected void onFinish() {
+            }
+        });
+    }
+
 
     /**
      * 设置数据
@@ -127,7 +181,7 @@ public class OrderDetailsActivity extends AbsBaseLoadActivity {
         if (data == null) return;
 
 
-        ImgUtils.loadQiniuImg(this,  data.getProductPic(), mBinding.headerLayout.imgGood);
+        ImgUtils.loadQiniuImg(this, data.getProductPic(), mBinding.headerLayout.imgGood);
 
         //订单信息
         mBinding.headerLayout.tvOrderName.setText(data.getProductSlogan());
@@ -166,7 +220,6 @@ public class OrderDetailsActivity extends AbsBaseLoadActivity {
         }
 
         //物流信息
-        mBinding.tvLogisticscompany.setText(data.getLogisiticsCompany());
         mBinding.tvLogisticscode.setText(data.getLogisiticsCode());
 
         if (TextUtils.isEmpty(data.getLogisiticsCompany())) {
