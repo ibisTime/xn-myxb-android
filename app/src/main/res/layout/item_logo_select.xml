@@ -9,8 +9,8 @@
 
     <FrameLayout
         android:id="@+id/fra_bg"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
         >
 
         <ImageView

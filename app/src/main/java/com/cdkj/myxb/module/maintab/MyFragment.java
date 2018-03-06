@@ -21,6 +21,7 @@ import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.FragmentMyBinding;
 import com.cdkj.myxb.models.LogoUpdateSucc;
+import com.cdkj.myxb.models.UpdateUserInfo;
 import com.cdkj.myxb.models.UserModel;
 import com.cdkj.myxb.module.api.MyApiServer;
 import com.cdkj.myxb.module.appointment.CommonAppointmentUserDetailActivity;
@@ -92,7 +93,14 @@ public class MyFragment extends BaseLazyFragment {
         mBinding.layoutMy.rowIntegral.setOnClickListener(view -> IntegralMallActivity.open(mActivity, mUserInfoMode));
 
         //用户资料
-        mBinding.layoutMy.rowUserInfo.setOnClickListener(view -> UserInfoUpdateActivity.open(mActivity));
+        mBinding.layoutMy.rowUserInfo.setOnClickListener(view -> {
+
+            if (mUserInfoMode == null) return;
+
+            UpdateUserInfo updateUserInfo = changeUserInfo();
+            UserInfoUpdateActivity.open(mActivity, updateUserInfo);
+
+        });
 
         //行程列表
         mBinding.layoutMy.rowTrip.setOnClickListener(view -> TripListActivity.open(mActivity));
@@ -128,10 +136,29 @@ public class MyFragment extends BaseLazyFragment {
         mBinding.layoutMyBoos.rowHelpCenter.setOnClickListener(view -> WebViewActivity.openkey(mActivity, "帮助中心", "help_center"));
     }
 
+    /**
+     * 把用户信息转换为更新信息类
+     * @return
+     */
+    @NonNull
+    private UpdateUserInfo changeUserInfo() {
+        UpdateUserInfo updateUserInfo = new UpdateUserInfo();
+        updateUserInfo.setRealName(mUserInfoMode.getRealName());
+
+        updateUserInfo.setSlogan(mUserInfoMode.getSlogan());
+
+        updateUserInfo.setSpeciality(mUserInfoMode.getSpeciality());
+
+        updateUserInfo.setStyle(mUserInfoMode.getStyle());
+
+        updateUserInfo.setDescription(mUserInfoMode.getIntroduce());
+        return updateUserInfo;
+    }
+
     private void callPhone() {
         if (mUserInfoMode == null || mUserInfoMode.getAdviserUser() == null) return;
 
-        if (TextUtils.isEmpty( mUserInfoMode.getAdviserUser().getMobile())) {
+        if (TextUtils.isEmpty(mUserInfoMode.getAdviserUser().getMobile())) {
             UITipDialog.showInfo(mActivity, "暂无顾问信息");
             return;
         }

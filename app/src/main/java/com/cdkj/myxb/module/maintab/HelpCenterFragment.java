@@ -45,8 +45,12 @@ public class HelpCenterFragment extends BaseLazyFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_help_center_2, null, false);
 
-
         mBinding.tvTopRight.setOnClickListener(view -> getPhone("telephone"));
+
+        mBinding.refreshLayout.setEnableLoadmore(false);
+        mBinding.refreshLayout.setOnRefreshListener(refreshlayout -> {
+            getHelpData();
+        });
 
         return mBinding.getRoot();
     }
@@ -55,7 +59,7 @@ public class HelpCenterFragment extends BaseLazyFragment {
     protected void lazyLoad() {
 
         if (mBinding != null && !isFirstRequest) {
-            getHelpData("FAQ");
+            getHelpData();
         }
     }
 
@@ -65,14 +69,11 @@ public class HelpCenterFragment extends BaseLazyFragment {
     }
 
 
-    public void getHelpData(String key) {
+    public void getHelpData() {
 
-        if (TextUtils.isEmpty(key)) {
-            return;
-        }
 
         Map<String, String> map = new HashMap<>();
-        map.put("ckey", key);
+        map.put("ckey", "FAQ");
         map.put("systemCode", MyCdConfig.SYSTEMCODE);
         map.put("companyCode", MyCdConfig.COMPANYCODE);
 
@@ -96,6 +97,9 @@ public class HelpCenterFragment extends BaseLazyFragment {
 
             @Override
             protected void onFinish() {
+                if (mBinding.refreshLayout.isRefreshing()) {
+                    mBinding.refreshLayout.finishRefresh();
+                }
                 disMissLoading();
             }
         });

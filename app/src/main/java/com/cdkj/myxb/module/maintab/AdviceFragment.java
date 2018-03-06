@@ -222,14 +222,15 @@ public class AdviceFragment extends BaseLazyFragment {
 
             @Override
             protected void onSuccess(ResponseInListModel<AdviceListModel> data, String SucMessage) {
-                if (mBinding.refreshLayout.isRefreshing()) {
-                    mBinding.refreshLayout.finishRefresh();
-                }
+
                 adviceListAdapter.replaceData(data.getList());
             }
 
             @Override
             protected void onFinish() {
+                if (mBinding.refreshLayout.isRefreshing()) {
+                    mBinding.refreshLayout.finishRefresh();
+                }
                 disMissLoading();
             }
         });

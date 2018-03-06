@@ -46,13 +46,17 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
 
     private UpdateUserInfo mUserInfo;
     private final String SEP1 = ",";
-    ;
 
-    public static void open(Context context) {
+    /**
+     * @param context
+     * @param updateUserInfo 用户的信息
+     */
+    public static void open(Context context, UpdateUserInfo updateUserInfo) {
         if (context == null) {
             return;
         }
         Intent intent = new Intent(context, UserInfoUpdateActivity.class);
+        intent.putExtra("updateUserInfo", updateUserInfo);
         context.startActivity(intent);
     }
 
@@ -117,6 +121,11 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
     @Override
     public void afterCreate(Bundle savedInstanceState) {
 
+
+        if (getIntent() != null) {
+            mUserInfo = getIntent().getParcelableExtra("updateUserInfo");
+        }
+
         mBaseBinding.titleView.setMidTitle("我的资料");
         mBaseBinding.titleView.setRightTitle("保存");
 
@@ -134,6 +143,8 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
             mStylePicker.setPicker(mStyles);
             mStylePicker.show();
         });
+
+        setShowData(mUserInfo);
 
         getUpdateUserInfo();
 
@@ -325,7 +336,6 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
             protected void onSuccess(UpdateUserInfo data, String SucMessage) {
                 mUserInfo = data;
                 setShowData(data);
-                getClassStyle(false);
             }
 
             @Override
@@ -344,6 +354,7 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
         mSelectStyleId.clear();
         mSelectStyleId.addAll(StringUtils.splitAsList(data.getStyle(), SEP1));
 
+        getClassStyle(false);
 
         mBinding.editName.setText(data.getRealName());
         mBinding.editSlogan.setText(data.getSlogan());

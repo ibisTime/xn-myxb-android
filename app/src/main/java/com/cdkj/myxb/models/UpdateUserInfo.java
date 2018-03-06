@@ -1,10 +1,13 @@
 package com.cdkj.myxb.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by cdkj on 2018/2/28.
  */
 
-public class UpdateUserInfo {
+public class UpdateUserInfo implements Parcelable {
 
 
     /**
@@ -120,4 +123,53 @@ public class UpdateUserInfo {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.approveDatetime);
+        dest.writeString(this.approver);
+        dest.writeString(this.code);
+        dest.writeString(this.description);
+        dest.writeString(this.realName);
+        dest.writeString(this.remark);
+        dest.writeString(this.speciality);
+        dest.writeString(this.status);
+        dest.writeString(this.style);
+        dest.writeString(this.userId);
+        dest.writeString(this.slogan);
+    }
+
+    public UpdateUserInfo() {
+    }
+
+    protected UpdateUserInfo(Parcel in) {
+        this.approveDatetime = in.readString();
+        this.approver = in.readString();
+        this.code = in.readString();
+        this.description = in.readString();
+        this.realName = in.readString();
+        this.remark = in.readString();
+        this.speciality = in.readString();
+        this.status = in.readString();
+        this.style = in.readString();
+        this.userId = in.readString();
+        this.slogan = in.readString();
+    }
+
+    public static final Parcelable.Creator<UpdateUserInfo> CREATOR = new Parcelable.Creator<UpdateUserInfo>() {
+        @Override
+        public UpdateUserInfo createFromParcel(Parcel source) {
+            return new UpdateUserInfo(source);
+        }
+
+        @Override
+        public UpdateUserInfo[] newArray(int size) {
+            return new UpdateUserInfo[size];
+        }
+    };
 }
