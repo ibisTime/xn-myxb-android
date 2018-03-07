@@ -48,12 +48,12 @@ public class WebViewActivity extends AbsBaseLoadActivity {
     protected void onDestroy() {
         if (null != webView) {
             webView.clearHistory();
-            ((ViewGroup) webView.getParent()).removeView(webView);
             webView.loadUrl("about:blank");
             webView.stopLoading();
             webView.setWebChromeClient(null);
             webView.setWebViewClient(null);
             webView.destroy();
+            ((ViewGroup) webView.getParent()).removeView(webView);
             webView = null;
         }
         super.onDestroy();

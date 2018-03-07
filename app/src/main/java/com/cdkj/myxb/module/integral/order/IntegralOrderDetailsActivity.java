@@ -139,7 +139,8 @@ public class IntegralOrderDetailsActivity extends AbsBaseLoadActivity {
         ImgUtils.loadQiniuImg(this, data.getProductPic(), mBinding.headerLayout.imgGood);
 
         //订单信息
-        mBinding.headerLayout.tvOrderName.setText(data.getProductSlogan());
+        mBinding.headerLayout.tvOrderName.setText(data.getProductName());
+        mBinding.headerLayout.tvOrderInfo.setText(data.getProductSlogan());
         mBinding.tvName.setText(data.getProductName());
         mBinding.headerLayout.tvPrice.setText(MoneyUtils.showPrice(data.getAmount()));
         mBinding.tvPrice.setText(MoneyUtils.showPrice(data.getAmount()));

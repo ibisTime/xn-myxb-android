@@ -221,7 +221,7 @@ public class IntegralMallActivity extends AbsBaseLoadActivity {
 
             @Override
             protected void onSuccess(AccountDetailsModel data, String SucMessage) {
-                mBinding.layoutMallHeader.tvMyintegral.setText(MoneyUtils.showPrice(new BigDecimal(BigDecimalUtils.intValue(data.getAmount()))) + "");
+                mBinding.layoutMallHeader.tvMyintegral.setText(MoneyUtils.showPrice(data.getAmount()));
             }
 
             @Override

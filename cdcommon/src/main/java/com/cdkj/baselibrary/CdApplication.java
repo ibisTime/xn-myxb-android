@@ -21,7 +21,7 @@ public class CdApplication extends Application {
      * Construct of LitePalApplication. Initialize application context.
      */
     public CdApplication() {
-        sContext = this;
+
     }
 
     public static void initialize(Application context, boolean isDebug) {

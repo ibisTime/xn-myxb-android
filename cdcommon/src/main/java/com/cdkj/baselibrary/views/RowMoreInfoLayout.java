@@ -30,7 +30,6 @@ public class RowMoreInfoLayout extends LinearLayout {
     private String txtCenter;
     private String txtCenterHint;
 
-    private Context context;
 
     public RowMoreInfoLayout(Context context) {
         this(context, null);
@@ -64,7 +63,6 @@ public class RowMoreInfoLayout extends LinearLayout {
     }
 
     private void init(Context context) {
-        this.context = context;
         LayoutInflater.from(context).inflate(R.layout.layout_more_row, this, true);
         tvLeft = findViewById(R.id.tv_left);
         tvCenter = findViewById(R.id.tv_center);

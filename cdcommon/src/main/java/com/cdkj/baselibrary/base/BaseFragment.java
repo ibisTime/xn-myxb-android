@@ -91,6 +91,7 @@ public abstract class BaseFragment extends Fragment {
             mSubscription.dispose();
             mSubscription.clear();
         }
+        disMissLoading();
         mActivity = null;
     }
 

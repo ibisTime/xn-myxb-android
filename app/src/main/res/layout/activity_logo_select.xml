@@ -57,11 +57,12 @@
 
         <Button
             android:id="@+id/btn_i_know"
-            android:layout_width="120dp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
             android:layout_gravity="center"
             android:layout_marginBottom="15dp"
-
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/btn_select_common"
             android:text="@string/sure"

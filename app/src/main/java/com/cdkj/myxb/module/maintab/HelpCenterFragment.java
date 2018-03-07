@@ -8,9 +8,12 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 
 import com.cdkj.baselibrary.appmanager.MyCdConfig;
 import com.cdkj.baselibrary.base.BaseLazyFragment;
+import com.cdkj.baselibrary.dialog.UITipDialog;
 import com.cdkj.baselibrary.model.IntroductionInfoModel;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
@@ -46,7 +49,7 @@ public class HelpCenterFragment extends BaseLazyFragment {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_help_center_2, null, false);
 
         mBinding.tvTopRight.setOnClickListener(view -> getPhone("telephone"));
-
+        mBinding.webView.setWebChromeClient(new MyWebViewLoadClient());
         mBinding.refreshLayout.setEnableLoadmore(false);
         mBinding.refreshLayout.setOnRefreshListener(refreshlayout -> {
             getHelpData();
@@ -100,7 +103,6 @@ public class HelpCenterFragment extends BaseLazyFragment {
                 if (mBinding.refreshLayout.isRefreshing()) {
                     mBinding.refreshLayout.finishRefresh();
                 }
-                disMissLoading();
             }
         });
 
@@ -127,6 +129,10 @@ public class HelpCenterFragment extends BaseLazyFragment {
         call.enqueue(new BaseResponseModelCallBack<IntroductionInfoModel>(mActivity) {
             @Override
             protected void onSuccess(IntroductionInfoModel data, String SucMessage) {
+                if (TextUtils.isEmpty(data.getCvalue())) {
+                    UITipDialog.showInfo(mActivity, "暂无客服信息");
+                    return;
+                }
                 CallPhoneActivity.open(mActivity, data.getCvalue());
             }
 
@@ -139,4 +145,25 @@ public class HelpCenterFragment extends BaseLazyFragment {
 
     }
 
+    @Override
+    public void onDestroy() {
+        mBinding.webView.clearHistory();
+        mBinding.webView.loadUrl("about:blank");
+        mBinding.webView.stopLoading();
+        mBinding.webView.setWebChromeClient(null);
+        mBinding.webView.setWebViewClient(null);
+        mBinding.webView.destroy();
+        ((ViewGroup) mBinding.webView.getParent()).removeView(mBinding.webView);
+        super.onDestroy();
+    }
+
+    private class MyWebViewLoadClient extends WebChromeClient {
+        @Override
+        public void onProgressChanged(WebView view, int newProgress) {
+            if (newProgress > 90) {
+                disMissLoading();
+            }
+            super.onProgressChanged(view, newProgress);
+        }
+    }
 }

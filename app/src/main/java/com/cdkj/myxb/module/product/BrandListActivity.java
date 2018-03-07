@@ -71,6 +71,9 @@ public class BrandListActivity extends CommonTablayoutActivity {
         Map<String, String> map = new HashMap<>();
 
         map.put("status", "2");
+        map.put("orderColumn", "order_no");
+        map.put("orderDir", "asc");
+
 
         Call call = RetrofitUtils.createApi(MyApiServer.class).getBrandList("805258", StringUtils.getJsonToString(map));
 
@@ -81,16 +84,16 @@ public class BrandListActivity extends CommonTablayoutActivity {
         call.enqueue(new BaseResponseListCallBack<BrandListModel>(this) {
             @Override
             protected void onSuccess(List<BrandListModel> data, String SucMessage) {
-                if (data.size() > 4) {
-                    mTabLayoutBinding.tablayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-                } else {
-                    mTabLayoutBinding.tablayout.setTabMode(TabLayout.MODE_FIXED);
-                }
+//                if (data.size() > 4) {
+//                    mTabLayoutBinding.tablayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+//                } else {
+//                    mTabLayoutBinding.tablayout.setTabMode(TabLayout.MODE_FIXED);
+//                }
 
                 initData(data);
 
                 initViewPager();
-
+                mTabLayoutBinding.tablayout.setTabMode(TabLayout.MODE_SCROLLABLE);
                 mTabLayoutBinding.viewpager.setOffscreenPageLimit(3);
 
             }

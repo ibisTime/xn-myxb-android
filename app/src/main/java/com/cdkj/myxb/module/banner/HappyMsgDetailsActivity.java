@@ -146,12 +146,12 @@ public class HappyMsgDetailsActivity extends AbsBaseLoadActivity {
     protected void onDestroy() {
         mBinding.banner.stopAutoPlay();
         mBinding.webView.clearHistory();
-        ((ViewGroup) mBinding.webView.getParent()).removeView(mBinding.webView);
         mBinding.webView.loadUrl("about:blank");
         mBinding.webView.stopLoading();
         mBinding.webView.setWebChromeClient(null);
         mBinding.webView.setWebViewClient(null);
         mBinding.webView.destroy();
+        ((ViewGroup) mBinding.webView.getParent()).removeView(mBinding.webView);
         super.onDestroy();
     }
 }

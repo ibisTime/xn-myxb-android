@@ -129,7 +129,7 @@ public class AddAddressActivity extends AbsBaseLoadActivity {
                     return;
                 }
 
-                if (!StringUtils.isMobileExact(mBinding.edtPhone.getText().toString())) {
+                if (!StringUtils.isMobileSimple(mBinding.edtPhone.getText().toString())) {
                     UITipDialog.showFall(AddAddressActivity.this, getString(R.string.please_input_phone_2));
                     return;
                 }
@@ -189,7 +189,7 @@ public class AddAddressActivity extends AbsBaseLoadActivity {
                 //区县（如果设定了两级联动，那么该项返回空）
                 mDistrict = citySelected[2];
                 //邮编
-                String code = citySelected[3];
+//                String code = citySelected[3];
 
                 mBinding.txtAddress.setText(mProvince + " " + mCity + " " + mDistrict);
             }

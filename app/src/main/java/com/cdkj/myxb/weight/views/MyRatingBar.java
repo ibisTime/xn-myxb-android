@@ -22,7 +22,6 @@ public class MyRatingBar extends LinearLayout {
     private int starCount;
     private int starNum;
     private OnRatingChangeListener onRatingChangeListener;
-    private float starImageSize;
     private float starImageWidth;
     private float starImageHeight;
     private float starImagePadding;
@@ -57,9 +56,6 @@ public class MyRatingBar extends LinearLayout {
         this.starEmptyDrawable = starEmptyDrawable;
     }
 
-    public void setStarImageSize(float starImageSize) {
-        this.starImageSize = starImageSize;
-    }
 
     public void setStarImageWidth(float starImageWidth) {
         this.starImageWidth = starImageWidth;
@@ -87,7 +83,6 @@ public class MyRatingBar extends LinearLayout {
         starHalfDrawable = mTypedArray.getDrawable(R.styleable.RatingBar_starHalf);
         starEmptyDrawable = mTypedArray.getDrawable(R.styleable.RatingBar_starEmpty);
         starFillDrawable = mTypedArray.getDrawable(R.styleable.RatingBar_starFill);
-        starImageSize = mTypedArray.getDimension(R.styleable.RatingBar_starImageSize, 120);
         starImageWidth = mTypedArray.getDimension(R.styleable.RatingBar_starImageWidth, 60);
         starImageHeight = mTypedArray.getDimension(R.styleable.RatingBar_starImageHeight, 120);
         starImagePadding = mTypedArray.getDimension(R.styleable.RatingBar_starImagePadding, 15);

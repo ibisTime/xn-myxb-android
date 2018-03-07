@@ -85,10 +85,9 @@ public class ClassStyleModel implements IPickerViewData {
     }
 
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
+        if (obj == null){
             return false;
+        }
 
         ClassStyleModel cmodel = (ClassStyleModel) obj;
 

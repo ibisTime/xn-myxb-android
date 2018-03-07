@@ -19,7 +19,7 @@ import java.util.List;
  */
 
 public class ResultsOrderActivity extends CommonTablayoutActivity {
-    private String mType = UserHelper.S;//用户类型
+    private String mType = "";//用户类型
 
     /**
      * @param context
@@ -43,7 +43,12 @@ public class ResultsOrderActivity extends CommonTablayoutActivity {
         initViewPager();
 
         mBaseBinding.titleView.setMidTitle("成果订单");
-        mTabLayoutBinding.tablayout.setTabMode(TabLayout.MODE_FIXED);
+        if (OrderHelper.canShowWaiteInputByUserType(mType)) {                                                                      //美导没有待录入状态
+            mTabLayoutBinding.tablayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        }else{
+            mTabLayoutBinding.tablayout.setTabMode(TabLayout.MODE_FIXED);
+        }
+
     }
 
     @Override
@@ -58,6 +63,7 @@ public class ResultsOrderActivity extends CommonTablayoutActivity {
             fragments.add(ResultsOrderListFragment.getInstanse(OrderHelper.APPOINTMENT_5, mType, false));
         }
         fragments.add(ResultsOrderListFragment.getInstanse(OrderHelper.APPOINTMENT_6, mType, false));
+
 //        fragments.add(ResultsOrderListFragment.getInstanse(OrderHelper.APPOINTMENT_3, mType, false));
 
 
@@ -77,6 +83,7 @@ public class ResultsOrderActivity extends CommonTablayoutActivity {
             strings.add("待录入");
         }
         strings.add("已完成");
+
 //        strings.add("已取消");
         return strings;
     }

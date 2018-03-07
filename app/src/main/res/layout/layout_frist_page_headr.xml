@@ -19,6 +19,9 @@
             banner:indicator_margin="5dp"
             banner:indicator_width="8dp" />
 
+        <View
+            style="@style/style_split_line"
+            android:layout_height="1dp" />
 
         <LinearLayout
             android:id="@+id/lin_msg"
@@ -57,7 +60,9 @@
 
         </LinearLayout>
 
-        <View style="@style/style_split_line" />
+        <View
+            style="@style/style_split_line"
+            android:layout_height="1dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -76,8 +81,8 @@
                 android:paddingTop="10dp">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/first_page_item_img_size"
+                    android:layout_height="@dimen/first_page_item_img_size"
                     android:src="@drawable/main_brand" />
 
                 <TextView
@@ -99,8 +104,8 @@
                 android:paddingTop="10dp">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/first_page_item_img_size"
+                    android:layout_height="@dimen/first_page_item_img_size"
                     android:src="@drawable/main_shopper" />
 
                 <TextView
@@ -122,8 +127,8 @@
                 android:paddingTop="10dp">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/first_page_item_img_size"
+                    android:layout_height="@dimen/first_page_item_img_size"
                     android:src="@drawable/main_teacher" />
 
                 <TextView
@@ -145,8 +150,8 @@
                 android:paddingTop="10dp">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/first_page_item_img_size"
+                    android:layout_height="@dimen/first_page_item_img_size"
                     android:src="@drawable/main_expert" />
 
                 <TextView

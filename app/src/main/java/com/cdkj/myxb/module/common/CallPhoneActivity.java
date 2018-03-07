@@ -9,8 +9,10 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
+import com.cdkj.baselibrary.dialog.CommonDialog;
 import com.cdkj.baselibrary.utils.AppUtils;
 import com.cdkj.baselibrary.utils.PermissionHelper;
+import com.cdkj.baselibrary.utils.StringUtils;
 
 /**
  * 拨打电话
@@ -61,9 +63,13 @@ public class CallPhoneActivity extends AbsBaseLoadActivity {
             return;
         }
 
-        showDoubleWarnListen("即将拨打号码:" + mobile, view -> {
+        showCallPhoneDialog(mobile, view -> {
             finish();
         }, view -> {
+            if (!StringUtils.isTel(mobile)) {
+                showSureDialog("错误的电话号码，无法拨打", view1 -> finish());
+                return;
+            }
             permissionRequest();
         });
     }
@@ -93,6 +99,20 @@ public class CallPhoneActivity extends AbsBaseLoadActivity {
         if (mPermissionHelper != null) {
             mPermissionHelper.handleRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+    }
+
+    protected void showCallPhoneDialog(String str, CommonDialog.OnNegativeListener onNegativeListener, CommonDialog.OnPositiveListener onPositiveListener) {
+
+        if (isFinishing()) {
+            return;
+        }
+
+        CommonDialog commonDialog = new CommonDialog(this).builder()
+                .setTitle("拨打电话").setContentMsg(str)
+                .setPositiveBtn("确定", onPositiveListener)
+                .setNegativeBtn("取消", onNegativeListener, false);
+
+        commonDialog.show();
     }
 
 }

@@ -40,21 +40,22 @@ public class AllRankListActivity extends AbsRefreshListActivity {
     public static final String MRYTYPE = "2";//美容院
     public static final String EXPERTSTYPE = "3";//专家
 
-    private String mType;
+    private String mType = "";
+    private String mTitle = "";
 
 
     /**
-     *
      * @param context
-     * @param type  排名类型
+     * @param type    排名类型
      */
 
-    public static void open(Context context, String type) {
+    public static void open(Context context, String type, String title) {
         if (context == null) {
             return;
         }
         Intent intent = new Intent(context, AllRankListActivity.class);
         intent.putExtra("type", type);
+        intent.putExtra("title", title);
         context.startActivity(intent);
     }
 
@@ -63,9 +64,12 @@ public class AllRankListActivity extends AbsRefreshListActivity {
     public void afterCreate(Bundle savedInstanceState) {
         if (getIntent() != null) {
             mType = getIntent().getStringExtra("type");
+            mTitle = getIntent().getStringExtra("title");
         }
 
-        setTopTitle();
+        mBaseBinding.titleView.setMidTitle(mTitle);
+
+//        setTopTitle();
 
 
         mHeaderBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.layout_rank_header, null, false);
@@ -94,7 +98,6 @@ public class AllRankListActivity extends AbsRefreshListActivity {
     public RecyclerView.Adapter getListAdapter(List listData) {
         rankListAdapter = new AllRankListAdapter(listData);
         rankListAdapter.setHeaderAndEmpty(true);
-        rankListAdapter.addHeaderView(mHeaderBinding.getRoot());
         mRefreshBinding.refreshLayout.setEnableRefresh(false);
         mRefreshBinding.refreshLayout.setEnableLoadmore(false);
         return rankListAdapter;
@@ -137,13 +140,32 @@ public class AllRankListActivity extends AbsRefreshListActivity {
 
     }
 
+    /**
+     * 设置显示数据 只有前三名数据时 显示为列表 否则显示为 头部 +  列表
+     *
+     * @param data
+     */
     private void setShowData(List<RankModel> data) {
+
         if (data.size() <= 3) {
-            mRefreshHelper.setData(data, "", 0);
-            if (rankListAdapter != null) {
+            if (rankListAdapter != null && rankListAdapter.getHeaderLayoutCount() > 0) {
                 rankListAdapter.removeHeaderView(mHeaderBinding.getRoot());
             }
+            mRefreshHelper.setData(data, "暂无排名", 0);
             return;
+        }
+
+        setTopThreeData(data);
+
+    }
+
+    /**
+     * 设置前三名数据
+     * @param data
+     */
+    private void setTopThreeData(List<RankModel> data) {
+        if (rankListAdapter != null && rankListAdapter.getHeaderLayoutCount() == 0) {
+            rankListAdapter.addHeaderView(mHeaderBinding.getRoot());
         }
 
         List<RankModel> topData = data.subList(0, 3);
@@ -174,11 +196,7 @@ public class AllRankListActivity extends AbsRefreshListActivity {
                     mHeaderBinding.tvPrice3.setText(MoneyUtils.getShowPriceSign(rankModel.getAmount()));
                     break;
             }
-
-
         }
-
-
     }
 
 }

@@ -60,13 +60,13 @@ public class ShareActivity extends Activity {
 
         mbinding.imgPyq.setOnClickListener(v -> {
             WxUtil.shareToPYQ(ShareActivity.this, mShareUrl,
-                    "加入美业销帮", "邀请好友送积分。");
+                    "邀请好友", "快邀请好友来玩吧。");
             finish();
         });
 
         mbinding.imgWx.setOnClickListener(v -> {
             WxUtil.shareToWX(ShareActivity.this, mShareUrl,
-                    "加入美业销帮", "邀请好友送积分。");
+                    "邀请好友", "快邀请好友来玩吧。");
             finish();
         });
 

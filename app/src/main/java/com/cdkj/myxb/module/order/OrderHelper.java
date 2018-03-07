@@ -206,12 +206,13 @@ public class OrderHelper {
 
 
     /**
-     *根据用户类型判断是否能显示带录入状态 美导和讲师不能显示
+     * 根据用户类型判断是否能显示带录入状态 美导和讲师不能显示
+     *
      * @param type
      * @return
      */
-    public static boolean canShowWaiteInputByUserType(String type){
-       return  !TextUtils.equals(type, UserHelper.T) && !TextUtils.equals(type, UserHelper.L);
+    public static boolean canShowWaiteInputByUserType(String type) {
+        return TextUtils.equals(type, UserHelper.S);
     }
 
 }

@@ -39,7 +39,7 @@ public class CommentListAdapter extends BaseQuickAdapter<CommentListMode, BaseVi
         ImgUtils.loadQiniuLogo(mContext, item.getPhoto(), helper.getView(R.id.img_comment));
 
         helper.setText(R.id.tv_comment_name, item.getEntityName());
-        helper.setText(R.id.tv_comment_time, DateUtil.formatStringData(item.getCommentDatetime(), DateUtil.DATE_YMD));
+        helper.setText(R.id.tv_comment_time, DateUtil.formatStringData(item.getCommentDatetime(), DateUtil.DEFAULT_DATE_FMT));
         helper.setText(R.id.tv_comment_info, item.getContent());
 
     }

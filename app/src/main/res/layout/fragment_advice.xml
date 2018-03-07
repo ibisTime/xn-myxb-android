@@ -108,6 +108,7 @@
                     <View style="@style/style_split_line" />
 
                     <RelativeLayout
+                        android:descendantFocusability="blocksDescendants"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 

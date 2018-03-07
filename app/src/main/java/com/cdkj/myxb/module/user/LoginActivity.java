@@ -177,7 +177,6 @@ public class LoginActivity extends AbsBaseLoadActivity implements LoginInterface
     public void LoginSuccess(UserLoginModel user, String msg) {
         SPUtilHelpr.saveUserId(user.getUserId());
         SPUtilHelpr.saveUserToken(user.getToken());
-        SPUtilHelpr.saveUserPhoneNum(mBinding.editUsername.getText().toString());
         getUserInfoRequest();
     }
 

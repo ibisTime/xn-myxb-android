@@ -283,7 +283,7 @@ public class AdviceFragment extends BaseLazyFragment {
      */
     public String averageForma(Float discount) {
         if (discount == null) return "0";
-        NumberFormat nf = new DecimalFormat("#.#");
+        NumberFormat nf = new DecimalFormat("#######0.0");
         return nf.format(discount);
     }
 

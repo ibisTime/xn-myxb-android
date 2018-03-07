@@ -195,13 +195,13 @@ public class FirstPageFragment extends BaseLazyFragment {
                 HappyMsgListActivity.open(mActivity, HappyMsgListActivity.TODOMSG);
                 break;
             case "4":
-                AllRankListActivity.open(mActivity, AllRankListActivity.BRANDTYPE);
+                AllRankListActivity.open(mActivity, AllRankListActivity.BRANDTYPE,firstPageBanner.getName());
                 break;
             case "5":
-                AllRankListActivity.open(mActivity, AllRankListActivity.BRANDTYPE);
+                AllRankListActivity.open(mActivity, AllRankListActivity.BRANDTYPE,firstPageBanner.getName());
                 break;
             case "6":
-                AllRankListActivity.open(mActivity, AllRankListActivity.EXPERTSTYPE);
+                AllRankListActivity.open(mActivity, AllRankListActivity.EXPERTSTYPE,firstPageBanner.getName());
                 break;
 
         }
@@ -368,6 +368,8 @@ public class FirstPageFragment extends BaseLazyFragment {
         map.put("location", "1");//0否，1是
         map.put("limit", limit + "");
         map.put("start", pageindex + "");
+        map.put("orderColumn", "order_no");
+        map.put("orderDir", "asc");
 
         Call call = RetrofitUtils.createApi(MyApiServer.class).getSpeBrandList("805256", StringUtils.getJsonToString(map));
 

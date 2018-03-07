@@ -113,10 +113,7 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
     private void initListener() {
         //拨打电话
         mBinding.callPhone.setOnClickListener(view -> {
-
             getUserInfoRequest(true, true);
-
-
         });
 
 
@@ -216,11 +213,11 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
             protected void onSuccess(UserModel data, String SucMessage) {
                 mUserModel = data;
                 if (isCallPhone) {
-                    if (TextUtils.isEmpty(mUserModel.getMobile())) {
-                        UITipDialog.showInfo(CommonAppointmentUserDetailActivity.this, "暂无信息");
+                    if (mUserModel.getAdviserUser() == null || TextUtils.isEmpty(mUserModel.getAdviserUser().getMobile())) {
+                        UITipDialog.showInfo(CommonAppointmentUserDetailActivity.this, "暂无经纪人信息");
                         return;
                     }
-                    CallPhoneActivity.open(CommonAppointmentUserDetailActivity.this, mUserModel.getMobile());
+                    CallPhoneActivity.open(CommonAppointmentUserDetailActivity.this, mUserModel.getAdviserUser().getMobile());
                     return;
                 }
                 setShowData();
@@ -250,6 +247,8 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
 
         mBinding.headerLayout.ratingbar.setStar(mUserModel.getLevel());
         mBinding.headerLayout.tvUserName.setText(mUserModel.getRealName());
+
+
         if (TextUtils.isEmpty(mUserModel.getSpeciality())) {
             mBinding.headerLayout.tvSpecialty.setVisibility(GONE);
         } else {
@@ -260,7 +259,7 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
 
         setTagLayout();
 
-        if (TextUtils.isEmpty(mUserModel.getMobile())) {                    //有电话则可以进行电话拨打
+        if (mUserModel.getAdviserUser() == null || TextUtils.isEmpty(mUserModel.getAdviserUser().getMobile())) {                    //有电话则可以进行电话拨打
             mBinding.callPhone.setVisibility(View.GONE);
         } else {
             mBinding.callPhone.setVisibility(View.VISIBLE);
@@ -465,13 +464,13 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
     @Override
     protected void onDestroy() {
         mBinding.webView.clearHistory();
-        ((ViewGroup) mBinding.webView.getParent()).removeView(mBinding.webView);
         mBinding.webView.loadUrl("about:blank");
         mBinding.webView.stopLoading();
         mBinding.webView.setWebChromeClient(null);
         mBinding.webView.setWebViewClient(null);
         mBinding.webView.destroy();
         mBinding.tripDate.destroyView();
+        ((ViewGroup) mBinding.webView.getParent()).removeView(mBinding.webView);
         super.onDestroy();
 
     }

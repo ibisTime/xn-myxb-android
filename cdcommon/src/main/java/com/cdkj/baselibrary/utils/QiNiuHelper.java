@@ -290,7 +290,9 @@ public class QiNiuHelper {
                         uploadSingle(new QiNiuCallBack() {
                             @Override
                             public void onSuccess(String key) {
-                                listListener.onChange(upLoadListIndex, key);
+                                if(listListener!=null){
+                                    listListener.onChange(upLoadListIndex, key);
+                                }
                                 if (upLoadListIndex < dataList.size() - 1) {
                                     upLoadListIndex++;
                                     upLoadListPic(upLoadListIndex, dataList, token, listListener);

@@ -30,16 +30,17 @@ public class WxUtil {
 
     private static IWXAPI api;
 
-    public static final String APPID="wx7202b6a02f0270b4";
+    public static final String APPID = "wx7202b6a02f0270b4";
 
-    public static IWXAPI registToWx(Context context){
-        api = WXAPIFactory.createWXAPI(context,APPID, false);
+    public static IWXAPI registToWx(Context context) {
+        api = WXAPIFactory.createWXAPI(context, APPID, false);
         api.registerApp(APPID);
         return api;
     }
 
     /**
-     *  检测是否有微信与是否支持微信支付
+     * 检测是否有微信与是否支持微信支付
+     *
      * @return
      */
     public static boolean check(Context context) {
@@ -48,37 +49,30 @@ public class WxUtil {
 
         boolean isPaySupported = api.getWXAppSupportAPI() >= Build.PAY_SUPPORTED_SDK_INT;
 //        boolean isPaySupported = api.isWXAppInstalled() && api.isWXAppSupportAPI();
-        if(!api.isWXAppInstalled())
-        {
-            Toast.makeText(context,"没有安装微信，不能分享到朋友圈", Toast.LENGTH_SHORT).show();
+        if (!api.isWXAppInstalled()) {
+            Toast.makeText(context, "请先安装微信", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(!api.isWXAppSupportAPI())
-        {
-            Toast.makeText(context,"你使用的微信版本不支持微信支付！", Toast.LENGTH_SHORT).show();
+        if (!api.isWXAppSupportAPI()) {
+            Toast.makeText(context, "你使用的微信版本不支持微信支付！", Toast.LENGTH_SHORT).show();
             return false;
         }
         return isPaySupported;
     }
 
     /**
-     *  分享到朋友圈
+     * 分享到朋友圈
+     *
      * @param
      */
     public static void shareToPYQ(Context context, String url, String title, String description) {
-        System.out.println("shareURL="+url);
+        System.out.println("shareURL=" + url);
         api = registToWx(context);
 
-        if(!api.isWXAppInstalled())
-        {
-            Toast.makeText(context,"没有安装微信，不能分享到朋友圈", Toast.LENGTH_SHORT).show();
-            return ;
+        if (!api.isWXAppInstalled()) {
+            Toast.makeText(context, "请先安装微信", Toast.LENGTH_SHORT).show();
+            return;
         }
-//        if(!api.isWXAppSupportAPI())
-//        {
-//            Toast.makeText(context,"你使用的微信版本不支持微信支付！", Toast.LENGTH_SHORT).show();
-//            return ;
-//        }
 
         WXWebpageObject webpage = new WXWebpageObject();
         webpage.webpageUrl = url;
@@ -102,23 +96,18 @@ public class WxUtil {
     }
 
     /**
-     *  分享微信聊天界面
+     * 分享微信聊天界面
+     *
      * @param
      */
     public static void shareToWX(Context context, String url, String title, String description) {
-        System.out.println("shareURL="+url);
+
         api = registToWx(context);
 
-        if(!api.isWXAppInstalled())
-        {
-            Toast.makeText(context,"没有安装微信，不能分享到朋友圈", Toast.LENGTH_SHORT).show();
-            return ;
+        if (!api.isWXAppInstalled()) {
+            Toast.makeText(context, "请先安装微信", Toast.LENGTH_SHORT).show();
+            return;
         }
-//        if(!api.isWXAppSupportAPI())
-//        {
-//            Toast.makeText(context,"你使用的微信版本不支持微信支付！", Toast.LENGTH_SHORT).show();
-//            return ;
-//        }
 
         WXWebpageObject webpage = new WXWebpageObject();
         webpage.webpageUrl = url;
@@ -160,10 +149,11 @@ public class WxUtil {
 
     /**
      * 微信 支付
+     *
      * @param object
      * @return
      */
-    public static void pay(Context context, JSONObject object){
+    public static void pay(Context context, JSONObject object) {
 
         api = registToWx(context);
 
@@ -173,7 +163,7 @@ public class WxUtil {
         String timestamp = "";
         String partnerid = "";
         String prepayid = "";
-        String wechatPackage ="";
+        String wechatPackage = "";
 
         try {
             sign = object.getString("sign");
@@ -203,10 +193,11 @@ public class WxUtil {
 
     /**
      * 微信 支付签名
+     *
      * @param params
      * @return
      */
-    public static String createSign(Map<String,String> params){
+    public static String createSign(Map<String, String> params) {
         Set<String> keysSet = params.keySet();
         //对参数进行排序
         Object[] keys = keysSet.toArray();
@@ -214,13 +205,13 @@ public class WxUtil {
         //签名参数字符串
         String signStr = "";
         int index = 0;
-        for (Object key : keys){
-            if(key.equals("sign"))
+        for (Object key : keys) {
+            if (key.equals("sign"))
                 continue;
             String value = params.get(key);
             signStr += key + "=" + value;
-            index ++ ;
-            if(keys.length > index)
+            index++;
+            if (keys.length > index)
                 signStr += "&";
         }
         String sign = signStr + "&key=7fx5r0n7j8k1tvnzpn55c3ef0zo9a7be";

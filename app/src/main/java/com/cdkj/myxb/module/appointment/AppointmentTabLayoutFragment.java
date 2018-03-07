@@ -50,10 +50,10 @@ public class AppointmentTabLayoutFragment extends CommonTablayoutFragment {
 
     @Override
     protected void afterCreate() {
-        if (mTitles.size() <= 5) {
-            mTabLayoutBinding.tablayout.setTabMode(TabLayout.MODE_FIXED);
-        } else {
+        if (OrderHelper.canShowWaiteInputByUserType(mType)) {                                                                      //美导没有待录入状态
             mTabLayoutBinding.tablayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        }else{
+            mTabLayoutBinding.tablayout.setTabMode(TabLayout.MODE_FIXED);
         }
     }
 

@@ -218,12 +218,12 @@ public class InvitationFriendFragment extends BaseLazyFragment {
     @Override
     public void onDestroy() {
         mBinding.tvRule.clearHistory();
-        ((ViewGroup) mBinding.tvRule.getParent()).removeView(mBinding.tvRule);
         mBinding.tvRule.loadUrl("about:blank");
         mBinding.tvRule.stopLoading();
         mBinding.tvRule.setWebChromeClient(null);
         mBinding.tvRule.setWebViewClient(null);
         mBinding.tvRule.destroy();
+        ((ViewGroup) mBinding.tvRule.getParent()).removeView(mBinding.tvRule);
         super.onDestroy();
     }
 }

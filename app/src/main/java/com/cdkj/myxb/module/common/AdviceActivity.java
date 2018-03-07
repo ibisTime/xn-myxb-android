@@ -68,6 +68,12 @@ public class AdviceActivity extends AbsBaseLoadActivity {
         });
 
         mBinding.btnToRelease.setOnClickListener(view -> {
+            if (score <= 0 && TextUtils.isEmpty(mBinding.editContent.getText().toString())) {
+                UITipDialog.showInfo(this, "请进行评分或撰写建议");
+                return;
+            } else if (score <= 0) {
+                UITipDialog.showInfo(this, "请进行评分");
+            }
             releaseRequest();
         });
     }
