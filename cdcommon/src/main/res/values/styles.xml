@@ -71,7 +71,7 @@
 
     <!--短的分割线styles设置-->
     <style name="style_split_vline">
-        <item name="android:layout_width">0.5dp</item>
+        <item name="android:layout_width">0.8dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@color/gray</item>
     </style>
@@ -79,7 +79,7 @@
     <!--长的分割线styles设置-->
     <style name="style_split_line">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0.5dp</item>
+        <item name="android:layout_height">1dp</item>
         <item name="android:background">@color/bg_gray</item>
     </style>
     <!--activity_share dialog style--><!--android:Theme.Dialog-->

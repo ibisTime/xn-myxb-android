@@ -16,6 +16,7 @@ import com.cdkj.baselibrary.model.IsSuccessModes;
 import com.cdkj.baselibrary.nets.BaseResponseListCallBack;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
+import com.cdkj.baselibrary.utils.LogUtil;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.ActivityUserInfoUpdateBinding;
@@ -102,14 +103,14 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
 
             return true;
         }
-        if (TextUtils.isEmpty(mBinding.editSlogan.getText().toString()) || mSelectStyleId.isEmpty()) {
+        if (TextUtils.isEmpty(mBinding.editSlogan.getText().toString())) {
 
             UITipDialog.showFall(this, "请填写个性签名");
 
             return true;
         }
 
-        if (TextUtils.isEmpty(mBinding.editUserInfo.getText().toString()) || mSelectStyleId.isEmpty()) {
+        if (TextUtils.isEmpty(mBinding.editUserInfo.getText().toString())) {
 
             UITipDialog.showFall(this, "请填写个人简介");
 
@@ -157,7 +158,7 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
 
 
         Map<String, String> map = new HashMap<>();
-//
+
         map.put("realName", mBinding.editName.getText().toString());
         map.put("speciality", mBinding.editSpeciality.getText().toString());
         map.put("description", mBinding.editUserInfo.getText().toString());
@@ -248,6 +249,19 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
         mStyles.clear();
         mStyles.add(classStyleModel);
         mStyles.addAll(data);
+
+        mSelectStyle.clear();
+
+        for (String s : mSelectStyleId) {                         //获取用户获取的风格
+
+            for (ClassStyleModel styleModel : mStyles) {
+                if (styleModel == null) continue;
+                if (TextUtils.equals(s, styleModel.getDkey())) {
+                    mSelectStyle.add(styleModel);
+                }
+            }
+        }
+
     }
 
     public void initPickerView() {
@@ -285,11 +299,15 @@ public class UserInfoUpdateActivity extends AbsBaseLoadActivity {
      */
     private void setStyleText() {
         mBinding.tvStyle.setText("");
+        mSelectStyleId.clear();
         StringBuffer selectStyleName = new StringBuffer();
 
         for (ClassStyleModel styleModel : mSelectStyle) {
+            if (styleModel == null || styleModel.isClear() || TextUtils.isEmpty(styleModel.getDkey())) {
+                continue;
+            }
             selectStyleName.append(styleModel.getDvalue() + " ");
-            mSelectStyleId.add(styleModel.getDkey() + SEP1);
+            mSelectStyleId.add(styleModel.getDkey());
         }
 
         mBinding.tvStyle.setText(selectStyleName.toString());

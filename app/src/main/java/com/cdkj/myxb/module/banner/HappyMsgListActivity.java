@@ -75,6 +75,8 @@ public class HappyMsgListActivity extends AbsRefreshListActivity {
         map.put("start", pageindex + "");
         map.put("status", "1"); //已上架
         map.put("limit", limit + "");
+        map.put("orderColumn", "order_no");
+        map.put("orderDir", "asc");
 
         Call call = RetrofitUtils.createApi(MyApiServer.class).getHappyMsgList("805435", StringUtils.getJsonToString(map));
 

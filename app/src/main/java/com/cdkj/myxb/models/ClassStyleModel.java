@@ -91,7 +91,7 @@ public class ClassStyleModel implements IPickerViewData {
 
         ClassStyleModel cmodel = (ClassStyleModel) obj;
 
-        if (this.id==cmodel.id) {
+        if (this.dkey==cmodel.dkey) {
             return true;
         }
 

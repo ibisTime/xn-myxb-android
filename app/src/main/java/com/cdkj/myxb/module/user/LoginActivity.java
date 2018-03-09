@@ -8,7 +8,6 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bigkoo.pickerview.OptionsPickerView;
-import com.cdkj.baselibrary.activitys.FindPwdActivity;
 import com.cdkj.baselibrary.appmanager.RouteHelper;
 import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
@@ -22,7 +21,7 @@ import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.MainActivity;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.ActivityLoginBinding;
-import com.cdkj.myxb.models.LoginTypeModel;
+import com.cdkj.myxb.module.LoginTypeModel;
 import com.cdkj.myxb.models.UserModel;
 import com.cdkj.myxb.module.api.MyApiServer;
 

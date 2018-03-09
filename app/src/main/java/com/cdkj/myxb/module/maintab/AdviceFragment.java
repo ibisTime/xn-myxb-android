@@ -93,7 +93,7 @@ public class AdviceFragment extends BaseLazyFragment {
                 return;
             }
 
-            releaseRequest((int) rat);
+            adviceScoreRequest((int) rat);
         });
 
         mBinding.headerLayout.tvShowAll.setOnClickListener(view -> AdviceListActivity.open(mActivity));
@@ -165,7 +165,11 @@ public class AdviceFragment extends BaseLazyFragment {
 
     }
 
-    public void releaseRequest(int score) {
+    /**
+     * 评分请求
+     * @param score
+     */
+    public void adviceScoreRequest(int score) {
 
         Map<String, String> map = new HashMap<>();
 
@@ -188,6 +192,12 @@ public class AdviceFragment extends BaseLazyFragment {
                     UITipDialog.showSuccess(mActivity, "评分成功");
                     getAllRequest();
                 }
+            }
+
+            @Override
+            protected void onReqFailure(String errorCode, String errorMessage) {
+                super.onReqFailure(errorCode, errorMessage);
+                mBinding.ratingbar.setStar(0);
             }
 
             @Override

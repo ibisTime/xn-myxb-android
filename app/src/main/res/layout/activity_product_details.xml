@@ -223,7 +223,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/selector_gray"
                 android:gravity="center"
-                android:visibility="gone">
+               >
 
                 <ImageView
                     android:layout_width="20dp"

@@ -43,7 +43,7 @@ public class LogoSelectAdapter extends BaseQuickAdapter<LogoListModel, BaseViewH
         } else {
             viewHolder.setGone(R.id.img_logo_select, false);
         }
-        ImgUtils.loadQiniuLogo(mContext, item.getUrl(), viewHolder.getView(R.id.img_logo));
+        ImgUtils.loadQiNiuBorderLogo(mContext, item.getUrl(), viewHolder.getView(R.id.img_logo),R.color.bg_gray);
     }
 
     public int getSelectPosition() {

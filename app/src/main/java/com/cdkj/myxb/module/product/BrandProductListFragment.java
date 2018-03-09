@@ -12,6 +12,7 @@ import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
+import com.cdkj.baselibrary.views.MyDividerItemDecoration;
 import com.cdkj.myxb.adapters.BrandListAdapter;
 import com.cdkj.myxb.models.BrandProductModel;
 import com.cdkj.myxb.module.api.MyApiServer;
@@ -71,6 +72,8 @@ public class BrandProductListFragment extends AbsRefreshListFragment {
 
         initRefreshHelper(10);
 
+        mRefreshBinding.recyclerView.addItemDecoration(new MyDividerItemDecoration(mActivity,MyDividerItemDecoration.VERTICAL_LIST));
+
         if (getArguments() != null && getArguments().getBoolean(ISFIRSTREQUEST)) {
             mRefreshHelper.onDefaluteMRefresh(true);
         }
@@ -118,6 +121,7 @@ public class BrandProductListFragment extends AbsRefreshListFragment {
 
             @Override
             protected void onSuccess(ResponseInListModel<BrandProductModel> data, String SucMessage) {
+
                 mRefreshHelper.setData(data.getList(), "暂无产品", 0);
             }
 

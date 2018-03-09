@@ -1,7 +1,6 @@
 package com.cdkj.baselibrary.appmanager;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.cdkj.baselibrary.activitys.FindPwdActivity;
 
 /**
  * 路由管理
@@ -16,17 +15,6 @@ public class RouteHelper {
     //WebView
     public static final String CDWEBVIEW = "/cdcommon/web";
 
-
-    /**
-     * 找回登录密码
-     *
-     * @param phoneNumber 手机号码
-     */
-    public static void openFindPwd(String phoneNumber) {
-        ARouter.getInstance().build(CDFINDPWD)
-                .withString(FindPwdActivity.PHONENUMBERSING, phoneNumber)
-                .navigation();
-    }
 
 
     /**

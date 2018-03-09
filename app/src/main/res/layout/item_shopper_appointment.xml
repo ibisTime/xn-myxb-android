@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical"
+    android:paddingBottom="10dp"
     android:paddingLeft="@dimen/layout_left_interval"
     android:paddingRight="@dimen/layout_right_interval"
     android:paddingTop="20dp">
@@ -161,8 +162,5 @@
         android:textSize="14sp"
         tools:text="效果很好效果很好效果很好效果很好效果很好效果很好效果很好效果很好效果很好" />
 
-    <View
-        style="@style/style_split_line"
-        android:layout_marginTop="10dp" />
 
 </LinearLayout>

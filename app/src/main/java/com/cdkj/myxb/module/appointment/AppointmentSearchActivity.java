@@ -10,6 +10,7 @@ import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
+import com.cdkj.baselibrary.views.MyDividerItemDecoration;
 import com.cdkj.myxb.adapters.CommonAppointmentListAdapter;
 import com.cdkj.myxb.models.UserModel;
 import com.cdkj.myxb.module.api.MyApiServer;
@@ -65,6 +66,8 @@ public class AppointmentSearchActivity extends AbsSearchActivity {
             mType = getIntent().getStringExtra(INTENTTYPE);
         }
         super.afterCreate(savedInstanceState);
+
+        mSearchinding.layoutRefresh.recyclerView.addItemDecoration(new MyDividerItemDecoration(this,MyDividerItemDecoration.VERTICAL_LIST));
     }
 
     @Override

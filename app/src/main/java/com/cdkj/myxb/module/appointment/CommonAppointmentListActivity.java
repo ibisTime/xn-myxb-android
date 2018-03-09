@@ -10,6 +10,7 @@ import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
+import com.cdkj.baselibrary.views.MyDividerItemDecoration;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.adapters.CommonAppointmentListAdapter;
 import com.cdkj.myxb.models.UserModel;
@@ -107,6 +108,8 @@ public class CommonAppointmentListActivity extends AbsRefreshListActivity {
         mBaseBinding.titleView.setRightImg(R.drawable.search_waite);
 
         initRefreshHelper(10);
+
+        mRefreshBinding.recyclerView.addItemDecoration(new MyDividerItemDecoration(this,MyDividerItemDecoration.VERTICAL_LIST));
 
         mRefreshHelper.onDefaluteMRefresh(true);
 

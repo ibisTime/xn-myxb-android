@@ -6,7 +6,6 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;
 
-import com.cdkj.baselibrary.activitys.FindPwdActivity;
 import com.cdkj.baselibrary.activitys.UpdatePhoneActivity;
 import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
@@ -52,7 +51,7 @@ public class UserSettingActivity extends AbsBaseLoadActivity {
 
         initListener();
 
-        ImgUtils.loadQiniuLogo(this, SPUtilHelpr.getUserPhoto(), mBinding.imgUserLogo);
+        ImgUtils.loadQiNiuBorderLogo(this, SPUtilHelpr.getUserPhoto(), mBinding.imgUserLogo,R.color.bg_gray);
     }
 
     private void initListener() {

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -213,11 +214,11 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
             protected void onSuccess(UserModel data, String SucMessage) {
                 mUserModel = data;
                 if (isCallPhone) {
-                    if (mUserModel.getAdviserUser() == null || TextUtils.isEmpty(mUserModel.getAdviserUser().getMobile())) {
+                    if (mUserModel.getHandlerUser() == null || TextUtils.isEmpty(mUserModel.getHandlerUser().getMobile())) {
                         UITipDialog.showInfo(CommonAppointmentUserDetailActivity.this, "暂无经纪人信息");
                         return;
                     }
-                    CallPhoneActivity.open(CommonAppointmentUserDetailActivity.this, mUserModel.getAdviserUser().getMobile());
+                    CallPhoneActivity.open(CommonAppointmentUserDetailActivity.this, mUserModel.getHandlerUser().getMobile());
                     return;
                 }
                 setShowData();
@@ -239,32 +240,42 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
 
         if (mUserModel == null) return;
 
+        if (mUserModel.isMan()) {
+            mBinding.headerLayout.imgGender.setImageResource(R.drawable.man_2);
+        } else {
+            mBinding.headerLayout.imgGender.setImageResource(R.drawable.women_2);
+        }
+
+
         mBinding.webView.loadData(mUserModel.getIntroduce(), "text/html;charset=utf-8", "utf-8");
 
         ImgUtils.loadQiniuLogo(this, mUserModel.getPhoto(), mBinding.headerLayout.imgLogo);
 
-        mBinding.headerLayout.tvUserName.setText(mUserModel.getRealName());
-
         mBinding.headerLayout.ratingbar.setStar(mUserModel.getLevel());
         mBinding.headerLayout.tvUserName.setText(mUserModel.getRealName());
 
-
-        if (TextUtils.isEmpty(mUserModel.getSpeciality())) {
-            mBinding.headerLayout.tvSpecialty.setVisibility(GONE);
-        } else {
-            mBinding.headerLayout.tvSpecialty.setVisibility(VISIBLE);
-            mBinding.headerLayout.tvSpecialty.setText(UserHelper.getUserTypeByKind(mType) + "  专长：" + mUserModel.getSpeciality());
-        }
-
+        mBinding.headerLayout.tvSpecialty.setText(getTypeAndSpecialityInfo());
 
         setTagLayout();
 
-        if (mUserModel.getAdviserUser() == null || TextUtils.isEmpty(mUserModel.getAdviserUser().getMobile())) {                    //有电话则可以进行电话拨打
-            mBinding.callPhone.setVisibility(View.GONE);
-        } else {
-            mBinding.callPhone.setVisibility(View.VISIBLE);
-        }
+    }
 
+    /**
+     * 获取用户类型与专长信息
+     *
+     * @return
+     */
+    @NonNull
+    private StringBuffer getTypeAndSpecialityInfo() {
+        StringBuffer subInfo = new StringBuffer();
+
+        subInfo.append(UserHelper.getUserTypeByKind(mType));
+
+        if (!TextUtils.isEmpty(mUserModel.getSpeciality())) {
+            subInfo.append("  专长：");
+            subInfo.append(mUserModel.getSpeciality());
+        }
+        return subInfo;
     }
 
 
@@ -292,7 +303,7 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
         textView.setTag(str);
 
         int padding = DisplayHelper.dip2px(this, 3);
-        int paddingLeftAndRight = DisplayHelper.dip2px(this, 12);
+        int paddingLeftAndRight = DisplayHelper.dip2px(this, 10);
         ViewCompat.setPaddingRelative(textView, paddingLeftAndRight, padding, paddingLeftAndRight, padding);
         FlexboxLayout.LayoutParams layoutParams = new FlexboxLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,

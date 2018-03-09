@@ -190,6 +190,7 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
 
 
     public View getHeaderView() {
+
         mTagLayout = DataBindingUtil.inflate(getLayoutInflater(), R.layout.layout_flexbox, null, false);
 
         return mTagLayout.getRoot();
@@ -236,6 +237,7 @@ public class ProductCommentListActivity extends AbsBaseLoadActivity {
      * @param data
      */
     private void initTagViews(List<CommentTagModel> data) {
+        mTagLayout.flexboxLayout.removeAllViews();
         for (CommentTagModel tagModel : data) {
             TextView tv = createNewFlexItemTextView(tagModel.getWord() + " (" + tagModel.getCount() + ")");
             textViews.add(tv);

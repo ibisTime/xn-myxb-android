@@ -150,40 +150,41 @@ public class StringUtils {
      * @param list
      * @return
      */
-    public static String listToString(List<?> list, String sep1) {
+    public static String listToString(List<String> list, String sep1) {
 
         if (list == null || list.size() == 0) {
             return "";
         }
 
         StringBuffer sb = new StringBuffer();
-        if (list != null) {
-            for (int i = 0; i < list.size(); i++) {
-                if (list.get(i) == null || list.get(i).equals("")) {
-                    continue;
-                }
-                // 如果值是list类型则调用自己
-                if (list.get(i) instanceof List) {
-                    sb.append(listToString((List<?>) list.get(i), sep1));
-                    if (i != list.size() - 1) {
-                        sb.append(sep1);
-                    }
 
-                } /*else if (list.get(i) instanceof Map) {
+        for (int i = 0; i < list.size(); i++) {
+//            if (TextUtils.isEmpty(list.get(i))) {
+//                continue;
+//            }
+            // 如果值是list类型则调用自己
+        /*    if (list.get(i) instanceof List) {
+                sb.append(listToString((List<?>) list.get(i), sep1));
+                if (i != list.size() - 1) {
+                    sb.append(sep1);
+                }
+
+            } else if (list.get(i) instanceof Map) {
                     sb.append(MapToString((Map<?, ?>) list.get(i)));
                     if (i != list.size() - 1) {
                         sb.append(sep1);
                     }
 
-                }*/ else {
-                    sb.append(list.get(i));
-                    if (i != list.size() - 1) {
-                        sb.append(sep1);
-                    }
-
-                }
+                }*/
+//            else {
+            sb.append(list.get(i));
+            if (i != list.size() - 1) {
+                sb.append(sep1);
             }
+
+//            }
         }
+
         return sb.toString();
     }
 

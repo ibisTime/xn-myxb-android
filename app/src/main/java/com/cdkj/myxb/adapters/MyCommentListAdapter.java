@@ -34,7 +34,7 @@ public class MyCommentListAdapter extends BaseQuickAdapter<CommentListMode, Base
 
         myRatingBar.setStar(item.getScore());
 
-        helper.setText(R.id.tv_comment_name, item.getEntityName());
+        helper.setText(R.id.tv_comment_name, item.getNickname());
         helper.setText(R.id.tv_comment_time, DateUtil.formatStringData(item.getCommentDatetime(), DateUtil.DATE_YMD));
         helper.setText(R.id.tv_comment_info, item.getContent());
 

@@ -1,5 +1,6 @@
 package com.cdkj.myxb.adapters;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
@@ -44,9 +45,8 @@ public class CommonAppointmentListAdapter extends BaseQuickAdapter<UserModel, Ba
 
         helper.setGone(R.id.tv_user_info, !TextUtils.isEmpty(item.getSlogan()));
 
-        helper.setText(R.id.tv_specialty, UserHelper.getUserTypeByKind(item.getKind()) + "  专长：" + item.getSpeciality());
+        helper.setText(R.id.tv_specialty, getTypeAndSpecialityInfo(item));
 
-        helper.setGone(R.id.tv_specialty, !TextUtils.isEmpty(item.getSpeciality()));
 
         if (item.isMan()) {
             helper.setImageResource(R.id.img_gender, R.drawable.man_2);
@@ -60,6 +60,25 @@ public class CommonAppointmentListAdapter extends BaseQuickAdapter<UserModel, Ba
 
         ratingBar.setStar(item.getLevel());
 
+    }
+
+
+    /**
+     * 获取用户类型与专长信息
+     *
+     * @return
+     */
+    @NonNull
+    private StringBuffer getTypeAndSpecialityInfo(UserModel userModel) {
+        StringBuffer subInfo = new StringBuffer();
+
+        subInfo.append(UserHelper.getUserTypeByKind(userModel.getKind()));
+
+        if (!TextUtils.isEmpty(userModel.getSpeciality())) {
+            subInfo.append("  专长：");
+            subInfo.append(userModel.getSpeciality());
+        }
+        return subInfo;
     }
 
     /**
@@ -96,7 +115,7 @@ public class CommonAppointmentListAdapter extends BaseQuickAdapter<UserModel, Ba
         textView.setTag(str);
 
         int padding = DisplayHelper.dip2px(mContext, 3);
-        int paddingLeftAndRight = DisplayHelper.dip2px(mContext, 12);
+        int paddingLeftAndRight = DisplayHelper.dip2px(mContext, 10);
         ViewCompat.setPaddingRelative(textView, paddingLeftAndRight, padding, paddingLeftAndRight, padding);
         FlexboxLayout.LayoutParams layoutParams = new FlexboxLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,

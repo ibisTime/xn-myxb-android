@@ -15,6 +15,7 @@ import com.cdkj.baselibrary.base.BaseLazyFragment;
 import com.cdkj.baselibrary.model.IntroductionInfoModel;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
+import com.cdkj.baselibrary.utils.MoneyUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.myxb.R;
 import com.cdkj.myxb.databinding.FragmentInvitationFriendBinding;
@@ -108,7 +109,7 @@ public class InvitationFriendFragment extends BaseLazyFragment {
             @Override
             protected void onSuccess(InvitationModel data, String SucMessage) {
                 mBinding.tvPeopleNum.setText(data.getTotalUser() + "");
-                mBinding.tvAmount.setText(data.getTotalAmount() + "");
+                mBinding.tvAmount.setText(MoneyUtils.showPrice(data.getTotalAmount()));
             }
 
             @Override

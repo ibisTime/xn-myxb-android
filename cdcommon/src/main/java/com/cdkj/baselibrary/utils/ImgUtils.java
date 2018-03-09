@@ -2,6 +2,7 @@ package com.cdkj.baselibrary.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.ColorRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
@@ -193,7 +194,7 @@ public class ImgUtils {
 
     }
 
-    public static void loadQiNiuBorderLogo(Context context, String url, ImageView imageView, int borderColor) {
+    public static void loadQiNiuBorderLogo(Context context, String url, ImageView imageView, @ColorRes int borderColor) {
         try {
 /*.skipMemoryCache(true)   .diskCacheStrategy(DiskCacheStrategy.NONE)*/
             Glide.with(context).load(MyCdConfig.QINIUURL + url).error(R.drawable.photo_default).transform(new GlideCircleBorderTransform(context, 2, ContextCompat.getColor(context, borderColor))).into(imageView);

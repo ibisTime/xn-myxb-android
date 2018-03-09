@@ -16,15 +16,16 @@
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/bg_item_msg_text"
-            android:ellipsize="end"
             android:gravity="center_vertical"
-            android:maxLines="1"
+            android:paddingBottom="10dp"
             android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
             android:textColor="@color/white"
             android:textSize="16sp"
-            tools:text="系统消息" />
+            tools:text="系统消息系统消息系统消息系统消息系统消息系统消息系统消息系统消息系统消息系统消息系统消息系统消息" />
 
 
         <TextView

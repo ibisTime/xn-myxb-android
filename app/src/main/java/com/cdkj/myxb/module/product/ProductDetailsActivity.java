@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
+import com.cdkj.baselibrary.dialog.UITipDialog;
 import com.cdkj.baselibrary.interfaces.BaseRefreshCallBack;
 import com.cdkj.baselibrary.interfaces.RefreshHelper;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
@@ -52,6 +53,8 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
     private List<String> mbannerUrlList;
 
     private CommentListAdapter mCommentListAdapter;
+
+    private String mMobile;//顾问电话
 
     /**
      * @param context
@@ -147,7 +150,13 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
         });
 
         mBinding.scoreLayout.linToComments.setOnClickListener(view -> ProductCommentListActivity.open(this, mProductCode, "P"));
-
+        mBinding.callPhone.setOnClickListener(view -> {
+            if (TextUtils.isEmpty(mMobile)) {
+                UITipDialog.showInfo(ProductDetailsActivity.this, "暂无顾问信息");
+                return;
+            }
+            CallPhoneActivity.open(this, mMobile);
+        });
     }
 
     /**
@@ -295,6 +304,8 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
     private void setShowData(BrandProductModel data) {
         if (data == null) return;
 
+        mMobile = data.getMobile();
+
         mBinding.tvProductName.setText(data.getName());
         mBinding.tvSlogan.setText(data.getSlogan());
         mBinding.tvPrice.setText(MoneyUtils.showPrice(data.getPrice()));
@@ -302,14 +313,6 @@ public class ProductDetailsActivity extends AbsBaseLoadActivity {
 
         mBinding.webView.loadData(data.getDescription(), "text/html;charset=utf-8", "utf-8");
 
-        if (TextUtils.isEmpty(data.getMobile())) {                    //有电话则可以进行电话拨打
-            mBinding.callPhone.setVisibility(View.GONE);
-        } else {
-            mBinding.callPhone.setVisibility(View.VISIBLE);
-            mBinding.callPhone.setOnClickListener(view -> {
-                CallPhoneActivity.open(this, data.getMobile());
-            });
-        }
 
     }
 

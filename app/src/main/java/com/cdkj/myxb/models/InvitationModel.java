@@ -1,5 +1,7 @@
 package com.cdkj.myxb.models;
 
+import java.math.BigDecimal;
+
 /**
  * Created by cdkj on 2018/3/2.
  */
@@ -11,14 +13,14 @@ public class InvitationModel {
      * totalUser : 0
      */
 
-    private int totalAmount; //获得积分
+    private BigDecimal totalAmount; //获得积分
     private int totalUser;//总人数
 
-    public int getTotalAmount() {
+    public BigDecimal getTotalAmount() {
         return totalAmount;
     }
 
-    public void setTotalAmount(int totalAmount) {
+    public void setTotalAmount(BigDecimal totalAmount) {
         this.totalAmount = totalAmount;
     }
 

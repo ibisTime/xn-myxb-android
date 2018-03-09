@@ -235,7 +235,7 @@ public class MyFragment extends BaseLazyFragment {
             return;
         }
         mBinding.headerLayout.linUserInfo.setVisibility(View.VISIBLE);
-        ImgUtils.loadQiNiuBorderLogo(mActivity, mUserInfoMode.getPhoto(), mBinding.headerLayout.imgUserLogo, R.color.white_50);
+        ImgUtils.loadQiNiuBorderLogo(mActivity, mUserInfoMode.getPhoto(), mBinding.headerLayout.imgUserLogo, R.color.white);
 
         mBinding.headerLayout.tvUserName.setText(TextUtils.isEmpty(mUserInfoMode.getRealName()) ? "暂无" : mUserInfoMode.getRealName());
 

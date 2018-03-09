@@ -2,12 +2,14 @@ package com.cdkj.myxb.module.product;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 
 import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
+import com.cdkj.baselibrary.views.MyDividerItemDecoration;
 import com.cdkj.myxb.adapters.BrandListAdapter;
 import com.cdkj.myxb.models.BrandProductModel;
 import com.cdkj.myxb.module.api.MyApiServer;
@@ -34,6 +36,13 @@ public class BrandProductSearchActivity extends AbsSearchActivity {
         context.startActivity(intent);
     }
 
+
+    @Override
+    public void afterCreate(Bundle savedInstanceState) {
+        super.afterCreate(savedInstanceState);
+
+        mSearchinding.layoutRefresh.recyclerView.addItemDecoration(new MyDividerItemDecoration(this,MyDividerItemDecoration.VERTICAL_LIST));
+    }
 
     @Override
     public RecyclerView.Adapter getListAdapter(List listData) {

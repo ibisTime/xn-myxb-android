@@ -66,7 +66,7 @@ public class CallPhoneActivity extends AbsBaseLoadActivity {
         showCallPhoneDialog(mobile, view -> {
             finish();
         }, view -> {
-            if (!StringUtils.isTel(mobile)) {
+            if (!StringUtils.isTel(mobile) && !StringUtils.isMobileSimple(mobile)) {
                 showSureDialog("错误的电话号码，无法拨打", view1 -> finish());
                 return;
             }

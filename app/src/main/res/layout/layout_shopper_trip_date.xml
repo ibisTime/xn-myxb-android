@@ -14,35 +14,49 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="15dp"
+
             android:orientation="horizontal">
 
-            <ImageView
-                android:visibility="invisible"
-                android:id="@+id/img_previous"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_gravity="center_vertical"
+            <FrameLayout
+                android:id="@+id/fra_previous"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/more_right" />
+                android:visibility="invisible">
+
+                <ImageView
+                    android:id="@+id/img_previous"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/more_right" />
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/tv_year"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
                 android:textColor="@color/app_txt_black"
                 android:textSize="16sp"
                 tools:text="2017-05-09" />
 
-            <ImageView
-                android:id="@+id/img_next"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/more_right" />
+            <FrameLayout
+                android:id="@+id/fra_next"
+                android:layout_width="40dp"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/img_next"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/more_right" />
+            </FrameLayout>
+
 
         </LinearLayout>
 

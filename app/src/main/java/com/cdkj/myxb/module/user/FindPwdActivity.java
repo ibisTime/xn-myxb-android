@@ -1,4 +1,4 @@
-package com.cdkj.baselibrary.activitys;
+package com.cdkj.myxb.module.user;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.cdkj.baselibrary.R;
+import com.bigkoo.pickerview.OptionsPickerView;
 import com.cdkj.baselibrary.appmanager.MyCdConfig;
 import com.cdkj.baselibrary.appmanager.RouteHelper;
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
@@ -22,9 +22,13 @@ import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.AppUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
+import com.cdkj.myxb.R;
+import com.cdkj.myxb.module.LoginTypeModel;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 import retrofit2.Call;
 
@@ -42,6 +46,11 @@ public class FindPwdActivity extends AbsBaseLoadActivity implements SendCodeInte
 
     public static final String PHONENUMBERSING = "phonenumber";
 
+    private OptionsPickerView mLoginTypePicker;//登录类型选择
+
+    private List<LoginTypeModel> mLoginTypes;
+
+    private String mLoginKind;//用户的登录类型
 
     /**
      * 打开当前页面
@@ -81,10 +90,21 @@ public class FindPwdActivity extends AbsBaseLoadActivity implements SendCodeInte
         initListener();
     }
 
+
     /**
      *
      */
     private void initListener() {
+
+        //登录类型
+        mBinding.linLoginType.setOnClickListener(view -> {
+            if (mLoginTypePicker == null) {
+                initPickerView();
+            }
+            mLoginTypePicker.setPicker(mLoginTypes);
+            mLoginTypePicker.show();
+        });
+
 
         //发送验证码
         mBinding.btnSend.setOnClickListener(new View.OnClickListener() {
@@ -128,11 +148,62 @@ public class FindPwdActivity extends AbsBaseLoadActivity implements SendCodeInte
                     return;
                 }
 
+                if (TextUtils.isEmpty(mLoginKind)) {
+                    UITipDialog.showFall(FindPwdActivity.this, "请选择角色");
+                    return;
+                }
+
                 findPwdReqeust();
             }
         });
     }
 
+    private void initPickerData() {
+
+        mLoginTypes = new ArrayList<>();
+
+        LoginTypeModel loginTypeModel = new LoginTypeModel();
+        loginTypeModel.setType(UserHelper.C);
+        loginTypeModel.setTypeString(getString(R.string.mry));
+
+        mLoginTypes.add(loginTypeModel);
+
+        LoginTypeModel loginTypeModel2 = new LoginTypeModel();
+        loginTypeModel2.setType(UserHelper.L);
+        loginTypeModel2.setTypeString(getString(R.string.teacher));
+
+        mLoginTypes.add(loginTypeModel2);
+
+        LoginTypeModel loginTypeModel3 = new LoginTypeModel();
+        loginTypeModel3.setType(UserHelper.S);
+        loginTypeModel3.setTypeString(getString(R.string.experts));
+
+        mLoginTypes.add(loginTypeModel3);
+
+        LoginTypeModel loginTypeMode4 = new LoginTypeModel();
+        loginTypeMode4.setType(UserHelper.T);
+        loginTypeMode4.setTypeString(getString(R.string.shopper));
+
+        mLoginTypes.add(loginTypeMode4);
+    }
+
+
+    public void initPickerView() {
+
+        initPickerData();
+
+        mLoginTypePicker = new OptionsPickerView.Builder(this, (options1, options2, options3, v) -> {
+
+            LoginTypeModel loginTypeModel = mLoginTypes.get(options1);
+
+            mLoginKind = loginTypeModel.getType();
+
+            mBinding.tvLogintype.setText(loginTypeModel.getTypeString());
+
+        }).setContentTextSize(16).setLineSpacingMultiplier(4).build();
+
+
+    }
 
     /**
      * 找回密码请求
@@ -144,7 +215,7 @@ public class FindPwdActivity extends AbsBaseLoadActivity implements SendCodeInte
         hashMap.put("mobile", mBinding.edtPhone.getText().toString());
         hashMap.put("newLoginPwd", mBinding.edtPassword.getText().toString());
         hashMap.put("smsCaptcha", mBinding.edtCode.getText().toString());
-        hashMap.put("kind", MyCdConfig.USERTYPE);
+        hashMap.put("kind", mLoginKind);
         hashMap.put("systemCode", MyCdConfig.SYSTEMCODE);
         hashMap.put("companyCode", MyCdConfig.COMPANYCODE);
 

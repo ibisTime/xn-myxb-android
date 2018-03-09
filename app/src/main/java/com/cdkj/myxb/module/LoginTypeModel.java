@@ -1,7 +1,6 @@
-package com.cdkj.myxb.models;
+package com.cdkj.myxb.module;
 
 import com.bigkoo.pickerview.model.IPickerViewData;
-import com.cdkj.myxb.module.user.UserHelper;
 
 /**
  * 登录类型
@@ -13,15 +12,13 @@ public class LoginTypeModel implements IPickerViewData {
     private String typeString;
 
 
-    private
-    @UserHelper.userType
-    String type;
+    private String type;
 
     public String getType() {
         return type;
     }
 
-    public void setType(@UserHelper.userType String type) {
+    public void setType( String type) {
         this.type = type;
     }
 

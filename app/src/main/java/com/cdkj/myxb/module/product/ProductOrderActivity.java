@@ -124,11 +124,6 @@ public class ProductOrderActivity extends AbsBaseLoadActivity {
             return;
         }
 
-        if (TextUtils.isEmpty(mBinding.editApplyNote.getText().toString())) {
-            UITipDialog.showInfo(this, "请填写下单说明");
-            return;
-        }
-
         if (!SPUtilHelpr.isLogin(this, false)) {
             return;
         }

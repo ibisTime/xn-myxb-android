@@ -82,8 +82,8 @@ public class TripDateView extends LinearLayout {
 
     private void initListener() {
 
-        mBinding.imgNext.setOnClickListener(view -> {
-            mBinding.imgPrevious.setVisibility(VISIBLE);
+        mBinding.fraNext.setOnClickListener(view -> {
+            mBinding.fraPrevious.setVisibility(VISIBLE);
             setMouthChange(1);
 
             if (itemClickListener != null) {
@@ -92,10 +92,10 @@ public class TripDateView extends LinearLayout {
 
         });
 
-        mBinding.imgPrevious.setOnClickListener(view -> {
+        mBinding.fraPrevious.setOnClickListener(view -> {
             setMouthChange(-1);
             if (!DateUtil.isNewer(mNowDate, mStartDate)) {
-                mBinding.imgPrevious.setVisibility(INVISIBLE);
+                mBinding.fraPrevious.setVisibility(INVISIBLE);
             }
             if (itemClickListener != null) {
                 itemClickListener.OnPreviousClick(mNowDate);

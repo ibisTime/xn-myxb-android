@@ -58,6 +58,7 @@ public class UserModel implements Parcelable {
     private String introduce;
     private String slogan;
     private String styleName;
+    private HandlerModel handlerUser;
 
     public String getStyleName() {
         return styleName;
@@ -68,6 +69,14 @@ public class UserModel implements Parcelable {
     }
 
     private AdviserUserModel adviserUser;
+
+    public HandlerModel getHandlerUser() {
+        return handlerUser;
+    }
+
+    public void setHandlerUser(HandlerModel handlerUser) {
+        this.handlerUser = handlerUser;
+    }
 
     public AdviserUserModel getAdviserUser() {
         return adviserUser;
