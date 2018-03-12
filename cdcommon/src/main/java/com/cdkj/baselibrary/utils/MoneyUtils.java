@@ -41,14 +41,14 @@ public class MoneyUtils {
      */
     public static String doubleFormatMoney(double money) {
         DecimalFormat df = new DecimalFormat("#######0.00");
-        df.setRoundingMode(RoundingMode.CEILING);
+//        df.setRoundingMode(RoundingMode.CEILING);
         String showMoney = df.format((money));
         return showMoney/*.substring(0,showMoney.length()-1)*/;
     }
 
     public static Double doubleFormatMoney2(double money) {
         DecimalFormat df = new DecimalFormat("#######0.00");
-        df.setRoundingMode(RoundingMode.CEILING);
+//        df.setRoundingMode(RoundingMode.CEILING);
         String showMoney = df.format((money));
         return new BigDecimal(showMoney).doubleValue();
     }
@@ -56,7 +56,7 @@ public class MoneyUtils {
     public static Double doubleFormatMoney3(BigDecimal money) {
         if (money != null) {
             DecimalFormat df = new DecimalFormat("#######0.00");
-            df.setRoundingMode(RoundingMode.CEILING);
+//            df.setRoundingMode(RoundingMode.CEILING);
             String showMoney = df.format((money));
             return new BigDecimal(showMoney).doubleValue();
         }

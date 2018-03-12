@@ -53,7 +53,7 @@ public class OrderHelper {
             case APPOINTMENT_2:
                 return "待上门";
             case APPOINTMENT_3:
-                return "已取消";
+                return "无档期";
             case APPOINTMENT_4:
                 return "待下课";
             case APPOINTMENT_5:

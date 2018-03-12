@@ -116,11 +116,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
-                    android:ellipsize="end"
-                    android:singleLine="true"
+                    android:gravity="center"
                     android:textColor="@color/app_txt_black"
                     android:textSize="14sp"
-                    tools:text="sdf" />
+                    tools:text="sdsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdff" />
 
 
             </LinearLayout>

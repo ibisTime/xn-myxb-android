@@ -195,13 +195,13 @@ public class FirstPageFragment extends BaseLazyFragment {
                 HappyMsgListActivity.open(mActivity, HappyMsgListActivity.TODOMSG);
                 break;
             case "4":
-                AllRankListActivity.open(mActivity, AllRankListActivity.BRANDTYPE,firstPageBanner.getName());
+                AllRankListActivity.open(mActivity, AllRankListActivity.BRANDTYPE, firstPageBanner.getName());
                 break;
             case "5":
-                AllRankListActivity.open(mActivity, AllRankListActivity.BRANDTYPE,firstPageBanner.getName());
+                AllRankListActivity.open(mActivity, AllRankListActivity.MRYTYPE, firstPageBanner.getName());
                 break;
             case "6":
-                AllRankListActivity.open(mActivity, AllRankListActivity.EXPERTSTYPE,firstPageBanner.getName());
+                AllRankListActivity.open(mActivity, AllRankListActivity.EXPERTSTYPE, firstPageBanner.getName());
                 break;
 
         }
