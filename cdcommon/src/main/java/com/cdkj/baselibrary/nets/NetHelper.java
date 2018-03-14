@@ -33,6 +33,7 @@ public class NetHelper {
     public static final String REQUESTFECODE9 = "9";
 
     public static final String NET_ERROR = "-1";
+    public static final String DATA_NULL = "-2";
 
 
     /**
@@ -81,16 +82,6 @@ public class NetHelper {
         return errorCode;
     }
 
-
-    /**
-     * 获取数据为空
-     *
-     * @param context
-     */
-    public static void onNull(Context context) {
-        if(context==null)return;
-        ToastUtil.show(context, "请求失败,数据返回错误");
-    }
 
     /**
      * 暂无网络

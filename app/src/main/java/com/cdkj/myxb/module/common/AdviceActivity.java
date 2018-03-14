@@ -73,6 +73,7 @@ public class AdviceActivity extends AbsBaseLoadActivity {
                 return;
             } else if (score <= 0) {
                 UITipDialog.showInfo(this, "请进行评分");
+                return;
             }
             releaseRequest();
         });

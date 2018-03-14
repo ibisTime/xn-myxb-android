@@ -20,6 +20,7 @@ import retrofit2.Callback;
 import retrofit2.HttpException;
 import retrofit2.Response;
 
+import static com.cdkj.baselibrary.nets.NetHelper.DATA_NULL;
 import static com.cdkj.baselibrary.nets.NetHelper.NETERRORCODE4;
 import static com.cdkj.baselibrary.nets.NetHelper.REQUESTFECODE4;
 import static com.cdkj.baselibrary.nets.NetHelper.REQUESTOK;
@@ -45,7 +46,7 @@ public abstract class BaseResponseModelCallBack<T> implements Callback<BaseRespo
         onFinish();
 
         if (response == null || response.body() == null) {
-            onNull();
+            onReqFailure(DATA_NULL, "数据请求为空");
             return;
         }
 
@@ -99,9 +100,7 @@ public abstract class BaseResponseModelCallBack<T> implements Callback<BaseRespo
             T t = (T) baseModelNew.getData();
 
             if (t == null) {
-                onFinish();
-                onNull();
-
+                onReqFailure(DATA_NULL, "数据获取为空");
                 return;
             }
 
@@ -141,13 +140,6 @@ public abstract class BaseResponseModelCallBack<T> implements Callback<BaseRespo
         NetHelper.onLoginFailure(context, errorMessage);
     }
 
-
-    /**
-     * 请求数据为空
-     */
-    protected void onNull() {
-        NetHelper.onNull(context);
-    }
 
     /**
      * 请求结束 无论请求成功或者失败都会被调用

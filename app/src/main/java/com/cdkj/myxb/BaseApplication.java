@@ -17,7 +17,7 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-        CdApplication.initialize(this, true);
+        CdApplication.initialize(this,BuildConfig.LOG_DEBUG);
     }
 
     public static Context getInstance() {

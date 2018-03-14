@@ -17,6 +17,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.cdkj.baselibrary.nets.NetHelper.DATA_NULL;
 import static com.cdkj.baselibrary.nets.NetHelper.NETERRORCODE4;
 import static com.cdkj.baselibrary.nets.NetHelper.REQUESTFECODE4;
 import static com.cdkj.baselibrary.nets.NetHelper.REQUESTOK;
@@ -43,7 +44,7 @@ public abstract class BaseResponseListCallBack<T> implements Callback<BaseRespon
         onFinish();
 
         if (response == null || response.body() == null) {
-            onNull();
+            onReqFailure(DATA_NULL, "数据获取为空");
             return;
         }
 
@@ -95,8 +96,7 @@ public abstract class BaseResponseListCallBack<T> implements Callback<BaseRespon
             List<T> t = (List<T>) baseModelNew.getData();
 
             if (t == null) {
-                onFinish();
-                onNull();
+                onReqFailure(DATA_NULL, "数据获取为空");
                 return;
             }
 
@@ -134,13 +134,6 @@ public abstract class BaseResponseListCallBack<T> implements Callback<BaseRespon
      */
     protected void onLoginFailure(Context context, String errorMessage) {
         NetHelper.onLoginFailure(context, errorMessage);
-    }
-
-    /**
-     * 请求数据为空
-     */
-    protected void onNull() {
-        NetHelper.onNull(context);
     }
 
     /**
