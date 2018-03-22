@@ -56,7 +56,7 @@ public class CameraHelper {
     private Uri imageUrl;
     protected CompositeDisposable mSubscription;
     private PermissionHelper mPreHelper;//权限请求
-
+    private String photoPath;//拍照图片路径
     public final static String staticPath = "imgSelect";
     public final static String cropPath = "cropPath";
 
@@ -188,6 +188,7 @@ public class CameraHelper {
             Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
             File file = FileUtils.saveAlbumPic("cream");
             imageUrl = FileProviderHelper.getUriForFile(getContextActivity(mContext), file);
+            photoPath = file.getAbsolutePath();
             intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUrl);
             intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 0);
             startActivity(intent, CAPTURE_PHOTO_CODE);
@@ -275,59 +276,69 @@ public class CameraHelper {
      */
     private void cameraNext() {
         if (isSplit) {
-            startCrop(imageUrl.getPath());
-
+            if (!isNeedUriAdapte()) {
+                startCrop(imageUrl.getPath());
+            } else {
+                startCrop(photoPath);
+            }
         } else {
             try {
+                if (!CameraHelper.isNeedUriAdapte()) {
+                    File file = new File(imageUrl.getPath());
+                    mCameraPhotoListener.onPhotoSuccessful(CAPTURE_PHOTO_CODE, imageUrl.getPath());
+                    //通知相册更新
+                    CdApplication.getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,
+                            Uri.fromFile(file)));
 
-                File file = new File(imageUrl.getPath());
-                LogUtil.E("图片路径" + imageUrl.getPath());
-                mCameraPhotoListener.onPhotoSuccessful(CAPTURE_PHOTO_CODE, imageUrl.getPath());
-                //通知相册更新
-                CdApplication.getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,
-                        Uri.fromFile(file)));
+                } else {
+                    File file = new File(photoPath);
+                    mCameraPhotoListener.onPhotoSuccessful(CAPTURE_PHOTO_CODE, photoPath);
+                    //通知相册更新
+                    CdApplication.getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,
+                            Uri.fromFile(file)));
 
+                }
 
             } catch (Exception e) {
                 mCameraPhotoListener.onPhotoFailure(CAPTURE_PHOTO_CODE, "图片获取失败");
             }
 
-            /* //自己储存bitmap
-            mSubscription.add(Observable.just("")
-                    .subscribeOn(AndroidSchedulers.mainThread())
-                    .observeOn(Schedulers.io())
-                    .map(new Function<String, Bitmap>() {
-                        @Override
-                        public Bitmap apply(@NonNull String s) throws Exception {
-                            Bitmap bitmap;
-                            if (!CameraHelper.isNeedUriAdapte()) {
-                                bitmap = BitmapUtils.decodeBitmapFromFile(imageUrl.getPath(), BitmapUtils.picWidth, BitmapUtils.picHeight);
-                            } else {
-                                bitmap = BitmapUtils.decodeBitmapFromFile(photoPath, BitmapUtils.picWidth, BitmapUtils.picHeight);
-                            }
-                            return bitmap;
-                        }
-                    })
-                    .observeOn(Schedulers.io())
-                    .map(new Function<Bitmap, String>() {
-                        @Override
-                        public String apply(@NonNull Bitmap bitmap) throws Exception {
-                            String path = BitmapUtils.saveBitmapFile(bitmap, "camera");
-                            return path;
-                        }
-                    })
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Consumer<String>() {
-                        @Override
-                        public void accept(String s) throws Exception {
-                            mCameraPhotoListener.onPhotoSuccessful(CAPTURE_PHOTO_CODE, s);
-                        }
-                    }, new Consumer<Throwable>() {
-                        @Override
-                        public void accept(Throwable throwable) throws Exception {
-                            mCameraPhotoListener.onPhotoFailure(CAPTURE_PHOTO_CODE, "图片获取失败");
-                        }
-                    }));*/
+            //自己储存bitmap
+//            mSubscription.add(Observable.just("")
+//                    .subscribeOn(AndroidSchedulers.mainThread())
+//                    .observeOn(Schedulers.io())
+//                    .map(new Function<String, Bitmap>() {
+//                        @Override
+//                        public Bitmap apply(@NonNull String s) throws Exception {
+//                            Bitmap bitmap;
+//                            if (!CameraHelper.isNeedUriAdapte()) {
+//                                bitmap = BitmapUtils.decodeBitmapFromFile(imageUrl.getPath(), BitmapUtils.picWidth, BitmapUtils.picHeight);
+//                            } else {
+//                                bitmap = BitmapUtils.decodeBitmapFromFile(photoPath, BitmapUtils.picWidth, BitmapUtils.picHeight);
+//                            }
+//                            return bitmap;
+//                        }
+//                    })
+//                    .observeOn(Schedulers.io())
+//                    .map(new Function<Bitmap, String>() {
+//                        @Override
+//                        public String apply(@NonNull Bitmap bitmap) throws Exception {
+//                            String path = BitmapUtils.saveBitmapFile(bitmap, "camera");
+//                            return path;
+//                        }
+//                    })
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribe(new Consumer<String>() {
+//                        @Override
+//                        public void accept(String s) throws Exception {
+//                            mCameraPhotoListener.onPhotoSuccessful(CAPTURE_PHOTO_CODE, s);
+//                        }
+//                    }, new Consumer<Throwable>() {
+//                        @Override
+//                        public void accept(Throwable throwable) throws Exception {
+//                            mCameraPhotoListener.onPhotoFailure(CAPTURE_PHOTO_CODE, "图片获取失败");
+//                        }
+//                    }));
         }
     }
 
@@ -336,6 +347,7 @@ public class CameraHelper {
      *
      * @param data
      */
+
     private void abumNext(Intent data) {
         if (data == null) return;
         Uri imageUri = data.getData();

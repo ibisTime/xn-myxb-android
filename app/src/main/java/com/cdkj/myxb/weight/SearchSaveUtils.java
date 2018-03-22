@@ -23,7 +23,7 @@ public class SearchSaveUtils {
      * 获取用户搜索的内容
      */
     public static String getSaveSearchInfo(String key) {
-        return SPUtils.getString(BaseApplication.getInstance(), key, "暂无");
+        return SPUtils.getString(BaseApplication.getInstance(), key, "");
     }
 
     /**
