@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.cdkj.myxb.R;
 import com.tencent.mm.opensdk.constants.Build;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
+import com.tencent.mm.opensdk.modelmsg.WXImageObject;
 import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
 import com.tencent.mm.opensdk.modelmsg.WXWebpageObject;
 import com.tencent.mm.opensdk.modelpay.PayReq;
@@ -30,7 +31,7 @@ public class WxUtil {
 
     private static IWXAPI api;
 
-    public static final String APPID = "wx7202b6a02f0270b4";
+    public static final String APPID = "wxd0c1725a396dada6";
 
     public static IWXAPI registToWx(Context context) {
         api = WXAPIFactory.createWXAPI(context, APPID, false);
@@ -128,6 +129,72 @@ public class WxUtil {
         req.message = msg;
         req.scene = SendMessageToWX.Req.WXSceneSession;
         api.sendReq(req);
+    }
+
+    /**
+     * 分享微信聊天界面
+     *
+     * @param
+     */
+    public static void shareBitmapToWX(Context context, Bitmap bitmap) {
+
+        api = registToWx(context);
+
+        if (!api.isWXAppInstalled()) {
+            Toast.makeText(context, "请先安装微信", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        WXImageObject imageObject = new WXImageObject(bitmap);
+
+        WXMediaMessage msg = new WXMediaMessage();
+
+        msg.mediaObject = imageObject;
+
+        Bitmap bmp1 = BitmapFactory.decodeResource(context.getResources(), R.mipmap.icon);
+        Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp1, 100, 100, true);
+        msg.thumbData = Bitmap2Bytes(thumbBmp);
+
+        SendMessageToWX.Req req = new SendMessageToWX.Req();
+        req.transaction = buildTransaction("img");
+
+        req.message = msg;
+        req.scene = SendMessageToWX.Req.WXSceneSession;
+        api.sendReq(req);
+
+    }
+
+    /**
+     * 分享微信聊天界面
+     *
+     * @param
+     */
+    public static void shareBitmapToWXPYQ(Context context, Bitmap bitmap) {
+
+        api = registToWx(context);
+
+        if (!api.isWXAppInstalled()) {
+            Toast.makeText(context, "请先安装微信", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        WXImageObject imageObject = new WXImageObject(bitmap);
+
+        WXMediaMessage msg = new WXMediaMessage();
+
+        msg.mediaObject = imageObject;
+
+        Bitmap bmp1 = BitmapFactory.decodeResource(context.getResources(), R.mipmap.icon);
+        Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp1, 100, 100, true);
+        msg.thumbData = Bitmap2Bytes(thumbBmp);
+
+        SendMessageToWX.Req req = new SendMessageToWX.Req();
+        req.transaction = buildTransaction("img");
+
+        req.message = msg;
+        req.scene = SendMessageToWX.Req.WXSceneTimeline;
+        api.sendReq(req);
+
     }
 
     /**

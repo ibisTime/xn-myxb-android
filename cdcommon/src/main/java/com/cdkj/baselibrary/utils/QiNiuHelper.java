@@ -183,10 +183,6 @@ public class QiNiuHelper {
                 callBack.onFal("图片上传失败");
             }
 
-            @Override
-            protected void onNull() {
-                callBack.onFal("图片上传失败");
-            }
 
             @Override
             protected void onNoNet(String msg) {
@@ -231,12 +227,6 @@ public class QiNiuHelper {
                 }
             }
 
-            @Override
-            protected void onNull() {
-                if (listListener != null) {
-                    listListener.onFal("图片上传失败");
-                }
-            }
 
             @Override
             protected void onNoNet(String msg) {
