@@ -1,0 +1,87 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.cdcommon["compileSdkVersion"]
+    defaultConfig {
+        minSdkVersion rootProject.ext.cdcommon["minSdkVersion"]
+        targetSdkVersion rootProject.ext.cdcommon["targetSdkVersion"]
+        versionCode rootProject.ext.cdcommon["versionCode"]
+        versionName rootProject.ext.cdcommon["versionName"]
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath false
+                arguments = [moduleName: project.getName()]
+            }
+        }
+
+    }
+
+    dataBinding {
+        enabled true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+    dependencies {
+        api  fileTree(dir: 'libs', include: ['*.jar'])
+
+        api 'com.android.support:design:27.0.2'
+        api 'com.android.support:appcompat-v7:27.0.2'
+
+        //路由
+        //arouter
+        //路由
+        //arouter
+        annotationProcessor  rootProject.ext.arouterCompiler
+        implementation rootProject.ext.arouterApi
+
+        /*事件总线*/
+        api 'org.greenrobot:eventbus:3.0.0'
+        api 'com.alibaba:fastjson:1.1.67.android'
+        /*okhttp*/
+        api 'com.squareup.okhttp3:okhttp:3.9.1'
+        api 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+        api 'com.squareup.retrofit2:retrofit:2.3.0'
+//        api 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+        api 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
+        api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.31'
+        //rxjava
+        api 'io.reactivex.rxjava2:rxjava:2.1.3'
+//        api 'io.reactivex.rxjava2:rxandroid:2.0.1'
+        api 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+        /*glide*/
+        api 'com.github.bumptech.glide:glide:3.8.0'
+        api 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
+
+        // 七牛
+        api 'com.qiniu:qiniu-android-sdk:7.3.+'
+
+        //微信支付
+        api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+        ///高德定位
+//        api 'com.amap.api:location:latest.integration'
+        //支付宝
+        compile files('libs/alipaySdk-20180403.jar')
+        api 'com.contrarywind:Android-PickerView:3.2.6'
+        api 'com.github.chrisbanes:PhotoView:2.1.3'
+        // citypicker
+        api 'liji.library.dev:citypickerview:2.0.2'
+        //图片裁剪
+        api 'com.github.yalantis:ucrop:2.2.1'
+        api 'com.youth.banner:banner:1.4.10'  //
+    }

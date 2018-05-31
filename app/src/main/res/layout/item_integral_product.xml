@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="10dp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp">
+
+        <ImageView
+            android:id="@+id/img_integra"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/default_pic" />
+
+
+        <TextView
+            android:id="@+id/tv_integra"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/integral_num_bg"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:paddingRight="15dp"
+            android:singleLine="true"
+            android:text="sdfsdfsfsdfsdfsfsdfsdf"
+            android:textColor="@color/white" />
+
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_integra_title"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="12dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="@color/app_txt_black"
+        android:textSize="14sp"
+        tools:text="sdfsdfsdfsfsfdsdfsdfsdfsfsfdsfdsdfsdfsdfssdfsdfsdfsfsfdsdfsdfsdfsfsfdsfdsdfsdfsdfsfsfdsfdsdfsdfsdfsfsfdsfdsdfsdfsdfsfsfdsfdsdfsdfsdfsfsfdsfdsdfsdfsdfsfsfdsfdsdfsdfsdfsfsfdsfdsdfsdfsdfsfsfdsfdsdfsdfsdfsfsfdsfdsfdfsfdsfdsdfsdfsdfsfsfdsfdsdfsdfsdfsfsfdsfdsdfsdfsdfsfsfdsfdsdfsdfsdfsfsfdsfdsdfsdfsdfsfsfdsfdsdfsdfsdfsfsfdsfdsdfsdfsdfsfsfdsfdsfd" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/btn_select_common"
+        android:gravity="center"
+        android:text="@string/i_want_change"
+        android:textColor="@color/white" />
+
+
+</LinearLayout>

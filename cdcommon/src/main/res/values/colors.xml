@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00ffffff</color>
+    <color name="colorPrimaryDark">#00ffffff</color>
+    <color name="colorAccent">#0eb8ae</color>
+
+    <color name="title_bg">#f56066</color>
+    <color name="title_bg_green">#1fc07d</color>
+    <color name="title_left_tv">#ffffff</color>
+    <color name="title_right_tv">#ffffff</color>
+    <color name="title_mid_tv">#ffffff</color>
+    <color name="white">#ffffff</color>
+    <color name="white_50">#82ffffff</color>
+    <!--透明度颜色-->
+    <color name="transparent">#00000000</color>
+    <color name="text_hint_color">#a1a1a1</color>
+    <color name="text_color">#484848</color>
+
+    <!--dialog-->
+    <color name="dialog_tips_content_txt">#444444</color>
+    <color name="dialog_tips_bg">#ffffff</color>
+    <color name="dialog_tips_title_txt">#030303</color>
+    <color name="dialog_tips_btn">#d6d6d6</color>
+    <color name="dialog_tips_line">#EAEAEA</color>
+    <color name="dialog_tips_negative_btn_txt">#0076ff</color>
+    <color name="dialog_tips_negative_btn_txt_red">#fe3824</color>
+    <color name="dialog_tips_positive_btn_txt">#0076ff</color>
+
+    <!---->
+    <color name="gray">#ececec</color>
+    <color name="select_gray">#e4e4e4</color>
+    <color name="txt_gray">#999999</color>
+
+    <!--分割线颜色-->
+    <color name="splitLine_color">#dedede</color>
+    <color name="splitLine_broad_color">#f5f5f9</color>
+
+
+    <color name="color_content_font">#979797</color>
+    <color name="bg_gray">#f7f7f7</color>
+
+
+    <color name="btn_white">#ffffff</color>
+    <color name="btn_blue">#0eb8ae</color>
+    <color name="btn_title_bg">#ff6702</color>
+
+
+    <color name="fontColor_gray">#484848</color>
+
+    <color name="fontColor_hint">#aaaaaa</color>
+
+
+    <color name="btn_select_un">#f56066</color>
+    <color name="btn_select">#c85b5f</color>
+
+    <color name="tablayout_select">#f56066</color>
+    <color name="lineColor">#ebeaea</color>
+
+
+    <color name="updateProgress_bg">#E7E7E7</color>
+
+    <color name="updateProgress">#f56066</color>
+
+    <!--caijianView-->
+    <color name="white_translucent">#AAFFFFFF</color>
+    <color name="black_translucent">#B0000000</color>
+
+    <color name="border">@color/white_translucent</color>
+    <color name="guideline">@color/white_translucent</color>
+    <color name="corner">@android:color/white</color>
+    <color name="surrounding_area">@color/black_translucent</color>
+
+
+    <!--app模块 相同 -->
+
+    <color name="line_gray_cd">#dedede</color>
+    <color name="text_black_cd">#484848</color>
+
+
+</resources>

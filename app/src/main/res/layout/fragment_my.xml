@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_gray">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/app_txt_red"
+                android:gravity="center"
+                android:text="@string/mine"
+                android:textColor="@color/white"
+                android:textSize="@dimen/top_center_title_size" />
+
+            <include
+                android:id="@+id/header_layout"
+                layout="@layout/layout_my_fragment_header" />
+
+            <include
+                android:visibility="gone"
+                android:id="@+id/layout_user_s"
+                layout="@layout/layout_my_user_s"/>
+
+            <include
+                android:visibility="gone"
+                android:id="@+id/layout_user_b"
+                layout="@layout/layout_my_user_b" />
+
+            <include
+                android:visibility="gone"
+                android:id="@+id/layout_user_t"
+                layout="@layout/layout_my_user_t"/>
+
+            <include
+                android:visibility="gone"
+                android:id="@+id/layout_user_c"
+                layout="@layout/layout_my_user_c"/>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+</layout>

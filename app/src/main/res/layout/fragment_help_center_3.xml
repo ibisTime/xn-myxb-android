@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <LinearLayout
+        android:background="@color/bg_gray"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/fram_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_height"
+            android:background="@color/app_title_bg">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/help_center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/top_center_title_size" />
+
+            <TextView
+                android:id="@+id/tv_top_right"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="15dp"
+                android:gravity="center"
+                android:text="@string/invitation_helper"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:id="@+id/refreshLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_gray"
+                app:srlAccentColor="@android:color/tertiary_text_dark"
+                app:srlEnablePreviewInEditMode="true"
+                app:srlPrimaryColor="@color/bg_gray">
+                <!--srlAccentColor srlPrimaryColor 将会改变 Header 和 Footer 的主题颜色-->
+                <!--srlEnablePreviewInEditMode 可以开启和关闭预览功能-->
+                <com.scwang.smartrefresh.layout.header.ClassicsHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_feed_back"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_gravity="right|bottom"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/common_help_center_round_btn_bg"
+                android:layout_width="45dp"
+                android:layout_height="45dp">
+
+                <ImageView
+                    android:background="@drawable/help_feed_back"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp" />
+                
+                <TextView
+                    android:text="反馈"
+                    android:textSize="10sp"
+                    android:layout_marginTop="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <!--<com.cdkj.baselibrary.views.RowInfoLayout-->
+            <!--android:id="@+id/row_question"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--app:img_left="@drawable/my_next_go"-->
+            <!--app:txt_left="常见问题" />-->
+
+        <!--<View-->
+            <!--style="@style/style_split_line"-->
+            <!--android:layout_marginLeft="15dp" />-->
+
+        <!--<com.cdkj.baselibrary.views.RowInfoLayout-->
+            <!--android:id="@+id/row_service"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--app:img_left="@drawable/my_next_go"-->
+            <!--app:txt_left="联系客服" />-->
+
+        <!--<View-->
+            <!--style="@style/style_split_line"-->
+            <!--android:layout_marginLeft="15dp" />-->
+
+        <!--<com.cdkj.baselibrary.views.RowInfoLayout-->
+            <!--android:id="@+id/row_comment"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--app:img_left="@drawable/my_next_go"-->
+            <!--app:txt_left="我要反馈" />-->
+
+
+    </LinearLayout>
+
+
+</layout>

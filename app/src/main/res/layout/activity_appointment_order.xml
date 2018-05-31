@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_gray"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/layout_address"
+            layout="@layout/layout_address_info" />
+
+        <LinearLayout
+            android:id="@+id/llayout_trip"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="@drawable/selector_gray"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="下单数量"
+                android:textColor="@color/app_txt_black"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/edit_quantity"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:inputType="number"
+                android:hint="请填写下单数量"
+                android:textColorHint="@color/app_txt_gray"
+                android:maxLength="5"
+                android:textColor="@color/app_txt_black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_amount"
+                android:text="¥0.00"
+                android:textColor="@color/title_bg"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/layout_right_interval" />
+
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/edit_applyNote"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:gravity="top"
+            android:hint="请填写下单说明"
+            android:paddingLeft="@dimen/layout_left_interval"
+            android:paddingRight="@dimen/layout_right_interval"
+            android:paddingTop="15dp"
+            android:textSize="13sp" />
+
+        <View
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+        <View
+            style="@style/style_split_line"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+            <TextView
+                android:id="@+id/tv_cart"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@color/bg_gray"
+                android:textSize="16sp"
+                android:text="加入购物车"
+                android:textColor="@color/text_black_cd" />
+
+            <TextView
+                android:id="@+id/tv_sure_order"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@color/btn_select_un"
+                android:textSize="16sp"
+                android:text="确定下单"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+</layout>

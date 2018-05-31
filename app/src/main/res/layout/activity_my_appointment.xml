@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/fram_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_height"
+            android:background="@color/title_bg">
+
+            <FrameLayout
+                android:id="@+id/fram_img_back"
+                android:layout_width="55dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:paddingLeft="15dp">
+
+                <ImageView
+                    android:id="@+id/img_back"
+                    android:layout_width="@dimen/title_left_img_widht"
+                    android:layout_height="@dimen/title_left_img_height"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/back_img" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:text="我的行程"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="@color/title_mid_tv"
+                    android:textSize="@dimen/top_center_title_size"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_title_type_c"
+                    android:visibility="gone"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <include
+                        android:id="@+id/top_layout"
+                        layout="@layout/layout_appointment_title" />
+
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_right"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_gravity="right|center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center"
+                    android:textColor="@color/title_right_tv"
+                    android:textSize="14sp"
+                    android:text="行程管理" />
+
+            </FrameLayout>
+
+        </FrameLayout>
+
+        <com.cdkj.baselibrary.views.EnabledViewpager
+            android:id="@+id/viewpager_appointment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+        </com.cdkj.baselibrary.views.EnabledViewpager>
+
+
+    </LinearLayout>
+</layout>

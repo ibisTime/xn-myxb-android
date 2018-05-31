@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_gray"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/layout_left_interval"
+                android:paddingRight="@dimen/layout_right_interval">
+
+                <com.cdkj.myxb.weight.views.MyRatingBar
+                    android:id="@+id/ratingbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="20dp"
+                    app:clickable="true"
+                    app:halfstart="false"
+                    app:starCount="5"
+                    app:starEmpty="@drawable/star_empty"
+                    app:starFill="@drawable/star_full"
+                    app:starImageHeight="28dp"
+                    app:starImagePadding="8dp"
+                    app:starImageWidth="28dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="轻点星星来评分"
+                    android:textColor="@color/app_txt_gray"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <View
+                style="@style/style_split_line"
+                android:layout_height="10dp" />
+
+            <EditText
+                android:id="@+id/edit_content"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/white"
+                android:gravity="top"
+                android:hint="建议（选填）"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="10dp"
+                android:textColor="@color/text_hint_color"
+                android:textColorHint="@color/text_hint_color"
+                android:textSize="14sp" />
+
+            <View style="@style/style_split_line" />
+
+            <Button
+                android:id="@+id/btn_to_release"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/layout_left_interval"
+                android:layout_marginRight="@dimen/layout_right_interval"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/btn_select_common"
+                android:text="发布"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</layout>

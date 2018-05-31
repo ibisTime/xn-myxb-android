@@ -1,0 +1,64 @@
+package com.cdkj.myxb.adapters;
+
+import android.support.annotation.Nullable;
+
+import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
+import com.cdkj.baselibrary.utils.DateUtil;
+import com.cdkj.baselibrary.utils.ImgUtils;
+import com.cdkj.myxb.R;
+import com.cdkj.myxb.models.AppointmentListModel;
+import com.cdkj.myxb.module.order.OrderHelper;
+import com.cdkj.myxb.module.user.UserHelper;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
+
+import java.util.List;
+
+/**
+ * 预约状态列表
+ * Created by cdkj on 2017/10/12.
+ */
+
+public class AppointmentListAdapter extends BaseQuickAdapter<AppointmentListModel, BaseViewHolder> {
+
+
+    public AppointmentListAdapter(@Nullable List<AppointmentListModel> data) {
+        super(R.layout.item_appointment, data);
+    }
+
+    @Override
+    protected void convert(BaseViewHolder helper, AppointmentListModel item) {
+
+        if (item == null) return;
+
+        if (item.getUser() != null) {
+            helper.setText(R.id.tv_name, item.getUser().getRealName());
+            ImgUtils.loadQiniuLogo(mContext, item.getUser().getPhoto(), helper.getView(R.id.img_logo));
+        }
+
+        helper.setText(R.id.tv_orderId, "订单编号：" + item.getCode());
+        helper.setText(R.id.tv_state, OrderHelper.getAppoitmentState(item.getStatus()));
+        helper.setText(R.id.tv_time, DateUtil.formatStringData(item.getApplyDatetime(), DateUtil.DATE_YYMMddHHmm));
+        helper.setText(R.id.tv_days, "预约天数: " + item.getAppointDays() + "天");
+
+        if (SPUtilHelpr.getUserType().equals(UserHelper.C)){
+            helper.setGone(R.id.tv_to_comment, OrderHelper.canAppointmentComment(item));
+            helper.setGone(R.id.lin_button, OrderHelper.canAppointmentComment(item)); //可以评价或有操作时可以显示 || OrderHelper.canShowAppointmentButton(item.getStatus())
+        }
+
+//        if (SPUtilHelpr.getUserType().equals(UserHelper.T) || SPUtilHelpr.getUserType().equals(UserHelper.S)){
+//            if (TextUtils.equals(item.getStatus(),OrderHelper.APPOINTMENT_1)){
+//                helper.setGone(R.id.tv_state_do, true);
+//                helper.setGone(R.id.lin_button, true);
+//            }
+//        }
+
+        helper.setText(R.id.tv_state_do, OrderHelper.getAppointmentBtnStateString(item.getStatus()));
+
+        helper.addOnClickListener(R.id.tv_state_do);
+        helper.addOnClickListener(R.id.tv_to_comment);
+
+    }
+
+
+}

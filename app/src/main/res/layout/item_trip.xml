@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <View style="@style/style_split_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_logo"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/default_pic" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="15dp"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_day"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="left"
+                    android:maxLines="2"
+                    android:textColor="@color/app_txt_black"
+                    android:textSize="16sp"
+                    tools:text="23232" />
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_marginTop="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="left"
+                    android:maxLines="2"
+                    android:textColor="@color/app_txt_black"
+                    android:textSize="14sp"
+                    tools:text="23232" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_marginTop="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="left"
+                    android:maxLines="2"
+                    android:textColor="@color/app_txt_black"
+                    android:textSize="14sp"
+                    tools:text="23232" />
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+        <View
+            style="@style/style_split_line"
+            android:layout_marginTop="10dp" />
+
+        <LinearLayout
+            android:id="@+id/lin_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/tv_to_comment"
+                android:layout_width="95dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/btn_select_common"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="评价"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/tv_state_do"
+                android:layout_width="95dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/btn_select_common"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="取消订单"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

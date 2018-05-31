@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:id="@+id/img_left"
+                android:layout_marginLeft="@dimen/layout_left_interval"
+                android:layout_width="26dp"
+                android:layout_height="26dp" />
+
+            <TextView
+                android:id="@+id/tv_mobile"
+                android:layout_marginLeft="18dp"
+                android:textSize="15sp"
+                android:textColor="@color/text_black_cd"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/iv_more"
+                android:layout_marginRight="@dimen/layout_right_interval"
+                android:background="@drawable/more_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/line_atlas"
+            android:layout_marginLeft="@dimen/layout_left_interval"
+            style="@style/style_split_line"/>
+
+
+        <LinearLayout
+            android:id="@+id/ll_rv"
+            android:layout_marginLeft="@dimen/layout_left_interval"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_jxs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+            </android.support.v7.widget.RecyclerView>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

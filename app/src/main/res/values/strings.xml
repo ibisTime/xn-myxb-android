@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">美销帮</string>
+
+    <string name="sure_app_exit">确认退出美销帮？</string>
+    <string name="center_msg">消息中心</string>
+    <string name="help_center">帮助中心</string>
+    <string name="mine">我的</string>
+    <string name="advice">平台建议</string>
+    <string name="invitation_friend">邀请好友</string>
+    <string name="invitation_helper">联系客服</string>
+    <string name="invitation_succ">成功邀请（人）</string>
+    <string name="invitation_in_earnings">积分收益</string>
+    <string name="share_link">分享链接</string>
+    <string name="share_code_img">分享二维码</string>
+    <string name="invittation_rule">活动规则</string>
+    <string name="can_appointment">可预约</string>
+    <string name="shopper_appoint">服务团队预约</string>
+    <string name="agent">经纪人</string>
+    <string name="appointment">预约</string>
+    <string name="i_know">我知道了</string>
+    <string name="goods_details">商品详情</string>
+    <string name="product_details">商品详情</string>
+    <string name="consultant">顾问</string>
+    <string name="my_order_all">我的产品订单</string>
+    <string name="my_integral">我的积分</string>
+    <string name="i_want_change">我要兑换</string>
+    <string name="shopper">服务团队</string>
+    <string name="partner">合伙人</string>
+    <string name="experts">销售精英</string>
+    <string name="brand">品牌</string>
+    <string name="mry">经销商</string>
+    <string name="integral_mall">积分商城</string>
+    <string name="address_manager">地址管理</string>
+    <string name="no_address">您还没有添加收货地址</string>
+    <string name="no_question">暂无问题</string>
+
+    <string name="sure_delete_address">确认删除该收货地址?</string>
+    <string name="delete_fall">删除失败</string>
+    <string name="sure_setdefault_address">确认设置该收货地址为默认地址?</string>
+    <string name="add_address">添加地址</string>
+    <string name="add_address_fall">添加地址失败</string>
+    <string name="pay_fall">支付失败</string>
+    <string name="pay_success">支付成功</string>
+    <string name="please_input_name">请输入姓名</string>
+    <string name="please_input_phone">请输入手机号</string>
+    <string name="please_input_address">请输入详细地址</string>
+    <string name="please_select_city">请选择省市区</string>
+    <string name="please_input_phone_2">请输入正确的手机号</string>
+    <string name="my_integral_order">我的积分订单</string>
+    <string name="no_integral_list">您还没有积分流水</string>
+    <string name="no_recommended_brand">暂无推荐品牌</string>
+    <string name="shopper_appointment">服务团队预约</string>
+
+    <string name="do_success">操作成功</string>
+    <string name="do_fail">操作失败</string>
+</resources>

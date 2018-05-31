@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:banner="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.youth.banner.Banner
+                    android:id="@+id/banner_integral"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/product_details_banner_height"
+                    banner:delay_time="4000"
+                    banner:indicator_drawable_selected="@drawable/banner_select"
+                    banner:indicator_drawable_unselected="@drawable/banner_un_select"
+                    banner:indicator_height="8dp"
+                    banner:indicator_margin="5dp"
+                    banner:indicator_width="8dp" />
+
+                <TextView
+                    android:id="@+id/tv_integral_slogan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:paddingLeft="@dimen/layout_left_interval"
+                    android:progress="@dimen/layout_right_interval"
+                    android:textColor="@color/app_txt_black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="shangpsdfe" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/layout_left_interval"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/integral" />
+
+                        <TextView
+                            android:id="@+id/tv_integral_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:textColor="@color/integral_yellow"
+                            tools:text="2000积分" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="@dimen/layout_right_interval"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:text="当前剩余:"
+                            android:textColor="@color/app_txt_gray" />
+
+                        <TextView
+                            android:id="@+id/tv_integral_quantity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:textColor="@color/app_txt_gray"
+                            tools:text="300套" />
+
+
+                    </LinearLayout>
+
+
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="30dp"
+                    android:text="商品名称"
+                    android:textColor="@color/app_txt_black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_integral_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="15dp"
+                    tools:text="商品商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称名称"
+                    android:textColor="@color/app_txt_black"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:id="@+id/lin_webView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+
+                <View
+                    style="@style/style_split_line"
+                    android:layout_height="20dp" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp">
+
+            <Button
+                android:id="@+id/btn_want_change"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/layout_left_interval"
+                android:layout_marginRight="@dimen/layout_right_interval"
+                android:background="@drawable/btn_select_common"
+                android:text="我要兑换"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

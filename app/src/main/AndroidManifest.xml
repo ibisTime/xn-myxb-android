@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.cdkj.myxb">
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <application
+        android:name=".BaseApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/icon"
+        android:roundIcon="@mipmap/round_icon"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!--//找回密码-->
+        <activity
+            android:name=".module.user.FindPwdActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".module.user.LoginActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--消息列表-->
+        <activity
+            android:name=".module.common.MsgListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--服务团队预约-->
+        <activity
+            android:name=".module.appointment.CommonAppointmentListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--服务团队预约-->
+        <activity
+            android:name=".module.appointment.CommonAppointmentUserDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--服务团队预约-->
+        <activity
+            android:name=".module.appointment.CommonAppointmentOrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--产品详情-->
+        <activity
+            android:name=".module.product.ProductDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--我的订单-->
+        <activity
+            android:name=".module.order.MyOrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--用户设置-->
+        <activity
+            android:name=".module.user.UserSettingActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--地址列表-->
+        <activity
+            android:name=".module.common.address.AddressListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--添加地址-->
+        <activity
+            android:name=".module.common.address.AddAddressActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--积分商场-->
+        <activity
+            android:name=".module.integral.IntegralMallActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--积分产品详情-->
+        <activity
+            android:name=".module.integral.IntegralProductDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--积分流水界面-->
+        <activity
+            android:name=".module.integral.IntegraListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--我的积分订单-->
+        <activity
+            android:name=".module.integral.order.MyIntegralOrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--积分订单详情-->
+        <activity
+            android:name=".module.integral.order.IntegralOrderDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--积分订单评价-->
+        <activity
+            android:name=".module.integral.IntegralOrderCommentActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--积分订单确认收获-->
+        <activity
+            android:name=".module.integral.order.IntegralOrderSureGetActivitty"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityDialogStyleBottom"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--品牌列表获取-->
+        <activity
+            android:name=".module.product.BrandCategoriesActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--下单-->
+        <activity
+            android:name=".module.product.ProductOrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--订单详情-->
+        <activity
+            android:name=".module.order.OrderDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--订单评价-->
+        <activity
+            android:name=".module.order.OrderCommentActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--拨打电话-->
+        <activity
+            android:name=".module.common.CallPhoneActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityDialogStyleBottom"
+            android:windowSoftInputMode="adjustPan" />
+        <!--获取评价列表-->
+        <activity
+            android:name=".module.product.ProductCommentListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--品牌搜索-->
+        <activity
+            android:name=".module.product.BrandProductSearchActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--具体品牌列表-->
+        <activity
+            android:name=".module.product.SpecificBrandListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--预约列表-->
+        <activity
+            android:name=".module.appointment.MyAppointmentActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--预约操作-->
+        <activity
+            android:name=".module.appointment.AppointmentDoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityDialogStyleBottom"
+            android:windowSoftInputMode="adjustPan" />
+        <!--预约评价-->
+        <activity
+            android:name=".module.appointment.AppointmentCommentActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--预约详情-->
+        <activity
+            android:name=".module.appointment.AppointmentDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--预约搜索-->
+        <activity
+            android:name=".module.appointment.AppointmentSearchActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--成果订单-->
+        <activity
+            android:name=".module.order.ResultsOrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--资料修改-->
+        <activity
+            android:name=".module.user.UserInfoUpdateActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--行程列表-->
+        <activity
+            android:name=".module.user.TripListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--行程列表-->
+        <activity
+            android:name=".module.user.ExpertRankListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--我的评价-->
+        <activity
+            android:name=".module.user.MyCommentsAllActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--用户头像选择-->
+        <activity
+            android:name=".module.user.LogoSelectActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityDialogStyleBottom"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--喜报-->
+        <activity
+            android:name=".module.banner.HappyMsgListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--喜报详情-->
+        <activity
+            android:name=".module.banner.HappyMsgDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--喜报详情-->
+        <activity
+            android:name=".module.banner.AllRankListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--平台建议-->
+        <activity
+            android:name=".module.common.AdviceActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--平台建议-->
+        <activity
+            android:name=".module.common.AdviceListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--成果订单-->
+        <activity
+            android:name=".module.order.ResultOrderDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--专家成果订单详情-->
+        <activity
+            android:name=".module.order.ExpertsOrderDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--分享-->
+        <activity
+            android:name=".module.common.ShareActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityDialogStyleBottom"
+            android:windowSoftInputMode="adjustPan" />
+
+
+        <!-- 微信分享回调 -->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <!-- 微信支付回调界面 -->
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent" />
+
+        <activity android:name=".module.help.QuestionActivity" />
+        <activity android:name=".module.user.ResultsActivity" />
+        <activity android:name=".module.user.account.AccountActivity" />
+        <activity android:name=".module.product.ProductPayActivity" />
+        <activity android:name=".module.product.ShopCartListActivity" />
+        <activity android:name=".module.product.ShopCartOrderActivity" />
+        <activity android:name=".module.user.account.ChargeActivity" />
+        <activity android:name=".module.user.account.WithdrawActivity" />
+        <activity android:name=".module.user.BeSomeOneActivity" />
+        <activity android:name=".module.user.SignActivity" />
+        <activity android:name=".module.user.SignPayActivity" />
+        <activity android:name=".module.order.ResultInputActivity" />
+        <activity android:name=".module.order.ResultActivity" />
+        <activity android:name=".module.order.ResultAuditActivity" />
+        <activity android:name=".module.order.ResultPayActivity" />
+        <activity android:name=".module.user.UserAtlasActivity" />
+        <activity android:name=".module.user.UserAtlasManagerActivity" />
+        <activity android:name=".module.product.BrandListActivity" />
+        <activity android:name=".module.user.MyCommentActivity" />
+        <activity android:name=".module.user.GroupTripListActivity" />
+        <activity android:name=".module.user.UserAtlasTypeCActivity" />
+        <activity android:name=".module.user.UserAtlasTypeTActivity" />
+        <activity android:name=".module.appointment.AppointmentManagerActivity" />
+        <activity android:name=".module.appointment.AppointmentCheckActivity" />
+        <activity android:name=".module.appointment.AppointmentAddActivity" />
+
+
+    </application>
+
+</manifest>

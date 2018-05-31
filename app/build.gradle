@@ -1,0 +1,81 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    defaultConfig {
+        applicationId  rootProject.ext.applicationId
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath false
+                arguments = [moduleName: project.getName()]
+            }
+        }
+    }
+
+    signingConfigs {
+        config {
+            storeFile file('/Users/lei/AndroidStudioProjects/xn-myxb-android/myxb.jks')
+            storePassword "myxbkey123456"
+            keyAlias "myxbkey"
+            keyPassword "myxb123456"
+        }
+    }
+
+    buildTypes {
+        release {
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            android.applicationVariants.all { variant ->
+                variant.outputs.all {
+                    outputFileName = "${rootProject.ext.android["appName"]}_${defaultConfig.versionName}_${releaseTime()}.apk"
+                }
+            }
+            signingConfig signingConfigs.config
+        }
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+    }
+
+
+
+    dataBinding {
+        enabled true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+
+}
+///格式化打完完成后APK名称中的时间
+def releaseTime() {
+    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC+8"))
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    api project(':cdcommon')
+    // 二维码
+    implementation 'cn.yipianfengye.android:zxing-library:2.2'
+    //路由
+    //arouter
+    // RichText
+    compile 'com.zzhoujay.richtext:richtext:2.3.7'
+    annotationProcessor rootProject.ext.arouterCompiler
+    implementation rootProject.ext.arouterApi
+    implementation 'com.google.android:flexbox:0.3.1'
+}

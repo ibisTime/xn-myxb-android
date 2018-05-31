@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CropImageView">
+
+        <attr name="guidelines">
+            <enum name="off" value="0"/>
+            <enum name="onTouch" value="1"/>
+            <enum name="on" value="2"/>
+        </attr>
+
+        <attr name="fixAspectRatio" format="boolean"/>
+        <attr name="aspectRatioX" format="integer"/>
+        <attr name="aspectRatioY" format="integer"/>
+
+    </declare-styleable>
+
+
+    <declare-styleable name="RowInfoLayout">
+        <attr name="txt_left" format="string"></attr>
+        <attr name="img_left" format="reference"></attr>
+        <attr name="txt_right" format="string"></attr>
+        <attr name="img_right" format="reference"></attr>
+
+    </declare-styleable>
+
+    <declare-styleable name="RowMoreInfoLayout">
+        <attr name="txt_title" format="string"></attr>
+        <attr name="txt_info" format="string"></attr>
+        <attr name="txt_info_hint" format="string"></attr>
+    </declare-styleable>
+
+</resources>

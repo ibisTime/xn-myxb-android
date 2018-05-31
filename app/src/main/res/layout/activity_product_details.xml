@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:banner="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <com.cdkj.myxb.weight.views.MyScrollView
+            android:id="@+id/scrollView_product"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/product_bottom_height"
+            android:layout_marginTop="-45dp"
+            android:fadingEdge="none"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <com.youth.banner.Banner
+                    android:id="@+id/banner_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/product_details_banner_height"
+                    banner:delay_time="4000"
+                    banner:indicator_drawable_selected="@drawable/banner_select"
+                    banner:indicator_drawable_unselected="@drawable/banner_un_select" />
+                <!--android:ellipsize="end"-->
+                <!--android:maxLines="4"-->
+                <TextView
+                    android:id="@+id/tv_product_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:paddingLeft="@dimen/layout_left_interval"
+                    android:progress="@dimen/layout_right_interval"
+                    android:textColor="@color/app_txt_black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="" />
+
+                <TextView
+                    android:id="@+id/tv_slogan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:paddingLeft="@dimen/layout_left_interval"
+                    android:paddingRight="@dimen/layout_right_interval"
+                    android:textColor="@color/app_txt_gray"
+                    android:textSize="14sp"
+                    tools:text="" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/money_sing"
+                        android:textColor="@color/app_txt_red"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/app_txt_red"
+                        android:textSize="16sp"
+                        tools:text="0.00" />
+
+                    <TextView
+                        android:id="@+id/tv_sell_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="80dp"
+                        android:text="已售: "
+                        android:textColor="@color/app_txt_gray"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <View
+                    style="@style/style_split_line"
+                    android:layout_height="10dp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="@dimen/layout_left_interval"
+                        android:background="@color/app_title_bg" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_weight="1"
+                        android:text="@string/goods_details"
+                        android:textColor="@color/app_txt_black"
+                        android:textSize="14sp" />
+
+
+                </LinearLayout>
+
+                <View style="@style/style_split_line" />
+
+                <WebView
+                    android:id="@+id/webView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginLeft="@dimen/layout_left_interval"
+                    android:layout_marginRight="@dimen/layout_right_interval">
+
+                </WebView>
+
+                <View style="@style/style_split_line" />
+
+                <include
+                    android:id="@+id/score_layout"
+                    layout="@layout/layout_score" />
+
+                <View style="@style/style_split_line" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyclerView_comments"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                    </android.support.v7.widget.RecyclerView>
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+        </com.cdkj.myxb.weight.views.MyScrollView>
+
+        <FrameLayout
+            android:id="@+id/fraLayout_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_height"
+            android:background="@color/app_title_bg">
+
+            <FrameLayout
+                android:id="@+id/fraLayout_title_left"
+                android:layout_width="55dp"
+                android:layout_height="match_parent"
+                android:paddingLeft="24dp">
+
+                <ImageView
+                    android:id="@+id/img_back"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/back_img" />
+
+            </FrameLayout>
+
+
+            <TextView
+                android:id="@+id/tv_top_title_abs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/product_details"
+                android:textColor="@color/title_mid_tv"
+                android:textSize="@dimen/top_center_title_size" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fraLayout_title_left_img"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_height">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/layout_left_interval"
+                android:src="@drawable/back_gray_bg" />
+
+        </FrameLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/product_bottom_height"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/product_title_margintop"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/call_phone"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/selector_gray"
+                android:gravity="center"
+               >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/consultant" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/consultant"
+                    android:textColor="@color/app_txt_black"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_to_order"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@drawable/selector_title_color"
+                android:gravity="center"
+                android:text="下单"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+</layout>

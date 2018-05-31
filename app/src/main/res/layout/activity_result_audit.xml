@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="15dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="@dimen/layout_left_interval"
+                        android:paddingRight="@dimen/layout_right_interval"
+                        android:paddingTop="15dp">
+
+                        <TextView
+                            android:id="@+id/tv_appio_type"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/app_txt_black"
+                            android:textSize="14sp"
+                            tools:text="预约服务团队" />
+
+                        <TextView
+                            android:id="@+id/tv_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/app_txt_black"
+                            android:textSize="14sp"
+                            tools:text="产品名称" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="@dimen/layout_left_interval"
+                        android:paddingRight="@dimen/layout_right_interval"
+                        android:paddingTop="15dp">
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="预约开始时间"
+                            android:textColor="@color/app_txt_black"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_appio_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/app_txt_black"
+                            android:textSize="14sp"
+                            tools:text="产品名称" />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="@dimen/layout_left_interval"
+                        android:paddingRight="@dimen/layout_right_interval"
+                        android:paddingTop="15dp">
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="预约天数"
+                            android:textColor="@color/app_txt_black"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_appio_days"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/app_txt_black"
+                            android:textSize="14sp"
+                            tools:text="产品名称" />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/lin_plan_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="@dimen/layout_left_interval"
+                        android:paddingRight="@dimen/layout_right_interval"
+                        android:paddingTop="15dp">
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="预约时间"
+                            android:textColor="@color/app_txt_black"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_appio_time_plan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/app_txt_black"
+                            android:textSize="14sp"
+                            tools:text="产品名称" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="@dimen/layout_left_interval"
+                        android:paddingRight="@dimen/layout_right_interval"
+                        android:paddingTop="15dp">
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="状态"
+                            android:textColor="@color/app_txt_black"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_state"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/app_txt_red"
+                            android:textSize="14sp"
+                            tools:text="产品名称" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="@dimen/layout_left_interval"
+                        android:paddingRight="@dimen/layout_right_interval"
+                        android:paddingTop="15dp">
+
+                        <View
+                            android:background="@color/title_bg"
+                            android:layout_width="4dp"
+                            android:layout_height="15dp"/>
+
+                        <TextView
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="成果信息"
+                            android:textColor="@color/app_txt_black"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_date_time"
+                        android:gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="@dimen/layout_left_interval"
+                        android:paddingRight="@dimen/layout_right_interval"
+                        android:paddingTop="15dp">
+
+                        <TextView
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/app_txt_black"
+                            android:textSize="14sp"
+                            android:text="开始时间" />
+
+                        <TextView
+                            android:id="@+id/tv_date_time"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:hint="请选择开始时间"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/app_txt_black"
+                            android:textSize="14sp"
+                            android:text="" />
+
+
+                    </LinearLayout>
+
+                    <View
+                        style="@style/style_split_line"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="@dimen/layout_left_interval"
+                        android:paddingRight="@dimen/layout_right_interval"
+                        android:paddingTop="15dp">
+
+                        <TextView
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/app_txt_black"
+                            android:textSize="14sp"
+                            android:text="工作天数" />
+
+                        <TextView
+                            android:id="@+id/edt_days"
+                            android:textColor="@color/app_txt_black"
+                            android:hint="请输入工作天数"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:background="@null"
+                            android:inputType="number"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/app_txt_black"
+                            android:textSize="14sp"
+                            android:text="天" />
+
+                    </LinearLayout>
+
+                    <View
+                        style="@style/style_split_line"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="@dimen/layout_left_interval"
+                        android:paddingRight="@dimen/layout_right_interval"
+                        android:paddingTop="15dp">
+
+                        <TextView
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/app_txt_black"
+                            android:textSize="14sp"
+                            android:text="见客户数" />
+
+                        <TextView
+                            android:id="@+id/edt_client"
+                            android:layout_width="254dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:inputType="number"
+                            android:hint="请输入见客户数"
+                            android:textColor="@color/app_txt_black"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/app_txt_black"
+                            android:textSize="14sp"
+                            android:text="人" />
+
+                    </LinearLayout>
+
+                    <View
+                        style="@style/style_split_line"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="@dimen/layout_left_interval"
+                        android:paddingRight="@dimen/layout_right_interval"
+                        android:paddingTop="15dp">
+
+                        <TextView
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/app_txt_black"
+                            android:textSize="14sp"
+                            android:text="成交客户数" />
+
+                        <TextView
+                            android:id="@+id/edt_suc"
+                            android:textColor="@color/app_txt_black"
+                            android:hint="请输入成交客户数"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:inputType="number"
+                            android:background="@null"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/app_txt_black"
+                            android:textSize="14sp"
+                            android:text="人" />
+
+                    </LinearLayout>
+
+                    <View
+                        style="@style/style_split_line"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="@dimen/layout_left_interval"
+                        android:paddingRight="@dimen/layout_right_interval"
+                        android:paddingTop="15dp">
+
+                        <TextView
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/app_txt_black"
+                            android:textSize="14sp"
+                            android:text="销售业绩" />
+
+                        <TextView
+                            android:id="@+id/edt_sale"
+                            android:textColor="@color/app_txt_black"
+                            android:hint="请输入销售业绩"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:inputType="numberDecimal"
+                            android:background="@null"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/app_txt_black"
+                            android:textSize="14sp"
+                            android:text="@string/money_sing" />
+
+                    </LinearLayout>
+
+                    <View
+                        style="@style/style_split_line"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="@dimen/layout_left_interval"
+                        android:paddingRight="@dimen/layout_right_interval"
+                        android:paddingTop="15dp">
+
+                        <TextView
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/app_txt_black"
+                            android:textSize="14sp"
+                            android:text="成果确认函" />
+
+                        <ImageView
+                            android:id="@+id/img_confirm"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/default_pic" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btn_confirm"
+                android:layout_marginBottom="10dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/layout_left_interval"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/btn_select_common"
+                android:text="通过"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btn_no"
+                android:layout_marginBottom="10dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/btn_select_common"
+                android:text="不通过"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

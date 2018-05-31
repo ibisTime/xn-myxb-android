@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/ll_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.cdkj.baselibrary.views.RowInfoLayout
+                android:id="@+id/row_trip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:img_left="@drawable/my_next_go"
+                app:txt_left="我的行程" />
+
+            <TextView
+                android:id="@+id/row_trip_num"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@drawable/common_list_count"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                tools:text="0" />
+
+        </FrameLayout>
+
+        <com.cdkj.baselibrary.views.RowInfoLayout
+            android:id="@+id/row_result"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:img_left="@drawable/my_results"
+            app:txt_left="成果查看" />
+
+
+        <com.cdkj.baselibrary.views.RowInfoLayout
+            android:id="@+id/row_comment"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:img_left="@drawable/my_jf"
+            app:txt_left="我的评论" />
+
+        <View
+            style="@style/style_split_line"
+            android:layout_marginLeft="15dp" />
+
+        <com.cdkj.baselibrary.views.RowInfoLayout
+            android:id="@+id/row_rank"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:img_left="@drawable/my_top_list"
+            app:txt_left="我的排名" />
+
+        <View
+            style="@style/style_split_line"
+            android:layout_marginLeft="15dp" />
+
+        <com.cdkj.baselibrary.views.RowInfoLayout
+            android:id="@+id/row_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:img_left="@drawable/my_info"
+            app:txt_left="我的履历" />
+
+        <FrameLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.cdkj.baselibrary.views.RowInfoLayout
+                android:id="@+id/row_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:img_left="@drawable/my_next_go"
+                app:txt_left="我的订单" />
+
+            <TextView
+                android:id="@+id/row_order_num"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@drawable/common_list_count"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                tools:text="0" />
+
+        </FrameLayout>
+
+
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <com.cdkj.baselibrary.views.RowInfoLayout
+                android:id="@+id/row_my_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:img_left="@drawable/my_results"
+                app:txt_left="成果订单" />
+
+            <View
+                style="@style/style_split_line"
+                android:layout_marginLeft="15dp" />
+
+            <com.cdkj.baselibrary.views.RowInfoLayout
+                android:id="@+id/row_integral"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:img_left="@drawable/my_jf"
+                app:txt_left="积分余额" />
+
+            <View
+                style="@style/style_split_line"
+                android:layout_marginLeft="15dp" />
+
+
+            <com.cdkj.baselibrary.views.RowInfoLayout
+                android:id="@+id/row_help_center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:img_left="@drawable/my_help_center"
+                app:txt_left="帮助中心" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

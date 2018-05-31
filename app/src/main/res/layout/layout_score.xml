@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/lin_to_comments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        tools:showIn="@layout/activity_shopper_appointment">
+
+        <com.cdkj.myxb.weight.views.MyRatingBar
+            android:id="@+id/ratingbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            app:clickable="false"
+            app:halfstart="false"
+            app:starCount="5"
+            app:starEmpty="@drawable/star_empty"
+            app:starFill="@drawable/star_full"
+            app:starImageHeight="25dp"
+            app:starImagePadding="8dp"
+            app:starImageWidth="25dp" />
+
+        <TextView
+            android:id="@+id/tv_star_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            tools:text="0星"
+            android:textColor="@color/ratingbar_color"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/app_txt_black"
+            android:textSize="14sp"
+            tools:text="42条评价" />
+
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="@dimen/layout_right_interval"
+            android:src="@drawable/more_right" />
+
+
+    </LinearLayout>
+</layout>

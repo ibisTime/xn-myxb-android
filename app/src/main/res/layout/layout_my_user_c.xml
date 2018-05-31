@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/ll_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.cdkj.baselibrary.views.RowInfoLayout
+            android:id="@+id/row_join"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:img_left="@drawable/my_top_list"
+            app:txt_left="我要成为经销商" />
+
+
+        <FrameLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.cdkj.baselibrary.views.RowInfoLayout
+                android:id="@+id/row_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:img_left="@drawable/my_next_go"
+                app:txt_left="我的订单" />
+
+            <TextView
+                android:id="@+id/row_order_num"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@drawable/common_list_count"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                tools:text="0" />
+
+        </FrameLayout>
+
+        <View
+            style="@style/style_split_line"
+            android:layout_marginLeft="15dp" />
+
+        <FrameLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.cdkj.baselibrary.views.RowInfoLayout
+                android:id="@+id/row_appointment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:img_left="@drawable/my_results"
+                app:txt_left="我的预约" />
+
+            <TextView
+                android:id="@+id/row_appointment_num"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@drawable/common_list_count"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                tools:text="0" />
+
+        </FrameLayout>
+
+
+
+
+    </LinearLayout>
+</layout>

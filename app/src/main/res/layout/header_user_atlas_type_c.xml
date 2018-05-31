@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingLeft="@dimen/layout_left_interval"
+            android:paddingRight="@dimen/layout_right_interval"
+            android:paddingTop="15dp">
+
+            <ImageView
+                android:id="@+id/iv_line"
+                android:background="@color/title_bg"
+                android:layout_width="4dp"
+                android:layout_height="14dp" />
+
+            <TextView
+                android:text="有效推荐码"
+                android:layout_marginLeft="11dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/app_txt_black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_maxNumber"
+                android:text="0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/title_bg"
+                android:textSize="15sp" />
+
+            <TextView
+                android:text="人"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/app_txt_black"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

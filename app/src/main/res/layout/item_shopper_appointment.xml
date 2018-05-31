@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingLeft="@dimen/layout_left_interval"
+    android:paddingRight="@dimen/layout_right_interval"
+    android:paddingTop="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_logo"
+            android:layout_width="@dimen/shopper_logo_width"
+            android:layout_height="@dimen/shopper_logo_height"
+            tools:src="@drawable/my_logo" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="15dp"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:textColor="@color/app_txt_black"
+                            android:textSize="15sp"
+                            tools:text="王二小王二" />
+
+                        <ImageView
+                            android:id="@+id/img_gender"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="2dp"
+                            tools:src="@drawable/women_2" />
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/tv_specialty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/app_txt_black"
+                        android:textSize="14sp"
+                        tools:text="专长打发打发" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_select_radius"
+                    android:gravity="center"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="5dp"
+                    android:text="@string/can_appointment"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/flexbox_layout_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    app:flexWrap="wrap">
+
+                    <!--<TextView-->
+                        <!---->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_gravity="center_vertical"-->
+                        <!--android:layout_marginRight="10dp"-->
+                        <!--android:background="@drawable/bg_shopper_lable"-->
+                        <!--android:gravity="center"-->
+                        <!--android:paddingBottom="2dp"-->
+                        <!--android:paddingLeft="8dp"-->
+                        <!--android:paddingRight="8dp"-->
+                        <!--android:paddingTop="2dp"-->
+                        <!--android:text="幽默"-->
+                        <!--android:textColor="@color/shopper_lable_1"-->
+                        <!--android:textSize="@dimen/shopper_lable_txt_size" />-->
+
+                </com.google.android.flexbox.FlexboxLayout>
+
+                <TextView
+                    android:id="@+id/tv_level"
+                    android:text="aaaaaa"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/shopper_lable_1"
+                    android:textSize="@dimen/shopper_lable_txt_size" />
+
+                <com.cdkj.myxb.weight.views.MyRatingBar
+                    android:id="@+id/ratingbar_shopper"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    app:clickable="false"
+                    app:halfstart="false"
+                    app:starCount="5"
+                    app:starEmpty="@drawable/star_empty"
+                    app:starFill="@drawable/star_full"
+                    app:starImageHeight="16dp"
+                    app:starImagePadding="6dp"
+                    app:starImageWidth="16dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_user_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="15dp"
+        android:lineSpacingExtra="4dp"
+        android:paddingTop="15dp"
+        android:textColor="@color/app_txt_black"
+        android:textSize="14sp"
+        tools:text="效果很好效果很好效果很好效果很好效果很好效果很好效果很好效果很好效果很好" />
+
+
+</LinearLayout>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/lin_logo_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="10dp"
+            android:paddingLeft="@dimen/layout_left_interval"
+            android:paddingTop="10dp">
+
+            <ImageView
+                android:id="@+id/img_user_logo"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/my_logo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:text="点击更换头像"
+                android:textSize="13sp" />
+            <!--android:text="按照等级从图片库中选择"-->
+
+            <ImageView
+                android:id="@+id/img_right"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/layout_right_interval"
+                android:src="@drawable/more_right" />
+
+        </LinearLayout>
+
+        <com.cdkj.baselibrary.views.RowMoreInfoLayout
+            android:id="@+id/row_update_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:txt_title="修改手机号" />
+
+        <View style="@style/style_split_line" />
+
+        <com.cdkj.baselibrary.views.RowMoreInfoLayout
+            android:id="@+id/row_update_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:txt_title="修改登录密码" />
+
+        <View style="@style/style_split_line" />
+
+        <com.cdkj.baselibrary.views.RowMoreInfoLayout
+            android:id="@+id/row_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:txt_title="地址管理" />
+
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/btn_select_common"
+            android:text="退出登录"
+            android:textColor="@color/white" />
+
+
+    </LinearLayout>
+</layout>
