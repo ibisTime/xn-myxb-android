@@ -13,7 +13,7 @@ import java.lang.annotation.RetentionPolicy;
  */
 
 public class UserHelper {
-    /*C:经销商,P:平台用户,S:专家,T:服务团队,A:顾问,M:人力,*/
+    /*C:经销商,P:平台用户,S:专家,A:顾问,M:人力,*/
 
     public static final String C = "C"; // 经销商
     public static final String S = "S"; // 专家
