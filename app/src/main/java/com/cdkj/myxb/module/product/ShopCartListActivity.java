@@ -6,7 +6,6 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
 import com.cdkj.baselibrary.api.ResponseInListModel;
@@ -342,7 +341,6 @@ public class ShopCartListActivity extends AbsBaseLoadActivity {
     }
 
     private void setIsAllChoice(){
-        Log.e("isAllChoice",isAllChoice+"");
 
         for (ShopCartListModel model : shopCartListAdapter.getData()){
             model.setChoice(isAllChoice);

@@ -183,14 +183,12 @@ public class CommonAppointmentOrderActivity extends AbsBaseLoadActivity {
      * 显示日期picker
      */
     private void showDatePicker() {
-        TimePickerView pvTime = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
-            @Override
-            public void onTimeSelect(Date date, View v) {//选中事件回调
-                mBinding.tvStartDate.setText(DateUtil.format(date, DateUtil.DATE_YYMMddHHmm));
-                mBinding.tvStartDate.setTag(DateUtil.format(date, DateUtil.DEFAULT_DATE_FMT));
-            }
+        TimePickerView pvTime = new TimePickerView.Builder(this, (date, v) -> {//选中事件回调
 
-        }).setType(new boolean[]{true, true, true, true, true, false})
+            mBinding.tvStartDate.setText(DateUtil.format(date, DateUtil.DATE_YYMMddHHmm));
+            mBinding.tvStartDate.setTag(DateUtil.format(date, DateUtil.DEFAULT_DATE_FMT));
+
+        }).setType(new boolean[]{true, true, true, false, false, false})
                 .setLabel("年", "月", "日", "时", "分", null)
                 .setRange(startCalendar.get(Calendar.YEAR), endCalendar.get(Calendar.YEAR))
                 .isCyclic(true)

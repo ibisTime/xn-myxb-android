@@ -27,13 +27,11 @@ public class GroupTripListAdapter extends BaseQuickAdapter<GroupTripListModel, B
     protected void convert(BaseViewHolder helper, GroupTripListModel item) {
         if (item == null) return;
 
-
         ImgUtils.loadQiniuLogo(mContext, item.getUser().getPhoto(), helper.getView(R.id.img_logo));
 
         helper.setText(R.id.tv_day, item.getUser().getMobile() + "  " +  DateUtil.getWeekOfDate(item.getApplyDatetime()));
         helper.setText(R.id.tv_date, DateUtil.formatStringData(item.getApplyDatetime(), DateUtil.DATE_YMD));
         helper.setText(R.id.tv_time, DateUtil.formatStringData(item.getApplyDatetime(), DateUtil.DATE_HM) + "-" + DateUtil.formatStringData(item.getApplyDatetime(), DateUtil.DATE_HM));
-
 
     }
 }

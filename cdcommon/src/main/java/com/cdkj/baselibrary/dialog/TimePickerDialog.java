@@ -2,7 +2,6 @@ package com.cdkj.baselibrary.dialog;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,34 +58,26 @@ public class TimePickerDialog {
      */
     private void initDialog(View view) {
         mAlertDialog.setPositiveButton("确定",
-                new android.content.DialogInterface.OnClickListener() {
+                (dialog, which) -> {
+                    // TODO Auto-generated method stub
+                    dialog.dismiss();
 
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // TODO Auto-generated method stub
-                        dialog.dismiss();
-
-                        if (mTag == 0) {
-                            getTimePickerValue();
-                        } else if (mTag == 1) {
-                            getDatePickerValue();
-                        } else if (mTag == 2) {
-                            getDatePickerValue();
-                            getTimePickerValue();
-                        }
-                        timePickerDialogInterface.positiveListener();
-
+                    if (mTag == 0) {
+                        getTimePickerValue();
+                    } else if (mTag == 1) {
+                        getDatePickerValue();
+                    } else if (mTag == 2) {
+                        getDatePickerValue();
+                        getTimePickerValue();
                     }
+                    timePickerDialogInterface.positiveListener();
+
                 });
         mAlertDialog.setNegativeButton("取消",
-                new android.content.DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // TODO Auto-generated method stub
-                        timePickerDialogInterface.negativeListener();
-                        dialog.dismiss();
-                    }
+                (dialog, which) -> {
+                    // TODO Auto-generated method stub
+                    timePickerDialogInterface.negativeListener();
+                    dialog.dismiss();
                 });
         mAlertDialog.setView(view);
     }

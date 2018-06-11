@@ -99,6 +99,8 @@ public class UserAtlasManagerActivity extends AbsRefreshListActivity {
 
         userId = getIntent().getStringExtra("userId");
         mRefreshHelper.onDefaluteMRefresh(true);
+
+        mRefreshBinding.refreshLayout.setEnableLoadmore(false);
     }
 
     private void divide(String mdUserId){

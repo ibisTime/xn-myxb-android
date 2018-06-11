@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.cdkj.baselibrary.api.ResponseInListModel;
-import com.cdkj.baselibrary.appmanager.SPUtilHelpr;
 import com.cdkj.baselibrary.base.AbsBaseLoadActivity;
 import com.cdkj.baselibrary.dialog.UITipDialog;
 import com.cdkj.baselibrary.nets.BaseResponseListCallBack;
@@ -122,9 +121,9 @@ public class CommonAppointmentUserDetailActivity extends AbsBaseLoadActivity {
         //预约
         mBinding.btnToApppintment.setOnClickListener(view -> {
 
-            if (!SPUtilHelpr.isLogin(this, false)) {
-                return;
-            }
+//            if (!SPUtilHelpr.isLogin(this, false)) {
+//                return;
+//            }
             CommonAppointmentOrderActivity.open(this, mShoppperCode, mType);
         });
 

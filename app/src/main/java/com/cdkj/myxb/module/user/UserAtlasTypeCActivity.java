@@ -94,6 +94,7 @@ public class UserAtlasTypeCActivity extends AbsRefreshListActivity {
         initRefreshHelper(10);
 
         mRefreshHelper.onDefaluteMRefresh(true);
+        mRefreshBinding.refreshLayout.setEnableLoadmore(false);
     }
 
     @Override

@@ -248,7 +248,7 @@ public class AppointmentListFragment extends BaseLazyFragment {
 
         Map<String, Object> map = new HashMap<>();
 
-        if (SPUtilHelpr.getUserType().equals(UserHelper.C)){
+        if (SPUtilHelpr.getUserType().equals(UserHelper.C)){ // 经销商
             map.put("applyUser", SPUtilHelpr.getUserId());
             map.put("type", mType);
         }else {

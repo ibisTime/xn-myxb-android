@@ -23,6 +23,7 @@
                 android:calendarViewShown="false"
                 />
             <TimePicker
+                android:visibility="gone"
                 android:id="@+id/dateAndTimePicker_timePicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
