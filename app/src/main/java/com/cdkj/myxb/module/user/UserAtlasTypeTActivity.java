@@ -142,7 +142,6 @@ public class UserAtlasTypeTActivity extends AbsRefreshListActivity {
         mRefreshHelper.onDefaluteMRefresh(true);
     }
 
-
     /**
      * 获取布局管理器
      *

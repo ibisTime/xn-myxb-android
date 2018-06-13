@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:banner="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <com.youth.banner.Banner
+            android:id="@+id/banner_first_page"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/banner_height"
+            banner:delay_time="4000"
+            banner:indicator_drawable_selected="@drawable/banner_select"
+            banner:indicator_drawable_unselected="@drawable/banner_un_select"
+            banner:indicator_height="8dp"
+            banner:indicator_margin="5dp"
+            banner:indicator_width="8dp" />
+
+        <View
+            style="@style/style_split_line"
+            android:layout_height="1dp" />
+
+        <LinearLayout
+            android:id="@+id/lin_msg"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/msg_logo" />
+
+            <TextView
+                android:id="@+id/tv_msg"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="@color/app_txt_black"
+                android:textSize="16sp" />
+
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/more_right" />
+
+
+        </LinearLayout>
+
+        <View
+            style="@style/style_split_line"
+            android:layout_height="1dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
+
+            <LinearLayout
+                android:id="@+id/llayout_brand"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <ImageView
+                    android:layout_width="@dimen/first_page_item_img_size"
+                    android:layout_height="@dimen/first_page_item_img_size"
+                    android:src="@drawable/main_brand" />
+
+                <TextView
+                    style="@style/text_black"
+                    android:layout_marginTop="12dp"
+                    android:text="品牌"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llinayout_shopper"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <ImageView
+                    android:layout_width="@dimen/first_page_item_img_size"
+                    android:layout_height="@dimen/first_page_item_img_size"
+                    android:src="@drawable/main_shopper" />
+
+                <TextView
+                    style="@style/text_black"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/shopper"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_teacher"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <ImageView
+                    android:layout_width="@dimen/first_page_item_img_size"
+                    android:layout_height="@dimen/first_page_item_img_size"
+                    android:src="@drawable/main_teacher" />
+
+                <TextView
+                    style="@style/text_black"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/teacher"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_experts"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <ImageView
+                    android:layout_width="@dimen/first_page_item_img_size"
+                    android:layout_height="@dimen/first_page_item_img_size"
+                    android:src="@drawable/main_expert" />
+
+                <TextView
+                    style="@style/text_black"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/experts"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            style="@style/style_split_line"
+            android:layout_height="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/main_red_heart" />
+
+            <TextView
+                style="@style/text_black"
+                android:layout_marginLeft="10dp"
+                android:text="推荐品牌"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>
