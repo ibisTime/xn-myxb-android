@@ -41,15 +41,12 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderListModel, BaseViewH
 
         if (TextUtils.equals(item.getPayType(), "0")){
             helper.setText(R.id.tv_price_all, MoneyUtils.getShowPriceSign(item.getTotalAmount()));
-//            helper.setText(R.id.tv_price, MoneyUtils.getShowPriceSign(item.getProductOrderList().get(0).getPrice()));
         }else {
 
             if (TextUtils.equals(SPUtilHelpr.getUserType(), UserHelper.C)){
                 helper.setText(R.id.tv_price_all, MoneyUtils.getShowPriceSign(item.getAmount()));
-//                helper.setText(R.id.tv_price, MoneyUtils.getShowPriceSign(item.getProductOrderList().get(0).getDiscountPrice()));
             }else {
                 helper.setText(R.id.tv_price_all, MoneyUtils.getShowPriceSign(item.getTotalAmount()));
-//                helper.setText(R.id.tv_price, MoneyUtils.getShowPriceSign(item.getProductOrderList().get(0).getPrice()));
             }
         }
 
